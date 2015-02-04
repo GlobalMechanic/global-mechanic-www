@@ -1,0 +1,93 @@
+* {
+  box-sizing: border-box; }
+  *:focus {
+    outline: none;
+    outline: 0; }
+
+html {
+  margin: 0;
+  padding: 0; }
+
+body {
+  min-width: 320px;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px;
+  background: #A3937D;
+  font-family: 'Gotham Narrow SSm A', 'Gotham Narrow SSm B', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  color: #402A27; }
+
+.header {
+  margin-bottom: 32px; }
+
+.logo--header {
+  font-size: 0;
+  width: 334px;
+  height: 80px;
+  background: url(/images/logo_lrg.png) no-repeat;
+  background-size: 334px 80px; }
+  @media (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+    .logo--header {
+      background-image: url(/images/logo_lrg@2x.png); } }
+
+.tagline {
+  color: #fff;
+  font-size: 16px;
+  font-weight: normal; }
+
+.logo--footer {
+  font-size: 0;
+  width: 167px;
+  height: 40px;
+  background: url(/images/logo_sm.png) no-repeat;
+  background-size: 167px 40px;
+  margin-bottom: 24px; }
+  @media (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+    .logo--footer {
+      background-image: url(/images/logo_sm@2x.png); } }
+
+.address, .contact {
+  text-transform: uppercase;
+  line-height: 1.3;
+  margin-bottom: 24px; }
+
+a {
+  color: #402A27; }
+
+.featured-videos {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 16px; }
+
+.video {
+  display: inline-block;
+  padding-bottom: 16px; }
+  @media (min-width: 768px) {
+    .video {
+      width: 33%;
+      padding-right: 8px; } }
+
+.video-name {
+  margin: 8px 0;
+  display: block;
+  text-decoration: none;
+  color: #402A27; }
+
+.video-wrapper {
+  margin: 0;
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%; }
+  .video-wrapper iframe, .video-wrapper object, .video-wrapper embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+
+/*# sourceMappingURL=main.css.map */

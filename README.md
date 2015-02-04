@@ -1,36 +1,36 @@
-# node-js-getting-started
+# GlobalMechanic.com
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
+## Anatomy of this repo
 
-This application support the [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
+* `/src`: contains the source files, from which we build the site. This will be your destination for local development. 
+* `/public`: the client code for the live site. We'll build to here from the source folder.
+*  `/assets`: icon fonts and source Sketch files
 
-## Running Locally
+Various files in the root are to facilitate running on Heroku. This is a basic express app.
 
-Make sure you have [Node.js](http://nodejs.org/) and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
+## Local Development
 
-```sh
-$ git clone git@github.com:heroku/node-js-getting-started.git # or clone your own fork
-$ cd node-js-getting-started
-$ npm install
-$ npm start
-```
+Local development all happens in the source folder. We use gulp to boot up a local development server, and watch code for changes so that everything compiles all nice and speedily. 
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
+### Initial setup
 
-## Deploying to Heroku
+In your freshly cloned the repo run `npm install`. 
 
-```
-$ heroku create
-$ git push heroku master
-$ heroku open
-```
+### Okay, now I want to actually develop things
 
-## Documentation
+## Debuggin the look and feel
 
-For more information about using Node.js on Heroku, see these Dev Center articles:
+Once you are setup, run `gulp serve` and the sails should be lifted. A browser tab should automatically open at `http://localhost:3000`. This will run an instance of BrowserSync for a lightning fast debug flow.
 
-- [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
-- [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support)
-- [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
-- [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
-- [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
+## Debugging express
+
+For testing things like routes, you'll want to run off express using `node server`. This will launch the site on `http://localhost:5000`.
+
+## Building & Deploying
+
+If you would like to update `http://ishuman.co` to the current state of things, just:
+
+1. Run `gulp build` from the root folder.
+2. Commit your changes and push to master.
+
+Heroku is linked to the Github master branch, and will deploy automatically.
