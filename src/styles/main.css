@@ -10,7 +10,7 @@ html {
 
 body {
   min-width: 320px;
-  max-width: 960px;
+  max-width: 768px;
   margin: 0 auto;
   padding: 32px;
   background: #A3937D;
@@ -24,10 +24,11 @@ body {
 
 .logo--header {
   font-size: 0;
-  width: 334px;
-  height: 80px;
+  width: 256px;
+  height: 62px;
   background: url(/images/logo_lrg.png) no-repeat;
-  background-size: 334px 80px; }
+  background-size: 256px 62px;
+  background-size: fit; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
     .logo--header {
       background-image: url(/images/logo_lrg@2x.png); } }
@@ -63,12 +64,7 @@ a {
   margin-bottom: 16px; }
 
 .video {
-  display: inline-block;
   padding-bottom: 16px; }
-  @media (min-width: 768px) {
-    .video {
-      width: 33%;
-      padding-right: 8px; } }
 
 .video-name {
   margin: 8px 0;
