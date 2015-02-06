@@ -1,0 +1,11 @@
+extends ./layout.jade
+
+block content
+	h1= playlist.name
+	ul.featured-videos
+		for video in videos
+			li.video
+				div.video-wrapper
+					- var id = video.uri.split('/')[2];
+					iframe(src='//player.vimeo.com/video/'+id+'?title=0&byline=0&portrait=0', frameborder='0', webkitallowfullscreen='', mozallowfullscreen='', allowfullscreen='')
+				p.video-name(href='http://vimeo.com/'+id)= video.name
