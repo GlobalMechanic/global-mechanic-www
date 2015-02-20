@@ -13,7 +13,8 @@ block content
 		- var currentPortfolio = portfolios[currentPortfolioId];
 		for video in currentPortfolio.videos
 			- var id = video.uri.split('/')[2];
-			- var image_uri = video.pictures.sizes[4].link;
+			//- grab the largest available image
+			- var image_uri = video.pictures.sizes.pop().link;
 			a.video-thumbnail(href=video.uri+'?portfolio='+currentPortfolioId)
 				div.video-poster(video-id=id, style='background-image: url('+image_uri+')')
 					img(src=image_uri)

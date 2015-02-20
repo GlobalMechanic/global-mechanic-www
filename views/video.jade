@@ -11,10 +11,10 @@ block content
 				span= video.name
 			if ( currentPortfolioName )
 				if ( prevVideoId )
-					a.prev-video(href='/videos/'+prevVideoId+'?portfolio='+currentPortfolioId) prev
-				span.video-count= currentVideoIndex+'/'+totalVideoCount
+					a.prev-video(href='/videos/'+prevVideoId+'?portfolio='+currentPortfolioId) &larr; previous video
+				span.video-count= 'video #'+currentVideoIndex+' of '+totalVideoCount
 				if ( nextVideoId )
-					a.next-video(href='/videos/'+nextVideoId+'?portfolio='+currentPortfolioId) next 
+					a.next-video(href='/videos/'+nextVideoId+'?portfolio='+currentPortfolioId) next video &rarr;
 	.video-player
 		iframe(src='//player.vimeo.com/video/'+video.id+'?title=0&byline=0&portrait=0&autoplay=1', frameborder='0', webkitallowfullscreen='', mozallowfullscreen='', allowfullscreen='')
 	script.

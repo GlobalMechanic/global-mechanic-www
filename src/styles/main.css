@@ -184,6 +184,9 @@ Content
       background: #402A27;
       color: #fff; }
 
+.video-count {
+  padding: 8px; }
+
 .video-player {
   margin: 0;
   position: relative;
