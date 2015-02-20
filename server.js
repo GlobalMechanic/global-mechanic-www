@@ -25,14 +25,14 @@ app.set('view engine', 'jade');
  -----------------------------------------------------------------------------------------------*/
 
 var vimeoConfig = {
-  clientID: 'f7f0d3e98bcf5e7f1fce9274d94e36a9f77155ae',
+  clientId: 'f7f0d3e98bcf5e7f1fce9274d94e36a9f77155ae',
   clientSecret: 'dd6af929f5984635e80f99ab3b25e85fe9dcee6d',
   unauthenticatedAuthHandler: 'Authorization : Basic ZjdmMGQzZTk4YmNmNWU3ZjFmY2U5Mjc0ZDk0ZTM2YTlmNzcxNTVhZTpkZDZhZjkyOWY1OTg0NjM1ZTgwZjk5YWIzYjI1ZTg1ZmU5ZGNlZTZk',
   scope: 'public',
-  accountID: 2657340
+  accountId: 2657340
 }
 
-var vimeoLib = new Vimeo( vimeoConfig.clientID, 
+var vimeoLib = new Vimeo( vimeoConfig.clientId, 
                           vimeoConfig.clientSecret );
 
 var fetchedData = {
@@ -85,7 +85,7 @@ var authenticateVimeo = function () {
  * Gets a list of Global Mechanic's public portfolios from Vimeo, sorted alphabetically.
  * @return {promise} Eventually resolves to the list of portfolios
  */
-var portfolios_uri = '/users/'+vimeoConfig.accountID+'/portfolios';
+var portfolios_uri = '/users/'+vimeoConfig.accountId+'/portfolios';
 var upatedPortfolioList = function () {
   var deferred = Q.defer();
   // data is valid
@@ -178,7 +178,7 @@ var getVideo = function (video_id) {
   } 
   // data is invalid, so go get it again
   else {
-    console.log('getting the video', video);
+    console.log('getting the video');
     vimeoLib.request({
       path: '/videos/'+video_id,
     }, function (error, body, status_code, headers) {
@@ -186,10 +186,10 @@ var getVideo = function (video_id) {
         console.log('error retreiving the video');
         console.log(error);
       } else {
+        console.log('got the video');
         fetchedData.videos[video_id] = body;
         fetchedData.videos[video_id].id = video_id;
         fetchedData.videos[video_id].lastFetched = new Date();;
-        console.log('got the video', fetchedData.videos[video_id]);
         deferred.resolve();
       }
     });
@@ -230,13 +230,23 @@ app.get('/contact/', function(req, res){
 // object for retrieval 
 app.get('/videos/:id', function(req, res){
   console.log('Route: /videos/:id');
-  var target_video_id = req.params.id;
+  var target_video_id     = req.params.id;
+  var target_portfolio_id = req.query.portfolio;
+  var target_portfolio_name;
   authenticateVimeo()
+    .then(function() {
+      return upatedPortfolioList();
+    })
     .then(function () {
       return getVideo(target_video_id);
     })
     .then(function () {
+      if ( target_portfolio_id ) {
+        target_portfolio_name = fetchedData.portfolioList.portfolios[target_portfolio_id].name
+      }
       res.render('video', {
+        currentPortfolioName: target_portfolio_name,
+        currentPortfolioId: target_portfolio_id,
         video: fetchedData.videos[target_video_id]
       });
     });
@@ -257,7 +267,7 @@ app.get('/', function(req, res){
     .then(function () {
       res.render('home', {
         portfolios: fetchedData.portfolioList.portfolios,
-        currentPortfolioID: target_portfolio_id
+        currentPortfolioId: target_portfolio_id
       });
     });
 });

@@ -14,7 +14,8 @@ html
     a.header(href="/")
       h1.logo--header Global Mechanic
       h2.tagline Making unusual &amp; beautiful things since 2000
-    block content   
+    .content
+      block content   
     .footer
       h2.logo--footer
         Global Mechanic
@@ -25,10 +26,12 @@ html
             div(itemprop='streetAddress') 300-341 Water Street
             div 3rd Floor
             div
-              span(itemprop='addressLocality') Vancouver
-              span(itemprop='addressRegion') BC
-              span(itemprop='addressCountry') Canada
-            div(itemprop='postalCode') V6B 1B8
+              span(itemprop='addressLocality') Vancouver &nbsp;
+              span(itemprop='addressRegion') BC &nbsp;
+              
+            div
+              span(itemprop='addressCountry') Canada &nbsp;
+              span(itemprop='postalCode') V6B 1B8
         .contact
           div(itemprop='telephone') +1 (604) 733 7475 
           div(itemprop='email')

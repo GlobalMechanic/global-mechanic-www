@@ -1,6 +1,13 @@
 extends ./layout.jade
 
 block content
-	h1= video.name
-	div.video-player
+	.video-controls
+		- var pageTitle = '';
+		- var videoName = video.name;
+			h1.video-name 
+				if ( currentPortfolioName ) 
+					a(href='/?portfolio='+currentPortfolioId)= currentPortfolioName
+					span &nbsp;&gt;&nbsp;
+				span= video.name
+	.video-player
 		iframe(src='//player.vimeo.com/video/'+video.id+'?title=0&byline=0&portrait=0&autoplay=1', frameborder='0', webkitallowfullscreen='', mozallowfullscreen='', allowfullscreen='')

@@ -1,23 +1,23 @@
 extends ./layout.jade
 
 block content
-	select(id='portfolio-selector')
-		for portfolio in portfolios
-			- console.log(portfolio);
-			if (portfolio.id === currentPortfolioID)
-				option(value=portfolio.id, selected='selected')= portfolio.name
-			else 
-				option(value=portfolio.id)= portfolio.name
-	ul.featured-videos
-		- var currentPortfolio = portfolios[currentPortfolioID];
+	.portfolio-selector-container
+		.gm-select
+			select(id='portfolio-selector')
+				for portfolio in portfolios
+					if (portfolio.id === currentPortfolioId)
+						option(value=portfolio.id, selected='selected')= portfolio.name
+					else 
+						option(value=portfolio.id)= portfolio.name
+	.portfolio-videos
+		- var currentPortfolio = portfolios[currentPortfolioId];
 		for video in currentPortfolio.videos
-			li.video
-				- var id = video.uri.split('/')[2];
-				- var image_uri = video.pictures.sizes[4].link;
-				a.video-play-btn(href=video.uri)
-					div.video-poster(video-id=id, style='background-image: url('+image_uri+')')
-						img(src=image_uri)
-					p.video-name(href='http://vimeo.com/'+id)= video.name
+			- var id = video.uri.split('/')[2];
+			- var image_uri = video.pictures.sizes[4].link;
+			a.video-thumbnail(href=video.uri+'?portfolio='+currentPortfolioId)
+				div.video-poster(video-id=id, style='background-image: url('+image_uri+')')
+					img(src=image_uri)
+				p.video-name(href='http://vimeo.com/'+id)= video.name
 	script.
 		var portfolioSelector_el = document.getElementById('portfolio-selector');
 		portfolioSelector_el.addEventListener('change', function(evt) {
