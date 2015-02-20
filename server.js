@@ -8,8 +8,8 @@ var Q           = require("q");
 
 // check if we're in dev;
 var static_folder = (process.env.NODE_ENV == 'development') ? '/src' : '/public';
-// var oneDay = (process.env.NODE_ENV == 'development') ? 0 : 86400000;
-var oneDay = 0;
+var oneDay = (process.env.NODE_ENV == 'development') ? 0 : 86400000;
+app.locals.deployVersion = (new Date).getTime();
 
 /*-----------------------------------------------------------------------------------------------
   Express Setup
@@ -17,7 +17,7 @@ var oneDay = 0;
 
 app.use(compress());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(__dirname + static_folder, { maxAge: oneDay }));
+app.use(express.static(__dirname + static_folder, { maxAge: oneDay * 30 }));
 app.set('view engine', 'jade');
 
 /*-----------------------------------------------------------------------------------------------
