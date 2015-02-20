@@ -9,13 +9,11 @@ html
     meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
     title Global Mechanic | Global Mechanic
     link(rel='stylesheet', type='text/css', href='//cloud.typography.com/712234/797102/css/fonts.css')
-    link(rel='stylesheet', href='styles/main.css')
+    link(rel='stylesheet', href='/styles/main.css')
   body
-    .header
-      h1.logo--header
-        Global Mechanic
-      h2.tagline
-        Making unusual &amp; beautiful things since 2000
+    a.header(href="/")
+      h1.logo--header Global Mechanic
+      h2.tagline Making unusual &amp; beautiful things since 2000
     block content   
     .footer
       h2.logo--footer
@@ -24,10 +22,8 @@ html
         .address
           div(itemprop='name') Global Mechanic
           div(itemtype='http://schema.org/PostalAddress', itemscope='', itemprop='address')
-            div(itemprop='streetAddress')
-              300-341 Water Street
-            div
-              3rd Floor
+            div(itemprop='streetAddress') 300-341 Water Street
+            div 3rd Floor
             div
               span(itemprop='addressLocality') Vancouver
               span(itemprop='addressRegion') BC
@@ -46,4 +42,4 @@ html
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
       ga('create', 'UA-5743826-1', 'globalmechanic.com');
       ga('send', 'pageview');
-    script(src='scripts/main.js')
+    script(src='/scripts/main.js')

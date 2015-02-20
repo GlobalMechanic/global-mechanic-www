@@ -10,7 +10,7 @@ html {
 
 body {
   min-width: 320px;
-  max-width: 768px;
+  max-width: 980px;
   margin: 0 auto;
   padding: 32px;
   background: #A3937D;
@@ -20,7 +20,8 @@ body {
   color: #402A27; }
 
 .header {
-  margin-bottom: 32px; }
+  margin-bottom: 32px;
+  text-decoration: none; }
 
 .logo--header {
   font-size: 0;
@@ -35,8 +36,9 @@ body {
 
 .tagline {
   color: #fff;
-  font-size: 16px;
-  font-weight: normal; }
+  font-size: 14px;
+  font-weight: normal;
+  text-transform: uppercase; }
 
 .logo--footer {
   font-size: 0;
@@ -64,7 +66,17 @@ a {
   margin-bottom: 16px; }
 
 .video {
-  padding-bottom: 16px; }
+  padding-bottom: 32px; }
+  @media (min-width: 480px) {
+    .video {
+      display: inline-block;
+      width: 50%;
+      padding-right: 8px; } }
+  @media (min-width: 768px) {
+    .video {
+      display: inline-block;
+      width: 32.5%;
+      padding-right: 8px; } }
 
 .video-name {
   margin: 8px 0;
@@ -72,14 +84,23 @@ a {
   text-decoration: none;
   color: #402A27; }
 
-.video-wrapper {
+.video-poster {
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  padding-bottom: 100%; }
+  .video-poster img {
+    display: none; }
+
+.video-player {
   margin: 0;
   position: relative;
   padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
-  max-width: 100%; }
-  .video-wrapper iframe, .video-wrapper object, .video-wrapper embed {
+  max-width: 100%;
+  margin-bottom: 32px; }
+  .video-player iframe, .video-player object, .video-player embed {
     position: absolute;
     top: 0;
     left: 0;

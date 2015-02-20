@@ -12,32 +12,37 @@ var $               = {};
     $.uglify        = require('gulp-uglify');
     $.size          = require('gulp-size');
     $.newer         = require('gulp-newer');
+    $.nodemon       = require('nodemon');
 
 // paths
 var source          = './src';
 var distro          = './public';
 
-gulp.task('serve', function () {
-    $.browserSync({
-        server: {
-            baseDir: source
-        }
+gulp.task('serve', ['nodemon'], function () {
+
+    // 
+    $.browserSync.init(null, {
+        proxy: 'localhost:5000'
     });
+
     // watch the stuff that needs a full page reload
     gulp.watch(
-        [   source+'/index.html',
-            source+'/scripts/*.js',
+        [   '/views/*.jade',
+            source+'/scripts/*.js', 
         ],
         function() {
-            $.browserSync.reload()
+            process.stdout.write('rebuilding html and js');
+            $.browserSync.reload();
         }
     );
+
     // watch the stuff that needs injecting
     gulp.watch(
         [   source+'/styles/*.scss',
             source+'/images/**/*'
         ],
         function() {
+            process.stdout.write('rebuilding css and images');
             gulp.src(source+'/styles/**/*.scss')
                 .pipe($.sass())
                 .pipe($.sourcemaps.init())
@@ -90,6 +95,19 @@ gulp.task('build', function () {
         .pipe($.uglify())
         .pipe(gulp.dest(distro+'/scripts/'))
         .pipe($.size());
+});
+
+gulp.task('nodemon', function (cb) {
+    var called = false;
+    return $.nodemon({
+                script: 'server.js',
+                env: { 'NODE_ENV': 'development' }
+            }).on('start', function () {
+                if (!called) {
+                called = true;
+                cb();
+            }
+    });
 });
 
 // Default task to be run with `gulp`

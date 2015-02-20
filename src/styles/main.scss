@@ -27,6 +27,12 @@ $white: #fff;
   }
 }
 
+@mixin phablet {
+  @media (min-width: 480px) {
+    @content;
+  }
+}
+
 @mixin phone-only {
   @media (max-width: 350px) {
     @content;
@@ -40,7 +46,7 @@ html {
 
 body {
   min-width: 320px;
-  max-width: 768px;
+  max-width: 980px;
   margin: 0 auto;
   padding: 32px;
   background: $bg-color;
@@ -52,6 +58,7 @@ body {
 
 .header {
   margin-bottom: 32px;
+  text-decoration: none;
 }
 
 .logo--header {
@@ -67,8 +74,9 @@ body {
 
 .tagline {
   color: $white;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: normal;
+  text-transform: uppercase;
 }
 
 .logo--footer {
@@ -100,12 +108,17 @@ a {
 }
 
 .video {   
-  padding-bottom: 16px;
-  // @include desktop {
-  //   display: inline-block;
-  //   width: 32.5%;
-  //   padding-right: 8px;
-  // }
+  padding-bottom: 32px;
+  @include phablet {
+    display: inline-block;
+    width: 50%;
+    padding-right: 8px;
+  }
+  @include desktop {
+    display: inline-block;
+    width: 32.5%;
+    padding-right: 8px;
+  }
 } 
 
 .video-name {
@@ -115,13 +128,24 @@ a {
   color: $brown;
 }
 
-.video-wrapper {
+.video-poster {
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  padding-bottom: 100%; //so that we maintain a square aspect ratio
+  img {
+    display: none;
+  }
+}
+
+.video-player {
   margin: 0;
   position: relative; 
   padding-bottom: 56.25%; //so that we maintain a 16:9 aspect ratio
   height: 0; 
   overflow: hidden; 
   max-width: 100%; 
+  margin-bottom: 32px;
   iframe, object, embed { 
     position: absolute; 
     top: 0; left: 0; 

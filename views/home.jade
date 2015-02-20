@@ -1,11 +1,25 @@
 extends ./layout.jade
 
 block content
-	h1= playlist.name
+	select(id='portfolio-selector')
+		for portfolio in portfolios
+			- console.log(portfolio);
+			if (portfolio.id === currentPortfolioID)
+				option(value=portfolio.id, selected='selected')= portfolio.name
+			else 
+				option(value=portfolio.id)= portfolio.name
 	ul.featured-videos
-		for video in videos
+		- var currentPortfolio = portfolios[currentPortfolioID];
+		for video in currentPortfolio.videos
 			li.video
-				div.video-wrapper
-					- var id = video.uri.split('/')[2];
-					iframe(src='//player.vimeo.com/video/'+id+'?title=0&byline=0&portrait=0', frameborder='0', webkitallowfullscreen='', mozallowfullscreen='', allowfullscreen='')
-				p.video-name(href='http://vimeo.com/'+id)= video.name
+				- var id = video.uri.split('/')[2];
+				- var image_uri = video.pictures.sizes[4].link;
+				a.video-play-btn(href=video.uri)
+					div.video-poster(video-id=id, style='background-image: url('+image_uri+')')
+						img(src=image_uri)
+					p.video-name(href='http://vimeo.com/'+id)= video.name
+	script.
+		var portfolioSelector_el = document.getElementById('portfolio-selector');
+		portfolioSelector_el.addEventListener('change', function(evt) {
+			window.location='/?portfolio='+evt.target.value;
+		}, false)
