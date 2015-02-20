@@ -172,6 +172,17 @@ Content
   .video-controls h1 {
     font-size: 24px;
     font-weight: normal; }
+  .video-controls .video-portfolio {
+    -webkit-transition: all .15s ease-in-out;
+            transition: all .15s ease-in-out;
+    border: 1px solid #402A27;
+    padding: 7px 8px 2px;
+    line-height: 1;
+    display: inline-block;
+    text-decoration: none; }
+    .video-controls .video-portfolio:hover {
+      background: #402A27;
+      color: #fff; }
 
 .video-player {
   margin: 0;

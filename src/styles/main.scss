@@ -228,6 +228,21 @@ Content
       font-size: 24px;
       font-weight: normal;
     }
+    .video-portfolio {
+      transition: all .15s ease-in-out;
+      border: 1px solid $brown;
+      padding: 7px $spacing-unit 2px;
+      line-height: 1;
+      display: inline-block;
+      text-decoration: none;
+      &:hover {
+        background: $brown;
+        color: $white;
+      }
+    }
+    .next {
+      
+    }
   }
 
   .video-player {

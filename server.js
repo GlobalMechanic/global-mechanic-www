@@ -232,22 +232,57 @@ app.get('/videos/:id', function(req, res){
   console.log('Route: /videos/:id');
   var target_video_id     = req.params.id;
   var target_portfolio_id = req.query.portfolio;
-  var target_portfolio_name;
+  var target_portfolio_name,
+      total_video_count,
+      current_video_index,
+      next_video_id,
+      prev_video_id;
   authenticateVimeo()
     .then(function() {
-      return upatedPortfolioList();
+      if ( target_portfolio_id ) {
+        return upatedPortfolioList();
+      } else {
+        return true;
+      }
+    })
+    .then(function () {
+      if ( target_portfolio_id ) {
+        return getPortfolioVideos( target_portfolio_id );  
+      } else {
+        return true;
+      }
     })
     .then(function () {
       return getVideo(target_video_id);
     })
     .then(function () {
       if ( target_portfolio_id ) {
-        target_portfolio_name = fetchedData.portfolioList.portfolios[target_portfolio_id].name
+        console.log('figuring portfolio variables');
+        var portfolio = fetchedData.portfolioList.portfolios[target_portfolio_id];
+        target_portfolio_name = portfolio.name;
+        total_video_count     = portfolio.videos.length;
+        current_video_index   = _.indexOf(portfolio.videos, _.findWhere(portfolio.videos, { uri: '/videos/'+target_video_id }));
+        // calc the next video id
+        var next_video = portfolio.videos[current_video_index+1];
+        if (next_video) {
+          next_video_id = next_video.uri.split('/')[2];
+          console.log(next_video_id);
+        }
+        // calc the prev video id
+        var prev_video = portfolio.videos[current_video_index-1];
+        if (prev_video) {
+          prev_video_id = prev_video.uri.split('/')[2];
+          console.log(prev_video_id);
+        }
       }
       res.render('video', {
         currentPortfolioName: target_portfolio_name,
-        currentPortfolioId: target_portfolio_id,
-        video: fetchedData.videos[target_video_id]
+        currentPortfolioId:   target_portfolio_id,
+        video:                fetchedData.videos[target_video_id],
+        prevVideoId:          prev_video_id,
+        nextVideoId:          next_video_id,
+        currentVideoIndex:    current_video_index+1,
+        totalVideoCount:      total_video_count
       });
     });
 });
