@@ -243,7 +243,16 @@ Content
   }
 
   .video-count {
-    padding: $spacing-unit;
+    display: inline-block;
+    padding: $spacing-unit 0;
+  }
+
+  .next-video {
+    padding-left: $spacing-unit*2;
+  }
+
+  .prev-video {
+    padding-right: $spacing-unit*2; 
   }
 
   .video-player {
