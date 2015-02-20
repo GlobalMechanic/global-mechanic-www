@@ -8,7 +8,8 @@ var Q           = require("q");
 
 // check if we're in dev;
 var static_folder = (process.env.NODE_ENV == 'development') ? '/src' : '/public';
-var oneDay = (process.env.NODE_ENV == 'development') ? 0 : 86400000;
+// var oneDay = (process.env.NODE_ENV == 'development') ? 0 : 86400000;
+var oneDay = 0;
 
 /*-----------------------------------------------------------------------------------------------
   Express Setup
