@@ -35,15 +35,14 @@ select {
   border: 1px solid #402A27;
   background: #402A27;
   color: #fff;
-  width: 100%;
+  width: 110%;
+  font-family: 'Gotham Narrow SSm A', 'Gotham Narrow SSm B', sans-serif;
   appearance: normal;
   -webkit-appearance: none;
   -moz-appearance: none;
   text-indent: 0.01px;
   text-overflow: '';
-  -moz-user-focus: ignore;
-  text-indent: 0.01px;
-  text-overflow: ''; }
+  -moz-user-focus: ignore; }
   select::-ms-expand {
     display: none; }
   select:focus {
@@ -51,13 +50,12 @@ select {
   select::-moz-focus-inner {
     border: 0; }
   select:hover {
-    border-color: #fff;
     cursor: pointer; }
   select:focus {
-    cursor: pointer;
-    border-color: #fff; }
+    cursor: pointer; }
 
 .gm-select {
+  overflow: hidden;
   position: relative;
   display: inline-block;
   width: 100%; }
@@ -76,8 +74,9 @@ select {
     border: 12px solid transparent;
     border-top: 16px solid #A3937D;
     position: absolute;
-    top: 10px;
-    right: 10px; }
+    top: 50%;
+    right: 10px;
+    margin-top: -7px; }
 
 /***********************************************************************
 Header

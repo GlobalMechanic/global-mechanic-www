@@ -291,7 +291,7 @@ app.get('/videos/:id', function(req, res){
 app.get('/', function(req, res){
   console.log('Route: /');
   var featured_portfolio_id = '357398';
-  var target_portfolio_id  = req.query.portfolio || featured_portfolio_id;
+  var target_portfolio_id   = req.query.portfolio || featured_portfolio_id;
   authenticateVimeo()
     .then(function() {
       return upatedPortfolioList();
@@ -300,9 +300,10 @@ app.get('/', function(req, res){
       return getPortfolioVideos( target_portfolio_id );
     })
     .then(function () {
+      var sorted_portfolios = _.sortBy(fetchedData.portfolioList.portfolios, 'name');
       res.render('home', {
-        portfolios: fetchedData.portfolioList.portfolios,
-        currentPortfolioId: target_portfolio_id
+        portfolios:         sorted_portfolios,
+        currentPortfolio:   fetchedData.portfolioList.portfolios[target_portfolio_id]
       });
     });
 });

@@ -5,12 +5,11 @@ block content
 		.gm-select
 			select(id='portfolio-selector')
 				for portfolio in portfolios
-					if (portfolio.id === currentPortfolioId)
+					if (portfolio.id === currentPortfolio.id)
 						option(value=portfolio.id, selected='selected')= portfolio.name
 					else 
 						option(value=portfolio.id)= portfolio.name
 	.portfolio-videos
-		- var currentPortfolio = portfolios[currentPortfolioId];
 		for video in currentPortfolio.videos
 			- var id = video.uri.split('/')[2];
 			//- grab the largest available image
