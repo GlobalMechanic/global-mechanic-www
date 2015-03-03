@@ -50,7 +50,7 @@ var fetchedData = {
  */
 var isDataValid = function (timestamp) {
   var sinceLastFetched = new Date() - timestamp;
-  var cacheExpiryInterval = 30000;
+  var cacheExpiryInterval = 30000 * 60; // one hour
   console.log('Data last fetched '+sinceLastFetched/1000+' seconds ago');
   return sinceLastFetched < cacheExpiryInterval;
 }
