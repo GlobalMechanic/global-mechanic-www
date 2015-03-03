@@ -80,7 +80,7 @@ a {
 }
 
 select { 
-  padding: $spacing-unit $spacing-unit $spacing-unit/2;
+  padding: 6px $spacing-unit $spacing-unit/2;
   line-height: 1;
   padding-right: $spacing-unit*6;
   border-radius: 0;
@@ -228,7 +228,7 @@ Content
     .video-portfolio {
       transition: all .15s ease-in-out;
       border: 1px solid $brown;
-      padding: 7px $spacing-unit 2px;
+      padding: 7px $spacing-unit $spacing-unit/2;
       line-height: 1;
       display: inline-block;
       text-decoration: none;
