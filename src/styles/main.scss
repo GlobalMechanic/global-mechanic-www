@@ -253,12 +253,12 @@ Content
   }
 
   .video-player {
-    margin: 0;
+    margin: $spacing-unit 0;
     @include phablet {
-      margin: $spacing-unit * 2;
+      margin: $spacing-unit * 3;
     }
     @include desktop {
-      margin: $spacing-unit * 4;
+      margin: $spacing-unit * 4.5;
     }
     position: relative; 
     padding-bottom: 56.25%; //so that we maintain a 16:9 aspect ratio
