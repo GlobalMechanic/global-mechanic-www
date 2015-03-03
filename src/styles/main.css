@@ -29,7 +29,7 @@ a {
   color: #402A27; }
 
 select {
-  padding: 4px 8px;
+  padding: 8px 8px 4px;
   line-height: 1;
   padding-right: 48px;
   border-radius: 0;

@@ -80,7 +80,7 @@ a {
 }
 
 select { 
-  padding: $spacing-unit/2 $spacing-unit;
+  padding: $spacing-unit $spacing-unit $spacing-unit/2;
   line-height: 1;
   padding-right: $spacing-unit*6;
   border-radius: 0;
