@@ -1,0 +1,12 @@
+extends ./layout.jade
+
+block content
+	h1= portfolio.name
+	for video in portfolio.videos
+			- var id = video.uri.split('/')[2];
+			//- grab the largest available image
+			- var image_uri = video.pictures.sizes[video.pictures.sizes.length-1].link;
+			a.video-thumbnail(href=video.uri+'?portfolio='+portfolio.id)
+				div.video-poster(video-id=id, style='background-image: url('+image_uri+')')
+					img(src=image_uri)
+				p.video-name(href='http://vimeo.com/'+id)= video.name

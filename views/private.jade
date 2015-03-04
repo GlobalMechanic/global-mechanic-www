@@ -1,0 +1,8 @@
+extends ./layout.jade
+
+block content
+	h1 Private Portfolios (aka Reels)
+	.portfolio-videos
+		for portfolio in portfolios
+			h2 
+				a(href='/private/portfolio/'+portfolio.id)= portfolio.name
