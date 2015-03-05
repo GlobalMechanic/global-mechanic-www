@@ -1,0 +1,45 @@
+@import 'vars';
+@import 'mixins';
+
+.portfolio-selector-container {
+  @include block-spacing;
+  select {
+    font-size: 24px;
+  }
+}
+
+.portfolio-videos {
+  @include block-spacing;
+  list-style-type: none;
+}
+
+.video-thumbnail {   
+  text-decoration: none;
+  display: block;
+  padding-bottom: $spacing-unit*2;
+  @include phablet {
+    display: inline-block;
+    width: 50%;
+    padding-bottom: $spacing-unit*3.5;
+    padding-right: $spacing-unit;
+  }
+  @include desktop {
+    width: 33.333%;
+  }
+} 
+
+.video-name {
+  margin: 8px 0;
+  display: block;
+  color: $brown;
+}
+
+.video-poster {
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  padding-bottom: 100%; //so that we maintain a square aspect ratio
+  img {
+    display: none;
+  }
+}

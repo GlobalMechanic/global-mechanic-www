@@ -1,0 +1,16 @@
+@import 'vars';
+@import 'mixins';
+
+.private-portfolio-index {
+	@include block-spacing;
+	a {
+		font-weight: 300;
+		display: inline-block;
+		padding: $spacing-unit $spacing-unit $spacing-unit/2;
+		line-height: 1;
+		margin-bottom: $spacing-unit*2;
+		background: $brown;
+		color: $white;
+		text-decoration: none;
+	}
+}
