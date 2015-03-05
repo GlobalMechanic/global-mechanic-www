@@ -91,6 +91,28 @@ exports.isDataValid = function (timestamp) {
 }
 
 /**
+ * Resets the lastFetched timestamp on all cached resources
+ * @return {[type]} [description]
+ */
+exports.resetDataCache = function () {
+  console.log('resetDataCache');
+  // do it for public portfolios
+  exports.fetchedData.publicPortfolioList.lastFetched = null;
+  _.each(exports.fetchedData.publicPortfolioList.portfolios, function (portfolio) {
+    portfolio.lastFetched = null;
+  });
+  // do it for private portfolios
+  exports.fetchedData.privatePortfolioList.lastFetched = null;
+  _.each(exports.fetchedData.privatePortfolioList.portfolios, function (portfolio) {
+    portfolio.lastFetched = null;
+  });
+  // do it for videos
+  _.each(exports.fetchedData.videos, function (video) {
+    video.lastFetched = null;
+  });
+}
+
+/**
  * Gets a list of Global Mechanic's public portfolios from Vimeo, sorted alphabetically.
  * @return {promise} Eventually resolves to the list of portfolios
  */

@@ -51,6 +51,10 @@ app.get('/contact/', function(req, res){
 // private portfolios
 app.get('/private', function(req, res){
   console.log('Route: /private');
+  console.log(req.query);
+  if (_.has(req.query, 'resetDataCache')) {
+    gmVimeo.resetDataCache();
+  }
   gmVimeo.fetchPrivatePortfolios()
     .then(function () {
       res.render('private', {
