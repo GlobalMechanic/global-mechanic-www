@@ -257,6 +257,7 @@ exports.fetchPortfolio = function (portfolio_id, is_private) {
 	          console.log('error retreiving portfolio details');
 	        } else {
 	          console.log('got portfolio details');
+            console.log(portfolio);
 	          portfolio.lastFetched = new Date();
 	          portfolio.videos = body.data;
 	          deferred.resolve(portfolio);

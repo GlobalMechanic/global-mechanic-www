@@ -69,7 +69,6 @@ app.get('/private/portfolio/:id', function(req, res){
   var featured_portfolio_id = '357398';
   var target_portfolio_id   = req.params.id || featured_portfolio_id;
   gmVimeo.fetchPortfolio( target_portfolio_id, true )
-    // und render 
     .then(function () {
       res.render('private_portfolio', {
         portfolio: gmVimeo.getPortfolio( target_portfolio_id )
