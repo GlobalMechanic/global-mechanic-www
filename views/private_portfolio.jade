@@ -6,7 +6,7 @@ block content
 			- var id = video.uri.split('/')[2];
 			//- grab the largest available image
 			- var image_uri = video.pictures.sizes[video.pictures.sizes.length-1].link;
-			a.video-thumbnail(href=video.uri+'?portfolio='+portfolio.id)
+			a.video-thumbnail(href='/private/portfolio/'+portfolio.id+'/videos/'+id)
 				div.video-poster(video-id=id, style='background-image: url('+image_uri+')')
 					img(src=image_uri)
 				p.video-name(href='http://vimeo.com/'+id)= video.name

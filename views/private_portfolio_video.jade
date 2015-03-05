@@ -6,7 +6,7 @@ block content
 		- var videoName = video.name;
 			h1.video-name 
 				if ( currentPortfolioName ) 
-					a(href='/?portfolio='+currentPortfolioId).video-portfolio= currentPortfolioName
+					a(href='/private/portfolio/'+currentPortfolioId).video-portfolio= currentPortfolioName
 					span &nbsp;&gt;&nbsp;
 				span= video.name
 			if ( currentPortfolioName )
