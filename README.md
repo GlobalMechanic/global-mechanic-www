@@ -4,7 +4,7 @@
 
 * `/src`: contains the source files, from which we build the site. This will be your destination for local development. 
 * `/public`: the client code for the live site. We'll build to here from the source folder.
-*  `/assets`: icon fonts and source Sketch files
+* `/assets`: icon fonts and source Sketch files
 
 Various files in the root are to facilitate running on Heroku. This is a basic express app.
 
@@ -28,7 +28,7 @@ For testing things like routes, you'll want to run off express using `node serve
 
 ## Building & Deploying
 
-If you would like to update `http://ishuman.co` to the current state of things, just:
+If you would like to update `http://globalmechanic.com` to the current state of things, just:
 
 1. Run `gulp build` from the root folder.
 2. Commit your changes and push to master.
