@@ -87,41 +87,50 @@ Footer
   }
 
   .social-link + .social-link {
-    margin-left: $spacing-unit*2.5;
+    margin-left: $spacing-unit*5;
   }
 
   .social-link--vimeo {
-    width: 42px; height: 36px;
+    width: 46px; height: 40px;
     background: url(/images/vimeo.png) no-repeat;
-    background-size: 42px 36px;
+    background-size: 46px 40px;
     @include retina {
       background-image: url(/images/vimeo@2x.png);
     }
   }
 
   .social-link--twitter {
-    width: 42px; height: 36px;
+    width: 48px; height: 40px;
     background: url(/images/twitter.png) no-repeat;
-    background-size: 42px 36px;
+    background-size: 48px 40px;
     @include retina {
       background-image: url(/images/twitter@2x.png);
     }
   }
 
   .social-link--instagram {
-    width: 37px; height: 36px;
+    width: 42px; height: 40px;
     background: url(/images/instagram.png) no-repeat;
-    background-size: 37px 36px;
+    background-size: 42px 40px;
     @include retina {
       background-image: url(/images/instagram@2x.png);
     }
   }
 
   .social-link--medium {
-    width: 45px; height: 34px;
+    width: 53px; height: 41px;
     background: url(/images/medium.png) no-repeat;
-    background-size: 45px 34px;
+    background-size: 53px 41px;
     @include retina {
       background-image: url(/images/medium@2x.png);
+    }
+  }
+
+  .social-link--pinterest {
+    width: 38px; height: 40px;
+    background: url(/images/pinterest.png) no-repeat;
+    background-size: 38px 40px;
+    @include retina {
+      background-image: url(/images/pinterest@2x.png);
     }
   }
