@@ -104,6 +104,12 @@ app.get('/videos/:id', function(req, res){
     });
 });
 
+// jorbs!
+app.get('/wantsyou', function(req, res){
+  console.log('Route: /private/wantsyou');
+  res.render('wantsyou');
+});
+
 // main page
 app.get('/', function(req, res){
   console.log('Route: /');

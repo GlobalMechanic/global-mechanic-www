@@ -1,0 +1,13 @@
+@import 'vars';
+@import 'mixins';
+
+.job-posting {
+	color: #fff;
+	font-size: 18px;
+	max-width: 600px;
+	@include block-spacing;
+	padding: $spacing-unit 0 $spacing-unit*5 0;
+	ul {
+		padding: 0 $spacing-unit*3;
+	}
+}
