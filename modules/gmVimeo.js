@@ -1,4 +1,4 @@
-var Vimeo 	= require('vimeo-api').Vimeo;
+var Vimeo 	= require('vimeo').Vimeo;
 var Q       = require('q');
 var _       = require('underscore');
 
@@ -12,12 +12,11 @@ var exports = module.exports = {};
 exports.config = {
   clientId: 'f7f0d3e98bcf5e7f1fce9274d94e36a9f77155ae',
   clientSecret: 'dd6af929f5984635e80f99ab3b25e85fe9dcee6d',
-  unauthenticatedAuthHandler: 'Authorization : Basic ZjdmMGQzZTk4YmNmNWU3ZjFmY2U5Mjc0ZDk0ZTM2YTlmNzcxNTVhZTpkZDZhZjkyOWY1OTg0NjM1ZTgwZjk5YWIzYjI1ZTg1ZmU5ZGNlZTZk',
   accountId: 2657340,
   // the private access token was generated in the Vimeo Developer Portal
   // https://developer.vimeo.com/apps/49623#authentication
   privateAccess: {
-    token: '18f2a0a24a35c052b536f01b0ae7be64',
+    token: 'f4e18ea01775318b82b90a1325909499',
     scope: 'public private'
   },
   publicAccess: {
@@ -118,7 +117,8 @@ exports.resetDataCache = function () {
  */
 exports.fetchPublicPortfolios = function () {
   var deferred = Q.defer();
-  exports.authenticateVimeo().then(function() {
+  exports.authenticateVimeo().then(
+  function() {
     // data is valid
     if ( exports.isDataValid(exports.fetchedData.publicPortfolioList.lastFetched) ) {
       console.log('CACHED portfolio list');
@@ -133,6 +133,9 @@ exports.fetchPublicPortfolios = function () {
         query: {
           page: 1,
           per_page: 50
+        },
+        headers: {
+          'Accept': 'application/vnd.vimeo.*+json;version=3.0'
         }
       }, function (error, body, status_code, headers) {
         if (error) {
@@ -159,6 +162,9 @@ exports.fetchPublicPortfolios = function () {
         }
       });
     }
+  }, function(error) {
+    console.log('failed to authenticate');
+    console.log(error);
   });
   return deferred.promise;
 }
@@ -172,6 +178,8 @@ exports.fetchPrivatePortfolios = function () {
   exports.fetchPublicPortfolios()
     .then(function () {
       return exports.authenticateVimeo(true);
+    }, function (error) {
+      console.log('why error?');
     })
     .then(function() {
       // data is valid
@@ -190,6 +198,9 @@ exports.fetchPrivatePortfolios = function () {
           query: {
             page: 1,
             per_page: 50
+          },
+          headers: {
+            'Accept': 'application/vnd.vimeo.*+json;version=3.0'
           }
         }, function (error, body, status_code, headers) {
           if (error) {

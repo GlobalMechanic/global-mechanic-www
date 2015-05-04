@@ -7,6 +7,7 @@ var Q           = require('q');
 var gmVimeo     = require('./modules/gmVimeo.js');
 
 // check if we're in dev;
+if (!process.env.NODE_ENV) process.env.NODE_ENV = 'production';
 var static_folder = (process.env.NODE_ENV == 'development') ? '/src' : '/public';
 var oneDay = (process.env.NODE_ENV == 'development') ? 0 : 86400000;
 app.locals.deployVersion = (new Date).getTime();
@@ -121,6 +122,8 @@ app.get('/', function(req, res){
         portfolios:         gmVimeo.getPortfolioList( 'public' ),
         currentPortfolio:   gmVimeo.getPortfolio( target_portfolio_id ) 
       });
+    }, function (error) {
+      console.log('error rendering home page');
     });
 });
 
