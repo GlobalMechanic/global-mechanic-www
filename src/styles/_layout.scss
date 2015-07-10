@@ -34,6 +34,9 @@ Footer
   @include block-spacing;
   padding-bottom: $spacing-unit*4;
   margin-top: $spacing-unit*2 !important;
+  @include phone-only {
+    font-size: 14px;
+  }
 }
 
   .logo--footer {
@@ -88,6 +91,9 @@ Footer
 
   .social-link + .social-link {
     margin-left: $spacing-unit*5;
+    @include phone-only {
+      margin-left: $spacing-unit;
+    }
   }
 
   .social-link--vimeo {
