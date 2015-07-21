@@ -36,14 +36,15 @@
 
 .video-player {
   margin: $spacing-unit 0;
+  padding-bottom: 56.25%; //so that we maintain a 16:9 aspect ratio
   @include phablet {
     margin: $spacing-unit * 3;
+    padding-bottom: 52%; //so that we maintain a 16:9 aspect ratio
   }
   @include desktop {
     margin: $spacing-unit * 4.5;
   }
   position: relative; 
-  padding-bottom: 56.25%; //so that we maintain a 16:9 aspect ratio
   height: 0; 
   overflow: hidden; 
   max-width: 100%; 
