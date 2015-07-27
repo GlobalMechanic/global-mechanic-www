@@ -13,9 +13,9 @@ html
     link(rel='stylesheet', href='/styles/main.css?v=#{deployVersion}')
     script(type='text/javascript', src='/scripts/mousetrap.js?v=#{deployVersion}')
   body(class=(body_class))
-    .header(href="/")
+    .header
       .header-content
-        a 
+        a(href="/")
           h1.logo--header Global Mechanic
         h2.tagline Making unusual &amp; beautiful things since 2000&nbsp;
           //- a(href="/about") more&hellip;
