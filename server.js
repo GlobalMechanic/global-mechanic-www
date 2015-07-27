@@ -111,6 +111,12 @@ app.get('/wantsyou', function(req, res){
   res.render('wantsyou');
 });
 
+// about page
+app.get('/about', function(req, res){
+  console.log('Route: /about');
+  res.render('about');
+});
+
 // main page
 app.get('/', function(req, res){
   console.log('Route: /');

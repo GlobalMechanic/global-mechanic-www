@@ -1,3 +1,4 @@
+block variables
 doctype html
 html
   head
@@ -11,14 +12,17 @@ html
     link(rel='stylesheet', type='text/css', href='//cloud.typography.com/712234/797102/css/fonts.css')
     link(rel='stylesheet', href='/styles/main.css?v=#{deployVersion}')
     script(type='text/javascript', src='/scripts/mousetrap.js?v=#{deployVersion}')
-  body
-    a.header(href="/")
-      h1.logo--header Global Mechanic
-      h2.tagline Making unusual &amp; beautiful things since 2000
+  body(class=(body_class))
+    .header(href="/")
+      .header-content
+        a 
+          h1.logo--header Global Mechanic
+        h2.tagline Making unusual &amp; beautiful things since 2000&nbsp;
+          //- a(href="/about") more&hellip;
     .content
       block content   
     .footer
-      div(itemscope='', itemtype='http://schema.org/LocalBusiness')
+      div.footer-content(itemscope='', itemtype='http://schema.org/LocalBusiness')
         .address
           div.logo--footer(itemprop='name') Global Mechanic
           div(itemtype='http://schema.org/PostalAddress', itemscope='', itemprop='address')
