@@ -37,6 +37,7 @@
 .video-poster {
   background-size: cover;
   background-position: center center;
+  background-repeat: no-repeat;
   width: 100%;
   padding-bottom: 100%; //so that we maintain a square aspect ratio
   img {
