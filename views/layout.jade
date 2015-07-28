@@ -18,7 +18,8 @@ html
         a(href="/")
           h1.logo--header Global Mechanic
         h2.tagline Making unusual &amp; beautiful things since 2000&nbsp;
-          //- a(href="/about") more&hellip;
+          if body_class != "about-page"
+            a(href="/about") more&hellip;
     .content
       block content   
     .footer

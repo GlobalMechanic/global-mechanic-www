@@ -1,14 +1,29 @@
+@mixin about-containing-block {
+	min-width: 320px;
+  	margin-left: auto;
+  	margin-right: auto;
+  	@include phablet {
+    	max-width: 768px;
+  	}
+  	@include desktop {
+    	max-width: 1024px;
+  	}
+  	@include big-desktop {
+    	max-width: 1440px;
+  	}
+}
+
 .about-page {
 	background: #E29F9F;
 	max-width: 100%;
 	.header {
-		@include containing-block;
+		@include about-containing-block;
 	}
 	.header-content {
 		@include block-spacing;
 	}
 	.footer {
-		@include containing-block;
+		@include about-containing-block;
 	}
 	.footer-content {
 		@include block-spacing;	
@@ -16,7 +31,7 @@
 }
 
 .about-containing-block {
-	@include containing-block;
+	@include about-containing-block;
 }
 
 .about-header {
@@ -31,6 +46,9 @@
 		padding: 0;
 		text-transform: uppercase;
 		line-height: 1;
+		font-weight: 100;
+		padding-bottom: 12px;
+		widows: 3;
 	}
 
 	h1 {
@@ -74,6 +92,8 @@
 
 	p {
 		@include block-spacing;
+		margin-top: 24px !important;
+		widows: 3;
 	}
 
 	padding-bottom: $spacing-unit*3.5;
@@ -97,7 +117,8 @@
 
 .about-header-image {
 	display: block;
-	background: url(/images/studio_shot.jpg) center center;
+	position: relative;
+	background: url(/images/wrench.gif) center center;
 	background-size: auto 100%;
 	height: 152px;
 	margin-top: $spacing-unit*2;
@@ -113,10 +134,41 @@
   		height: 286px;
     	margin-top: $spacing-unit * 4.5;
   	}
+  	&:hover {
+		.about-header-btn:before {
+			border-left: 108px solid #fff;
+		}
+		.about-header-btn:after {
+			border-left: 98px solid #FF7D7D;
+		}
+	}
 }
 
-.about-header-gif {
-	height: 100%;
-	@include containing-block;
-	background: red;
+.about-header-btn {
+	position: absolute;
+	top: 50%; left: 50%;
+	margin-top: -48px;
+	margin-left: -54px;
+	&:before {
+		display: block;
+		content: "";
+		width: 0; 
+		height: 0; 
+		border-top: 48px solid transparent;
+		border-bottom: 48px solid transparent;
+		border-left: 108px solid #979797;
+	}
+	&:after {
+		position: absolute;
+		top: 4px; left: 3px;
+		display: block;
+		content: "";
+		width: 0; 
+		height: 0; 
+		border-top: 44px solid transparent;
+		border-bottom: 44px solid transparent;
+		border-left: 98px solid white;
+	}
+	
+	
 }

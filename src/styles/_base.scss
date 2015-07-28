@@ -14,7 +14,7 @@ html {
 body {
   @include containing-block;
   background: $bg-color;
-  font-family:'Gotham Narrow SSm A', 'Gotham Narrow SSm B', sans-serif;
+  font-family:'Gotham Narrow SSm A', 'Gotham Narrow SSm B', 'Gotham Narrow', sans-serif;
   -webkit-font-smoothing: antialiased;
   font-weight: 300;
   font-size: 16px;
