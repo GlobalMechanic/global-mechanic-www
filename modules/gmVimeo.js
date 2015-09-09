@@ -263,6 +263,10 @@ exports.fetchPortfolio = function (portfolio_id, is_private) {
 	    else {
 	      exports.vimeoLib.request({
 	        path: '/users/'+exports.config.accountId+'/portfolios/'+portfolio_id+'/videos?sort=manual',
+	        query: {
+            		page: 1,
+            		per_page: 50
+          	}
 	      }, function (error, body, status_code, headers) {
 	        if (error) {
 	          console.log('error retreiving portfolio details');
