@@ -41,12 +41,16 @@ app.get('/social/', function(req, res){
   res.redirect(301, '/');
 });
 
-app.get('/project/', function(req, res){
+app.get('/project/', function(req, res) {
   res.redirect(301, '/');
 });
 
-app.get('/contact/', function(req, res){
+app.get('/contact/', function(req, res) {
   res.redirect(301, '/');
+});
+
+app.get('/biopolis/', function(req, res) {
+	res.redirect("/interactive/biopolis/index.html");
 });
 
 // private portfolios
