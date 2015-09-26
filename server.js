@@ -49,10 +49,6 @@ app.get('/contact/', function(req, res) {
   res.redirect(301, '/');
 });
 
-app.get('/biopolis/', function(req, res) {
-	res.redirect("/interactive/biopolis/index.html");
-});
-
 // private portfolios
 app.get('/private', function(req, res){
   console.log('Route: /private');
@@ -136,5 +132,19 @@ app.get('/', function(req, res){
       console.log('error rendering home page');
     });
 });
+
+/**** INTERTACTIVE BUILDS START HERE ******/
+
+app.get('/interactive001/biopolis', function(req, res) {
+	console.log("Going to biopolis.")
+	res.redirect(301, '/interactive/biopolis/index.html');
+});
+
+app.get('/interactive001/bungusland', function(req, res) {
+	console.log("Going to bungusland.")
+	res.redirect(301, '/interactive/bungusland/index.html');
+});
+
+/*******************************************/
 
 app.listen(process.env.PORT || 5000);
