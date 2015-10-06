@@ -1,150 +1,190 @@
+/*-----------------------------------------------------------------------------------------------
+  Dependencies
+ -----------------------------------------------------------------------------------------------*/
+
 var express     = require('express');
-var app         = express();
+var	app 		= express();
 var compress    = require('compression');
 var bodyParser  = require('body-parser');
 var _           = require('underscore');
 var Q           = require('q');
-var gmVimeo     = require('./modules/gmVimeo.js');
-
-// check if we're in dev;
-if (!process.env.NODE_ENV) process.env.NODE_ENV = 'production';
-var static_folder = (process.env.NODE_ENV == 'development') ? '/src' : '/public';
-var oneDay = (process.env.NODE_ENV == 'development') ? 0 : 86400000;
-app.locals.deployVersion = (new Date).getTime();
+var gmVimeo     = require('./modules/gm-vimeo.js');
 
 /*-----------------------------------------------------------------------------------------------
-  Express Setup
+  Data
  -----------------------------------------------------------------------------------------------*/
 
-app.use(compress());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(__dirname + static_folder, { maxAge: oneDay * 30 }));
-app.set('view engine', 'jade');
+const FEATURED_PORTFOLIO_ID = '357398';
+const DEFAULT_PORT = 5000;
 
 /*-----------------------------------------------------------------------------------------------
-  Routes
+  Setup
  -----------------------------------------------------------------------------------------------*/
 
-app.get('/services/', function(req, res){
-  res.redirect(301, '/');
-});
+function setup_express()
+{
+	// check if we're in dev;
+	if (!process.env.NODE_ENV) 
+		process.env.NODE_ENV = 'production';
 
-app.get('/studio/', function(req, res){
-  res.redirect(301, '/');
-});
+	var seconds_in_a_month = 86400000 * 30;
 
-app.get('/profile/*', function(req, res){
-  res.redirect(301, '/');
-});
+	var is_production = process.env.NODE_ENV == 'production';
+	var app_dir = is_production ? '/public' : '/src';
+	var maxTime = is_production ? seconds_in_a_month : 0;
 
-app.get('/social/', function(req, res){
-  res.redirect(301, '/');
-});
+	app.locals.deployVersion = (new Date).getTime();
 
-app.get('/project/', function(req, res) {
-  res.redirect(301, '/');
-});
+	app.use(compress());
+	app.use(bodyParser.urlencoded({ extended: false }));
+	app.use(express.static(__dirname + app_dir, { maxAge: maxTime }));
 
-app.get('/contact/', function(req, res) {
-  res.redirect(301, '/');
-});
+	app.set('view engine', 'jade');
+}
 
-// private portfolios
-app.get('/private', function(req, res){
-  console.log('Route: /private');
-  console.log(req.query);
-  if (_.has(req.query, 'resetDataCache')) {
-    gmVimeo.resetDataCache();
-  }
-  gmVimeo.fetchPrivatePortfolios()
+function setup_routes()
+{
+	app.get("/services/", 	main_page);
+	app.get("/studio/", 	main_page);
+	app.get("/profile/*", 	main_page);
+	app.get("/social/", 	main_page);
+	app.get("/project/",	main_page);
+	app.get("/contact/", 	main_page);
+	app.get("/", 			main_page);
+
+	app.get("/videos/:id", 	public_video_page)
+	app.get("/private/", 	private_page)
+	app.get("/private/portfolio/:id", portfolio_page)
+	app.get("/private/portfolio/:portfolio_id/videos/:id", private_video_page)
+
+	app.get("/wantsyou", wants_you_page);
+	app.get("/about", about_page);
+
+	app.get("/interactive/bungusland", bungusland_page);
+	app.get("/interactive/biopolis", biopolis_page);
+
+}
+
+function start_server()
+{
+	app.listen(process.env.PORT || DEFAULT_PORT);
+}
+
+/*-----------------------------------------------------------------------------------------------
+  Pages
+ -----------------------------------------------------------------------------------------------*/
+
+function main_page(req, res){
+
+	var target_portfolio_id = req.query.portfolio || FEATURED_PORTFOLIO_ID;
+
+	gmVimeo
+  	.fetchPortfolio(target_portfolio_id)
     .then(function () {
-      res.render('private', {
-        portfolios: gmVimeo.getPortfolioList( 'private' )
-      });
+
+    	var data = {
+			portfolios:			gmVimeo.getPortfolioList( 'public' ),
+			currentPortfolio:   gmVimeo.getPortfolio( target_portfolio_id ) 
+		}
+
+		res.render('home', data);
+
     });
-});
+}
 
-// private portfolios
-app.get('/private/portfolio/:id', function(req, res){
-  console.log('Route: /private');
-  var featured_portfolio_id = '357398';
-  var target_portfolio_id   = req.params.id || featured_portfolio_id;
-  gmVimeo.fetchPortfolio( target_portfolio_id, true )
-    .then(function () {
-      res.render('private_portfolio', {
-        portfolio: gmVimeo.getPortfolio( target_portfolio_id )
-      });
-    });
-});
+function private_page(req, res)
+{
+	if (_.has(req.query, 'resetDataCache'))
+		gmVimeo.resetDataCache();
 
-// private portfolio video page
-app.get('/private/portfolio/:portfolio_id/videos/:id', function(req, res){
-  console.log('Route: /private/portfolio/videos/:id');
-  var target_video_id     = req.params.id;
-  var target_portfolio_id = req.params.portfolio_id;
-  gmVimeo.fetchVideo( target_video_id )
-    .then(function () {
-      return gmVimeo.prepareVideoMetadata( target_video_id, target_portfolio_id )
-    })
-    .then(function (video_data) {
-      res.render('private_portfolio_video', video_data);
-    });
-});
+	gmVimeo
+	.fetchPrivatePortfolios()
+	.then(function() {
+		var data = {
+			portfolios: gmVimeo.getPortfolioList('private')
+		};
 
-// public video page
-app.get('/videos/:id', function(req, res){
-  console.log('Route: /videos/:id');
-  var target_video_id     = req.params.id;
-  var target_portfolio_id = req.query.portfolio;
-  gmVimeo.fetchVideo( target_video_id )
-    .then(function () {
-      return gmVimeo.prepareVideoMetadata( target_video_id, target_portfolio_id )
-    })
-    .then(function (video_data) {
-      res.render('video', video_data);
-    });
-});
+		res.render('private', data)
+	});
+}
 
-// jorbs!
-app.get('/wantsyou', function(req, res){
-  console.log('Route: /private/wantsyou');
-  res.render('wantsyou');
-});
+function portfolio_page(req, res)
+{
+	var target_portfolio_id = req.params.id || FEATURED_PORTFOLIO_ID;
 
-// about page
-app.get('/about', function(req, res){
-  console.log('Route: /about');
-  res.render('about');
-});
+	gmVimeo
+	.fetchPortfolio(target_portfolio_id, true)
+	.then(function(){
+		var data = {
+			portfolio : gmVimeo.getPortfolio(target_portfolio_id)
+		}
 
-// main page
-app.get('/', function(req, res){
-  console.log('Route: /');
-  var featured_portfolio_id = '357398';
-  var target_portfolio_id   = req.query.portfolio || featured_portfolio_id;
-  gmVimeo.fetchPortfolio( target_portfolio_id )
-    .then(function () {
-      res.render('home', {
-        portfolios:         gmVimeo.getPortfolioList( 'public' ),
-        currentPortfolio:   gmVimeo.getPortfolio( target_portfolio_id ) 
-      });
-    }, function (error) {
-      console.log('error rendering home page');
-    });
-});
+		res.render('private_portfolio', data);
+	});
 
-/**** INTERTACTIVE BUILDS START HERE ******/
+}
 
-app.get('/interactive001/biopolis', function(req, res) {
-	console.log("Going to biopolis.")
-	res.redirect(301, '/interactive/biopolis/index.html');
-});
+function public_video_page(req, res)
+{
+	var target_video_id     = req.params.id;
+	var target_portfolio_id = req.query.portfolio;
+	
+	render_video_page(target_video_id, target_portfolio_id, res, false);	
+}
 
-app.get('/interactive001/bungusland', function(req, res) {
-	console.log("Going to bungusland.")
-	res.redirect(301, '/interactive/bungusland/index.html');
-});
+function private_video_page(req, res)
+{
+	var target_video_id     = req.params.id;
+	var target_portfolio_id = req.params.portfolio_id;
 
-/*******************************************/
+	render_video_page(target_video_id, target_portfolio_id, res, true);	
+}
 
-app.listen(process.env.PORT || 5000);
+function wants_you_page(req, res)
+{
+	res.render('wantsyou');
+}
+
+function about_page(req, res)
+{
+	res.render('about');
+}
+
+function bungusland_page(req, res)
+{
+	res.render('bungus');
+}
+
+function biopolis_page(req, res)
+{
+	res.render('biopolis');
+}
+
+/*-----------------------------------------------------------------------------------------------
+ Helper
+ -----------------------------------------------------------------------------------------------*/
+
+function render_video_page(video_id, portfolio_id, response, private)
+{
+	var target_template = private ? "private_portfolio_video" : "video";
+
+	console.log(target_template);
+
+	gmVimeo
+	.fetchVideo( video_id )
+	.then(function () {
+		return gmVimeo.prepareVideoMetadata( video_id, portfolio_id )
+	})
+	.then(function (video_data) {
+		response.render(target_template, video_data);
+	});
+
+}
+
+/*-----------------------------------------------------------------------------------------------
+  Execute
+ -----------------------------------------------------------------------------------------------*/
+
+setup_express();
+setup_routes();
+start_server();
