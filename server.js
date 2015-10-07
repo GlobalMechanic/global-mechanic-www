@@ -60,8 +60,8 @@ function setup_routes()
 	app.get("/wantsyou", wants_you_page);
 	app.get("/about", about_page);
 
-	app.get("/interactive/bungusland", bungusland_page);
-	app.get("/interactive/biopolis", biopolis_page);
+	app.get("/bungusland", bungusland_page);
+	app.get("/biopolis", biopolis_page);
 
 }
 
@@ -167,8 +167,6 @@ function biopolis_page(req, res)
 function render_video_page(video_id, portfolio_id, response, private)
 {
 	var target_template = private ? "private_portfolio_video" : "video";
-
-	console.log(target_template);
 
 	gmVimeo
 	.fetchVideo( video_id )
