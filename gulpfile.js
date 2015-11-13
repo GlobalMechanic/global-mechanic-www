@@ -113,6 +113,11 @@ gulp.task('build', function () {
         .pipe($.newer(distro_unity))
         .pipe(gulp.dest(distro_unity));
 
+    var distro_bungus = distro + "/bungusland/";
+    gulp.src(source + "bungusland/*")
+        .pipe($.newer(distro_unity))
+        .pipe(gulp.dest(distro_unity));
+
 });
 
 gulp.task('nodemon', function (cb) {
