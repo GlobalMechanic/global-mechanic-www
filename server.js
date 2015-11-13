@@ -152,7 +152,6 @@ function about_page(req, res)
 
 function bungusland_page(req, res)
 {
-	console.log("Going to BUNGUSLAND OMFG.")
 	res.redirect('/bungusland/index.html');
 }
 

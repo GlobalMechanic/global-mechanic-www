@@ -17,8 +17,8 @@
     }
     body {
       background-color: #e29f9f;
-      width:100%;
-      height:100%;
+      width: 100%;
+      height: 100%;
       background-image: url('TemplateData/gm_interactive_logo.png');
       background-size: initial;
       background-repeat: no-repeat;
@@ -49,7 +49,6 @@
       top: 0px;
       left: 0px;
     }
-
     </style>
     <link rel="shortcut icon" href="TemplateData/favicon.ico" />
     <script src="TemplateData/UnityProgress.js"></script>
@@ -62,6 +61,7 @@
       </video>
     </div>
     <div id="video_background"></div>
+
     <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="540px" width="960px"></canvas>
     <script type='text/javascript'>
   // connect to canvas
@@ -109,11 +109,11 @@
 <script src="Release/fileloader.js"></script>
 <script>if (!(!Math.fround)) {
   var script = document.createElement('script');
-  script.src = "Release/bungusland.js";
+  script.src = "Release/BungusLand.js";
   document.body.appendChild(script);
 } else {
   var codeXHR = new XMLHttpRequest();
-  codeXHR.open('GET', 'Release/bungusland.js', true);
+  codeXHR.open('GET', 'Release/BungusLand.js', true);
   codeXHR.onload = function() {
     var code = codeXHR.responseText;
     if (!Math.fround) { 
