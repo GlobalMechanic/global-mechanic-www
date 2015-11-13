@@ -50,7 +50,7 @@ window.VideoPlayer = (function(){
 
 		setVideo : function(name)
 		{
-			sourceTag.setAttribute("src", "videos/" + name + ".mp4");
+			sourceTag.setAttribute("src", "Videos/" + name + ".mp4");
 			videoTag.load();
 			mod.setVisible(true);
 		}
