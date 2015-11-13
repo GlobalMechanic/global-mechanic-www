@@ -60,7 +60,7 @@ function setup_routes()
 	app.get("/wantsyou", wants_you_page);
 	app.get("/about", about_page);
 
-	app.get("/BungusLand", bungusland_page);
+	app.get("/bungusland", bungusland_page);
 	app.get("/biopolis", biopolis_page);
 
 }
@@ -152,7 +152,7 @@ function about_page(req, res)
 
 function bungusland_page(req, res)
 {
-	res.redirect('/BungusLand/index.html');
+	res.redirect('/bungusland/index.html');
 }
 
 function biopolis_page(req, res)
