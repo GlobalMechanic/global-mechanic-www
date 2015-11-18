@@ -37,9 +37,10 @@ window.VideoPlayer = (function(){
 			holderTag.style.display = value ? "block" : "none";
 			backgroundTag.style.display = value ? "block" : "none";
 
-			if (!value)
+			if (!value) {
 				sourceTag.removeAttribute("src");
-			else
+				videoTag.pause();
+			} else
 				mod.center();
 		},
 
