@@ -152,7 +152,7 @@ function about_page(req, res)
 
 function bungusland_page(req, res)
 {
-	res.redirect('/bungusland/index.html');
+	res.redirect('/BungusLand/index.html');
 }
 
 function biopolis_page(req, res)

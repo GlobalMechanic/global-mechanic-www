@@ -1,151 +1,339 @@
 <!doctype html>
 <html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Global Mechanic| Unity Project</title>
-    <link rel="stylesheet" href="TemplateData/style.css">
-    <style type="text/css">
-    * {
-      margin: 0;
-      padding: 0;
-    }
-    canvas {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-    }
-    body {
-      background-color: #e29f9f;
-      width: 100%;
-      height: 100%;
-      background-image: url('TemplateData/gm_interactive_logo.png');
-      background-size: initial;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-position: center; 
-    }
-    #video_holder {
-      background-color: black;
-      position: absolute;
-      z-index: 10;
-      width: 960px;
-      height: 540px;
-      display: none;
-    }
-    #video_background {
-      background-color: rgba(0,0,0,0.8);
-      background-image: url('TemplateData/video_close.png');
-      background-size: initial;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-position: right top; 
 
-      position: absolute;
-      z-index: 9;
-      width: 100%;
-      height: 100%;
-      display: none;
-      top: 0px;
-      left: 0px;
-    }
-    </style>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico" />
-    <script src="TemplateData/UnityProgress.js"></script>
-    <script src="TemplateData/VideoPlayer.js"></script>
+  <head>
+  
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Global Mechanic | Unity Project</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="images/favicon.ico" />
+
+    <script src="js/unity-progress-bar.js"></script>
+    <script src="js/jquery-2.1.4.js"></script>
+    <script src="js/jquery.tinyscrollbar.min.js"></script>
+    <script src="js/soundcloud-api.js"></script>
+    <script src="js/bungus.js"></script>
+
   </head>
+
   <body class="template">
-    <div id="video_holder">
-      <video width="960" height="540" controls autoplay>
-        <source type="video/mp4">
-      </video>
+    <div id="showcase_container" style="display:none;">
+      <div id="showcase_prev_btn" class="showcase_btn"></div>
+      <div id="showcase_next_btn" class="showcase_btn"></div>
+      <div id="showcase">
+        <iframe class="vimeo_video" src="https://player.vimeo.com/video/148967713?color=e29f9f&title=0&byline=0&portrait=0" width="960" height="800" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        <iframe class="vimeo_video" src="https://player.vimeo.com/video/148967714?color=e29f9f&title=0&byline=0&portrait=0" width="960" height="800" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        <iframe class="vimeo_video" src="https://player.vimeo.com/video/148967715?color=e29f9f&title=0&byline=0&portrait=0" width="960" height="800" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        <iframe class="vimeo_video" src="https://player.vimeo.com/video/148967716?color=e29f9f&title=0&byline=0&portrait=0" width="960" height="800" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        <iframe class="vimeo_video" src="https://player.vimeo.com/video/148967717?color=e29f9f&title=0&byline=0&portrait=0" width="960" height="800" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        <iframe class="vimeo_video" src="https://player.vimeo.com/video/148967718?color=e29f9f&title=0&byline=0&portrait=0" width="960" height="800" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        <img class="behind_scenes_image" src="images/behind_scenes-billy_in_mayor_chair.jpg"></img>
+        <img class="behind_scenes_image" src="images/behind_scenes-bungus_figs_blueprint.jpg"></img>
+        <img class="behind_scenes_image" src="images/behind_scenes-bungus_mobile_blueprint.jpg"></img>
+        <img class="behind_scenes_image" src="images/behind_scenes-jazzy_jellyfish_hair.jpg"></img>
+        <img class="behind_scenes_image" src="images/behind_scenes-folio_cover.jpg"></img>
+        <img class="behind_scenes_image" src="images/behind_scenes-sea_cg_bw.jpg"></img>
+      </div>
     </div>
-    <div id="video_background"></div>
+    <div id="modal" >
+      <div id="scroller"/>
+        <div class="scrollbar">
+          <div class="track">
+            <div class="thumb">
+              <div class="end"></div>
+            </div>
+          </div>
+        </div>
+        <div id="content" class="viewport">
+          <div class="overview">
+            <div id="videos_pane">
+              <h1>Videos</h1>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras justo velit, blandit non cursus eu, pellentesque sed nunc. Proin venenatis lacus vitae ipsum faucibus, nec porta massa semper. Morbi ornare.</p>
+              <div id="video_previews">
+                <div class="video_preview" data-vimeo-id="148967713">
+                  <img src="images/thumb_betty_vocal_test.jpg"</img>
+                </div>
+                <div class="video_preview" data-vimeo-id="148967715">
+                  <img src="images/thumb_fore_armed.jpg"></img>
+                </div>
+                <div class="video_preview" data-vimeo-id="148967717">
+                  <img src="images/thumb_robo_walrus.jpg"></img>
+                </div>
+                <div class="video_preview" data-vimeo-id="148967716">
+                  <img src="images/thumb_sgc_animatic.jpg"></img>
+                </div>
+                <div class="video_preview" data-vimeo-id="148967718">
+                  <img src="images/thumb_lobster_song.jpg"></img>
+                </div>
+                <div class="video_preview" data-vimeo-id="148967714">
+                  <img src="images/thumb_video_sound_test.jpg"></img>
+                </div>
+              </div>
+              <div id="video_pane_footer" class="pane_footer"></div>
+            </div>
+            <div id="behindthescenes_pane">
+              <h1>Behind The Scenes</h1>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras justo velit, blandit non cursus eu, pellentesque sed nunc. Proin venenatis lacus vitae ipsum faucibus, nec porta massa semper. Morbi ornare.</p>
+              <div id="behind_the_scenes">
+                <div id="behind_the_scenes_video" class="behind_the_scenes_content">
+                    <img src="images/behind_scenes-video_thumb.jpg"></img>
+                </div>
+                <div id="behind_scenes_slideshow" class="behind_the_scenes_content">
+                    <img src="images/behind_scenes-slideshow_thumb.png"></img>
+                </div>
+              </div>
+              <div id="behind_scenes_pane_footer" class="pane_footer"></div>
+            </div>
+            <div id="music_pane">
+              <h1>Music</h1>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras justo velit, blandit non cursus eu, pellentesque sed nunc. Proin venenatis lacus vitae ipsum faucibus, nec porta massa semper. Morbi ornare.</p>
+              <div id="music_player">
+                <iframe id="music_widget" width="750" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/174038689%3Fsecret_token%3Ds-7bprN&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+              </div>
+              <div id="music_pane_footer" class="pane_footer"></div>
+            </div>
+            <div id="introduction_pane">
+              <div style="text-align: center">
+                <img src="gifs/bungus_logo.gif"</img>
+              </div>
+              <div class="intro_writeup">
+                <div>Welcome To Bungusland is an animated musical 
+                comedy series following the adventures of Billy 
+                Bungus and his girlfriend who is a Sea Cucumber.
+
+                Billy Bungus is an aspiring chef who, 
+                after inheriting an old stone tower, begins a 
+                secret double life as Mayor of a strange place 
+                called Bungusland which he travels to 
+                by flushing himself down the drain!
+
+                We join Billy each episode as he encounters all 
+                sorts of bizarre situations and fun, unique characters 
+                while struggling to deal with his dual responsibilities.
+                 
+                Welcome to Bungusland…an exciting world 
+                of hilarious songs & endless adventure…</div>
+              </div>
+              <div class="intro_writeup">
+                  <img src="gifs/billy.gif" height="348"></img>
+                  <div>
+                    <h1 style="margin-top: 40px">Billy Bungus</h1>
+                    <p>Billy is the central figure and his 
+                    girlfriend is a sea cucumber that he 
+                    carries around with him.</p>
+                    <p>He is a normal teenage boy who is kind,
+                    overly trusting and aspires to be a chef 
+                    in the restaurant in which he works.</p>
+                    <p>His catchphrase is ‘Whaaaerd!’ which he 
+                    exclaims in extreme situations.</p>
+                    <p>He can be a little dim-witted at times</p>
+                </div>
+              </div>
+              <div class="intro_writeup" >
+                <div>
+                  <h1>Sea Cucumber Girl</h1>
+                  <p>Sea Cucumber Girl is Billy’s girlfriend and sidekick. </p>
+                  <p>She is very smart and the real brains 
+                  of the operation solving difficult 
+                  situations in her own quiet way, 
+                  often without anyone noticing.</p>
+                  <p>She speaks using little noises.</p>
+                  <p>She secretes a purple liquid called Bungus 
+                  Juice which is delicious and Billy’s secret 
+                  ingredient in his aspiring chef career.</p>
+                </div>
+                <img src="gifs/seacucumber.gif"></img>
+              </div>
+              <div class="intro_writeup" >
+                <img src="gifs/professor.gif" width="350" height="383"></img>
+                <div>
+                  <h1>Crazy Professor And Bionic Crab</h1>
+                  <p>He is a mischievous character whose plans to 
+                  dominate Bungusland nearly always backfire.</p> 
+                  <p>The Crazy Professor is driven by a desire to 
+                  become mayor of Bungusland and a resentment 
+                  of its inhabitants. He is Billy’s arch nemisis.</p> 
+                </div>
+              </div>
+              <div style="margin-top: 0px">
+                  <p>He is intelligent but impatient and slips into 
+                  rages when things don’t go quite as planned, 
+                  which is often.</p>
+                  <p>He manufactures a drink made of  Sea Cucumber Juice. His bumbling henchman is a ballet  loving Bionic Crab.</p>
+              </div>
+              <div class="intro_writeup">
+                <div>
+                  <h1>Prawn Paul</h1>
+                  <p>Prawn Paul is a rapping prawn. 
+                  He is up-beat and positive. He 
+                  is a close trusted friend of Billy 
+                  and Sea Cucumber Girl.</p>
+                </div>
+                <img src="gifs/prawnpaul.gif"></img>
+              </div>
+              <div class="intro_writeup">
+                <img src="gifs/lobSquitch.gif"></img>
+                <div>
+                  <h1>Lobsquitch</h1>
+                  <p>The Lobsquitch is part lobster, 
+                  part squid and part ostrich, 
+                  a Godzilla sized wanderer who lives in Bungusland.</p>
+                </div>
+              </div>
+              <div class="intro_writeup">
+                <div>
+                  <h1>Emily Epiglottis And Gwretchin</h1>
+                  <p>Emily is Billy’s friend. She is an energetic & lively
+                    tomboy who has a romance loving 
+                    epiglottis called Gwretchin that pops 
+                    out from her mouth.</p>
+                </div>
+                <img src="gifs/emily.gif"></img>
+              </div>
+              <div class="intro_writeup">
+                <img src="gifs/gastronaut.gif"></img>
+                <div>
+                  <h1>Gastronaut</h1>
+                  <p>He is an overweight astronaut who is  
+                    friendly & well-meaning, often caught
+                    between his desire to help and 
+                    his search for a snack.</p>
+                </div>
+              </div>
+              <div class="intro_writeup">
+                <div>
+                  <h1>Tony Dourbain</h1>
+                  <p> The arrogant head Chef at the restaurant in 
+                    which Billy works. He is always on Billy’s 
+                    back, suspicious of his strange absences.</p>
+                </div>
+                <img src="gifs/tony.gif"></img>
+              </div>
+              <div class="intro_writeup">
+                <img src="gifs/robowalrus.gif"></img>
+                <div>
+                  <h1>Robot Walrus</h1>
+                  <p>Created by the Crazy Professor, he is a 
+                    gigantic robotic walrus that always turnsup at the worst moment to cause havoc. </p>
+                </div>
+              </div>
+              <div class="intro_writeup">
+                <div>
+                  <h1>Aunt Betty</h1>
+                  <p>She lives in Bungus Tower. Billy doesn’t 
+                    realize that she is the Crazy Professors 
+                    Grandmother orchestrating 
+                    mayhem in Bungusland. 
+                  </p>
+                </div>
+                <img src="gifs/aunt.gif"></img>
+              </div>
+              <div class="intro_writeup">
+                <img src="gifs/captain.gif"></img>
+                <div>
+                  <h1>Captain Climate Change</h1>
+                  <p>When he’s in Bungusland Billy has an over-zealous, eco-obsessed super hero alter-ego.</p>
+                </div>
+              </div>
+            </div>
+            <div id="scriptsandsynopsis_pane">
+              <h1>Scripts And Synopsis</h1>    
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras justo velit, blandit non cursus eu, pellentesque sed nunc. Proin venenatis lacus vitae ipsum faucibus, nec porta massa semper. Morbi ornare.</p>
+              <div id="pdfs">
+
+                <div class="pdf"/>
+                  <a target="_blank" href="pdf/Welcome To Bungusland EPISODE Fore Warned is Four Armed 1st draft.pdf">
+                    <img src="images/pdf_logo_script.png" />
+                    <span>Fore Warned is Four Armed</span>
+                  </a>
+                </div>
+
+                <div class="pdf"/>
+                  <a target="_blank" href="pdf/Welcome To Bungusland EPISODE Stuck In Limbo 1st draft.pdf">
+                    <img src="images/pdf_logo_script.png" />
+                    <span>Stuck In Limbo</span>
+                  </a>
+                </div>
+
+                <div class="pdf"/>
+                  <a target="_blank" href="pdf/Welcome To Bungusland EPISODE The Unicycle Thief.pdf">
+                    <img src="images/pdf_logo_script.png" />
+                    <span>The Unicycle Thief</span>
+                  </a>
+                </div>
+
+                <div class="pdf"/>
+                  <a target="_blank" href="pdf/Welcome To Bungusland EPISODE Viva Las Vegas 1st draft.pdf">
+                    <img src="images/pdf_logo_script.png" />
+                    <span>Viva Las Vegas</span>
+                  </a>
+                </div>
+
+                <div class="pdf"/>
+                  <a target="_blank" href="pdf/William Bungus EPISODE 1 2ND DRAFT A New mayor In Bungusland.pdf">
+                    <img src="images/pdf_logo_script.png" />
+                    <span>A New mayor In Bungusland</span>
+                  </a>
+                </div>
+
+                <div class="pdf"/>
+                  <a target="_blank" href="pdf/WILLIAM BUNGUS episode synopsis A New Mayor On Bungus Street.pdf">
+                    <img src="images/pdf_logo_synopsis.png" />
+                    <span>A New Mayor On Bungus Street</span>
+                  </a>
+                </div>
+
+                <div class="pdf"/>
+                  <a target="_blank" href="pdf/WILLIAM BUNGUS episode synopsis Call Me Fishmael.pdf">
+                    <img src="images/pdf_logo_synopsis.png" />
+                    <span>Call Me Fishmael</span>
+                  </a>
+                </div>
+
+                <div class="pdf"/>
+                  <a target="_blank" href="pdf/WILLIAM BUNGUS episode synopsis Las Pepino Diablo.pdf">
+                    <img src="images/pdf_logo_synopsis.png" />
+                    <span>Las Pepino Diablo</span>
+                  </a>
+                </div>
+
+                <div class="pdf"/>
+                  <a target="_blank" href="pdf/WILLIAM BUNGUS episode synopsis Teryaki Terror.pdf">
+                    <img src="images/pdf_logo_synopsis.png" />
+                    <span>Teryaki Terror</span>
+                  </a>
+                </div>
+
+                <div class="pdf"/>
+                  <a target="_blank" href="pdf/WILLIAM BUNGUS episode synopsis The Hungry Games.pdf">
+                    <img src="images/pdf_logo_synopsis.png" />
+                    <span>The Hungry Games</span>
+                  </a>
+                </div>
+              </div>
+              <div id="scripts_pane_footer" class="pane_footer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="540px" width="960px"></canvas>
     <script type='text/javascript'>
-  // connect to canvas
   var Module = {
     TOTAL_MEMORY: 268435456,
-    filePackagePrefixURL: "Release/",
-    memoryInitializerPrefixURL: "Release/",
-    preRun: [],
-    postRun: [],
-    print: (function() {
-      return function(text) {
-        console.log (text);
-      };
-    })(),
-    printErr: function(text) {
-      console.error (text);
-    },
-    canvas: document.getElementById('canvas'),
-    progress: null,
-    setStatus: function(text) {
-      if (this.progress == null) 
-      {
-        if (typeof UnityProgress != 'function')
-          return;
-        this.progress = new UnityProgress (canvas);
-      }
-      if (!Module.setStatus.last) Module.setStatus.last = { time: Date.now(), text: '' };
-      if (text === Module.setStatus.text) return;
-      this.progress.SetMessage (text);
-      var m = text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/);
-      if (m)
-        this.progress.SetProgress (parseInt(m[2])/parseInt(m[4]));
-      if (text === "") 
-        this.progress.Clear()
-    },
-    totalDependencies: 0,
-    monitorRunDependencies: function(left) {
-      this.totalDependencies = Math.max(this.totalDependencies, left);
-      Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies-left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
-    }
+    errorhandler: null,			// arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
+    compatibilitycheck: null,
+    dataUrl: "Release/BungusLand.data",
+    codeUrl: "Release/BungusLand.js",
+    memUrl: "Release/BungusLand.mem",
   };
-  Module.setStatus('Downloading (0.0/1)');
 </script>
-<script src="Release/UnityConfig.js"></script>
-<script src="Release/fileloader.js"></script>
-<script>if (!(!Math.fround)) {
-  var script = document.createElement('script');
-  script.src = "Release/bungusland.js";
-  document.body.appendChild(script);
-} else {
-  var codeXHR = new XMLHttpRequest();
-  codeXHR.open('GET', 'Release/bungusland.js', true);
-  codeXHR.onload = function() {
-    var code = codeXHR.responseText;
-    if (!Math.fround) { 
-try {
-  console.log('optimizing out Math.fround calls');
-  var m = /var ([^=]+)=global\.Math\.fround;/.exec(code);
-  var minified = m[1];
-  if (!minified) throw 'fail';
-  var startAsm = code.indexOf('// EMSCRIPTEN_START_FUNCS');
-  var endAsm = code.indexOf('// EMSCRIPTEN_END_FUNCS');
-  var asm = code.substring(startAsm, endAsm);
-  do {
-    var moar = false; // we need to re-do, as x(x( will not be fixed
-    asm = asm.replace(new RegExp('[^a-zA-Z0-9\\$\\_]' + minified + '\\(', 'g'), function(s) { moar = true; return s[0] + '(' });
-  } while (moar);
-  code = code.substring(0, startAsm) + asm + code.substring(endAsm);
-  code = code.replace("'use asm'", "'almost asm'");
-} catch(e) { console.log('failed to optimize out Math.fround calls ' + e) }
- }
+<script src="Release/UnityLoader.js"></script>
 
-    var blob = new Blob([code], { type: 'text/javascript' });
-    codeXHR = null;
-    var src = URL.createObjectURL(blob);
-    var script = document.createElement('script');
-    script.src = URL.createObjectURL(blob);
-    script.onload = function() {
-      URL.revokeObjectURL(script.src);
-    };
-    document.body.appendChild(script);
-  };
-  codeXHR.send(null);
-}
-</script>
   </body>
+  
 </html>
