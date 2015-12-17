@@ -269,7 +269,9 @@ body {
 ******************************************/
 
 .intro_writeup {
-  display: inline-flex; 
+  display: flex;
+  display: -webkit-flex;
+  display: -ms-flex;
 }
 
 /*****************************************
