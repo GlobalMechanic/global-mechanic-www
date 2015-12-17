@@ -128,6 +128,7 @@ var bungus = (function(){
 			this.setModalVisible(true);
 
 			$pane.show();
+			$("#canvas").blur();
 
 			this.resize($pane.height() + PANE_PADDING);
 			this.center();

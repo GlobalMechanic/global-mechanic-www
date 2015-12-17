@@ -24,11 +24,11 @@
       <div id="showcase_prev_btn" class="showcase_btn"></div>
       <div id="showcase_next_btn" class="showcase_btn"></div>
       <div id="showcase">
+        <iframe class="vimeo_video" src="https://player.vimeo.com/video/148967717?color=e29f9f&title=0&byline=0&portrait=0" width="960" height="800" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         <iframe class="vimeo_video" src="https://player.vimeo.com/video/148967713?color=e29f9f&title=0&byline=0&portrait=0" width="960" height="800" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         <iframe class="vimeo_video" src="https://player.vimeo.com/video/148967714?color=e29f9f&title=0&byline=0&portrait=0" width="960" height="800" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         <iframe class="vimeo_video" src="https://player.vimeo.com/video/148967715?color=e29f9f&title=0&byline=0&portrait=0" width="960" height="800" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         <iframe class="vimeo_video" src="https://player.vimeo.com/video/148967716?color=e29f9f&title=0&byline=0&portrait=0" width="960" height="800" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        <iframe class="vimeo_video" src="https://player.vimeo.com/video/148967717?color=e29f9f&title=0&byline=0&portrait=0" width="960" height="800" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         <iframe class="vimeo_video" src="https://player.vimeo.com/video/148967718?color=e29f9f&title=0&byline=0&portrait=0" width="960" height="800" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         <img class="behind_scenes_image" src="images/behind_scenes-billy_in_mayor_chair.jpg"></img>
         <img class="behind_scenes_image" src="images/behind_scenes-bungus_figs_blueprint.jpg"></img>
@@ -53,23 +53,29 @@
               <h1>Videos</h1>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras justo velit, blandit non cursus eu, pellentesque sed nunc. Proin venenatis lacus vitae ipsum faucibus, nec porta massa semper. Morbi ornare.</p>
               <div id="video_previews">
-                <div class="video_preview" data-vimeo-id="148967713">
-                  <img src="images/thumb_betty_vocal_test.jpg"</img>
-                </div>
-                <div class="video_preview" data-vimeo-id="148967715">
-                  <img src="images/thumb_fore_armed.jpg"></img>
-                </div>
                 <div class="video_preview" data-vimeo-id="148967717">
                   <img src="images/thumb_robo_walrus.jpg"></img>
+                  <span>Robo Walrus</span>
                 </div>
-                <div class="video_preview" data-vimeo-id="148967716">
-                  <img src="images/thumb_sgc_animatic.jpg"></img>
-                </div>
-                <div class="video_preview" data-vimeo-id="148967718">
-                  <img src="images/thumb_lobster_song.jpg"></img>
+                <div class="video_preview" data-vimeo-id="148967713">
+                  <img src="images/thumb_betty_vocal_test.jpg"></img>
+                  <span>Betty Vocal Test</span>
                 </div>
                 <div class="video_preview" data-vimeo-id="148967714">
                   <img src="images/thumb_video_sound_test.jpg"></img>
+                  <span>Video Sound Test</span>
+                </div>
+                <div class="video_preview" data-vimeo-id="148967715">
+                  <img src="images/thumb_fore_armed.jpg"></img>
+                  <span>Four Armed is Fore Warned</span>
+                </div>
+                <div class="video_preview" data-vimeo-id="148967716">
+                  <img src="images/thumb_sgc_animatic.jpg"></img>
+                  <span>SCG Animatic</span>
+                </div>
+                <div class="video_preview" data-vimeo-id="148967718">
+                  <img src="images/thumb_lobster_song.jpg"></img>
+                  <span>Lobster Song</span>
                 </div>
               </div>
               <div id="video_pane_footer" class="pane_footer"></div>
@@ -80,9 +86,11 @@
               <div id="behind_the_scenes">
                 <div id="behind_the_scenes_video" class="behind_the_scenes_content">
                     <img src="images/behind_scenes-video_thumb.jpg"></img>
+                    <span>Behind the Scenes Video Coming Soon</span>
                 </div>
                 <div id="behind_scenes_slideshow" class="behind_the_scenes_content">
                     <img src="images/behind_scenes-slideshow_thumb.png"></img>
+                    <span>Doodles and Drawings</span>
                 </div>
               </div>
               <div id="behind_scenes_pane_footer" class="pane_footer"></div>
@@ -96,8 +104,8 @@
               <div id="music_pane_footer" class="pane_footer"></div>
             </div>
             <div id="introduction_pane">
-              <div style="text-align: center">
-                <img src="gifs/bungus_logo.gif"</img>
+              <div style="margin:auto; width:432px; height:223px;">
+                <img src="gifs/bungus_logo.gif"></img>
               </div>
               <div class="intro_writeup">
                 <div>Welcome To Bungusland is an animated musical 
@@ -118,7 +126,9 @@
                 of hilarious songs & endless adventure…</div>
               </div>
               <div class="intro_writeup">
-                  <img src="gifs/billy.gif" height="348"></img>
+                  <div style="width:224px; height:348px;">
+                    <img src="gifs/billy.gif"></img>
+                  </div>  
                   <div>
                     <h1 style="margin-top: 40px">Billy Bungus</h1>
                     <p>Billy is the central figure and his 
@@ -129,7 +139,7 @@
                     in the restaurant in which he works.</p>
                     <p>His catchphrase is ‘Whaaaerd!’ which he 
                     exclaims in extreme situations.</p>
-                    <p>He can be a little dim-witted at times</p>
+                    <p>He can be a little dim-witted at times.</p>
                 </div>
               </div>
               <div class="intro_writeup" >
@@ -145,17 +155,21 @@
                   Juice which is delicious and Billy’s secret 
                   ingredient in his aspiring chef career.</p>
                 </div>
-                <img src="gifs/seacucumber.gif"></img>
+                <div style="width:312px; height:292px;">
+                  <img src="gifs/seacucumber.gif"></img>
+                </div>  
               </div>
               <div class="intro_writeup" >
-                <img src="gifs/professor.gif" width="350" height="383"></img>
+                <div style="width:350px; height:383px;">
+                  <img src="gifs/professor.gif"></img>
+                </div>  
                 <div>
                   <h1>Crazy Professor And Bionic Crab</h1>
                   <p>He is a mischievous character whose plans to 
                   dominate Bungusland nearly always backfire.</p> 
                   <p>The Crazy Professor is driven by a desire to 
                   become mayor of Bungusland and a resentment 
-                  of its inhabitants. He is Billy’s arch nemisis.</p> 
+                  of its inhabitants. He is Billy’s arch nemesis.</p> 
                 </div>
               </div>
               <div style="margin-top: 0px">
@@ -172,10 +186,14 @@
                   is a close trusted friend of Billy 
                   and Sea Cucumber Girl.</p>
                 </div>
-                <img src="gifs/prawnpaul.gif"></img>
+                <div style="width:263px; height:244px;">
+                  <img src="gifs/prawnpaul.gif"></img>
+                </div>  
               </div>
               <div class="intro_writeup">
-                <img src="gifs/lobSquitch.gif"></img>
+                <div style="width:357px; height:370px;">
+                  <img src="gifs/lobSquitch.gif"></img>
+                </div>
                 <div>
                   <h1>Lobsquitch</h1>
                   <p>The Lobsquitch is part lobster, 
@@ -191,10 +209,14 @@
                     epiglottis called Gwretchin that pops 
                     out from her mouth.</p>
                 </div>
-                <img src="gifs/emily.gif"></img>
+                <div style="width:113px; height:365px;">
+                  <img src="gifs/emily.gif"></img>
+                </div>
               </div>
               <div class="intro_writeup">
-                <img src="gifs/gastronaut.gif"></img>
+                <div style="width:274px; height:360px;">
+                  <img src="gifs/emily.gif"></img>
+                </div>
                 <div>
                   <h1>Gastronaut</h1>
                   <p>He is an overweight astronaut who is  
@@ -210,10 +232,14 @@
                     which Billy works. He is always on Billy’s 
                     back, suspicious of his strange absences.</p>
                 </div>
-                <img src="gifs/tony.gif"></img>
+                <div style="width:165px; height:338px;">
+                  <img src="gifs/tony.gif"></img>
+                </div>
               </div>
               <div class="intro_writeup">
-                <img src="gifs/robowalrus.gif"></img>
+                <div style="width:376px; height:348px;">
+                  <img src="gifs/robowalrus.gif"></img>
+                </div>
                 <div>
                   <h1>Robot Walrus</h1>
                   <p>Created by the Crazy Professor, he is a 
@@ -229,10 +255,14 @@
                     mayhem in Bungusland. 
                   </p>
                 </div>
-                <img src="gifs/aunt.gif"></img>
+                <div style="width:220px; height:375px;">
+                  <img src="gifs/aunt.gif"></img>
+                </div>
               </div>
               <div class="intro_writeup">
-                <img src="gifs/captain.gif"></img>
+                <div style="width:196px; height:368px;">
+                  <img src="gifs/captain.gif"></img>
+                </div>
                 <div>
                   <h1>Captain Climate Change</h1>
                   <p>When he’s in Bungusland Billy has an over-zealous, eco-obsessed super hero alter-ego.</p>

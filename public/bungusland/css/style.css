@@ -229,13 +229,15 @@ body {
 
 .video_preview {
   width: 240px;
-  height: 135px;
-  background-color: #9dbaab;
+  height: 180px;
   display: inline-flex;
+  flex-direction: column;
+  text-align: center;
   cursor: pointer;
 }
 
 .video_preview img {
+  height: 135px;
   margin: 0px !important;
 }
 
@@ -246,6 +248,7 @@ body {
 #behind_the_scenes {
   display: inline-flex;
   margin-left: 53.5px;
+  text-align: center;
 }
 
 .behind_the_scenes_content {
@@ -274,14 +277,14 @@ body {
 ******************************************/
 
 #pdfs {
-  width: 700px;
+  width: 740px;
   margin: 0 auto;
   text-align: center;
 }
 
 .pdf {
   margin: 0px !important;
-  width: 120px;
+  width: 144px;
   display: inline-flex;
 }
 
@@ -373,6 +376,7 @@ body {
 
 .behind_scenes_image {
   display: inline;
+  text-align: center;
 }
 
 .vimeo_video {

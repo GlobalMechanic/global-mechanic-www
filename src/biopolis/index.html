@@ -8,7 +8,7 @@
     <title>Global Mechanic | Biopolis</title>
 
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link rel="shortcut icon" href="images/favicon@2x.png" />
 
     <script src="js/jquery-2.1.4.js"></script>
     <script src="js/biopolis.js"></script>
@@ -17,12 +17,9 @@
 
   <body>
     <div id="home">
-      <div id="biopolis_writeup_container">
-        <div id="biopolis_title">
-          <h1>BIOPOLIS</h1>
-          <span>POPULATION 37 TRILLION</span>
-        </div>
-        <div id="biopolis_writeup">
+      <div class="biopolis_writeup_container">
+        <div class="biopolis_title"></div>
+        <div class="biopolis_writeup">
           <p>It's as if the body of a normal kid (Chloe) is a megacity, where we visit neighbourhoods like the brain, the stomach, the knee: anywhere her cells are taking care of the everyday needs of human health. Her cells are the stars of the show. Made from everyday household objects, they act and move like real cells, but each with its own quirky personality.</p><br>
           <p>Stories play on two levels. Our cell characters collaborate to solve Chloe's medical or physical challenges, like a fly-bite, a flu virus, fart-causing popcorn, based on her immediate situation and experiences. At the same time, they have normal pre-school kid issues, like paying attention, sharing your things, making a plan, getting emotional control, doing one thing at a time, or the value of teamwork and co-operation, and always with an emphasis on fun.</p>
           <br>
@@ -32,20 +29,24 @@
     </div>  
     
     <div id="chloe">
-      <h1>CHLOE GOES HERE</h1>
     </div>
 
     <div id="cells">
-      <H1> CELLS GO HERE </H1>
+      <div class="cell_layer" id="cells_prongs_blurred" data-offset="-2000" data-distance="5"></div>
+      <div class="cell_layer" id="cells_lattice" data-offset="-200" data-distance="4"></div>
+      <div class="cell_layer" id="cells_prongs" data-offset="0" data-distance="3"></div>
+      <div class="cell_layer" id="cells_tube" data-offset="1140" data-distance="2"></div>
+      <div class="cell_layer" id="cells_trees" data-offset="800" data-distance="1"></div>
+      <div class="cell_layer" id="cells_floating" data-offset="0" data-distance="1">
+        
+        
+      </div>
     </div>
     
     <div id="more">
-      <div id="biopolis_writeup_container">
-        <div id="biopolis_title">
-          <h1>BIOPOLIS</h1>
-          <span>POPULATION 37 TRILLION</span>
-        </div>
-        <div id="biopolis_writeup">
+      <div class="biopolis_writeup_container">
+        <div class="biopolis_title"></div>
+        <div class="biopolis_writeup">
           <a target="_blank" href="/pdf/onesheet.pdf">Download the one sheet here</a><br>
           <a target="_blank" href="/pdf/onesheet.pdf">Download the one sheet here</a><br>
           <a target="_blank" href="/pdf/onesheet.pdf">Download the one sheet here</a><br>
@@ -55,6 +56,12 @@
           <a target="_blank" href="/pdf/onesheet.pdf">Download the one sheet here</a>
         </div>
       </div>
+    </div>
+
+    <div id="chloe_character">
+      <!--<img  src="images/chloe_still.png"></img>-->
+      <video src="video/chloe_looping_flare.mp4" loop autoplay>
+      </video>
     </div>
 
     <div id="main_menu">
