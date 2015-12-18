@@ -25,6 +25,7 @@ var bungus = (function(){
 	{
 		showcase_update(1);
 	}
+
 	function showcase_prev()
 	{
 		showcase_update(-1);
@@ -51,44 +52,60 @@ var bungus = (function(){
 		SCWidget.seekTo(0);
 	}
 
+	function toggleContent()
+	{
+		if ($showcaseContainer.is(":visible")) {
+			mod.setShowCaseVisible(false);
+			stopVideoPlayback();
+		} else {
+			mod.setModalVisible(false);
+			stopSoundPlayback();
+		}
+	}
+
 	var mod = {
 
 		setup : function() 
 		{
 			$modal = $("#modal");
-			$modal.mousedown(function() {
-				if ($showcaseContainer.is(":visible")) {
-					mod.setShowCaseVisible(false);
-					stopVideoPlayback();
-				} else {
-					mod.setModalVisible(false);
-					stopSoundPlayback();
-				}
-			});
+			$modal.click(toggleContent);
 
 			$scroller = $("#scroller");
 			$scroller.tinyscrollbar();
 			scrollbar = $scroller.data("plugin_tinyscrollbar");
 
 			$content = $("#content");
-			$content.mousedown(function(e) {
+			$content.click(function(e) {
 				e.stopPropagation();
 			});
 
 			$showcase = $("#showcase");
 			$showcaseContainer = $("#showcase_container");
 
-			$("#showcase_prev_btn").mousedown(showcase_prev);
-			$("#showcase_next_btn").mousedown(showcase_next);
+			$("#showcase_prev_btn").click(showcase_prev);
+			$("#showcase_next_btn").click(showcase_next);
 
-			$(".video_preview").mouseup
+			$("#content_close_btn").click(toggleContent);
+			$("#showcase_close_btn").click(toggleContent);
+
+			$("#behind_the_scenes_video").click
+				(function(e) {
+					mod.setShowCase(".vimeo_behind_scenes");
+				});
+
+			$(".video_preview").click
 				(function(e) {
 					mod.setShowCase(".vimeo_video", $(this).index());
 				});
 
-			$("#behind_scenes_slideshow").mouseup
+			$("#behind_scenes_slideshow").click
 				(function(e) {
-					mod.setShowCase(".behind_scenes_image");
+					mod.setShowCase(".behind_the_scenes_image");
+				});
+
+			$("#overlay_logo").click
+				(function(e) {
+					mod.showPane("introduction");
 				});
 
 		},
@@ -129,7 +146,7 @@ var bungus = (function(){
 
 			$pane.show();
 			$("#canvas").blur();
-
+			
 			this.resize($pane.height() + PANE_PADDING);
 			this.center();
 		},
@@ -141,7 +158,13 @@ var bungus = (function(){
 
 			$showcaseContainer.show();
 			$showcase.children().each(function(){
-				$(this).hide();
+				var $this = $(this);
+				$this.css("position", "absolute");
+				$this.css({
+					top: 400 - $this.height() * 0.5,
+					left: 480 - $this.width() * 0.5
+				});
+				$this.hide();
 			});
 
 			showcase_update(0);
