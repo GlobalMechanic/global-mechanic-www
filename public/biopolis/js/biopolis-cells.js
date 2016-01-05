@@ -245,6 +245,13 @@ var biopolis_cells = (function($, createjs){
 
 	/******** MODULE ***********/
 
+	var scaleFactor = 1;
+	function getScaleFactor()
+	{
+		return scaleFactor;
+	}
+
+
 	function setup()
 	{
 		create_stage();
@@ -265,7 +272,8 @@ var biopolis_cells = (function($, createjs){
 
 	return {
 		setup: setup,
-		resize: resize
+		resize: resize,
+		scaleFactor: getScaleFactor
 	}
 
 })(jQuery, createjs);

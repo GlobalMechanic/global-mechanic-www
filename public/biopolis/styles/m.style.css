@@ -92,11 +92,11 @@ html, body {
 
 body {
 
-  background-image: url('../images/chloe_map.png');
+ /* background-image: url('../images/chloe_map.png'); 
   background-size: contain;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center; 
+  background-position: center; */
   background-color: #b2ce72;
 
   width: 100%;
@@ -160,10 +160,10 @@ body {
 ****************************************/
 
 #music {
-  position: absolute;
+  position: fixed;
   cursor: pointer;
-  top: 20px;
-  left: 20px;
+  top: 6px;
+  left: 6px;
   width: 32px;
   height: 32px;
   background: url("../images/audio_icon.png");
@@ -208,6 +208,9 @@ body {
   display: none;
 }
 
+.character_popup img {
+  width: 100%;
+}
 /***************************************
   ==== CHARACTER
 ****************************************/
@@ -308,7 +311,6 @@ body {
 }
 
 .biopolis_team_writeup {
-  text-align: left;
   font-size: 10px;
 }
 

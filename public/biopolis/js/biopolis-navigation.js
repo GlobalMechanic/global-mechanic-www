@@ -4,7 +4,7 @@ var biopolis_navigation = (function($){
 
 	var $home_pane, $chloe_pane, $cells_pane, $more_pane;
 
-	var $popup_modal, $chloe_character, $music;
+	var $popup_modal, $chloe_character, $music, audio;
 
 	var $scroller, scrollbar = null;
 
@@ -66,20 +66,31 @@ var biopolis_navigation = (function($){
 	function music_handling() {
 		//setup music handling
 		$music = $("#music");
+		audio = $music.find("audio")[0];
 		$music.click(function() {
-			var $audio = $music.find("audio");
-			var muted = $audio.prop("muted");
+			if (!audio_is_playing())
+				audio.play();
+			else
+				audio.pause();
 
-			$audio.prop("muted", !muted);
-
-			var css_value = "url('images/audio_icon" + (!muted ? "_disabled" : "") + ".png')";
-
-			console.log(css_value);
-
-			$(this).css("background", css_value);
+			set_audio_icon();
 		});
 
-		$music.find("audio").prop("volume", 0.15);
+		setTimeout(set_audio_icon, 250);
+
+		audio.volume = 0.15;
+	}
+
+	function audio_is_playing()
+	{
+		return !audio.paused && audio.duration > 0;
+	}
+
+	function set_audio_icon()
+	{
+		var playing = audio_is_playing();
+		var css_value = "url('images/audio_icon" + (!playing ? "_disabled" : "") + ".png')";
+		$music.css("background", css_value);
 	}
 
 	/******** HELPER ***********/
@@ -112,7 +123,7 @@ var biopolis_navigation = (function($){
 	function go_home()
 	{
 		$chloe_character.show();
-		set_blur($chloe_character, 15);
+		set_blur($chloe_character, $.browser.mobile ? 8 : 15);
 		focus($home_pane);
 		hide_popup_modal();
 	}
@@ -135,7 +146,7 @@ var biopolis_navigation = (function($){
 	function go_more()
 	{
 		$chloe_character.show();
-		set_blur($chloe_character, 15);
+		set_blur($chloe_character, $.browser.mobile ? 8 : 15);
 		focus($more_pane);
 		hide_popup_modal();
 		if (scrollbar)
@@ -152,7 +163,6 @@ var biopolis_navigation = (function($){
 			return;
 
 		$(".character_popup").hide();
-
 		$popup_modal.show();
 		$popup.show();
 	}

@@ -118,11 +118,11 @@ div.title {
 
 body {
 
-  background-image: url('../images/chloe_map.png');
+ /* background-image: url('../images/chloe_map.png');
   background-size: initial;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center; 
+  background-position: center; */
   background-color: #b2ce72;
 
   width: 100%;
@@ -186,7 +186,7 @@ body {
 ****************************************/
 
 #music {
-  position: absolute;
+  position: fixed;
   cursor: pointer;
   top: 20px;
   left: 20px;
