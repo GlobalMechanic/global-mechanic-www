@@ -68,7 +68,7 @@ var biopolis_navigation = (function($){
 		$music = $("#music");
 		audio = $music.find("audio")[0];
 		$music.click(function() {
-			if (!audio_is_playing())
+			if (audio.paused)
 				audio.play();
 			else
 				audio.pause();
@@ -76,19 +76,14 @@ var biopolis_navigation = (function($){
 			set_audio_icon();
 		});
 
-		setTimeout(set_audio_icon, 250);
+		setTimeout(set_audio_icon, 300);
 
 		audio.volume = 0.15;
 	}
 
-	function audio_is_playing()
-	{
-		return !audio.paused && audio.duration > 0;
-	}
-
 	function set_audio_icon()
 	{
-		var playing = audio_is_playing();
+		var playing = !audio.paused;
 		var css_value = "url('images/audio_icon" + (!playing ? "_disabled" : "") + ".png')";
 		$music.css("background", css_value);
 	}
@@ -189,7 +184,8 @@ var biopolis_navigation = (function($){
 		pane_click_receivers();
 		music_handling();
 
-		go_home();
+		go_cells();
+	//	$music.remove();
 
 		$(document).resize(resize);
 
@@ -200,6 +196,8 @@ var biopolis_navigation = (function($){
 	{
 		if (scrollbar)
 			scrollbar.update();
+
+
 	}
 
 	return {

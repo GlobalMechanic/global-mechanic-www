@@ -257,19 +257,22 @@ body {
 ****************************************/
 
 #chloe_character {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-
-  overflow: hidden;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background: url(polina.jpg) no-repeat;
+    background-size: cover; 
 }
+
 
 /***************************************
   ==== CELLS
@@ -335,10 +338,6 @@ body {
 
 .biopolis_episode_writeup {
   margin-left: 40px;
-}
-
-.biopolis_team_writeup {
-  font-size: 14px;
 }
 
 .biopolis_team_writeup img {

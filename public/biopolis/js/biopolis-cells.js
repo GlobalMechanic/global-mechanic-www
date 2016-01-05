@@ -19,6 +19,10 @@ var biopolis_cells = (function($, createjs){
 	const CELL_RANGE = 200;
 	const RANGE_THRESHOLD = 30;
 
+	const BASE_HEIGHT = 1920;
+
+	const SCALEFACTOR_MIN = 0.75;
+
 	/******** STAGE OBJECTS *********/
 
 	var bioObjects = [];
@@ -40,11 +44,15 @@ var biopolis_cells = (function($, createjs){
 		prototype.local = null;
 		prototype.z = null;
 		prototype.update = function(dt, t) {
-			this.y = this.local.y + window.innerHeight - this.image.height;
-			this.x = (this.local.x + viewX) / this.z;
-		};
+
+			var globalY = window.innerHeight / stage.scaleY;
+			this.y = this.local.y + globalY - this.image.height;
+			this.x = (this.local.x + (viewX / stage.scaleY)) / this.z;
+
+		}
 
 		return createjs.promote(BioObject, "Bitmap");
+
 	})();
 
 	var Layer = (function() {
@@ -162,10 +170,10 @@ var biopolis_cells = (function($, createjs){
 
 	function create_layers()
 	{
-		new Layer("content/cells_prongs_blurred.png", -500,0,10);
+		new Layer("content/cells_prongs_blurred.png", 0,0,10);
 		new Layer("content/cells_lattice.png",		 -300,0,7);
 		new Layer("content/cells_prongs.png",		    0,0,4);
-		new Layer("content/cells_tube.png",			  900,0,2);
+		new Layer("content/cells_tube.png",			 1350,0,2);
 		new Layer("content/cells_trees.png",		  600,0,2);
 	}
 
@@ -173,20 +181,20 @@ var biopolis_cells = (function($, createjs){
 	{
 		var stretch = 1.65;
 
-		new Cell("content/character_BACTERIA.png",	4000 * stretch, -400, 1, 1.5);
-		new Cell("content/character_BLKBACTERIA.png",2200 * stretch, -350, 1);
-		new Cell("content/character_BRAINCELL.png",	1700 * stretch, -350, 1);
-		new Cell("content/character_FATCELL.png",	1000 * stretch, -800, 7, 0);
+		new Cell("content/character_BACTERIA.png",		3800 * stretch, -400, 1, 1.5);
+		new Cell("content/character_BLKBACTERIA.png",	2200 * stretch, -350, 1);
+		new Cell("content/character_BRAINCELL.png",		1700 * stretch, -350, 1);
+		new Cell("content/character_FATCELL.png",		1000 * stretch, -800, 7, 0);
 		new Cell("content/character_MUSCLECELL.png",	3300 * stretch, -250, 1);
 		new Cell("content/character_NEURONCELL.png",	1100 * stretch, -450, 1, 1);
-		new Cell("content/character_PLATELET.png",	1500 * stretch, -600, 1, 1);
-		new Cell("content/character_R_ROWAN.png",	120 * stretch,  -550, 1);
+		new Cell("content/character_PLATELET.png",		1500 * stretch, -600, 1, 1);
+		new Cell("content/character_R_ROWAN.png",		120 * stretch,  -550, 1);
 		new Cell("content/character_R_SCARLETT.png",	200 * stretch,  -430, 1);
-		new Cell("content/character_SKINCELLS.png",	1300 * stretch, -150, 1);
-		new Cell("content/character_VIRUS.png",		2900 * stretch, -450, 1, 2);
-		new Cell("content/character_W_BLANCHE.png",	750 * stretch,  -550, 1);
+		new Cell("content/character_SKINCELLS.png",		1300 * stretch, -150, 1);
+		new Cell("content/character_VIRUS.png",			2900 * stretch, -450, 1, 2);
+		new Cell("content/character_W_BLANCHE.png",		750 * stretch,  -550, 1);
 		new Cell("content/character_W_LIAM.png",		650 * stretch,  -350, 1);
-		new Cell("content/character_W_MAY.png",		500 * stretch,  -450, 1);
+		new Cell("content/character_W_MAY.png",			500 * stretch,  -450, 1);
 
 		stage.enableMouseOver();
 	}
@@ -199,7 +207,9 @@ var biopolis_cells = (function($, createjs){
 			var time = createjs.Ticker.getTime();
 
 			viewX -= detlaViewX * SCROLL_SPEED * deltaTime;
-			viewX = clamp(viewX, -MAX_X, MIN_X);
+
+			var maxX = MAX_X * stage.scaleY;
+			viewX = clamp(viewX, -maxX, MIN_X);
 			
 			bioObjects.forEach(function(bio){
 				bio.update(deltaTime, time);
@@ -259,7 +269,7 @@ var biopolis_cells = (function($, createjs){
 		create_cells();
 		create_update_loop();
 
-		resize();
+		setTimeout(resize, 250);
 	}
 
 	function resize()
@@ -268,6 +278,24 @@ var biopolis_cells = (function($, createjs){
 			canvas.width = window.innerWidth;
 			canvas.height = window.innerHeight;
 		}
+
+		var bg = bioObjects[0];
+		var bounds = bg.getBounds();
+		if (!bounds)
+			return;
+
+		var fX = window.innerWidth / bounds.width;
+		var fY =  window.innerHeight / bounds.height;
+
+		scaleFactor = Math.max(fX, fY);
+		if (scaleFactor < SCALEFACTOR_MIN)
+			scaleFactor = SCALEFACTOR_MIN;
+
+		stage.scaleX = scaleFactor;
+		stage.scaleY = scaleFactor;
+
+		stage.update();
+
 	}
 
 	return {
