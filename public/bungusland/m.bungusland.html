@@ -5,17 +5,17 @@
   
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=0.4">
 
     <title>Global Mechanic | Unity Project</title>
 
-    <link rel="stylesheet" href="styles/style.css" />
-    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link rel="stylesheet" href="styles/m.style.css" />
+    <link rel="shortcut icon" href="images/favicon@2x.png" />
 
     <script src="js/unity-progress-bar.js"></script>
     <script src="js/jquery-2.1.4.js"></script>
-    <script src="js/jquery.tinyscrollbar.min.js"></script>
     <script src="js/soundcloud-api.js"></script>
-    <script src="js/bungus.js"></script>
+    <script src="js/bungus-mobile.js"></script>
 
   </head>
 
@@ -116,7 +116,7 @@
           <div class="overview">
             <div id="videos_pane">
               <h1>Videos</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras justo velit, blandit non cursus eu, pellentesque sed nunc. Proin venenatis lacus vitae ipsum faucibus, nec porta massa semper. Morbi ornare.</p>
+              <p>Please click on a thumbnail below to watch the relevant video. These are early pre-production videos created to give a firm idea of the tone and style of the show. To watch fullscreen press the icon on the far right of the video player controls.</p>
               <div id="video_previews">
                 <div class="video_preview" data-vimeo-id="148967717">
                   <img src="images/thumb_robo_walrus.jpg"></img>
@@ -147,7 +147,7 @@
             </div>
             <div id="behindthescenes_pane">
               <h1>Behind The Scenes</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras justo velit, blandit non cursus eu, pellentesque sed nunc. Proin venenatis lacus vitae ipsum faucibus, nec porta massa semper. Morbi ornare.</p>
+              <p>Choose an option below by clicking on the relevant thumbnail. The behind the scenes video is by Bungusland creator and all round rockstar Simon Knowles. It chronicles the history of Bungusland and also gives a bit of background about the creator. Doodles and drawings contains a collection of random Bungusland images and concepts.</p>
               <div id="behind_the_scenes">
                 <div id="behind_the_scenes_video" class="behind_the_scenes_content">
                     <img src="images/behind_scenes-video_thumb.jpg"></img>
@@ -162,7 +162,7 @@
             </div>
             <div id="music_pane">
               <h1>Music</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras justo velit, blandit non cursus eu, pellentesque sed nunc. Proin venenatis lacus vitae ipsum faucibus, nec porta massa semper. Morbi ornare.</p>
+              <p>Select a track to listen to, using the Soundcloud player below. There are a lot of amazing tracks so don’t forget to scroll down within the player for more content.</p>
               <div id="music_player">
                 <iframe id="music_widget" width="750" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/174038689%3Fsecret_token%3Ds-7bprN&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
               </div>
@@ -336,7 +336,7 @@
             </div>
             <div id="scriptsandsynopsis_pane">
               <h1>Scripts And Synopsis</h1>    
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras justo velit, blandit non cursus eu, pellentesque sed nunc. Proin venenatis lacus vitae ipsum faucibus, nec porta massa semper. Morbi ornare.</p>
+              <p>Please click an icon below to download a PDF version of the relevant Script, Synopsis or Storyboard.</p>
               <div id="pdfs">
 
                 <div class="pdf"/>
@@ -488,19 +488,12 @@
     </div>
     <div id="overlay_logo">
     </div>
-    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="540px" width="960px"></canvas>
-    <script type='text/javascript'>
-  var Module = {
-    TOTAL_MEMORY: 268435456,
-    errorhandler: null,			// arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
-    compatibilitycheck: null,
-    dataUrl: "Release/bungusland.data",
-    codeUrl: "Release/bungusland.js",
-    memUrl: "Release/bungusland.mem",
-  };
-</script>
-<script src="Release/UnityLoader.js"></script>
-
+    <div id="island">
+      <div id="behind_the_scenes_button"    class="island_hotspot" style="top:167px; left:232px"></div>
+      <div id="videos_button"               class="island_hotspot" style="top:350px; left:170px"></div>
+      <div id="welcome_button"              class="island_hotspot" style="top:375px; left:425px;"></div>
+      <div id="scripts_and_synopsis_button" class="island_hotspot" style="top:340px; left:650px; width:120px; height:100px;"></div>
+      <div id="music_button"                class="island_hotspot" style="top:185px; left:564px; width:65px; height:45px;"></div>      
+    </div>
   </body>
-  
 </html>

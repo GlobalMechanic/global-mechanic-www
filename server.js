@@ -152,12 +152,15 @@ function about_page(req, res)
 
 function bungusland_page(req, res)
 {
-	res.redirect('/bungusland/bungusland.html');
+	if (isCallerMobile(req) || process.env.NODE_ENV != 'production')
+		res.redirect('/bungusland/m.bungusland.html');
+	else
+		res.redirect('/bungusland/bungusland.html');
 }
 
 function biopolis_page(req, res)
 {
-	if (isCallerMobile(req) || process.env.NODE_ENV != 'production')
+	if (isCallerMobile(req))
 		res.redirect('/biopolis/m.biopolis.html');
 	else
 		res.redirect('/biopolis/biopolis.html');

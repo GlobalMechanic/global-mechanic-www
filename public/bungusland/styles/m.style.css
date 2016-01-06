@@ -1,0 +1,444 @@
+
+/****************************************
+  ==== RESETS
+****************************************/
+
+html,body,div,canvas { 
+  margin: 0; 
+  padding: 0; 
+}
+
+::-moz-selection { 
+  color: #333; 
+  text-shadow: none; 
+}
+
+::selection {  
+  color: #333; 
+  text-shadow: none; 
+}
+
+.clear:after { 
+  visibility: hidden; 
+  display: block; 
+  font-size: 0; 
+  content: " "; 
+  clear: both; 
+  height: 0; 
+}
+
+.clear { 
+  display: inline-table; 
+  clear: both; 
+}
+
+/* Hides from IE-mac \*/ 
+* html .clear { 
+  height: 1%; 
+} 
+
+.clear { 
+  display: block; 
+} /* End hide from IE-mac */
+
+/****************************************
+  ==== LAYOUT
+****************************************/
+
+html, body { 
+  width: 100%; 
+  height: 100%; 
+  font-family: Helvetica, Verdana, Arial, sans-serif; 
+}
+
+body { }
+
+p.header, p.footer { 
+  display: none; 
+}
+
+div.logo { 
+  width: 204px; 
+  height: 38px; 
+  float: left; 
+  background: url(/logo.png) 0 0 no-repeat; 
+  position: relative; 
+  z-index: 10; 
+}
+
+div.title { 
+  height: 38px; 
+  line-height: 38px; 
+  padding: 0 10px; 
+  margin: 0 1px 0 0; 
+  float: right; 
+  color: #333; 
+  text-align: right; 
+  font-size: 18px; 
+  position: relative; 
+  z-index: 10; 
+}
+
+.template-wrap { 
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  -webkit-transform: translate(-50%, -50%); 
+  transform: translate(-50%, -50%); 
+}
+
+.template-wrap canvas { 
+  margin: 0 0 10px 0;
+  position: relative; 
+  z-index: 9; 
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+}
+
+.fullscreen { 
+  float: right; 
+  position: relative; 
+  z-index: 10; 
+}
+
+body.template { }
+.template .template-wrap { }
+.template .template-wrap canvas { }
+
+/****************************************
+  ==== TEMPLATE
+****************************************/
+
+@font-face {
+    font-family: 'frente_h1regular';
+    src: url('../fonts/FrenteH1-Regular-webfont.eot');
+    src: url('../fonts/FrenteH1-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/FrenteH1-Regular-webfont.woff') format('woff'),
+         url('../fonts/FrenteH1-Regular-webfont.ttf') format('truetype'),
+         url('../fonts/FrenteH1-Regular-webfont.svg#frente_h1regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'open_sanslight';
+    src: url('../fonts/OpenSans-Light-webfont.eot');
+    src: url('../fonts/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/OpenSans-Light-webfont.woff') format('woff'),
+         url('../fonts/OpenSans-Light-webfont.ttf') format('truetype'),
+         url('../fonts/OpenSans-Light-webfont.svg#open_sanslight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+body {
+
+  background-color: #82a0ee;
+  width: 100%;
+  height: 100%;
+
+}
+
+/****************************************
+  ==== CONTENT
+****************************************/
+
+#content {
+
+  background-color: #bde2d0;
+  color: #5e985e;
+
+  /*position: absolute;
+  z-index: 10;
+  width: 810px;*/
+  min-height: 400px;
+
+  display: none;
+
+  font-family: 'open_sanslight', sans-serif;
+  font-size: 16px;
+  font-weight: 100;
+
+  line-height: 20px;
+
+}
+
+#content * {
+
+  margin: 10px;
+  line-height: initial;
+}
+
+#content h1 {
+
+  font-family: 'frente_h1regular';
+  font-size: 80px;
+  font-weight: 100;
+
+}
+
+#modal {
+
+  background-color: rgba(0,0,0,0.9);
+  display: none;
+  position: absolute;
+
+  z-index: 9;
+  width: 100%;
+  height: 100%;
+        
+  top: 0px;
+  left: 0px;
+
+}
+
+#content_close_btn {
+  cursor: pointer;
+  width: 10px;
+  height: 10px;
+  z-index: 20;
+  position: absolute;
+  right: 5px;
+  font-family: Arial;
+  font-size: 20px;
+}
+
+#overlay_logo {
+  background: url("../images/bungus_logo.png") no-repeat center;
+  background-size: contain;
+  position: fixed;
+  z-index: 3;
+  width: 432px;
+  height: 240px;
+  top: 15px;
+  left: 20px;
+  cursor: pointer;
+}
+
+#island {
+  background: url("../images/bungusland_island.png") no-repeat center;
+  position: fixed;
+  z-index: 2;
+  width: 960px;
+  height: 646px;
+  margin: auto;
+}
+
+.island_hotspot {
+  position: absolute;
+  width: 80px;
+  height: 60px;
+  display: inline-block;
+ /* background-color:rgba(0,255,0,0.5); */
+  cursor: pointer;
+}
+
+/****************************************
+  ==== VIDEO PANE
+****************************************/
+
+#video_previews {
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.video_preview {
+  width: 240px;
+  height: 180px;
+  display: inline-flex;
+  flex-direction: column;
+  text-align: center;
+  cursor: pointer;
+}
+
+.video_preview img {
+  height: 135px;
+  margin: 0px !important;
+}
+
+/*****************************************
+  ==== BEHIND THE SCENES
+******************************************/
+
+#behind_the_scenes {
+  display: inline-flex;
+  margin-left: 53.5px;
+  text-align: center;
+}
+
+.behind_the_scenes_content {
+  width: 320px;
+  height: 180px;
+  margin: 15px 10px 5px 15px;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+.behind_the_scenes_content img {
+  margin: 0px !important;
+}
+
+/*****************************************
+  ==== INTRO
+******************************************/
+
+.intro_writeup {
+  display: flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+}
+
+/*****************************************
+  ==== SCRIPTS AND SYNOPSIS
+******************************************/
+
+#pdfs {
+  width: 740px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pdf {
+  margin: 0px !important;
+  width: 144px;
+  display: inline-flex;
+}
+
+.pdf a {
+  color: darkgreen;
+  text-decoration: none;
+  display: inline;
+  text-align: center;
+}
+
+.pdf a span {
+  display: block;
+}
+
+.pdf a:visited {
+  color: darkgreen;
+}
+
+.pdf a:hover {
+  color: #2e2;
+}
+/*****************************************
+  ==== SHOWCASE
+******************************************/
+
+#showcase_container {
+  width: 960px;
+  height: 800px;
+  z-index: 15;
+  position: absolute;
+  top: 0px;
+  left: 0px; 
+  background-color: black;
+}
+
+#showcase {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  top: -84px;
+  text-align: center;
+  display: flex;
+}
+
+.showcase_btn {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  display: inline-block;
+  top: 360px;
+  cursor: pointer;
+  z-index: 18;
+}
+
+.pane_footer {
+  margin-bottom: 0px !important;
+  width: 770px;
+  height: 150px;
+  position: relative;
+  top: 30px;
+}
+
+#behind_scenes_pane_footer {
+  background: url("../images/footer_behind_the_scenes.png") no-repeat bottom;
+}
+
+#scripts_pane_footer {
+  background: url("../images/footer_scripts.png") no-repeat bottom;
+  height: 170px;
+}
+
+#video_pane_footer {
+  background: url("../images/footer_video.png") no-repeat bottom;
+}
+
+#music_pane_footer {
+  background: url("../images/footer_music.png") no-repeat bottom;
+  height: 180px;
+}
+
+#showcase_next_btn {
+  left: 880px;
+  background-image: url('../images/showcase_arrow_next.png');
+}
+
+#showcase_prev_btn {
+  left: -80px;
+  background-image: url('../images/showcase_arrow_prev.png');
+}
+
+#showcase_close_btn {
+  position: absolute;
+  right: -20px;
+  top: -30px;
+  font-family: Arial;
+  width: 10px;
+  height: 10px;
+  color: #eee;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.behind_scenes_image {
+  display: inline;
+  text-align: center;
+}
+
+.vimeo_behind_scenes {
+  display: block;
+}
+
+.vimeo_video {
+  display: block;
+}
+
+/*****************************************
+  ==== SCROLLBAR
+******************************************/
+
+#scroller { position: absolute; }
+#scroller .viewport { width: 810px; height: 600px; overflow: hidden; position: relative; }
+#scroller .overview { list-style: none; position: absolute; left: 0; top: 0; padding: 0; margin: 0; }
+#scroller .scrollbar { background: transparent url('../images/bg-scrollbar-track-y.png') 0 0; position: relative; background-position: 0 0; float: right; width: 15px; }
+#scroller .track { background: transparent url('../images/bg-scrollbar-trackend-y.png') no-repeat 0 100%; height: 100%; width:13px; position: relative; padding: 0 1px; }
+#scroller .thumb { background: transparent url('../images/bg-scrollbar-thumb-y.png') no-repeat 50% 100%; height: 20px; width: 25px; cursor: pointer; overflow: hidden; position: absolute; top: 0; left: -5px; }
+#scroller .thumb .end { background: transparent url('../images/bg-scrollbar-thumb-y.png') no-repeat 50% 0; overflow: hidden; height: 5px; width: 25px; }
+#scroller .disable { display: none; }
+.noSelect { user-select: none; -o-user-select: none; -moz-user-select: none; -khtml-user-select: none; -webkit-user-select: none; }
