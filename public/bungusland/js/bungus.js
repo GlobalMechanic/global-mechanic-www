@@ -107,7 +107,6 @@ var bungus = (function(){
 				(function(e) {
 					mod.showPane("introduction");
 				});
-
 		},
 
 		resize : function(minSize)
