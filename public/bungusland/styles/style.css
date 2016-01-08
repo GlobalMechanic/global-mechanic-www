@@ -46,68 +46,16 @@ html,body,div,canvas {
 ****************************************/
 
 html, body { 
+
+  background-color: #82a0ee;
   width: 100%; 
   height: 100%; 
-  font-family: Helvetica, Verdana, Arial, sans-serif; 
+  
+  font-family: 'open_sanslight', sans-serif;
+  font-size: 16px;
+  font-weight: 100;
+
 }
-
-body { }
-
-p.header, p.footer { 
-  display: none; 
-}
-
-div.logo { 
-  width: 204px; 
-  height: 38px; 
-  float: left; 
-  background: url(/logo.png) 0 0 no-repeat; 
-  position: relative; 
-  z-index: 10; 
-}
-
-div.title { 
-  height: 38px; 
-  line-height: 38px; 
-  padding: 0 10px; 
-  margin: 0 1px 0 0; 
-  float: right; 
-  color: #333; 
-  text-align: right; 
-  font-size: 18px; 
-  position: relative; 
-  z-index: 10; 
-}
-
-.template-wrap { 
-  position: absolute; 
-  top: 50%; 
-  left: 50%; 
-  -webkit-transform: translate(-50%, -50%); 
-  transform: translate(-50%, -50%); 
-}
-
-.template-wrap canvas { 
-  margin: 0 0 10px 0;
-  position: relative; 
-  z-index: 9; 
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  -moz-box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
-}
-
-.fullscreen { 
-  float: right; 
-  position: relative; 
-  z-index: 10; 
-}
-
-body.template { }
-.template .template-wrap { }
-.template .template-wrap canvas { }
-
-/****************************************
-  ==== TEMPLATE
-****************************************/
 
 @font-face {
     font-family: 'frente_h1regular';
@@ -138,21 +86,31 @@ body.template { }
 }
 
 canvas {
+  position: fixed;
+
+  top: 0px;
+  left: 0px;
+
   width: 100%;
   height: 100%;
-  position: absolute;
 }
 
-body {
-  background-image: url('../images/gm_interactive_logo.png');
-  background-size: initial;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center; 
-  background-color: #e29f9f;
+.center-inline-children {
+  text-align: center;
+}
 
-  width: 100%;
-  height: 100%;
+.flex-column {
+
+  display: inline-flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+
+}
+
+.flex-grid {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 /****************************************
@@ -164,44 +122,42 @@ body {
   background-color: #bde2d0;
   color: #5e985e;
 
-  /*position: absolute;
-  z-index: 10;
-  width: 810px;*/
-  min-height: 400px;
+  width: 830px;
 
   display: none;
+  margin: auto;
+  padding: 10px;
+  padding-right: 5px;
+  border-radius: 10px;
 
-  font-family: 'open_sanslight', sans-serif;
-  font-size: 16px;
-  font-weight: 100;
-
-  line-height: 20px;
+  position: relative;
+  z-index: 10;
 
 }
 
 #content * {
 
   margin: 10px;
-  line-height: initial;
+
 }
 
 #content h1 {
 
   font-family: 'frente_h1regular';
-  font-size: 80px;
+  font-size: 60px;
   font-weight: 100;
 
 }
 
 #modal {
 
-  background-color: rgba(0,0,0,0.9);
+  background-color: rgba(0,0,0,0.8);
   display: none;
-  position: absolute;
+  position: fixed;
 
-  z-index: 9;
+  z-index: 5;
   width: 100%;
-  height: 100%;
+  height: 150%;
         
   top: 0px;
   left: 0px;
@@ -209,49 +165,73 @@ body {
 }
 
 #content_close_btn {
-  cursor: pointer;
-  width: 10px;
-  height: 10px;
+
+  width: 18px;
+  height: 20px;
   z-index: 20;
-  position: absolute;
-  right: 5px;
+
   font-family: Arial;
   font-size: 20px;
+
+  position: fixed;
+
 }
 
 #overlay_logo {
+  background: url("../images/bungus_logo.png") no-repeat center;
+  background-size: contain;
+
+  z-index: 3;
   width: 432px;
   height: 240px;
-  background: url("../images/bungus_logo.png");
-  position: absolute;
-  z-index: 2;
-  top: 60px;
-  left: 60px;
-  cursor: pointer;
+
   display: none;
+
+  position: fixed;
+  top: 25px;
+  left: 25px;
 }
+
+#island {
+  background: url("../images/bungusland_island.png") no-repeat center;
+  position: fixed;
+  z-index: 2;
+  width: 960px;
+  height: 646px;
+  margin: auto;
+}
+
+.pane_button {
+
+  position: absolute;
+  width: 80px;
+  height: 60px;
+  display: inline-block;
+
+}
+
 /****************************************
   ==== VIDEO PANE
 ****************************************/
 
 #video_previews {
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: 40px;
+
+  display: inline;
+
 }
 
 .video_preview {
+
   width: 240px;
   height: 180px;
-  display: inline-flex;
-  flex-direction: column;
-  text-align: center;
-  cursor: pointer;
+
 }
 
 .video_preview img {
+
   height: 135px;
   margin: 0px !important;
+
 }
 
 /*****************************************
@@ -259,21 +239,22 @@ body {
 ******************************************/
 
 #behind_the_scenes {
-  display: inline-flex;
-  margin-left: 53.5px;
-  text-align: center;
+
+  display: inline;
+
 }
 
 .behind_the_scenes_content {
+
   width: 320px;
   height: 180px;
-  margin: 15px 10px 5px 15px;
-  vertical-align: top;
-  cursor: pointer;
+
 }
 
 .behind_the_scenes_content img {
+
   margin: 0px !important;
+
 }
 
 /*****************************************
@@ -291,22 +272,26 @@ body {
 ******************************************/
 
 #pdfs {
-  width: 740px;
-  margin: 0 auto;
-  text-align: center;
+  margin: 10px auto;
+  padding-top: 10px;
 }
 
 .pdf {
   margin: 0px !important;
-  width: 144px;
-  display: inline-flex;
+  text-align: center;
+  font-size: 10px;
+  width: 128px;
+}
+
+.pdf_icon {
+  width: 108px;
+  height: 128px;
+  background-repeat: no-repeat;
 }
 
 .pdf a {
   color: darkgreen;
   text-decoration: none;
-  display: inline;
-  text-align: center;
 }
 
 .pdf a span {
@@ -325,62 +310,58 @@ body {
 ******************************************/
 
 #showcase_container {
+
   width: 960px;
   height: 800px;
+
+  position: fixed;
   z-index: 15;
-  position: absolute;
-  top: 0px;
-  left: 0px; 
+
+  margin: auto;
+
   background-color: black;
+
 }
 
 #showcase {
   position: relative;
   width: 100%;
   height: 100%;
-  top: -84px;
   text-align: center;
   display: flex;
 }
 
 .showcase_btn {
+
   width: 80px;
   height: 80px;
-  position: relative;
+
+  top: 50%;
+
+  position: absolute;
   display: inline-block;
-  top: 360px;
-  cursor: pointer;
+
   z-index: 18;
+
 }
 
-.pane_footer {
-  margin-bottom: 0px !important;
-  width: 770px;
-  height: 150px;
-  position: relative;
-  top: 30px;
-}
+#showcase_close_btn {
+  position: absolute;
 
-#behind_scenes_pane_footer {
-  background: url("../images/footer_behind_the_scenes.png") no-repeat bottom;
-}
+  right: -30px;
+  top: -30px;
 
-#scripts_pane_footer {
-  background: url("../images/footer_scripts.png") no-repeat bottom;
-  height: 170px;
-}
+  width: 20px;
+  height: 30px;
 
-#video_pane_footer {
-  background: url("../images/footer_video.png") no-repeat bottom;
-}
+  color: #eee;
+  font-size: 30px;
+  font-family: Arial;
 
-#music_pane_footer {
-  background: url("../images/footer_music.png") no-repeat bottom;
-  height: 180px;
 }
 
 #showcase_next_btn {
-  left: 880px;
+  right: -80px;
   background-image: url('../images/showcase_arrow_next.png');
 }
 
@@ -389,16 +370,32 @@ body {
   background-image: url('../images/showcase_arrow_prev.png');
 }
 
-#showcase_close_btn {
-  position: absolute;
-  right: -20px;
-  top: -30px;
-  font-family: Arial;
-  width: 10px;
-  height: 10px;
-  color: #eee;
-  font-size: 20px;
-  cursor: pointer;
+.pane_footer {
+
+  width: 770px;
+  height: 150px;
+
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+#behind_scenes_pane_footer {
+  background-image: url("../images/footer_behind_the_scenes.png");
+}
+
+#scripts_pane_footer {
+  background-image: url("../images/footer_scripts.png");
+  height: 170px;
+}
+
+#video_pane_footer {
+  background-image: url("../images/footer_video.png");
+}
+
+#music_pane_footer {
+  height: 180px;
+  background-image: url("../images/footer_music.png");
 }
 
 .behind_scenes_image {
@@ -414,16 +411,178 @@ body {
   display: block;
 }
 
+/***************************************
+  ==== MUSIC
+****************************************/
+
+#music {
+  position: fixed;
+  cursor: pointer;
+  top: 20px;
+  left: 20px;
+  width: 32px;
+  height: 32px;
+  background: url("../images/audio_icon.png");
+  z-index: 10;
+}
+
 /*****************************************
   ==== SCROLLBAR
 ******************************************/
+/* perfect-scrollbar v0.6.8 */
+.ps-container {
+  -ms-touch-action: none;
+  overflow: hidden !important;
+}
 
-#scroller { position: absolute; }
-#scroller .viewport { width: 810px; height: 600px; overflow: hidden; position: relative; }
-#scroller .overview { list-style: none; position: absolute; left: 0; top: 0; padding: 0; margin: 0; }
-#scroller .scrollbar { background: transparent url('../images/bg-scrollbar-track-y.png') 0 0; position: relative; background-position: 0 0; float: right; width: 15px; }
-#scroller .track { background: transparent url('../images/bg-scrollbar-trackend-y.png') no-repeat 0 100%; height: 100%; width:13px; position: relative; padding: 0 1px; }
-#scroller .thumb { background: transparent url('../images/bg-scrollbar-thumb-y.png') no-repeat 50% 100%; height: 20px; width: 25px; cursor: pointer; overflow: hidden; position: absolute; top: 0; left: -5px; }
-#scroller .thumb .end { background: transparent url('../images/bg-scrollbar-thumb-y.png') no-repeat 50% 0; overflow: hidden; height: 5px; width: 25px; }
-#scroller .disable { display: none; }
-.noSelect { user-select: none; -o-user-select: none; -moz-user-select: none; -khtml-user-select: none; -webkit-user-select: none; }
+.ps-container.ps-active-x > .ps-scrollbar-x-rail,
+.ps-container.ps-active-y > .ps-scrollbar-y-rail {
+  display: block; 
+}
+
+.ps-container.ps-in-scrolling {
+  pointer-events: none; 
+}
+
+.ps-container.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail {
+  background-color: #eee;
+  opacity: 0.9; 
+}
+
+.ps-container.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail > .ps-scrollbar-x {
+  background-color: #5e985e; 
+}
+
+.ps-container.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail {
+  background-color: #eee;
+  opacity: 0.9; 
+}
+
+.ps-container.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail > .ps-scrollbar-y {
+  background-color: #5e985e; 
+}
+
+.ps-scrollbar-y-rail * {
+  margin: 0 !important;
+}
+
+.ps-scrollbar-x-rail * {
+  margin: 0 !important;
+}
+
+.ps-container > .ps-scrollbar-x-rail {
+  display: none;
+  position: absolute; /* please don't change 'position' */
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  opacity: 0.9;
+  -webkit-transition: background-color 0.2s linear, opacity 0.2s linear;
+  -moz-transition: background-color 0.2s linear, opacity 0.2s linear;
+  -o-transition: background-color 0.2s linear, opacity 0.2s linear;
+  transition: background-color 0.2s linear, opacity 0.2s linear;
+  bottom: 3px;
+  top: 10px;
+  /* there must be 'bottom' for ps-scrollbar-x-rail */
+  height: 8px; 
+}
+
+.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x {
+  position: absolute;
+  /* please don't change 'position' */
+  background-color: #5e985e;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-transition: background-color 0.2s linear;
+  -moz-transition: background-color 0.2s linear;
+  -o-transition: background-color 0.2s linear;
+  transition: background-color 0.2s linear;
+  bottom: 0;
+  /* there must be 'bottom' for ps-scrollbar-x */
+  height: 8px; 
+}
+
+.ps-container > .ps-scrollbar-y-rail {
+  display: none;
+  position: absolute;
+  /* please don't change 'position' */
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  opacity: 0.9;
+  -webkit-transition: background-color 0.2s linear, opacity 0.2s linear;
+  -moz-transition: background-color 0.2s linear, opacity 0.2s linear;
+  -o-transition: background-color 0.2s linear, opacity 0.2s linear;
+  transition: background-color 0.2s linear, opacity 0.2s linear;
+  right: 3px;
+  top: 10px;
+  /* there must be 'right' for ps-scrollbar-y-rail */
+  width: 8px; 
+}
+
+.ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y {
+  position: absolute;
+  /* please don't change 'position' */
+  background-color: #5e985e;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-transition: background-color 0.2s linear;
+  -moz-transition: background-color 0.2s linear;
+  -o-transition: background-color 0.2s linear;
+  transition: background-color 0.2s linear;
+  right: 0;
+  /* there must be 'right' for ps-scrollbar-y */
+  width: 8px; 
+}
+
+.ps-container:hover.ps-in-scrolling {
+  pointer-events: none; 
+}
+  
+.ps-container:hover.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail {
+  background-color: #eee;
+  opacity: 0.9; 
+}
+
+.ps-container:hover.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail > .ps-scrollbar-x {
+  background-color: #5e985e; 
+}
+
+.ps-container:hover.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail {
+  background-color: #eee;
+  opacity: 0.9; 
+}
+
+.ps-container:hover.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail > .ps-scrollbar-y {
+  background-color: #5e985e; 
+}
+
+.ps-container:hover > .ps-scrollbar-x-rail,
+.ps-container:hover > .ps-scrollbar-y-rail {
+  opacity: 0.9; 
+}
+
+.ps-container:hover > .ps-scrollbar-x-rail:hover {
+  background-color: #5e985e;
+  opacity: 0.9; 
+}
+
+.ps-container:hover > .ps-scrollbar-x-rail:hover > .ps-scrollbar-x {
+  background-color: #5e985e; 
+}
+
+.ps-container:hover > .ps-scrollbar-y-rail:hover {
+  background-color: #eee;
+  opacity: 0.9; 
+}
+
+.ps-container:hover > .ps-scrollbar-y-rail:hover > .ps-scrollbar-y {
+  background-color: #5e985e; 
+}
+

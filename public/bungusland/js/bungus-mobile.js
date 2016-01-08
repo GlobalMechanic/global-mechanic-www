@@ -4,11 +4,15 @@ var bungus = (function($){
 	//REFERENCES
 /**********************************************************/
 
-	var $island, $logo, $showcase, $showcaseContainer, $content, $modal;
+	var $island, $logo, $content, $modal;
 
 	var $currentPane;
 
-	var loadedContent =0;
+	var audio_should_be_paused = true;
+
+	var $music, audio;
+
+	var loadedContent = 0;
 
 	const CONTENT_TO_LOAD = 6;
 	const LOGO_WIDTH = 432;
@@ -18,16 +22,6 @@ var bungus = (function($){
 /**********************************************************/
 	//MAIN
 /**********************************************************/
-
-	function show_pane(pane_name)
-	{
-		$currentPane = $("#" + pane_name.toLowerCase() + "_pane");
-
-		hide_all_panes();
-		set_modal_visible(true);
-		$currentPane.show();
-		center();
-	}
 
 	function hide_all_panes()
 	{
@@ -43,23 +37,9 @@ var bungus = (function($){
 			stop_video_playback();
 
 		} else {
-
 			set_modal_visible(false);
 			stop_soundcloud_playback();
-		}
-	}
 
-	function set_showcase_visible(value)
-	{
-		value = value == undefined ? true : value;
-
-		if (value) {
-			$content.hide();
-			$showcaseContainer.show();
-
-		} else {
-			$content.show();
-			$showcaseContainer.hide();
 		}
 	}
 
@@ -92,13 +72,16 @@ var bungus = (function($){
 	var SCWidget = null;
 	function stop_soundcloud_playback()
 	{
-		if (SCWidget == null)
-			SCWidget = SC.Widget("music_widget");
-
 		SCWidget.pause();
 		SCWidget.seekTo(0);
 	}
 
+	function set_audio_icon()
+	{
+		var playing = !audio.paused;
+		var css_value = "url('images/audio_icon" + (!playing ? "_disabled" : "") + ".png')";
+		$music.css("background", css_value);
+	}
 
 /**********************************************************/
 	//SETUP
@@ -169,13 +152,61 @@ var bungus = (function($){
 	function all_loaded()
 	{
 		set_interactions();
+		music_handling();
 	}
+
+	function music_handling() 
+	{
+		$music = $("#music");
+		$music.show();
+
+		audio = $music.find("audio")[0];
+
+		$music.click(function() {
+			if (audio.paused)
+				audio.play();
+			else
+				audio.pause();
+
+			set_audio_icon();
+		});
+
+		setTimeout(set_audio_icon, 250);
+
+		audio.volume = 0.15;
+
+		SCWidget = SC.Widget("music_widget");
+		SCWidget.bind("play", music_hold);
+		SCWidget.bind("pause", music_resume);
+		SCWidget.bind("finished", music_resume);
+	}
+
+	function music_hold()
+	{
+		audio.pause();
+		$music.hide();
+		set_audio_icon();
+	}
+
+	function music_resume()
+	{
+		$music.show();
+		if (audio_should_be_paused || !audio.paused)
+			return;
+
+		audio.play();
+		set_audio_icon();
+	}
+
 /**********************************************************/
 	//SHOWCASE
 /**********************************************************/
 
-	var shown_index = 0;
 	var $shown_items;
+	var $showcase, $showcaseContainer;
+
+	var shown_index = 0;
+	var items_centered = false;
 
 	function showcase_update(delta)
 	{
@@ -194,28 +225,56 @@ var bungus = (function($){
 		showcase_update(-1);
 	}
 
-	function set_showcase(selector) {
-
-		$shown_items = $(selector);
-		shown_index = typeof(index) == "number" ? index : 0;
-
-		set_showcase_visible(true);
-
+	function center_showcase_items()
+	{
 		var showHeight = $showcase.height();
 		var showWidth = $showcase.width();
 
 		$showcase.children().each(function(){
 			var $this = $(this);
+
 			$this.css({
-				position: "absolute",
+				position: "absolute"
+			});
+
+			$this.css({
 				top: showHeight * 0.5 - $this.height() * 0.5,
 				left: 0,
 				width: showWidth
 			});
-
-			$this.hide();
 		});
+	}
 
+	function set_showcase_visible(value)
+	{
+		value = value == undefined ? true : value;
+
+		if (value) {
+			$content.hide();
+			$showcaseContainer.show();
+
+		} else {
+			music_resume();
+			$content.show();
+			$showcaseContainer.hide();
+		}
+
+		if (value && !items_centered) {
+			items_centered = true;
+			center_showcase_items();
+		}
+	}
+
+	function set_showcase(selector, index) {
+
+		$shown_items = $(selector);
+		shown_index = typeof(index) == "number" ? index : 0;
+
+		if ($shown_items.hasClass("vimeo_event"))
+			music_hold();
+
+		set_showcase_visible(true);
+		$showcase.children().hide();
 		showcase_update(0);
 	}
 
@@ -227,6 +286,22 @@ var bungus = (function($){
 	{
 		get_references();
 		load_content();
+		center();
+	}
+
+	function show_pane(pane_name)
+	{
+		$currentPane = $("#" + pane_name.toLowerCase() + "_pane");
+
+		hide_all_panes();
+		set_modal_visible(true);
+		$currentPane.show();
+
+		$content.css("height", "");
+
+		if ($content.height() < window.innerHeight)
+			$content.height(window.innerHeight);
+
 		center();
 	}
 
@@ -260,11 +335,14 @@ var bungus = (function($){
 			left: showContainerX,
 			top: showContainerY
 		});
+
+
 	}
 
 	return {
 		setup: setup,
 		center: center,
+		showPane: show_pane
 	}
 
 })(jQuery);

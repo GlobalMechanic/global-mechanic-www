@@ -52,7 +52,7 @@ html, body {
   height: 100%; 
   
   font-family: 'open_sanslight', sans-serif;
-  font-size: 28px;
+  font-size: 16px;
   font-weight: 100;
 
 }
@@ -114,13 +114,14 @@ html, body {
   color: #5e985e;
 
   width: 50%;
+
   min-width: 840px;
-  min-height: 400px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 
   display: none;
 
   margin: auto;
-  margin-top: 100px;
 
   position: relative;
   z-index: 10;
@@ -296,6 +297,22 @@ html, body {
 .pdf a:hover {
   color: #2e2;
 }
+
+/***************************************
+  ==== MUSIC
+****************************************/
+
+#music {
+  position: fixed;
+  cursor: pointer;
+  top: 6px;
+  left: 6px;
+  width: 32px;
+  height: 32px;
+  background: url("../images/audio_icon.png");
+  z-index: 10;
+}
+
 /*****************************************
   ==== SHOWCASE
 ******************************************/

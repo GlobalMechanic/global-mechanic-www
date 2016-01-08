@@ -2,505 +2,62 @@
 <html lang="en-us">
 
   <head>
-  
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=0.35, user-scalable=no, minimal-ui">
 
     <title>Global Mechanic | Unity Project</title>
 
     <link rel="stylesheet" href="styles/style.css" />
     <link rel="shortcut icon" href="images/favicon@2x.png" />
 
-    <script src="js/unity-progress-bar.js"></script>
     <script src="js/jquery-2.1.4.js"></script>
-    <script src="js/jquery.tinyscrollbar.min.js"></script>
+    <script src="js/perfect-scrollbar.jquery.min.js"></script>
     <script src="js/soundcloud-api.js"></script>
+    <script src="js/froogaloop.min.js"></script>
     <script src="js/bungus.js"></script>
-
+    <script src="js/UnityProgress.js"></script>
   </head>
 
-  <body class="template">
+  <body>
     <div id="showcase_container" style="display:none;">
-      <div id="showcase_close_btn">X</div>
+      <div id="showcase"></div>
       <div id="showcase_prev_btn" class="showcase_btn"></div>
       <div id="showcase_next_btn" class="showcase_btn"></div>
-      <div id="showcase">
-        <iframe class="vimeo_behind_scenes" src="https://player.vimeo.com/video/149342044?color=e29f9f&title=0&byline=0&portrait=0" width="960" height="800" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        <iframe class="vimeo_video" src="https://player.vimeo.com/video/148967717?color=e29f9f&title=0&byline=0&portrait=0" width="960" height="800" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        <iframe class="vimeo_video" src="https://player.vimeo.com/video/148967713?color=e29f9f&title=0&byline=0&portrait=0" width="960" height="800" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        <iframe class="vimeo_video" src="https://player.vimeo.com/video/148967714?color=e29f9f&title=0&byline=0&portrait=0" width="960" height="800" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        <iframe class="vimeo_video" src="https://player.vimeo.com/video/148967715?color=e29f9f&title=0&byline=0&portrait=0" width="960" height="800" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        <iframe class="vimeo_video" src="https://player.vimeo.com/video/148967716?color=e29f9f&title=0&byline=0&portrait=0" width="960" height="800" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        <iframe class="vimeo_video" src="https://player.vimeo.com/video/148967718?color=e29f9f&title=0&byline=0&portrait=0" width="960" height="800" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_banner_redux.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_bathroom.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_batter_up.jpeg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_bean_ani_fr_6.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_bg_sacn_blur.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_biggest_bean_image.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_billy_and_friends_in_a_dinghy.png"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_billy_in_mayors_chair.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_billy_live_performance.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_billy_mushroom_tongue.jpeg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_billy_sea_cucumber_girl_clour_scheme.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_billyand_scg_in_front_of_BT.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_bionic_crab_new.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_bus_colored.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_carp_Diem.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_cover_park.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_cracked_mate.jpeg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_crane_bg.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_crazy_prof_lair_bg.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_crazy_prof_mixing.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_crazy_prot_bold_line_shirt.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_cucumber_brain_drill.jpeg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_cucumber_in_peril.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_drums_colored.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_emily_epiglotis_0001.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_emily_epiglottis_new_look.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_find_your_porpoise_new.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_gastronaut_bagel_landing.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_guitar_color.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_IMG_0266.JPG"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_jelly_fish_and_ice_cream_copy.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_just_billy.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_kawaii_bungus.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_keyboard_color.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_laboratory_w_walrus.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_lobsquitch_bold_line.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_logo_character_group_square.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_logo_character_group.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_magellephant.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_map.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_mayors_office.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_meet_the_lobsquitch.jpeg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_merch_stand_colored.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_mobile_001.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_montage.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_New_logo_on_Transparancy.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_New_look_crazy_Prof.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_obese_Billy.jpeg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_pain_in_the_neck_image.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_pep_diab_image.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_prawn_paul_still_wide.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_reac_for_cuc_T_shirt.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_romantic_dinner.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_sc_Juice.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_scG_front_veiw.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_sea_cuc_annie_fr_21.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_sea_cuc_chocs_blu.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_sea_cuc_leg.jpeg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_sea_cuc_robo_suit.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_sea_cuc_t-shirt.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_signing_color.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_suburb.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_sushi_monsters.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_tail_of_a_whale_picture.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_towwer.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_trees.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_vomitus.jpg"></img>
-        <img class="behind_the_scenes_image" src="images/behind_the_scenes_you_are_here.jpeg"></img>
-      </div>
+      <div id="showcase_close_btn" class="close_modal">X</div>
     </div>
-    <div id="modal" >
-      <div id="scroller"/>
-        <div class="scrollbar">
-          <div class="track">
-            <div class="thumb">
-              <div class="end"></div>
-            </div>
-          </div>
-        </div>
-        <div id="content" class="viewport">
-          <div id="content_close_btn">X</div>
-          <div class="overview">
-            <div id="videos_pane">
-              <h1>Videos</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras justo velit, blandit non cursus eu, pellentesque sed nunc. Proin venenatis lacus vitae ipsum faucibus, nec porta massa semper. Morbi ornare.</p>
-              <div id="video_previews">
-                <div class="video_preview" data-vimeo-id="148967717">
-                  <img src="images/thumb_robo_walrus.jpg"></img>
-                  <span>Robo Walrus</span>
-                </div>
-                <div class="video_preview" data-vimeo-id="148967713">
-                  <img src="images/thumb_betty_vocal_test.jpg"></img>
-                  <span>Betty Vocal Test</span>
-                </div>
-                <div class="video_preview" data-vimeo-id="148967714">
-                  <img src="images/thumb_video_sound_test.jpg"></img>
-                  <span>Video Sound Test</span>
-                </div>
-                <div class="video_preview" data-vimeo-id="148967715">
-                  <img src="images/thumb_fore_armed.jpg"></img>
-                  <span>Four Armed is Fore Warned</span>
-                </div>
-                <div class="video_preview" data-vimeo-id="148967716">
-                  <img src="images/thumb_sgc_animatic.jpg"></img>
-                  <span>SCG Animatic</span>
-                </div>
-                <div class="video_preview" data-vimeo-id="148967718">
-                  <img src="images/thumb_lobster_song.jpg"></img>
-                  <span>Lobster Song</span>
-                </div>
-              </div>
-              <div id="video_pane_footer" class="pane_footer"></div>
-            </div>
-            <div id="behindthescenes_pane">
-              <h1>Behind The Scenes</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras justo velit, blandit non cursus eu, pellentesque sed nunc. Proin venenatis lacus vitae ipsum faucibus, nec porta massa semper. Morbi ornare.</p>
-              <div id="behind_the_scenes">
-                <div id="behind_the_scenes_video" class="behind_the_scenes_content">
-                    <img src="images/behind_scenes-video_thumb.jpg"></img>
-                    <span>Behind the Scenes Video Coming Soon</span>
-                </div>
-                <div id="behind_scenes_slideshow" class="behind_the_scenes_content">
-                    <img src="images/behind_scenes-slideshow_thumb.png"></img>
-                    <span>Doodles and Drawings</span>
-                </div>
-              </div>
-              <div id="behind_scenes_pane_footer" class="pane_footer"></div>
-            </div>
-            <div id="music_pane">
-              <h1>Music</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras justo velit, blandit non cursus eu, pellentesque sed nunc. Proin venenatis lacus vitae ipsum faucibus, nec porta massa semper. Morbi ornare.</p>
-              <div id="music_player">
-                <iframe id="music_widget" width="750" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/174038689%3Fsecret_token%3Ds-7bprN&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
-              </div>
-              <div id="music_pane_footer" class="pane_footer"></div>
-            </div>
-            <div id="introduction_pane">
-              <div style="margin:auto; width:432px; height:223px;">
-                <img src="gifs/bungus_logo.gif"></img>
-              </div>
-              <div class="intro_writeup">
-                <div>Welcome To Bungusland is an animated musical 
-                comedy series following the adventures of Billy 
-                Bungus and his girlfriend who is a Sea Cucumber.
 
-                Billy Bungus is an aspiring chef who, 
-                after inheriting an old stone tower, begins a 
-                secret double life as Mayor of a strange place 
-                called Bungusland which he travels to 
-                by flushing himself down the drain!
+    <div id="modal" class="close_modal"></div>
 
-                We join Billy each episode as he encounters all 
-                sorts of bizarre situations and fun, unique characters 
-                while struggling to deal with his dual responsibilities.
-                 
-                Welcome to Bungusland…an exciting world 
-                of hilarious songs & endless adventure…</div>
-              </div>
-              <div class="intro_writeup">
-                  <div style="width:224px; height:348px;">
-                    <img src="gifs/billy.gif"></img>
-                  </div>  
-                  <div style="width:536px;">
-                    <h1 style="margin-top: 40px">Billy Bungus</h1>
-                    <p>Billy is the central figure and his 
-                    girlfriend is a sea cucumber that he 
-                    carries around with him.</p>
-                    <p>He is a normal teenage boy who is kind,
-                    overly trusting and aspires to be a chef 
-                    in the restaurant in which he works.</p>
-                    <p>His catchphrase is ‘Whaaaerd!’ which he 
-                    exclaims in extreme situations.</p>
-                    <p>He can be a little dim-witted at times.</p>
-                </div>
-              </div>
-              <div class="intro_writeup" >
-                <div style="width:458px;">
-                  <h1>Sea Cucumber Girl</h1>
-                  <p>Sea Cucumber Girl is Billy’s girlfriend and sidekick. </p>
-                  <p>She is very smart and the real brains 
-                  of the operation solving difficult 
-                  situations in her own quiet way, 
-                  often without anyone noticing.</p>
-                  <p>She speaks using little noises.</p>
-                  <p>She secretes a purple liquid called Bungus 
-                  Juice which is delicious and Billy’s secret 
-                  ingredient in his aspiring chef career.</p>
-                </div>
-                <div style="width:312px; height:292px;">
-                  <img src="gifs/seacucumber.gif"></img>
-                </div>  
-              </div>
-              <div class="intro_writeup" >
-                <div style="width:350px; height:383px;">
-                  <img src="gifs/professor.gif"></img>
-                </div>  
-                <div style="width:410px;">
-                  <h1>Crazy Professor And Bionic Crab</h1>
-                  <p>He is a mischievous character whose plans to 
-                  dominate Bungusland nearly always backfire.</p> 
-                  <p>The Crazy Professor is driven by a desire to 
-                  become mayor of Bungusland and a resentment 
-                  of its inhabitants. He is Billy’s arch nemesis.</p> 
-                </div>
-              </div>
-              <div style="margin-top: 0px">
-                  <p>He is intelligent but impatient and slips into 
-                  rages when things don’t go quite as planned, 
-                  which is often.</p>
-                  <p>He manufactures a drink made of  Sea Cucumber Juice. His bumbling henchman is a ballet  loving Bionic Crab.</p>
-              </div>
-              <div class="intro_writeup">
-                <div style="width:467px;">
-                  <h1>Prawn Paul</h1>
-                  <p>Prawn Paul is a rapping prawn. 
-                  He is up-beat and positive. He 
-                  is a close trusted friend of Billy 
-                  and Sea Cucumber Girl.</p>
-                </div>
-                <div style="width:263px; height:244px;">
-                  <img src="gifs/prawnpaul.gif"></img>
-                </div>  
-              </div>
-              <div class="intro_writeup">
-                <div style="width:357px; height:370px;">
-                  <img src="gifs/lobSquitch.gif"></img>
-                </div>
-                <div style="width:343px;">
-                  <h1>Lobsquitch</h1>
-                  <p>The Lobsquitch is part lobster, 
-                  part squid and part ostrich, 
-                  a Godzilla sized wanderer who lives in Bungusland.</p>
-                </div>
-              </div>
-              <div class="intro_writeup">
-                <div style="width:617px;">
-                  <h1>Emily Epiglottis And Gwretchin</h1>
-                  <p>Emily is Billy’s friend. She is an energetic & lively
-                    tomboy who has a romance loving 
-                    epiglottis called Gwretchin that pops 
-                    out from her mouth.</p>
-                </div>
-                <div style="width:113px; height:365px;">
-                  <img src="gifs/emily.gif"></img>
-                </div>
-              </div>
-              <div class="intro_writeup">
-                <div style="width:274px; height:360px;">
-                  <img src="gifs/gastronaut.gif"></img>
-                </div>
-                <div style="width:486px;">
-                  <h1>Gastronaut</h1>
-                  <p>He is an overweight astronaut who is  
-                    friendly & well-meaning, often caught
-                    between his desire to help and 
-                    his search for a snack.</p>
-                </div>
-              </div>
-              <div class="intro_writeup">
-                <div style="width:565px;">
-                  <h1>Tony Dourbain</h1>
-                  <p> The arrogant head Chef at the restaurant in 
-                    which Billy works. He is always on Billy’s 
-                    back, suspicious of his strange absences.</p>
-                </div>
-                <div style="width:165px; height:338px;">
-                  <img src="gifs/tony.gif"></img>
-                </div>
-              </div>
-              <div class="intro_writeup">
-                <div style="width:376px; height:348px;">
-                  <img src="gifs/robowalrus.gif"></img>
-                </div>
-                <div style="width:386px;">
-                  <h1>Robot Walrus</h1>
-                  <p>Created by the Crazy Professor, he is a 
-                    gigantic robotic walrus that always turnsup at the worst moment to cause havoc. </p>
-                </div>
-              </div>
-              <div class="intro_writeup">
-                <div style="width:510px;">
-                  <h1>Aunt Betty</h1>
-                  <p>She lives in Bungus Tower. Billy doesn’t 
-                    realize that she is the Crazy Professors 
-                    Grandmother orchestrating 
-                    mayhem in Bungusland. 
-                  </p>
-                </div>
-                <div style="width:220px; height:375px;">
-                  <img src="gifs/aunt.gif"></img>
-                </div>
-              </div>
-              <div class="intro_writeup">
-                <div style="width:196px; height:368px;">
-                  <img src="gifs/captain.gif"></img>
-                </div>
-                <div style="width:564px;">
-                  <h1>Captain Climate Change</h1>
-                  <p>When he’s in Bungusland Billy has an over-zealous, eco-obsessed super hero alter-ego.</p>
-                </div>
-              </div>
-            </div>
-            <div id="scriptsandsynopsis_pane">
-              <h1>Scripts And Synopsis</h1>    
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras justo velit, blandit non cursus eu, pellentesque sed nunc. Proin venenatis lacus vitae ipsum faucibus, nec porta massa semper. Morbi ornare.</p>
-              <div id="pdfs">
-
-                <div class="pdf"/>
-                  <a target="_blank" href="pdf/Welcome to Bungusland episode synopsis The Hungry Games.pdf">
-                    <img src="images/pdf_logo_synopsis.png" />
-                    <span>Synopsis: The Hungry Games</span>
-                  </a>
-                </div>
-
-                <div class="pdf"/>
-                  <a target="_blank" href="pdf/Welcome to Bungusland episode synopsis Teryaki Terror.pdf">
-                    <img src="images/pdf_logo_synopsis.png" />
-                    <span>Synopsis: Teryaki Terror</span>
-                  </a>
-                </div>
-
-                <div class="pdf"/>
-                  <a target="_blank" href="pdf/Welcome to Bungusland episode synopsis Stink Floyd.pdf">
-                    <img src="images/pdf_logo_synopsis.png" />
-                    <span>Synopsis: Stink Floyd</span>
-                  </a>
-                </div>
-
-                <div class="pdf"/>
-                  <a target="_blank" href="pdf/Welcome to Bungusland episode synopsis Magellephant.pdf">
-                    <img src="images/pdf_logo_synopsis.png" />
-                    <span>Synopsis: Magellephant</span>
-                  </a>
-                </div>
-
-                <div class="pdf"/>
-                  <a target="_blank" href="pdf/Welcome to Bungusland episode synopsis Las Pepino Diablo.pdf">
-                    <img src="images/pdf_logo_synopsis.png" />
-                    <span>Synopsis: Las Pepino Diablo</span>
-                  </a>
-                </div>
-
-                <div class="pdf"/>
-                  <a target="_blank" href="pdf/Welcome to Bungusland episode synopsis Call Me Fishmael.pdf">
-                    <img src="images/pdf_logo_synopsis.png" />
-                    <span>Synopsis: Call Me Fishmael</span>
-                  </a>
-                </div>
-
-                <div class="pdf"/>
-                  <a target="_blank" href="pdf/Welcome to Bungusland episode synopsis Bean and gone.pdf">
-                    <img src="images/pdf_logo_synopsis.png" />
-                    <span>Synopsis: Bean and Gone</span>
-                  </a>
-                </div>
-
-                <div class="pdf"/>
-                  <a target="_blank" href="pdf/Welcome to Bungusland episode synopsis A Pain in the Neck.pdf">
-                    <img src="images/pdf_logo_synopsis.png" />
-                    <span>Synopsis: A Pain in the Neck</span>
-                  </a>
-                </div>
-
-                <div class="pdf"/>
-                  <a target="_blank" href="pdf/Welcome to Bungusland episode synopsis A New Mayor On Bungus Street.pdf">
-                    <img src="images/pdf_logo_synopsis.png" />
-                    <span>Synopsis: A New Mayor on Bungus Street</span>
-                  </a>
-                </div>
-
-                <div class="pdf"/>
-                  <a target="_blank" href="pdf/Welcome to Bungusland EPISODE 1 4TH DRAFT A New mayor In Bungusland.pdf">
-                    <img src="images/pdf_logo_script.png" />
-                    <span>Script: A New Mayor on Bungus Street</span>
-                  </a>
-                </div>
-
-                <div class="pdf"/>
-                  <a target="_blank" href="pdf/Welcome To Bungusland EPISODE Fore Warned is Four Armed 1st draft.pdf">
-                    <img src="images/pdf_logo_script.png" />
-                    <span>Script: Fore Warned is Four Armed</span>
-                  </a>
-                </div>
-
-                <div class="pdf"/>
-                  <a target="_blank" href="pdf/Welcome To Bungusland EPISODE Mist Opportunity 1st draft.pdf">
-                    <img src="images/pdf_logo_script.png" />
-                    <span>Script: Mist Opportunity</span>
-                  </a>
-                </div>
-
-                <div class="pdf"/>
-                  <a target="_blank" href="pdf/Welcome To Bungusland EPISODE Stuck In Limbo 1st draft.pdf">
-                    <img src="images/pdf_logo_script.png" />
-                    <span>Script: Stuck In Limbo</span>
-                  </a>
-                </div>
-
-                <div class="pdf"/>
-                  <a target="_blank" href="pdf/Welcome To Bungusland EPISODE The Unicycle Thief.pdf">
-                    <img src="images/pdf_logo_script.png" />
-                    <span>Script: The Unicycle Thief</span>
-                  </a>
-                </div>
-
-                <div class="pdf"/>
-                  <a target="_blank" href="pdf/Welcome To Bungusland EPISODE Viva Las Vegas 1st draft.pdf">
-                    <img src="images/pdf_logo_script.png" />
-                    <span>Script: Viva Las Vegas</span>
-                  </a>
-                </div>
-
-                <div class="pdf"/>
-                  <a target="_blank" href="pdf/Robo Walrus storyboards.pdf">
-                    <img src="images/pdf_logo_storyboard.png" />
-                    <span>Storyboard: Viva Las Vegas</span>
-                  </a>
-                </div>
-
-                <div class="pdf"/>
-                  <a target="_blank" href="pdf/Storyboard_sea cucumber girl animatic.pdf">
-                    <img src="images/pdf_logo_storyboard.png" />
-                    <span>Storyboard: Sea Cucumber</span>
-                  </a>
-                </div>
-
-                <div class="pdf"/>
-                  <a target="_blank" href="pdf/Storyboard bean and gone.pdf">
-                    <img src="images/pdf_logo_storyboard.png" />
-                    <span>Storyboard: Bean And Gone</span>
-                  </a>
-                </div>
-
-                <div class="pdf"/>
-                  <a target="_blank" href="pdf/storyboard bungusland episode the unicycle thief.pdf">
-                    <img src="images/pdf_logo_storyboard.png" />
-                    <span>Storyboard: Unicycle Thief</span>
-                  </a>
-                </div>
-
-                <div class="pdf"/>
-                  <a target="_blank" href="pdf/Storyboard Bungusland; EP1 new mayor_w notes.pdf">
-                    <img src="images/pdf_logo_storyboard.png" />
-                    <span>Storyboard: New Mayor</span>
-                  </a>
-                </div>
-
-              </div>
-              <div id="scripts_pane_footer" class="pane_footer"></div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div id="content">
+      <div id="content_close_btn" class="close_modal">X</div>
+      <div id="videos_pane"></div>
+      <div id="behindthescenes_pane"></div>
+      <div id="introduction_pane" ></div>
+      <div id="scriptsandsynopsis_pane"></div>
+      <div id="music_pane"></div>
     </div>
-    <div id="overlay_logo">
+
+    <div id="overlay_logo"></div>
+
+    <div id="music" style="display:none;"> 
+      <audio loop>
+         <source src="content/Bungusland_Overture.mp3" type="audio/mpeg" loop></source>
+      </audio>
     </div>
+
     <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="540px" width="960px"></canvas>
     <script type='text/javascript'>
-  var Module = {
-    TOTAL_MEMORY: 268435456,
-    errorhandler: null,			// arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
-    compatibilitycheck: null,
-    dataUrl: "Release/bungusland.data",
-    codeUrl: "Release/bungusland.js",
-    memUrl: "Release/bungusland.mem",
-  };
-</script>
-<script src="Release/UnityLoader.js"></script>
-
+      var Module = {
+        TOTAL_MEMORY: 268435456,
+        errorhandler: null,     // arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
+        compatibilitycheck: null,
+        dataUrl: "Release/bungusland.data",
+        codeUrl: "Release/bungusland.js",
+        memUrl: "Release/bungusland.mem",
+      };
+    </script>
+    <script src="Release/UnityLoader.js"></script>
   </body>
-  
+
 </html>
