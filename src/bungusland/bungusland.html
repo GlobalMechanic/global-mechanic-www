@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=0.35, user-scalable=no, minimal-ui">
+
+    <title>Global Mechanic | Unity Project</title>
+
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="shortcut icon" href="images/favicon@2x.png" />
+
+    <script src="js/jquery-2.1.4.js"></script>
+    <script src="js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="js/soundcloud-api.js"></script>
+    <script src="js/froogaloop.min.js"></script>
+    <script src="js/bungus.js"></script>
+    <script src="js/UnityProgress.js"></script>
+  </head>
+
+  <body>
+    <div id="showcase_container" style="display:none;">
+      <div id="showcase"></div>
+      <div id="showcase_prev_btn" class="showcase_btn"></div>
+      <div id="showcase_next_btn" class="showcase_btn"></div>
+      <div id="showcase_close_btn" class="close_modal">X</div>
+    </div>
+
+    <div id="modal" class="close_modal"></div>
+
+    <div id="content">
+      <div id="content_close_btn" class="close_modal">X</div>
+      <div id="videos_pane"></div>
+      <div id="behindthescenes_pane"></div>
+      <div id="introduction_pane" ></div>
+      <div id="scriptsandsynopsis_pane"></div>
+      <div id="music_pane"></div>
+    </div>
+
+    <div id="overlay_logo"></div>
+
+    <div id="music" style="display:none;"> 
+      <audio loop>
+         <source src="content/Bungusland_Overture.mp3" type="audio/mpeg" loop></source>
+      </audio>
+    </div>
+
+    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="540px" width="960px"></canvas>
+    <script type='text/javascript'>
+      var Module = {
+        TOTAL_MEMORY: 268435456,
+        errorhandler: null,     // arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
+        compatibilitycheck: null,
+        dataUrl: "Release/bungusland.data",
+        codeUrl: "Release/bungusland.js",
+        memUrl: "Release/bungusland.mem",
+      };
+    </script>
+    <script src="Release/UnityLoader.js"></script>
+  </body>
+
+</html>

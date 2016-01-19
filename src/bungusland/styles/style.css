@@ -1,0 +1,588 @@
+
+/****************************************
+  ==== RESETS
+****************************************/
+
+html,body,div,canvas { 
+  margin: 0; 
+  padding: 0; 
+}
+
+::-moz-selection { 
+  color: #333; 
+  text-shadow: none; 
+}
+
+::selection {  
+  color: #333; 
+  text-shadow: none; 
+}
+
+.clear:after { 
+  visibility: hidden; 
+  display: block; 
+  font-size: 0; 
+  content: " "; 
+  clear: both; 
+  height: 0; 
+}
+
+.clear { 
+  display: inline-table; 
+  clear: both; 
+}
+
+/* Hides from IE-mac \*/ 
+* html .clear { 
+  height: 1%; 
+} 
+
+.clear { 
+  display: block; 
+} /* End hide from IE-mac */
+
+/****************************************
+  ==== LAYOUT
+****************************************/
+
+html, body { 
+
+  background-color: #82a0ee;
+  width: 100%; 
+  height: 100%; 
+  
+  font-family: 'open_sanslight', sans-serif;
+  font-size: 16px;
+  font-weight: 100;
+
+}
+
+@font-face {
+    font-family: 'frente_h1regular';
+    src: url('../fonts/FrenteH1-Regular-webfont.eot');
+    src: url('../fonts/FrenteH1-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/FrenteH1-Regular-webfont.woff') format('woff'),
+         url('../fonts/FrenteH1-Regular-webfont.ttf') format('truetype'),
+         url('../fonts/FrenteH1-Regular-webfont.svg#frente_h1regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'open_sanslight';
+    src: url('../fonts/OpenSans-Light-webfont.eot');
+    src: url('../fonts/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/OpenSans-Light-webfont.woff') format('woff'),
+         url('../fonts/OpenSans-Light-webfont.ttf') format('truetype'),
+         url('../fonts/OpenSans-Light-webfont.svg#open_sanslight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  position: fixed;
+
+  top: 0px;
+  left: 0px;
+
+  width: 100%;
+  height: 100%;
+}
+
+.center-inline-children {
+  text-align: center;
+}
+
+.flex-column {
+
+  display: inline-flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+
+}
+
+.flex-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/****************************************
+  ==== CONTENT
+****************************************/
+
+#content {
+
+  background-color: #bde2d0;
+  color: #5e985e;
+
+  width: 830px;
+
+  display: none;
+  margin: auto;
+  padding: 10px;
+  padding-right: 5px;
+  border-radius: 10px;
+
+  position: relative;
+  z-index: 10;
+
+}
+
+#content * {
+
+  margin: 10px;
+
+}
+
+#content h1 {
+
+  font-family: 'frente_h1regular';
+  font-size: 60px;
+  font-weight: 100;
+
+}
+
+#modal {
+
+  background-color: rgba(0,0,0,0.8);
+  display: none;
+  position: fixed;
+
+  z-index: 5;
+  width: 100%;
+  height: 150%;
+        
+  top: 0px;
+  left: 0px;
+
+}
+
+#content_close_btn {
+
+  width: 18px;
+  height: 20px;
+  z-index: 20;
+
+  font-family: Arial;
+  font-size: 20px;
+
+  position: fixed;
+
+}
+
+#overlay_logo {
+  background: url("../images/bungus_logo.png") no-repeat center;
+  background-size: contain;
+
+  z-index: 3;
+  width: 432px;
+  height: 240px;
+
+  display: none;
+
+  position: fixed;
+  top: 25px;
+  left: 25px;
+}
+
+#island {
+  background: url("../images/bungusland_island.png") no-repeat center;
+  position: fixed;
+  z-index: 2;
+  width: 960px;
+  height: 646px;
+  margin: auto;
+}
+
+.pane_button {
+
+  position: absolute;
+  width: 80px;
+  height: 60px;
+  display: inline-block;
+
+}
+
+/****************************************
+  ==== VIDEO PANE
+****************************************/
+
+#video_previews {
+
+  display: inline;
+
+}
+
+.video_preview {
+
+  width: 240px;
+  height: 180px;
+
+}
+
+.video_preview img {
+
+  height: 135px;
+  margin: 0px !important;
+
+}
+
+/*****************************************
+  ==== BEHIND THE SCENES
+******************************************/
+
+#behind_the_scenes {
+
+  display: inline;
+
+}
+
+.behind_the_scenes_content {
+
+  width: 320px;
+  height: 180px;
+
+}
+
+.behind_the_scenes_content img {
+
+  margin: 0px !important;
+
+}
+
+/*****************************************
+  ==== INTRO
+******************************************/
+
+.intro_writeup {
+  display: flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+}
+
+/*****************************************
+  ==== SCRIPTS AND SYNOPSIS
+******************************************/
+
+#pdfs {
+  margin: 10px auto;
+  padding-top: 10px;
+}
+
+.pdf {
+  margin: 0px !important;
+  text-align: center;
+  font-size: 10px;
+  width: 128px;
+}
+
+.pdf_icon {
+  width: 108px;
+  height: 128px;
+  background-repeat: no-repeat;
+}
+
+.pdf a {
+  color: darkgreen;
+  text-decoration: none;
+}
+
+.pdf a span {
+  display: block;
+}
+
+.pdf a:visited {
+  color: darkgreen;
+}
+
+.pdf a:hover {
+  color: #2e2;
+}
+/*****************************************
+  ==== SHOWCASE
+******************************************/
+
+#showcase_container {
+
+  width: 960px;
+  height: 800px;
+
+  position: fixed;
+  z-index: 15;
+
+  margin: auto;
+
+  background-color: black;
+
+}
+
+#showcase {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+}
+
+.showcase_btn {
+
+  width: 80px;
+  height: 80px;
+
+  top: 50%;
+
+  position: absolute;
+  display: inline-block;
+
+  z-index: 18;
+
+}
+
+#showcase_close_btn {
+  position: absolute;
+
+  right: -30px;
+  top: -30px;
+
+  width: 20px;
+  height: 30px;
+
+  color: #eee;
+  font-size: 30px;
+  font-family: Arial;
+
+}
+
+#showcase_next_btn {
+  right: -80px;
+  background-image: url('../images/showcase_arrow_next.png');
+}
+
+#showcase_prev_btn {
+  left: -80px;
+  background-image: url('../images/showcase_arrow_prev.png');
+}
+
+.pane_footer {
+
+  width: 770px;
+  height: 150px;
+
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+#behind_scenes_pane_footer {
+  background-image: url("../images/footer_behind_the_scenes.png");
+}
+
+#scripts_pane_footer {
+  background-image: url("../images/footer_scripts.png");
+  height: 170px;
+}
+
+#video_pane_footer {
+  background-image: url("../images/footer_video.png");
+}
+
+#music_pane_footer {
+  height: 180px;
+  background-image: url("../images/footer_music.png");
+}
+
+.behind_scenes_image {
+  display: inline;
+  text-align: center;
+}
+
+.vimeo_behind_scenes {
+  display: block;
+}
+
+.vimeo_video {
+  display: block;
+}
+
+/***************************************
+  ==== MUSIC
+****************************************/
+
+#music {
+  position: fixed;
+  cursor: pointer;
+  top: 20px;
+  left: 20px;
+  width: 32px;
+  height: 32px;
+  background: url("../images/audio_icon.png");
+  z-index: 10;
+}
+
+/*****************************************
+  ==== SCROLLBAR
+******************************************/
+/* perfect-scrollbar v0.6.8 */
+.ps-container {
+  -ms-touch-action: none;
+  overflow: hidden !important;
+}
+
+.ps-container.ps-active-x > .ps-scrollbar-x-rail,
+.ps-container.ps-active-y > .ps-scrollbar-y-rail {
+  display: block; 
+}
+
+.ps-container.ps-in-scrolling {
+  pointer-events: none; 
+}
+
+.ps-container.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail {
+  background-color: #eee;
+  opacity: 0.9; 
+}
+
+.ps-container.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail > .ps-scrollbar-x {
+  background-color: #5e985e; 
+}
+
+.ps-container.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail {
+  background-color: #eee;
+  opacity: 0.9; 
+}
+
+.ps-container.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail > .ps-scrollbar-y {
+  background-color: #5e985e; 
+}
+
+.ps-scrollbar-y-rail * {
+  margin: 0 !important;
+}
+
+.ps-scrollbar-x-rail * {
+  margin: 0 !important;
+}
+
+.ps-container > .ps-scrollbar-x-rail {
+  display: none;
+  position: absolute; /* please don't change 'position' */
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  opacity: 0.9;
+  -webkit-transition: background-color 0.2s linear, opacity 0.2s linear;
+  -moz-transition: background-color 0.2s linear, opacity 0.2s linear;
+  -o-transition: background-color 0.2s linear, opacity 0.2s linear;
+  transition: background-color 0.2s linear, opacity 0.2s linear;
+  bottom: 3px;
+  top: 10px;
+  /* there must be 'bottom' for ps-scrollbar-x-rail */
+  height: 8px; 
+}
+
+.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x {
+  position: absolute;
+  /* please don't change 'position' */
+  background-color: #5e985e;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-transition: background-color 0.2s linear;
+  -moz-transition: background-color 0.2s linear;
+  -o-transition: background-color 0.2s linear;
+  transition: background-color 0.2s linear;
+  bottom: 0;
+  /* there must be 'bottom' for ps-scrollbar-x */
+  height: 8px; 
+}
+
+.ps-container > .ps-scrollbar-y-rail {
+  display: none;
+  position: absolute;
+  /* please don't change 'position' */
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  opacity: 0.9;
+  -webkit-transition: background-color 0.2s linear, opacity 0.2s linear;
+  -moz-transition: background-color 0.2s linear, opacity 0.2s linear;
+  -o-transition: background-color 0.2s linear, opacity 0.2s linear;
+  transition: background-color 0.2s linear, opacity 0.2s linear;
+  right: 3px;
+  top: 10px;
+  /* there must be 'right' for ps-scrollbar-y-rail */
+  width: 8px; 
+}
+
+.ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y {
+  position: absolute;
+  /* please don't change 'position' */
+  background-color: #5e985e;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-transition: background-color 0.2s linear;
+  -moz-transition: background-color 0.2s linear;
+  -o-transition: background-color 0.2s linear;
+  transition: background-color 0.2s linear;
+  right: 0;
+  /* there must be 'right' for ps-scrollbar-y */
+  width: 8px; 
+}
+
+.ps-container:hover.ps-in-scrolling {
+  pointer-events: none; 
+}
+  
+.ps-container:hover.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail {
+  background-color: #eee;
+  opacity: 0.9; 
+}
+
+.ps-container:hover.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail > .ps-scrollbar-x {
+  background-color: #5e985e; 
+}
+
+.ps-container:hover.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail {
+  background-color: #eee;
+  opacity: 0.9; 
+}
+
+.ps-container:hover.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail > .ps-scrollbar-y {
+  background-color: #5e985e; 
+}
+
+.ps-container:hover > .ps-scrollbar-x-rail,
+.ps-container:hover > .ps-scrollbar-y-rail {
+  opacity: 0.9; 
+}
+
+.ps-container:hover > .ps-scrollbar-x-rail:hover {
+  background-color: #5e985e;
+  opacity: 0.9; 
+}
+
+.ps-container:hover > .ps-scrollbar-x-rail:hover > .ps-scrollbar-x {
+  background-color: #5e985e; 
+}
+
+.ps-container:hover > .ps-scrollbar-y-rail:hover {
+  background-color: #eee;
+  opacity: 0.9; 
+}
+
+.ps-container:hover > .ps-scrollbar-y-rail:hover > .ps-scrollbar-y {
+  background-color: #5e985e; 
+}
+

@@ -67,14 +67,14 @@ gulp.task('build', function () {
 
     // html optimization
     gulp.src(source + '/*.html')
-                .pipe($.newer(distro + '/'))
-                .pipe($.htmlmin({
-                    removeComments:true, 
-                    collapseWhitespace: true,
-                    minifyJS: true
-                }))
-                .pipe(gulp.dest(distro + '/'))
-                .pipe($.size());
+        .pipe($.newer(distro + '/'))
+        .pipe($.htmlmin({
+            removeComments:true, 
+            collapseWhitespace: true,
+            minifyJS: true
+        }))
+        .pipe(gulp.dest(distro + '/'))
+        .pipe($.size());
 
     // style optimization
     var distro_styles = distro + "/styles/";

@@ -20,6 +20,88 @@ var bungus = (function($){
 
 
 /**********************************************************/
+	//ISLAND POSITION DATA
+/**********************************************************/
+
+var islandPositions = {
+	portrait : {
+		src: "images/mobile_portrait_island.png",
+		height: 1136,
+		width: 640,
+		hotspots: {
+			music: {
+				height: 140,
+				width: 150,
+				x: 380,
+				y: 330,
+			},
+			videos: {
+				height: 110,
+				width: 180,
+				x: 410,
+				y: 530,
+			},
+			introduction: {
+				height: 200,
+				width: 225,
+				x: 70,
+				y: 330,
+			},
+			scriptsandsynopsis: {
+				height: 220,
+				width: 220,
+				x: 380,
+				y: 695,
+			},
+			behindthescenes: {
+				height: 200,
+				width: 260,
+				x: 40,
+				y: 610,
+			}
+		}
+	},
+
+	landScape : {
+		src: "images/mobile_landscape_island.png",
+		height: 640,
+		width: 1136,
+		hotspots : {
+			music: {
+				height: 140,
+				width: 150,
+				x: 120,
+				y: 190,
+			},
+			videos: {
+				height: 110,
+				width: 180,
+				x: 810,
+				y: 240,
+			},
+			introduction: {
+				height: 200,
+				width: 225,
+				x: 450,
+				y: 240,
+			},
+			scriptsandsynopsis: {
+				height: 220,
+				width: 220,
+				x: 210,
+				y: 340,
+			},
+			behindthescenes: {
+				height: 200,
+				width: 260,
+				x: 710,
+				y: 390,
+			}
+		},
+	},
+}
+
+/**********************************************************/
 	//MAIN
 /**********************************************************/
 
@@ -252,7 +334,6 @@ var bungus = (function($){
 		if (value) {
 			$content.hide();
 			$showcaseContainer.show();
-
 		} else {
 			music_resume();
 			$content.show();
@@ -276,6 +357,45 @@ var bungus = (function($){
 		set_showcase_visible(true);
 		$showcase.children().hide();
 		showcase_update(0);
+	}
+
+	function clamp(value, min, max) 
+	{
+		return Math.min(Math.max(value, min), max);
+	}
+
+	function place_island(portrait, innerW, innerH)
+	{
+		var data = portrait ? islandPositions.portrait : islandPositions.landScape;		
+		
+		var scale = clamp(Math.min(innerW / (data.width * 0.5) , innerH / (data.height * 0.5)), 0, 1);
+		var width = data.width * scale;
+		var height = data.height * scale;
+
+		var islandX = innerW - width * 0.5;
+		var islandY = innerH - height * 0.5;
+
+		$island.css({
+			"background-image": 'url("' + data.src + '")',
+			"background-size": width + "px " + height + "px",
+			left: islandX,
+			top: islandY,
+			width: width,
+			height: height
+		});
+
+		for(var hotspotTitle in data.hotspots) {
+			var hotspotData = data.hotspots[hotspotTitle];
+
+			var $button = $("#" + hotspotTitle + "_button");
+
+			$button.css({
+				height: hotspotData.height * scale,
+				width: hotspotData.width * scale,
+				top:  hotspotData.y * scale,
+				left:  hotspotData.x * scale,
+			});
+		}
 	}
 
 /**********************************************************/
@@ -311,23 +431,7 @@ var bungus = (function($){
 		var innerH = window.innerHeight * 0.5;
 		var portrait = innerW < innerH;
 
-		var islandX = innerW - $island.width() * 0.5;
-		var islandY = innerH - $island.height() * 0.5;
-
-		$island.css({
-			left: islandX,
-			top: islandY
-		});
-
-		var logoW = portrait ? LOGO_WIDTH : LOGO_WIDTH * 0.75;
-		var logoH = portrait ? LOGO_HEIGHT : LOGO_HEIGHT * 0.75;
-		var logoX = portrait ? innerW - logoW * 0.5 : 10;
-
-		$logo.css({
-			width: logoW,
-			height: logoH,
-			left: logoX
-		});
+		place_island(portrait, innerW, innerH);
 
 		var showContainerX = innerW - $showcaseContainer.width() * 0.5;
 		var showContainerY = innerH - $showcaseContainer.height() * 0.5;
@@ -335,7 +439,6 @@ var bungus = (function($){
 			left: showContainerX,
 			top: showContainerY
 		});
-
 
 	}
 
@@ -348,4 +451,5 @@ var bungus = (function($){
 })(jQuery);
 
 $(bungus.setup);
+$(window).on("orientationchange", bungus.center);
 $(window).on("resize", bungus.center);
