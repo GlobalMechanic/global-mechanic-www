@@ -60,8 +60,6 @@ function setup_routes()
 	app.get("/wantsyou", wants_you_page);
 	app.get("/about", about_page);
 
-	app.get("/bungusland", bungusland_page);
-
 }
 
 function start_server()
@@ -147,14 +145,6 @@ function wants_you_page(req, res)
 function about_page(req, res)
 {
 	res.render('about');
-}
-
-function bungusland_page(req, res)
-{
-	if (isCallerMobile(req) || process.env.NODE_ENV != 'production')
-		res.redirect('/bungusland/m.bungusland.html');
-	else
-		res.redirect('/bungusland/bungusland.html');
 }
 
 /*-----------------------------------------------------------------------------------------------
