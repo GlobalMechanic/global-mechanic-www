@@ -1,9 +1,0 @@
-extends layout
-
-block content
-	.private-portfolio-index
-		a(href='?resetDataCache') Refresh Vimeo Data
-		h1 Private Portfolios (aka Reels)
-		for portfolio in portfolios
-			h2 
-				a(href='/private/portfolio/'+portfolio.id)= portfolio.name

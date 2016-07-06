@@ -1,0 +1,9 @@
+{
+  "babelMapsAddUrl":                  false,
+  "babelSourcePath":                  "src",
+  "babelTranspilePath":               "dist-app",
+  "createMap":                        false,
+  "createTargetDirectories":          true,
+  "createTranspiledCode":             true,
+  "transpileOnSave":                  true
+}
