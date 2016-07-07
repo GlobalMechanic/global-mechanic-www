@@ -1,0 +1,9 @@
+)]}
+{
+ "version": 3,
+ "sources": "/Users/bengaumond/Programming/global-mechanic-www/src/services/vimeo.js",
+ "file": "/Users/bengaumond/Programming/global-mechanic-www/dist-app/services/vimeo.js",
+ "sourceRoot": "",
+ "names": [],
+ "mappings": ";;;;;;;;;;;kBAoBe,YAAW;AACxB,MAAM,MAAM,IAAZ;AACA,MAAI,GAAJ,CAAQ,QAAR,EAAkB,IAAI,OAAJ,EAAlB;;;;;AAKD,C;;AAvBD;;;;IAEM,O;AACJ,mBAAY,OAAZ,EAAqB;AAAA;;AACnB,SAAK,OAAL,GAAe,WAAW,EAA1B;AACD;;;;yBAEI,M,EAAQ;AACX,aAAO,QAAQ,OAAR,CAAgB,EAAhB,CAAP;AACD;;;;;;;;;;QAgBM,O,GAAA,O"
+}

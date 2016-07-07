@@ -2,6 +2,19 @@
   "host": "localhost",
   "port": 3030,
   "public": "../dist-public/",
+  "vimeo": {
+    "clientId": "f7f0d3e98bcf5e7f1fce9274d94e36a9f77155ae",
+    "clientSecret": "dd6af929f5984635e80f99ab3b25e85fe9dcee6d",
+    "accountId": 2657340,
+    "privateAccess": {
+      "token": "f4e18ea01775318b82b90a1325909499",
+      "scope": "public private"
+    },
+    "publicAccess": {
+      "token": false,
+      "scope": "public"
+    }
+  },
   "auth": {
     "idField": "id",
     "token": {

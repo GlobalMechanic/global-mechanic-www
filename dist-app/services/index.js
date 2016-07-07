@@ -8,11 +8,11 @@ exports.default = function () {
 
   var app = this;
 
-  app.configure(_vimeo2.default);
+  app.configure(_video2.default);
 };
 
-var _vimeo = require('./vimeo');
+var _video = require('./video');
 
-var _vimeo2 = _interopRequireDefault(_vimeo);
+var _video2 = _interopRequireDefault(_video);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

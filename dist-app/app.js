@@ -67,7 +67,9 @@ var publicURL = app.get('public');
 
 app.use((0, _compression2.default)()).options('*', (0, _cors2.default)()).use((0, _cors2.default)())
 //  .use(favicon(faviconURL))
-.use('/', (0, _feathers.static)(publicURL)).use(_bodyParser2.default.json()).use(_bodyParser2.default.urlencoded({ extended: true })).configure((0, _feathersHooks2.default)()).configure((0, _feathersRest2.default)()).configure(_middleware2.default).configure(_services2.default);
+.use('/', (0, _feathers.static)(publicURL)).use(_bodyParser2.default.json()).use(_bodyParser2.default.urlencoded({ extended: true })).configure((0, _feathersHooks2.default)()).configure((0, _feathersRest2.default)()).configure(_middleware2.default).configure(_services2.default).get('*', function (req, res) {
+  return res.sendFile(_path2.default.join(publicURL, 'index.html'));
+});
 
 /******************************************************************************/
 // Exports

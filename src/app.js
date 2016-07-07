@@ -41,6 +41,7 @@ app.use(compress())
   .configure(rest())
   .configure(middleware)
   .configure(services)
+  .get('*', (req,res) => res.sendFile(path.join(publicURL, 'index.html')))
 
 /******************************************************************************/
 // Exports

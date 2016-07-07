@@ -1,9 +1,9 @@
-import vimeo from './vimeo'
+import video from './video'
 
 export default function() {
 
   const app = this
 
-  app.configure(vimeo)
+  app.configure(video)
 
 }
