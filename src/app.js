@@ -12,6 +12,7 @@ import cors from 'cors'
 import compress from 'compression'
 import bodyParser from 'body-parser'
 import { static as serveStatic } from 'feathers'
+import fallback from 'express-history-api-fallback'
 
 import services from './services'
 import middleware from './middleware'
@@ -37,6 +38,7 @@ app.use(compress())
   .use('/', serveStatic(publicURL))
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
+  .use(fallback('index.html', { publicURL }))
   .configure(hooks())
   .configure(rest())
   .configure(middleware)

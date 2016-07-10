@@ -1,5 +1,4 @@
 {
-  "babelMapsAddUrl":                  false,
   "babelSourcePath":                  "src",
   "babelTranspilePath":               "dist-app",
   "createTargetDirectories":          true,
