@@ -1,2 +1,8 @@
 $gm-primary: #e29f9f;
 $gm-secondary: #402a27;
+
+$text-color: white;
+
+$font-family-sans-serif: Helvetica, Arial, sans-serif;
+$font-size-base:         32px;
+$font-size-small:        ceil(($font-size-base * 0.25)); // ~12px

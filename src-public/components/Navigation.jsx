@@ -1,26 +1,30 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { Grid, Row } from 'react-bootstrap'
+import Background from './Background'
 
 function PageNav(props) {
-  let name = props.name
-  let href = props.href || '/' + name.toLowerCase()
-  let onlyActiveOnIndex = href === '/'
-  return <li>
-    <Link to={href} onlyActiveOnIndex={onlyActiveOnIndex} activeClassName="page-nav-active" >{name}</Link>
-  </li>
+
+  const name = props.name
+  const href = props.href || '/' + name.toLowerCase()
+  const onlyActiveOnIndex = href === '/'
+  const className = href === '/' ? 'page-nav-home' : 'page-nav-item'
+
+  return <Link to={href} onlyActiveOnIndex={onlyActiveOnIndex} className={className} activeClassName="active" >{name}</Link>
 }
 
+
 export default function Splash(props) {
-  return <div>
-    <h1>Global Mechanic</h1>
-    <ul role="nav">
+  return <Grid fluid>
+    <Row className="page-nav">
+      <PageNav href="/"/>
       <PageNav name="About"/>
-      <PageNav name="Home" href="/"/>
       <PageNav name="Directors"/>
       <PageNav name="Work"/>
-    </ul>
+    </Row>
 
     {props.children}
 
-  </div>
+    <Background/>
+  </Grid>
 }

@@ -20,7 +20,7 @@ module.exports = {
       },
 
       {
-        test: /\.(ttf|eot|ico|png|gif)$/,
+        test: /\.(ttf|eot|ico|png|gif|mp4|jpg)$/,
         loader: 'file'
       },
       {

@@ -59,6 +59,7 @@
     "immutable": "^3.8.1",
     "is-explicit": "^1.0.4",
     "react": "^15.2.0",
+    "react-bootstrap": "^0.29.5",
     "react-dom": "^15.2.0",
     "react-router": "^2.5.2",
     "serve-favicon": "^2.3.0",

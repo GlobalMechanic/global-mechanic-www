@@ -1,0 +1,42 @@
+$nav-padding: 15px;
+$home-icon: 25px;
+
+.page-nav {
+  width: 100%;
+  display: block;
+  margin-right: $nav-padding;
+
+  .active {
+    color: black;
+    text-decoration: none;
+  }
+
+  .page-nav-home.active {
+    display: none;
+  }
+}
+
+.page-nav-item {
+  float: right;
+  margin-left: $nav-padding;
+  color: white;
+  text-decoration: none;
+  font-family: "Bebas-Neue-Regular";
+}
+
+.page-nav-item:hover {
+  color: gray;
+  text-decoration: none;
+}
+
+.page-nav-home {
+  float: left;
+  margin: $nav-padding * 0.5;
+  height: $home-icon;
+  width: $home-icon;
+  background-color: white;
+}
+
+.page-nav-home:hover {
+  background-color: gray;
+}

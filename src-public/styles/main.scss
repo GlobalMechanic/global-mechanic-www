@@ -1,3 +1,28 @@
-.page-nav-active {
-  opacity: 0.5;
+@import './background';
+@import './navigation';
+@import './fonts';
+
+.splash-title {
+  h1 {
+    padding-top: 25vh;
+    font-size: 17vw;
+    text-align: center;
+  }
+  height: 100vh;
+}
+
+.header-line {
+  max-width: 1300px;
+
+  h1,h2,h3,h4,h5,h6 {
+    line-height: 0.9;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+}
+
+.body-line {
+  max-width: 1200px;
+  font-size: 12px;
+  margin-top: 2%;
 }
