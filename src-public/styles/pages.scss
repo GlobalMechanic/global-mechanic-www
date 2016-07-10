@@ -1,0 +1,85 @@
+
+//Splash Pge
+.splash-title {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+
+  display: flex;
+  justify-content:center;
+  align-items: center;
+
+  h1 {
+    font-size: 16vw;
+  }
+
+  z-index: -50;
+
+}
+
+video::-webkit-media-controls-start-playback-button {
+  display: none;
+}
+
+.splash-background {
+  background: url(../assets/nut-white.svg) no-repeat center;
+  background-size: contain;
+  opacity: 0.5;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -50;
+}
+
+//Work Content
+#work-dropdown {
+  font-family: "Bebas-Neue-Regular";
+  font-size: 15vw;
+  line-height: 1;
+  color: black;
+  float: left;
+  box-shadow: none;
+  border: none;
+  outline: none;
+
+  span {
+    font-size: 15px !important;
+  }
+}
+
+#work-header {
+
+  background-color: white;
+  box-sizing: content-box;
+  margin: 0px -15px 0px -15px;
+
+  ul {
+    font-family: "Bebas-Neue-Regular";
+    right: 25px;
+    left: inherit;
+    margin-top: -1px;
+    margin-left: 15px;
+  }
+}
+
+// Body Content
+.header-line {
+  max-width: 1300px;
+
+  h1,h2,h3,h4,h5,h6 {
+    line-height: 0.9;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+}
+
+.body-line {
+  max-width: 1200px;
+  font-size: 12px;
+  margin-top: 2%;
+}

@@ -4,7 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
   entry: [
     'bootstrap-loader',
-    'webpack-dev-server/client?http://localhost:5000',
+    'webpack-dev-server/client?http://0.0.0.0:5000',
 //  'webpack/hot/only-dev-server',
     './src-public/index.jsx'
   ],

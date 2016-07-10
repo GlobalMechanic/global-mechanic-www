@@ -1,19 +1,28 @@
 $nav-padding: 15px;
-$home-icon: 25px;
+$home-icon: 30px;
 
 .page-nav {
-  width: 100%;
+  width: 100vw;
   display: block;
-  margin-right: $nav-padding;
+  padding-right: $nav-padding;
+
+  transition: background-color 0.25s;
 
   .active {
     color: black;
     text-decoration: none;
   }
 
-  .page-nav-home.active {
-    display: none;
+  .active.inverse {
+    color: gray;
   }
+
+  .page-nav-home.active {
+    background-image: none;
+  }
+}
+.page-nav.inverse {
+  background-color: white;
 }
 
 .page-nav-item {
@@ -22,21 +31,38 @@ $home-icon: 25px;
   color: white;
   text-decoration: none;
   font-family: "Bebas-Neue-Regular";
-}
 
+  transition: color 0.25s;
+}
+.page-nav-item.inverse {
+  color: black;
+}
 .page-nav-item:hover {
   color: gray;
+  text-decoration: none;
+}
+.page-nav-item.inverse:hover {
+  color: black;
   text-decoration: none;
 }
 
 .page-nav-home {
   float: left;
   margin: $nav-padding * 0.5;
+  padding-left: 32px;
   height: $home-icon;
   width: $home-icon;
-  background-color: white;
-}
+  transition: background-image 0.25s;
+//  transition: opacity 0.25s;
 
+  background-image: url(../assets/nut-white.svg);
+}
+.page-nav-home.inverse {
+  background-image: url(../assets/nut-black.svg);
+}
 .page-nav-home:hover {
-  background-color: gray;
+  background-image: url(../assets/nut-gray.svg);
+}
+.page-nav-home.inverse:hover {
+  background-image: url(../assets/nut-black.svg);
 }

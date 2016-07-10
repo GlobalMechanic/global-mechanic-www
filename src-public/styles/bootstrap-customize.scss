@@ -6,3 +6,13 @@ $text-color: white;
 $font-family-sans-serif: Helvetica, Arial, sans-serif;
 $font-size-base:         32px;
 $font-size-small:        ceil(($font-size-base * 0.25)); // ~12px
+
+$border-radius-base:        0px !default;
+$border-radius-large:       0px !default;
+$border-radius-small:       0px !default;
+
+$dropdown-border:           white;
+$btn-default-border:        white;
+
+$caret-width-base:          14px !default;
+$caret-width-large:         15px !default;
