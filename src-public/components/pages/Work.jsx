@@ -1,6 +1,7 @@
 import React from 'react'
-import { DropdownButton, Jumbotron, Grid } from 'react-bootstrap'
+import { DropdownButton, Grid } from 'react-bootstrap'
 import { Link } from 'react-router'
+import DynamicGrid from '../DynamicGrid'
 // import HeaderLine from '../HeaderLine'
 //import BodyLine from '../BodyLine'
 
@@ -19,9 +20,7 @@ export default function Work(props) {
       </DropdownButton>
     </div>
     <Grid fluid style={{ marginTop:'25px' }}>
-      <Jumbotron>
-        <h1>VIDEO LINKS HERE</h1>
-      </Jumbotron>
+      <DynamicGrid/>
     </Grid>
   </div>
 }
