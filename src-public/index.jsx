@@ -15,6 +15,15 @@ window.addEvent = function(object, type, callback) {
     object['on'+type] = callback
 }
 
+window.removeEvent = function(object, type, callback) {
+  if (object.removeEventListener)
+    object.removeEventListener(type, callback, false)
+  else if (object.detachEvent)
+    object.detachEvent('on' + type, callback)
+  else
+    delete object['on'+type]
+}
+
 const routes = <Router history={browserHistory}>
   <Route path='/' component={Navigation}>
     <IndexRoute component={Splash}/>

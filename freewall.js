@@ -24,8 +24,8 @@
             delay: 0, // slowdown active block;
             engine: 'giot',
             fixSize: null, // resize + adjust = fill gap;
-            //fixSize: 0, resize but keep ratio = no fill gap;
-            //fixSize: 1, no resize + no adjust = no fill gap;
+            // fixSize: 0, //resize but keep ratio = no fill gap;
+            // fixSize: 1, //no resize + no adjust = no fill gap;
             gutterX: 15, // width spacing between blocks;
             gutterY: 15, // height spacing between blocks;
             keepOrder: false,
@@ -747,8 +747,6 @@
         }
     };
 
-
-
     function Freewall(selector) {
 
         var container = $(selector);
@@ -887,46 +885,46 @@
 
         $.extend(klass, {
 
-            addCustomEvent: function(name, func) {
-                var events = runtime.events;
-                name = name.toLowerCase();
-                !events[name] && (events[name] = []);
-                func.eid = events[name].length;
-                events[name].push(func);
-                return this;
-            },
+          addCustomEvent: function(name, func) {
+            var events = runtime.events;
+            name = name.toLowerCase();
+            !events[name] && (events[name] = []);
+            func.eid = events[name].length;
+            events[name].push(func);
+            return this;
+          },
 
-            appendBlock: function(items) {
-                var allBlock = $(items).appendTo(container);
-                var block = null;
-                var activeBlock = [];
+          appendBlock: function(items) {
+            var allBlock = $(items).appendTo(container);
+            var block = null;
+            var activeBlock = [];
 
-                if (runtime.arguments) {
+            if (runtime.arguments) {
 
-                    if ($.isFunction(runtime.sortFunc)) {
-                        allBlock.sort(runtime.sortFunc);
-                    }
+              if ($.isFunction(runtime.sortFunc)) {
+                allBlock.sort(runtime.sortFunc);
+              }
 
-                    allBlock.each(function(index, item) {
-                        item.index = ++index;
-                        block = layoutManager.loadBlock(item, setting);
-                        block && activeBlock.push(block);
-                    });
+              allBlock.each(function(index, item) {
+                item.index = ++index;
+                block = layoutManager.loadBlock(item, setting);
+                block && activeBlock.push(block);
+              });
 
-                    engine[setting.engine](activeBlock, setting);
+              engine[setting.engine](activeBlock, setting);
 
-                    layoutManager.setWallSize(runtime, container);
+              layoutManager.setWallSize(runtime, container);
 
-                    runtime.length = allBlock.length;
+              runtime.length = allBlock.length;
 
-                    allBlock.each(function(index, item) {
-                        layoutManager.showBlock(item, setting);
-                        if (setting.draggable || item.getAttribute('data-draggable')) {
-                            setDraggable(item);
-                        }
-                    });
+              allBlock.each(function(index, item) {
+                layoutManager.showBlock(item, setting);
+                if (setting.draggable || item.getAttribute('data-draggable')) {
+                  setDraggable(item);
                 }
-            },
+              });
+            }
+          },
             /*
             add one or more blank area (hole) on layout;
             example:
@@ -954,30 +952,30 @@
                 ]);
 
             */
-            appendHoles: function(holes) {
-                var newHoles = [].concat(holes), h = {}, i;
-                for (i = 0; i < newHoles.length; ++i) {
-                    h = newHoles[i];
-                    runtime.holes[h.top + "-" + h.left + "-" + h.width + "-" + h.height] = h;
-                }
-                return this;
-            },
+          appendHoles: function(holes) {
+            var newHoles = [].concat(holes), h = {}, i;
+            for (i = 0; i < newHoles.length; ++i) {
+              h = newHoles[i];
+              runtime.holes[h.top + "-" + h.left + "-" + h.width + "-" + h.height] = h;
+            }
+            return this;
+          },
 
             container: container,
 
             destroy: function() {
-                var allBlock = container.find(setting.selector).removeAttr('id'),
-                    block = null,
-                    activeBlock = [];
+              var allBlock = container.find(setting.selector).removeAttr('id'),
+                block = null,
+                activeBlock = [];
 
-                allBlock.each(function(index, item) {
-                    $item = $(item);
-                    var width = 1 * $item.attr('data-width') || "";
-                    var height = 1 * $item.attr('data-height') || "";
-                    $item.width(width).height(height).css({
-                        position: 'static'
-                    });
+              allBlock.each(function(index, item) {
+                $item = $(item);
+                var width = 1 * $item.attr('data-width') || "";
+                var height = 1 * $item.attr('data-height') || "";
+                $item.width(width).height(height).css({
+                  position: 'static'
                 });
+              });
             },
 
             fillHoles: function(holes) {
@@ -1002,32 +1000,32 @@
             },
 
             fireEvent: function(name, object, setting) {
-                var events = runtime.events;
-                name = name.toLowerCase();
-                if (events[name] && events[name].length) {
-                    for (var i = 0; i < events[name].length; ++i) {
-                        events[name][i].call(this, object, setting);
-                    }
+              var events = runtime.events;
+              name = name.toLowerCase();
+              if (events[name] && events[name].length) {
+                for (var i = 0; i < events[name].length; ++i) {
+                  events[name][i].call(this, object, setting);
                 }
-                return this;
+              }
+              return this;
             },
 
             fitHeight: function(height) {
 
-                var height = height ? height : container.height() || $W.height();
+              var height = height ? height : container.height() || $W.height();
 
-                this.fitZone('auto', height);
+              this.fitZone('auto', height);
 
-                runtime.arguments = arguments;
+              runtime.arguments = arguments;
             },
 
             fitWidth: function(width) {
 
-                var width = width ? width : container.width() || $W.width();
+              var width = width ? width : container.width() || $W.width();
 
-                this.fitZone(width, 'auto');
+              this.fitZone(width, 'auto');
 
-                runtime.arguments = arguments;
+              runtime.arguments = arguments;
             },
 
             fitZone: function(width, height) {

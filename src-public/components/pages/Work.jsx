@@ -2,6 +2,7 @@ import React from 'react'
 import { DropdownButton, Grid } from 'react-bootstrap'
 import { Link } from 'react-router'
 import DynamicGrid from '../DynamicGrid'
+import FreeWall from '../FreeWall'
 // import HeaderLine from '../HeaderLine'
 //import BodyLine from '../BodyLine'
 
@@ -20,7 +21,10 @@ export default function Work(props) {
       </DropdownButton>
     </div>
     <Grid fluid style={{ marginTop:'25px' }}>
-      <DynamicGrid/>
+      {/*<DynamicGrid targetHeight={300}>{
+        Array.from({length:20}, (val,key)=> <div key={key}>{`cell-${key}`}</div>)
+      }</DynamicGrid>*/}
+      <FreeWall/>
     </Grid>
   </div>
 }
