@@ -6,7 +6,7 @@ module.exports = {
     'bootstrap-loader',
     'webpack-dev-server/client?http://0.0.0.0:5000',
 //  'webpack/hot/only-dev-server',
-    './src-public/index.jsx'
+    './src-client/index.jsx'
   ],
   module: {
     loaders: [
@@ -39,12 +39,12 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   output: {
-    path: __dirname + '/dist-public',
+    path: __dirname + '/dist-client',
     publicPath: '/',
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: './src-public',
+    contentBase: './src-client',
     hot: false
   },
   // plugins: [

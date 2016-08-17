@@ -1,7 +1,14 @@
 {
-  "babelSourcePath":                  "src",
-  "babelTranspilePath":               "dist-app",
+  "babelMapsPath":                    "dist-server-apps",
+  "babelMapsAddUrl":                  true,
+  "babelSourcePath":                  "src-server",
+  "babelTranspilePath":               "dist-server",
+  "createMap":                        true,
   "createTargetDirectories":          true,
   "createTranspiledCode":             true,
+  "disableWhenNoBabelrcFileInPath":   true,
+  "projectRoot":                      true,
+  "suppressSourcePathMessages":       true,
+  "suppressTranspileOnSaveMessages":  true,
   "transpileOnSave":                  true
 }
