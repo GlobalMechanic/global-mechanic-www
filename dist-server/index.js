@@ -17,6 +17,6 @@ var port = _app2.default.get('port');
 var server = _app2.default.listen(port, '0.0.0.0');
 
 server.on('listening', function () {
-  log('App enabled. Server listening on port ' + port);
+  return log('App enabled. Server listening on port ' + port);
 });
-//# sourceMappingURL=/Volumes/GM Production 02 External/Projects/Git/global-mechanic-www/index.js.map
+//# sourceMappingURL=/Users/Global/Projects/global-mechanic-www/dist-server-maps/index.js.map

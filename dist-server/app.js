@@ -80,4 +80,4 @@ app.use((0, _compression2.default)()).options('*', (0, _cors2.default)()).use((0
 /******************************************************************************/
 
 exports.default = app;
-//# sourceMappingURL=/Volumes/GM Production 02 External/Projects/Git/global-mechanic-www/app.js.map
+//# sourceMappingURL=/Users/Global/Projects/global-mechanic-www/dist-server-maps/app.js.map

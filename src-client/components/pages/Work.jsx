@@ -1,18 +1,14 @@
 import React from 'react'
+
 import { DropdownButton, Grid } from 'react-bootstrap'
 import { Link } from 'react-router'
-import DynamicGrid from '../DynamicGrid'
-import FreeWall from '../FreeWall'
-// import HeaderLine from '../HeaderLine'
-//import BodyLine from '../BodyLine'
 
-// function PortfolioDropdown() {
-//   return <
-// }
+import FreeWall from '../FreeWall'
 
 export default function Work(props) {
 
   return <div>
+
     <div id='work-header'>
       <DropdownButton title={props.params.portfolio} id='work-dropdown'>
         <Link to='/work/cartoon'>Cartoon</Link>
@@ -20,11 +16,15 @@ export default function Work(props) {
         <Link to='/work/character'>Character</Link>
       </DropdownButton>
     </div>
+
     <Grid fluid style={{ marginTop:'25px' }}>
-      {/*<DynamicGrid targetHeight={300}>{
+      {/* <FreeWall targetHeight={300}>{
         Array.from({length:20}, (val,key)=> <div key={key}>{`cell-${key}`}</div>)
-      }</DynamicGrid>*/}
-      <FreeWall/>
+      }</FreeWall> */}
+      <FreeWall>
+
+      </FreeWall>
     </Grid>
+
   </div>
 }

@@ -1,8 +1,8 @@
 )]}
 {
  "version": 3,
- "sources": "/Volumes/GM Production 02 External/Projects/Git/global-mechanic-www/src/index.js",
- "file": "/Volumes/GM Production 02 External/Projects/Git/global-mechanic-www/dist-app/index.js",
+ "sources": "/Users/Global/Projects/global-mechanic-www/src-server/index.js",
+ "file": "/Users/Global/Projects/global-mechanic-www/dist-server/index.js",
  "sourceRoot": "",
  "names": [],
  "mappings": ";;AAAA;;;;AACA;;;;;;AAEA,OAAO,EAAP;AACA,OAAO,GAAP,GAAa,QAAQ,MAAR,CAAe,KAAf,CAAqB,IAArB,CAA0B,QAAQ,MAAlC,CAAb;;AAEA,IAAM,OAAO,cAAI,GAAJ,CAAQ,MAAR,CAAb;AACA,IAAM,SAAS,cAAI,MAAJ,CAAW,IAAX,EAAiB,SAAjB,CAAf;;AAEA,OAAO,EAAP,CAAU,WAAV,EAAuB;AAAA,SAAM,+CAA6C,IAA7C,CAAN;AAAA,CAAvB"

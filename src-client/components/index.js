@@ -1,7 +1,7 @@
 import Background from './Background'
 import Bodyline from './Bodyline'
-import DynamicGrid from './DynamicGrid'
+import FreeWall from './FreeWall'
 import Headerline from './Headerline'
 import Navigation from './Navigation'
 
-export { Background, Bodyline, DynamicGrid, Headerline, Navigation }
+export { Background, Bodyline, FreeWall, Headerline, Navigation }

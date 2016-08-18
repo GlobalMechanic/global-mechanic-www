@@ -26,3 +26,4 @@ var _logger = require('./logger');
 var _logger2 = _interopRequireDefault(_logger);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+//# sourceMappingURL=/Users/Global/Projects/global-mechanic-www/dist-server-maps/middleware/index.js.map

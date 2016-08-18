@@ -1,9 +1,0 @@
-)]}
-{
- "version": 3,
- "sources": "/Users/bengaumond/Programming/global-mechanic-www/src/services/video.js",
- "file": "/Users/bengaumond/Programming/global-mechanic-www/dist-app/services/video.js",
- "sourceRoot": "",
- "names": [],
- "mappings": ";;;;;;;;;;;kBAsIe,YAAW;AACxB,MAAM,MAAM,IAAZ;AACA,MAAM,SAAS,IAAI,GAAJ,CAAQ,OAAR,CAAf;;AAEA,MAAI,GAAJ,CAAQ,QAAR,EAAkB,IAAI,YAAJ,CAAiB,MAAjB,CAAlB;;;;;AAMD,C;;AA5ID;;;;;;;;;;;;;;;;;IAeM,Y;AAEJ,wBAAY,MAAZ,EAAoB;AAAA;;AAClB,SAAK,MAAL,GAAc,MAAd;AACA,SAAK,GAAL,GAAW,iBAAU,OAAO,QAAjB,EAA2B,OAAO,YAAlC,CAAX;;;;;;;;;;;;AAYD;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;wBA+CG,E,EAAI;AACN,UAAI,EAAJ;AACD;;;yBAEI,M,EAAQ;AACX,UAAI,MAAJ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAuCD;;;;;;;;;;QAoBsB,O,GAAhB,Y"
-}

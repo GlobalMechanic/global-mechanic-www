@@ -1,5 +1,5 @@
-const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack') //eslint-disable-line
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: [
@@ -12,7 +12,7 @@ module.exports = {
     loaders: [
       {
         test: /\.s?css$/,
-        loader: ExtractTextPlugin.extract("style", "raw", "sass")
+        loader: ExtractTextPlugin.extract('style', 'raw', 'sass')
       },
       {
         test: /\.(woff2?|svg)$/,
@@ -47,7 +47,10 @@ module.exports = {
     contentBase: './src-client',
     hot: false
   },
-  // plugins: [
-  //   new webpack.HotModuleReplacementPlugin()
-  // ]
-};
+  plugins: [
+    new webpack.ProvidePlugin({
+      is: 'is-explicit'
+    }),
+//    new webpack.HotModuleReplacementPlugin()
+  ]
+}

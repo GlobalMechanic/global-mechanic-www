@@ -159,3 +159,4 @@ var VimeoService = function () {
 /******************************************************************************/
 
 exports.Service = VimeoService;
+//# sourceMappingURL=/Users/Global/Projects/global-mechanic-www/dist-server-maps/services/video.js.map
