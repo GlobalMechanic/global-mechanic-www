@@ -18,12 +18,10 @@ export default function Work(props) {
     </div>
 
     <Grid fluid style={{ marginTop:'25px' }}>
-      {/* <FreeWall targetHeight={300}>{
+      <FreeWall targetHeight={300}>{
         Array.from({length:20}, (val,key)=> <div key={key}>{`cell-${key}`}</div>)
-      }</FreeWall> */}
-      <FreeWall>
+      }</FreeWall>
 
-      </FreeWall>
     </Grid>
 
   </div>

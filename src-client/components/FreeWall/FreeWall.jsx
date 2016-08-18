@@ -3,8 +3,8 @@
 /******************************************************************************/
 
 import React from 'react'
-import BlockData from './block-data'
 import BlockManager from './block-manager'
+import Block from './Block'
 
 /******************************************************************************/
 // Exports
@@ -15,18 +15,28 @@ export default class FreeWall extends React.Component {
   constructor(props) {
     super(props)
     this.manager = new BlockManager(this)
+    this.state = { blocks: [] }
   }
 
   componentDidMount() {
-    addEvent(window, 'resize', this.manager.apply)
+    addEvent(window, 'resize', this.manager.calculate)
+    this.manager.calculate()
   }
 
-  componentDidUnmount() {
-    removeEvent(window, 'resize', this.manager.apply)
+  componentWillUnmount() {
+    removeEvent(window, 'resize', this.manager.calculate)
   }
 
   render() {
-    return <div>FREEWALL</div>
+
+    return <div className='freewall'>
+      {
+        this.state.blocks.map((data,i) =>
+        <Block key={i} data={data} dimension={this.props.dimension}>
+          {data.child}
+        </Block>)
+      }
+      </div>
   }
 
 }
