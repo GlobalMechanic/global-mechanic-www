@@ -2,8 +2,11 @@ import React from 'react'
 
 import { DropdownButton, Grid } from 'react-bootstrap'
 import { Link } from 'react-router'
+import randomColor from 'random-color'
 
 import FreeWall from '../FreeWall'
+
+const rHex = () => randomColor().hexString()
 
 export default function Work(props) {
 
@@ -18,9 +21,14 @@ export default function Work(props) {
     </div>
 
     <Grid fluid style={{ marginTop:'25px' }}>
-      <FreeWall targetHeight={300}>{
-        Array.from({length:20}, (val,key)=> <div key={key}>{`cell-${key}`}</div>)
-      }</FreeWall>
+
+      <FreeWall id="free-wall" selector=".block">
+      { Array.from({length:25}, (val,key) => <div
+        key={key} className="block"
+        style={{backgroundColor: rHex(), width: 320, height: 180}}>
+          {`cell-${key}`}
+        </div>) }
+      </FreeWall>
 
     </Grid>
 

@@ -6,6 +6,10 @@ import { IndexRoute, Router, Route, browserHistory } from 'react-router'
 import { About, Directors, Work, Splash } from './components/pages'
 import { Navigation } from './components'
 
+/******************************************************************************/
+// Window Adds
+/******************************************************************************/
+
 window.addEvent = function(object, type, callback) {
   if (object.addEventListener)
     object.addEventListener(type, callback, false)
@@ -24,6 +28,18 @@ window.removeEvent = function(object, type, callback) {
     delete object['on'+type]
 }
 
+/******************************************************************************/
+// Setup
+/******************************************************************************/
+
+window.addEvent(window, 'load', () => {
+  ReactDOM.render(routes, document.getElementsByTagName('main')[0])
+})
+
+/******************************************************************************/
+// Routes
+/******************************************************************************/
+
 const routes = <Router history={browserHistory}>
   <Route path='/' component={Navigation}>
     <IndexRoute component={Splash}/>
@@ -32,7 +48,3 @@ const routes = <Router history={browserHistory}>
     <Route path='/about' component={About}/>
   </Route>
 </Router>
-
-window.addEvent(window, 'load', () => {
-  ReactDOM.render(routes, document.getElementsByTagName('main')[0])
-})

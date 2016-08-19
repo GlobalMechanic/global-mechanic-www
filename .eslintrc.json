@@ -41,6 +41,9 @@
       "is": false,
       "log": false,
       "addEvent": false,
-      "removeEvent": false
+      "removeEvent": false,
+      "$": false,
+      "jQuery": false,
+      "freewall": false
     }
 }
