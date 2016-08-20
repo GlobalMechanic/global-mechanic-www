@@ -1,11 +1,11 @@
 import React from 'react'
 import { Grid } from 'react-bootstrap'
-import HeaderLine from '../HeaderLine'
-import BodyLine from '../BodyLine'
+import HeaderText from '../HeaderText'
+import BodyText from '../BodyText'
 
 export default function Directors() {
   return <Grid fluid>
-    <HeaderLine>Directors</HeaderLine>
-    <BodyLine>Larry is a real piece of shit.</BodyLine>
+    <HeaderText>Directors</HeaderText>
+    <BodyText>Larry is a real piece of shit.</BodyText>
   </Grid>
 }

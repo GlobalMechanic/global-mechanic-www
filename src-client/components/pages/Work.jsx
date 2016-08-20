@@ -8,6 +8,11 @@ import FreeWall from '../FreeWall'
 
 const rHex = () => randomColor().hexString()
 
+function rInt(lo=50, high=250) {
+  const range = Math.random() * (high - lo)
+  return Math.round(range + lo)
+}
+
 export default function Work(props) {
 
   return <div>
@@ -22,10 +27,10 @@ export default function Work(props) {
 
     <Grid fluid style={{ marginTop:'25px' }}>
 
-      <FreeWall id="free-wall" selector=".block">
-      { Array.from({length:25}, (val,key) => <div
+      <FreeWall id="free-wall" selector=".block" targetHeight={700}>
+      { Array.from({length:rInt(15,30)}, (val,key) => <div
         key={key} className="block"
-        style={{backgroundColor: rHex(), width: 320, height: 180}}>
+        style={{backgroundColor: rHex(), width: rInt(200,500), height: rInt(100,400)}}>
           {`cell-${key}`}
         </div>) }
       </FreeWall>

@@ -1,7 +1,7 @@
 import Background from './Background'
-import Bodyline from './Bodyline'
-import FreeWall from './FreeWall-jQuery'
-import Headerline from './Headerline'
+import BodyText from './BodyText'
+import FreeWall from './FreeWall'
+import HeaderText from './HeaderText'
 import Navigation from './Navigation'
 
-export { Background, Bodyline, FreeWall, Headerline, Navigation }
+export { Background, BodyText, FreeWall, HeaderText, Navigation }

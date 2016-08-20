@@ -3,7 +3,7 @@
 /******************************************************************************/
 
 import React from 'react'
-import { Freewall } from 'freewall'
+import Freewall from './freewall-bengaumond-forked'
 
 /******************************************************************************/
 // Exports
@@ -17,28 +17,38 @@ export default class FreeWall extends React.Component {
     this.resize = this.resize.bind(this)
   }
 
+  reset() {
+    this.freewall.reset({
+      selector: this.props.selector,
+      animate: 0.25,
+      cellW: 125,
+      cellH: 125,
+      gutterX: 0,
+      gutterY: 0,
+      delay: 0
+    })
+    this.resize()
+
+  }
+
   resize() {
-    this.freewall && this.dom && this.freewall.fitZone(this.dom.offsetWidth, 500)
+    if (this.freewall && this.dom)
+      this.freewall.fitZone(this.dom.offsetWidth, this.props.targetHeight || DefaultTargetHeight)
   }
 
   componentDidMount() {
     this.freewall = new Freewall(`#${this.props.id}`)
-    this.freewall.reset({
-      selector: this.props.selector,
-      animate: true,
-      cellW: 150,
-      cellH: 150,
-      gutterX: 0,
-      gutterY: 0,
-      delay: 10
-    })
-    this.resize()
+    this.reset()
 
     addEvent(window, 'resize', this.resize)
   }
 
   componentWillUnmount() {
     removeEvent(window, 'resize', this.resize)
+  }
+
+  componentDidUpdate() {
+    this.reset()
   }
 
   render() {
