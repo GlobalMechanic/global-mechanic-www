@@ -18,11 +18,23 @@ exports.default = function () {
 exports.videos = videos;
 exports.portfolios = portfolios;
 
-var _vimeo = require('vimeo');
+var _fs = require('fs');
+
+var _fs2 = _interopRequireDefault(_fs);
+
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
 
 var _isExplicit = require('is-explicit');
 
 var _isExplicit2 = _interopRequireDefault(_isExplicit);
+
+var _vimeo = require('vimeo');
+
+var _nedb = require('nedb');
+
+var _nedb2 = _interopRequireDefault(_nedb);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30,31 +42,28 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Data
 /******************************************************************************/
 
-/******************************************************************************/
+var library = void 0; /******************************************************************************/
 // Dependencies
 /******************************************************************************/
 
-var library = void 0;
 
 var SIX_HOURS = 1000 * 60 * 60 * 6; // ms * sec * min
 
-var REQUEST_HEADERS = {
+var REQUEST_HEADERS = Object.freeze({
   Accept: 'application/vnd.vimeo.*+json;version=3.0'
-};
+});
 
-var QUERY = {
+var QUERY = Object.freeze({
   page: 1,
   per_page: 100
-};
+});
 
 var cache = {
-  portfolios: {
-    timestamp: null,
-    data: {}
-  },
-  videos: {
-    timstamp: null,
-    data: {}
+  portfolios: require('../../cache/portfolios'),
+  videos: require('../../cache/videos'),
+  write: function write() {
+    _fs2.default.writeFile(_path2.default.resolve(__dirname, '../../cache/portfolios.json'), JSON.stringify(this.portfolios, null, 2));
+    _fs2.default.writeFile(_path2.default.resolve(__dirname, '../../cache/videos.json'), JSON.stringify(this.videos, null, 2));
   }
 };
 
@@ -62,6 +71,8 @@ var cache = {
 // Helper
 /******************************************************************************/
 function valid(timestamp) {
+  if ((0, _isExplicit2.default)(timestamp, String)) timestamp = Date.parse(timestamp);
+
   var since = new Date() - (timestamp || 0);
   return since < SIX_HOURS;
 }
@@ -101,11 +112,28 @@ function fetch_videos(portfolio_id) {
       path: '/users/' + config.accountId + '/portfolios/' + portfolio_id + '/videos?sort=manual',
       query: QUERY
     }, function (err, body) {
-      if (err) return rej(err);
 
-      res(body.data.map(function (video) {
-        video.portfolio = portfolio_id;
-        return video;
+      if (err) rej(err);else res(body.data.map(function (video) {
+        return {
+          id: video.uri.split('/')[2],
+          name: video.name,
+          description: video.description,
+          duration: video.duration,
+          width: video.width,
+          height: video.height,
+          embedHtml: video.embed.html,
+          portfolio: video.portfolio,
+          urls: {
+            thumb: video.pictures.sizes.map(function (thumb) {
+              return thumb.link;
+            }),
+            file: video.files.map(function (file) {
+              return file.link;
+            }),
+            main: video.link
+          },
+          status: video.status
+        };
       }));
     });
   }).catch(function (err) {
@@ -149,8 +177,8 @@ var config = exports.config = {};
 function videos() {
   if (valid(cache.videos.timestamp)) return Promise.resolve(cache.videos.data);
 
-  cache.videos.timestamp = new Date();
-  cache.videos.data = {};
+  var timestamp = new Date();
+  var data = {};
 
   return portfolios().then(function () {
     return authenticate(true);
@@ -162,14 +190,37 @@ function videos() {
       promises.push(fetch_videos(folio.id));
     }
 
+    console.log(promises.length, "NUM PROMISES");
+
     return Promise.all(promises);
   }).then(function (results) {
+    if (!(0, _isExplicit2.default)(results, Array)) {
+      console.log('EXPECTED AN ARRAY BUT GOT:');
+      console.log(results);
+      throw new Error('Results arn\'t getting turned into an array.');
+    }
 
     for (var i = 0; i < results.length; i++) {
-      for (var ii = 0; ii < results[i].length; i++) {
-        cache.videos.data[results[i][ii].id] = results[i][ii];
+      var _videos = results[i];
+      if ((0, _isExplicit2.default)(_videos, Array)) {
+        for (var ii = 0; ii < _videos.length; ii++) {
+          var video = _videos[ii];
+          data[video.id] = video;
+        }
+      } else {
+        console.log('EXPECTED AN ARRAY BUT GOT:');
+        console.log(_videos);
       }
-    }return cache.data.videos;
+    }
+  }).then(function () {
+
+    cache.videos.data = data;
+    cache.videos.timestamp = timestamp;
+    cache.write();
+
+    return cache.videos.data;
+  }).catch(function (err) {
+    console.log(err);
   });
 }
 
@@ -177,14 +228,14 @@ function portfolios() {
 
   if (valid(cache.portfolios.timestamp)) return Promise.resolve(cache.portfolios.data);
 
-  cache.portfolios.timestamp = new Date();
-  cache.portfolios.data = {};
+  var timestamp = new Date();
+  var data = {};
 
   return fetch_portfolios(true).then(function (private_portfolios) {
     for (var i = 0; i < private_portfolios.length; i++) {
       var folio = private_portfolios[i];
       folio.scope = 'private';
-      cache.portfolios.data[folio.id] = folio;
+      data[folio.id] = folio;
     }
 
     return fetch_portfolios(false);
@@ -193,10 +244,18 @@ function portfolios() {
       var folio = public_portfolios[i];
       folio.scope = 'public';
       //overwriting what was just placed there in the private loop, but who cares
-      cache.portfolios.data[folio.id] = folio;
+      data[folio.id] = folio;
     }
+  }).then(function () {
+    cache.portfolios.data = data;
+    cache.portfolio.timestamp = timestamp;
+    cache.write();
 
-    return cache.portfolios.data;
+    return cache.portfolio.data;
+  }).catch(function (err) {
+    console.error(err);
+
+    return cache.portfolio.data;
   });
 }
 //# sourceMappingURL=/Users/bengaumond/Programming/global-mechanic-www/dist-server-maps/modules/gm-vimeo.js.map

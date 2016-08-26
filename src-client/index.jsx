@@ -38,7 +38,7 @@ window.removeEvent = function(object, type, callback) {
 window.addEvent(window, 'load', () => {
   ReactDOM.render(routes, document.getElementsByTagName('main')[0])
 
-  videos.find().then(vids => console.log(vids))
+  videos.find().then(vids => console.log(vids)).catch(err => console.log(err))
 
 })
 
