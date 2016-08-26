@@ -48,17 +48,21 @@ var _middleware = require('./middleware');
 
 var _middleware2 = _interopRequireDefault(_middleware);
 
+var _gmVimeo = require('./modules/gm-vimeo');
+
+var _gmVimeo2 = _interopRequireDefault(_gmVimeo);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /******************************************************************************/
 // Data
 /******************************************************************************/
-
+var app = (0, _feathers2.default)();
 //import favicon from 'serve-favicon'
 /******************************************************************************/
 // Dependencies
 /******************************************************************************/
-var app = (0, _feathers2.default)();
+
 var configURL = _path2.default.resolve(__dirname, '..');
 
 /******************************************************************************/
@@ -71,7 +75,9 @@ var publicURL = app.get('public');
 
 app.use((0, _compression2.default)()).options('*', (0, _cors2.default)()).use((0, _cors2.default)())
 //  .use(favicon(faviconURL))
-.use('/', (0, _feathers.static)(publicURL)).use(_bodyParser2.default.json()).use(_bodyParser2.default.urlencoded({ extended: true })).use((0, _expressHistoryApiFallback2.default)('index.html', { publicURL: publicURL })).configure((0, _feathersHooks2.default)()).configure((0, _feathersRest2.default)()).configure(_middleware2.default).configure(_services2.default).get('*', function (req, res) {
+.use('/', (0, _feathers.static)(publicURL)).use(_bodyParser2.default.json()).use(_bodyParser2.default.urlencoded({ extended: true })).configure((0, _feathersHooks2.default)()).configure((0, _feathersRest2.default)()).configure(_services2.default).configure(_middleware2.default).configure(_gmVimeo2.default).use((0, _expressHistoryApiFallback2.default)('index.html', { publicURL: publicURL }))
+//Send every remaining path to index.html
+.get('*', function (req, res) {
   return res.sendFile(_path2.default.join(publicURL, 'index.html'));
 });
 
@@ -80,4 +86,4 @@ app.use((0, _compression2.default)()).options('*', (0, _cors2.default)()).use((0
 /******************************************************************************/
 
 exports.default = app;
-//# sourceMappingURL=/Users/Global/Projects/global-mechanic-www/dist-server-maps/app.js.map
+//# sourceMappingURL=/Users/bengaumond/Programming/global-mechanic-www/dist-server-maps/app.js.map

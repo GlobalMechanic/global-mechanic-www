@@ -5,6 +5,9 @@ import ReactDOM from 'react-dom'
 import { IndexRoute, Router, Route, browserHistory } from 'react-router'
 import { About, Directors, Work, Splash } from './components/pages'
 import { Navigation } from './components'
+import feathers from './modules/feathers'
+
+const videos = feathers.service('videos')
 
 /******************************************************************************/
 // Window Adds
@@ -34,6 +37,9 @@ window.removeEvent = function(object, type, callback) {
 
 window.addEvent(window, 'load', () => {
   ReactDOM.render(routes, document.getElementsByTagName('main')[0])
+
+  videos.find().then(vids => console.log(vids))
+
 })
 
 /******************************************************************************/

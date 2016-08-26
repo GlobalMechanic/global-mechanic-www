@@ -16,6 +16,7 @@ import fallback from 'express-history-api-fallback'
 
 import services from './services'
 import middleware from './middleware'
+import vimeo from './modules/gm-vimeo'
 
 /******************************************************************************/
 // Data
@@ -38,11 +39,15 @@ app.use(compress())
   .use('/', serveStatic(publicURL))
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
-  .use(fallback('index.html', { publicURL }))
+
   .configure(hooks())
   .configure(rest())
-  .configure(middleware)
   .configure(services)
+  .configure(middleware)
+  .configure(vimeo)
+
+  .use(fallback('index.html', { publicURL }))
+  //Send every remaining path to index.html
   .get('*', (req,res) => res.sendFile(path.join(publicURL, 'index.html')))
 
 /******************************************************************************/

@@ -11,12 +11,13 @@ var _isExplicit2 = _interopRequireDefault(_isExplicit);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 global.is = _isExplicit2.default;
-global.log = process.stdout.write.bind(process.stdout);
+global.log = _app2.default.logger.info.bind(_app2.default.logger);
 
 var port = _app2.default.get('port');
 var server = _app2.default.listen(port, '0.0.0.0');
 
 server.on('listening', function () {
-  return log('App enabled. Server listening on port ' + port);
+
+  log('App enabled. Server listening on port ' + port);
 });
-//# sourceMappingURL=/Users/Global/Projects/global-mechanic-www/dist-server-maps/index.js.map
+//# sourceMappingURL=/Users/bengaumond/Programming/global-mechanic-www/dist-server-maps/index.js.map
