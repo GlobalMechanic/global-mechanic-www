@@ -3,10 +3,8 @@
 /******************************************************************************/
 import fs from 'fs'
 import path from 'path'
-import is from 'is-explicit'
 
 import { Vimeo } from 'vimeo'
-import Nedb from 'nedb'
 
 /******************************************************************************/
 // Data
@@ -16,14 +14,14 @@ let library
 
 const SIX_HOURS = 1000 * 60 * 60 * 6 // ms * sec * min
 
-const REQUEST_HEADERS = Object.freeze({
-  Accept: `application/vnd.vimeo.*+json;version=3.0`
-})
+const REQUEST_HEADERS = {
+  Accept: 'application/vnd.vimeo.*+json;version=3.0'
+}
 
-const QUERY = Object.freeze({
+const QUERY = {
   page: 1,
   per_page: 100
-})
+}
 
 const cache = {
   portfolios: require('../../cache/portfolios'),
@@ -95,7 +93,7 @@ function fetch_videos(portfolio_id) {
             width: video.width,
             height: video.height,
             embedHtml: video.embed.html,
-            portfolio: video.portfolio,
+            portfolios: [portfolio_id],
             urls: {
               thumb: video.pictures.sizes.map(thumb => thumb.link),
               file: video.files.map(file => file.link),
@@ -106,7 +104,7 @@ function fetch_videos(portfolio_id) {
         }))
     })
   })
-  .catch(err => console.log(err))
+  .catch(err => log.error(err))
 
 }
 
@@ -133,7 +131,7 @@ function fetch_portfolios(_private) {
       }))
     })
   }))
-  .catch(err => console.log(err))
+  .catch(err => log.error(err))
 }
 
 /******************************************************************************/
@@ -171,27 +169,25 @@ export function videos() {
       promises.push(fetch_videos(folio.id))
     }
 
-    console.log(promises.length, "NUM PROMISES")
-
     return Promise.all(promises)
   })
   .then(results => {
-    if (!is(results, Array)) {
-      console.log('EXPECTED AN ARRAY BUT GOT:')
-      console.log(results)
+    if (!is(results, Array))
       throw new Error('Results arn\'t getting turned into an array.')
-    }
 
     for (let i = 0; i < results.length; i++) {
       const videos = results[i]
       if (is(videos, Array)) {
         for (let ii = 0; ii < videos.length; ii++) {
           const video = videos[ii]
-          data[video.id] = video
+          if (data[video.id])
+            data[video.id].portfolios.push(...video.portfolios)
+          else
+            data[video.id] = video
         }
       } else {
-        console.log('EXPECTED AN ARRAY BUT GOT:')
-        console.log(videos)
+        log.error('results isn\'t an array, for some reason')
+        log.debug(videos)
       }
     }
   })
@@ -203,9 +199,7 @@ export function videos() {
 
     return cache.videos.data
   })
-  .catch(err => {
-    console.log(err)
-  })
+  .catch(err => log.error(err))
 }
 
 export function portfolios() {
@@ -236,14 +230,13 @@ export function portfolios() {
   })
   .then(() => {
     cache.portfolios.data = data
-    cache.portfolio.timestamp = timestamp
+    cache.portfolios.timestamp = timestamp
     cache.write()
 
-    return cache.portfolio.data
+    return cache.portfolios.data
   })
   .catch(err => {
-    console.error(err)
-
-    return cache.portfolio.data
+    log.error(err)
+    return cache.portfolios.data
   })
 }

@@ -1,0 +1,18 @@
+)]}
+{
+ "version": 3,
+ "sources": "/Users/bengaumond/Programming/global-mechanic-www/src-server/modules/query-matcher.js",
+ "file": "/Users/bengaumond/Programming/global-mechanic-www/dist-server/modules/query-matcher.js",
+ "sourceRoot": "",
+ "names": [
+  "query",
+  "doc",
+  "i",
+  "query_is_array",
+  "is",
+  "Array",
+  "some",
+  "val"
+ ],
+ "mappings": ";;;;;;;;kBAAe,UAASA,KAAT,EAAgBC,GAAhB,EAAqB;AAClCD,UAAQA,SAAS,EAAjB;AACAC,QAAMA,OAAO,EAAb;;AAFkC,6BAIzBC,CAJyB;AAKhC,QAAIA,KAAKD,GAAL,KAAa,KAAjB,EACE;;AAEF;AACA,QAAME,iBAAiBC,GAAGJ,MAAME,CAAN,CAAH,EAAaG,KAAb,CAAvB;AACA,QAAIF,kBAAkB,CAACH,MAAME,CAAN,EAASI,IAAT,CAAc;AAAA,aAAOC,OAAON,IAAIC,CAAJ,CAAd;AAAA,KAAd,CAAvB,EACE;AAAA,WAAO;AAAP;;AAEF;AAHA,SAIK,IAAI,CAACC,cAAD,IAAmBH,MAAME,CAAN,KAAYD,IAAIC,CAAJ,CAAnC,EACH;AAAA,aAAO;AAAP;AAf8B;;AAIlC,OAAK,IAAIA,CAAT,IAAcF,KAAd,EAAqB;AAAA,qBAAZE,CAAY;;AAAA;AAAA;AAEjB;;AAFiB;AAAA;AAAA;AAYpB;;AAED;AACA,SAAO,IAAP;AACD,C"
+}

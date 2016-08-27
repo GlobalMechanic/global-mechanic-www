@@ -1,9 +1,0 @@
-)]}
-{
- "version": 3,
- "sources": "/Users/Global/Projects/global-mechanic-www/src-server/middleware/not-found-handler.js",
- "file": "/Users/Global/Projects/global-mechanic-www/dist-server/middleware/not-found-handler.js",
- "sourceRoot": "",
- "names": [],
- "mappings": ";;;;;;kBAEe,YAAW;;AAExB,SAAO,UAAS,GAAT,EAAa,GAAb,EAAiB,IAAjB,EAAuB;AAC5B,SAAK,IAAI,yBAAO,QAAX,CAAoB,gBAApB,CAAL;AACD,GAFD;AAID,C;;AARD"
-}

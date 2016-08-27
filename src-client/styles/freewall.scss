@@ -5,8 +5,9 @@
 }
 
 .freewall-block {
-  position: absolute;
-  top: 0px;
-  left: 0px;
   display: inline-block;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto auto;
+
 }

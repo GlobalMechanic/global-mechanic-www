@@ -1,6 +1,10 @@
 import * as vimeo from '../modules/gm-vimeo'
 import matcher from '../modules/query-matcher'
 
+/******************************************************************************/
+// Service Class
+/******************************************************************************/
+
 class PortfolioService {
 
   get(id) {
@@ -41,14 +45,25 @@ class PortfolioService {
   }
 }
 
-export default function() {
+/******************************************************************************/
+// Hooks
+/******************************************************************************/
+
+const beforeHooks = {}
+const afterHooks = {}
+
+/******************************************************************************/
+// Exports
+/******************************************************************************/
+
+export default function initialize() {
   const app = this
 
   app.use('/portfolios', new PortfolioService())
 
-  // const portfolioService = app.service('/portfolios')
-  // portfolioService.before(beforeHooks)
-  // portfolioService.after(afterHooks)
+  const portfolioService = app.service('/portfolios')
+  portfolioService.before(beforeHooks)
+  portfolioService.after(afterHooks)
 }
 
 export { PortfolioService as Service }

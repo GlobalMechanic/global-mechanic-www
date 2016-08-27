@@ -35,14 +35,18 @@ class VideoService {
   }
 }
 
-export default function() {
+const beforeHooks = {}
+const afterHooks = {}
+
+export default function initialize() {
   const app = this
 
   app.use('/videos', new VideoService())
 
-  // const videoService = app.service('/videos')
-  // videoService.before(beforeHooks)
-  // videoService.after(afterHooks)
+  const videoService = app.service('/videos')
+  videoService.before(beforeHooks)
+  videoService.after(afterHooks)
+
 }
 
 export { VideoService as Service }

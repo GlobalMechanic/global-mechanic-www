@@ -86,4 +86,4 @@ app.use((0, _compression2.default)()).options('*', (0, _cors2.default)()).use((0
 /******************************************************************************/
 
 exports.default = app;
-//# sourceMappingURL=/Users/bengaumond/Programming/global-mechanic-www/dist-server-maps/app.js.map
+//# sourceMappingURL=/Users/bengaumond/Programming/global-mechanic-www/dist-server-src-maps/app.js.map

@@ -1,13 +1,13 @@
 import handler from 'feathers-errors/handler'
 import notFound from './not-found-handler'
-import logger from './logger'
+import logging from './logging'
 
 export default function() {
 
   const app = this
 
   app.use(notFound())
-  app.use(logger(app))
+  app.use(logging(app))
   app.use(handler())
-  
+
 }

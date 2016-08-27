@@ -5,9 +5,7 @@ import ReactDOM from 'react-dom'
 import { IndexRoute, Router, Route, browserHistory } from 'react-router'
 import { About, Directors, Work, Splash } from './components/pages'
 import { Navigation } from './components'
-import feathers from './modules/feathers'
-
-const videos = feathers.service('videos')
+import { loadPortfolios, loadVideos } from './modules/data-loader'
 
 /******************************************************************************/
 // Window Adds
@@ -36,21 +34,22 @@ window.removeEvent = function(object, type, callback) {
 /******************************************************************************/
 
 window.addEvent(window, 'load', () => {
-  ReactDOM.render(routes, document.getElementsByTagName('main')[0])
-
-  videos.find().then(vids => console.log(vids)).catch(err => console.log(err))
-
+  ReactDOM.render(<Website/>, document.getElementsByTagName('main')[0])
+  loadPortfolios()
+  loadVideos()
 })
 
 /******************************************************************************/
 // Routes
 /******************************************************************************/
 
-const routes = <Router history={browserHistory}>
-  <Route path='/' component={Navigation}>
-    <IndexRoute component={Splash}/>
-    <Route path='/directors' component={Directors}/>
-    <Route path='/work/:portfolio' component={Work}/>
-    <Route path='/about' component={About}/>
-  </Route>
-</Router>
+function Website() {
+  return <Router history={browserHistory}>
+    <Route path='/' component={Navigation}>
+      <IndexRoute component={Splash}/>
+      <Route path='/directors' component={Directors}/>
+      <Route path='/work/:portfolio' component={Work}/>
+      <Route path='/about' component={About}/>
+    </Route>
+  </Router>
+}

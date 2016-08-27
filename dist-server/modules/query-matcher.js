@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -11,10 +11,10 @@ exports.default = function (query, doc) {
   doc = doc || {};
 
   var _loop = function _loop(i) {
-    if (i in doc === false) return 'continue';
+    if (i in doc === false) return "continue";
 
     //if an array, check if any value matches
-    var query_is_array = (0, _isExplicit2.default)(query[i], Array);
+    var query_is_array = is(query[i], Array);
     if (query_is_array && !query[i].some(function (val) {
       return val == doc[i];
     })) return {
@@ -31,21 +31,15 @@ exports.default = function (query, doc) {
     var _ret = _loop(i);
 
     switch (_ret) {
-      case 'continue':
+      case "continue":
         continue;
 
       default:
-        if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+        if ((typeof _ret === "undefined" ? "undefined" : _typeof(_ret)) === "object") return _ret.v;
     }
   }
 
   //true if params is a blank object or if all matches passed
   return true;
 };
-
-var _isExplicit = require('is-explicit');
-
-var _isExplicit2 = _interopRequireDefault(_isExplicit);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-//# sourceMappingURL=/Users/bengaumond/Programming/global-mechanic-www/dist-server-maps/modules/query-matcher.js.map
+//# sourceMappingURL=/Users/bengaumond/Programming/global-mechanic-www/dist-server-src-maps/modules/query-matcher.js.map

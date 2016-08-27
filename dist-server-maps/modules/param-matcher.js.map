@@ -1,9 +1,0 @@
-)]}
-{
- "version": 3,
- "sources": "/Users/bengaumond/Programming/global-mechanic-www/src-server/modules/param-matcher.js",
- "file": "/Users/bengaumond/Programming/global-mechanic-www/dist-server/modules/param-matcher.js",
- "sourceRoot": "",
- "names": [],
- "mappings": ";;;;;;;;kBAEe,UAAS,MAAT,EAAiB,GAAjB,EAAsB;AACnC,WAAS,UAAU,EAAnB;AACA,QAAM,OAAO,EAAb;;AAFmC,6BAI1B,CAJ0B;AAKjC,QAAI,KAAK,GAAL,KAAa,KAAjB,EACE;;AAEF;AACA,QAAM,iBAAiB,0BAAG,OAAO,CAAP,CAAH,EAAc,KAAd,CAAvB;AACA,QAAI,kBAAkB,CAAC,OAAO,CAAP,EAAU,IAAV,CAAe;AAAA,aAAO,OAAO,IAAI,CAAJ,CAAd;AAAA,KAAf,CAAvB,EACE;AAAA,WAAO;AAAP;;AAEF;AAHA,SAIK,IAAI,CAAC,cAAD,IAAmB,OAAO,CAAP,KAAa,IAAI,CAAJ,CAApC,EACH;AAAA,aAAO;AAAP;AAf+B;;AAInC,OAAK,IAAI,CAAT,IAAc,MAAd,EAAsB;AAAA,qBAAb,CAAa;;AAAA;AAAA;AAElB;;AAFkB;AAAA;AAAA;AAYrB;;AAED;AACA,SAAO,IAAP;AACD,C;;AAtBD"
-}

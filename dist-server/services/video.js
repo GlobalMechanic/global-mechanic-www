@@ -7,15 +7,7 @@ exports.Service = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-exports.default = function () {
-  var app = this;
-
-  app.use('/videos', new VideoService());
-
-  // const videoService = app.service('/videos')
-  // videoService.before(beforeHooks)
-  // videoService.after(afterHooks)
-};
+exports.default = initialize;
 
 var _gmVimeo = require('../modules/gm-vimeo');
 
@@ -68,5 +60,18 @@ var VideoService = function () {
   return VideoService;
 }();
 
+var beforeHooks = {};
+var afterHooks = {};
+
+function initialize() {
+  var app = this;
+
+  app.use('/videos', new VideoService());
+
+  var videoService = app.service('/videos');
+  videoService.before(beforeHooks);
+  videoService.after(afterHooks);
+}
+
 exports.Service = VideoService;
-//# sourceMappingURL=/Users/bengaumond/Programming/global-mechanic-www/dist-server-maps/services/video.js.map
+//# sourceMappingURL=/Users/bengaumond/Programming/global-mechanic-www/dist-server-src-maps/services/video.js.map

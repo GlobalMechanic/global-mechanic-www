@@ -1,5 +1,3 @@
-import is from 'is-explicit'
-
 export default function(query, doc) {
   query = query || {}
   doc = doc || {}

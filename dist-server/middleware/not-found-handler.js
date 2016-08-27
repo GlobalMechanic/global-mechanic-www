@@ -16,4 +16,4 @@ var _feathersErrors = require('feathers-errors');
 var _feathersErrors2 = _interopRequireDefault(_feathersErrors);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-//# sourceMappingURL=/Users/Global/Projects/global-mechanic-www/dist-server-maps/middleware/not-found-handler.js.map
+//# sourceMappingURL=/Users/bengaumond/Programming/global-mechanic-www/dist-server-src-maps/middleware/not-found-handler.js.map

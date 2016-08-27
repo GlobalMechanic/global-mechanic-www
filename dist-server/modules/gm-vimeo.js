@@ -11,7 +11,7 @@ exports.default = function () {
 
   var vimeoOptions = app.get('vimeo');
   for (var i in vimeoOptions) {
-    config[i] = (0, _isExplicit2.default)(vimeoOptions[i], Object) ? Object.assign({}, vimeoOptions[i]) : vimeoOptions[i];
+    config[i] = is(vimeoOptions[i], Object) ? Object.assign({}, vimeoOptions[i]) : vimeoOptions[i];
   }library = new _vimeo.Vimeo(config.clientId, config.clientSecret);
 };
 
@@ -26,37 +26,31 @@ var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
 
-var _isExplicit = require('is-explicit');
-
-var _isExplicit2 = _interopRequireDefault(_isExplicit);
-
 var _vimeo = require('vimeo');
 
-var _nedb = require('nedb');
-
-var _nedb2 = _interopRequireDefault(_nedb);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } } /******************************************************************************/
+// Dependencies
+/******************************************************************************/
+
 
 /******************************************************************************/
 // Data
 /******************************************************************************/
 
-var library = void 0; /******************************************************************************/
-// Dependencies
-/******************************************************************************/
-
+var library = void 0;
 
 var SIX_HOURS = 1000 * 60 * 60 * 6; // ms * sec * min
 
-var REQUEST_HEADERS = Object.freeze({
+var REQUEST_HEADERS = {
   Accept: 'application/vnd.vimeo.*+json;version=3.0'
-});
+};
 
-var QUERY = Object.freeze({
+var QUERY = {
   page: 1,
   per_page: 100
-});
+};
 
 var cache = {
   portfolios: require('../../cache/portfolios'),
@@ -71,7 +65,7 @@ var cache = {
 // Helper
 /******************************************************************************/
 function valid(timestamp) {
-  if ((0, _isExplicit2.default)(timestamp, String)) timestamp = Date.parse(timestamp);
+  if (is(timestamp, String)) timestamp = Date.parse(timestamp);
 
   var since = new Date() - (timestamp || 0);
   return since < SIX_HOURS;
@@ -122,7 +116,7 @@ function fetch_videos(portfolio_id) {
           width: video.width,
           height: video.height,
           embedHtml: video.embed.html,
-          portfolio: video.portfolio,
+          portfolios: [portfolio_id],
           urls: {
             thumb: video.pictures.sizes.map(function (thumb) {
               return thumb.link;
@@ -137,7 +131,7 @@ function fetch_videos(portfolio_id) {
       }));
     });
   }).catch(function (err) {
-    return console.log(err);
+    return log.error(err);
   });
 }
 
@@ -164,7 +158,7 @@ function fetch_portfolios(_private) {
       });
     });
   }).catch(function (err) {
-    return console.log(err);
+    return log.error(err);
   });
 }
 
@@ -190,26 +184,22 @@ function videos() {
       promises.push(fetch_videos(folio.id));
     }
 
-    console.log(promises.length, "NUM PROMISES");
-
     return Promise.all(promises);
   }).then(function (results) {
-    if (!(0, _isExplicit2.default)(results, Array)) {
-      console.log('EXPECTED AN ARRAY BUT GOT:');
-      console.log(results);
-      throw new Error('Results arn\'t getting turned into an array.');
-    }
+    if (!is(results, Array)) throw new Error('Results arn\'t getting turned into an array.');
 
     for (var i = 0; i < results.length; i++) {
       var _videos = results[i];
-      if ((0, _isExplicit2.default)(_videos, Array)) {
+      if (is(_videos, Array)) {
         for (var ii = 0; ii < _videos.length; ii++) {
+          var _data$video$id$portfo;
+
           var video = _videos[ii];
-          data[video.id] = video;
+          if (data[video.id]) (_data$video$id$portfo = data[video.id].portfolios).push.apply(_data$video$id$portfo, _toConsumableArray(video.portfolios));else data[video.id] = video;
         }
       } else {
-        console.log('EXPECTED AN ARRAY BUT GOT:');
-        console.log(_videos);
+        log.error('results isn\'t an array, for some reason');
+        log.debug(_videos);
       }
     }
   }).then(function () {
@@ -220,7 +210,7 @@ function videos() {
 
     return cache.videos.data;
   }).catch(function (err) {
-    console.log(err);
+    return log.error(err);
   });
 }
 
@@ -248,14 +238,13 @@ function portfolios() {
     }
   }).then(function () {
     cache.portfolios.data = data;
-    cache.portfolio.timestamp = timestamp;
+    cache.portfolios.timestamp = timestamp;
     cache.write();
 
-    return cache.portfolio.data;
+    return cache.portfolios.data;
   }).catch(function (err) {
-    console.error(err);
-
-    return cache.portfolio.data;
+    log.error(err);
+    return cache.portfolios.data;
   });
 }
-//# sourceMappingURL=/Users/bengaumond/Programming/global-mechanic-www/dist-server-maps/modules/gm-vimeo.js.map
+//# sourceMappingURL=/Users/bengaumond/Programming/global-mechanic-www/dist-server-src-maps/modules/gm-vimeo.js.map

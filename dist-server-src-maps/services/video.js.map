@@ -1,0 +1,32 @@
+)]}
+{
+ "version": 3,
+ "sources": "/Users/bengaumond/Programming/global-mechanic-www/src-server/services/video.js",
+ "file": "/Users/bengaumond/Programming/global-mechanic-www/dist-server/services/video.js",
+ "sourceRoot": "",
+ "names": [
+  "initialize",
+  "vimeo",
+  "VideoService",
+  "id",
+  "videos",
+  "then",
+  "vid",
+  "video",
+  "Error",
+  "params",
+  "query",
+  "filtered",
+  "i",
+  "beforeHooks",
+  "afterHooks",
+  "app",
+  "use",
+  "videoService",
+  "service",
+  "before",
+  "after",
+  "Service"
+ ],
+ "mappings": ";;;;;;;;;kBAwCwBA,U;;AAxCxB;;IAAYC,K;;AACZ;;;;;;;;;;IAEMC,Y;;;;;;;wBACAC,E,EAAI;AACN,aAAOF,MACNG,MADM,GAENC,IAFM,CAED,iBAAS;AACb,YAAMC,MAAMC,MAAMJ,EAAN,CAAZ;;AAEA,YAAIG,GAAJ,EACE,OAAOA,GAAP;;AAEF,cAAM,IAAIE,KAAJ,CAAU,mBAAmBL,EAAnB,GAAwB,kBAAlC,CAAN;AACD,OATM,CAAP;AAUD;;;yBAEIM,M,EAAQ;AACX,UAAMC,QAAQD,SAASA,OAAOC,KAAhB,GAAwB,EAAtC;AACA,aAAOT,MACNG,MADM,GAENC,IAFM,CAED,kBAAU;AACd,YAAI,CAACK,KAAL,EACE,OAAON,MAAP;;AAEF,YAAMO,WAAW,EAAjB;;AAEA,aAAK,IAAIC,CAAT,IAAcR,MAAd,EAAsB;AACpB,cAAME,MAAMF,OAAOQ,CAAP,CAAZ;AACA,cAAI,4BAAQF,KAAR,EAAeJ,GAAf,CAAJ,EACEK,SAASC,CAAT,IAAcN,GAAd;AACH;AACD,eAAOK,QAAP;AACD,OAdM,CAAP;AAeD;;;;;;AAGH,IAAME,cAAc,EAApB;AACA,IAAMC,aAAa,EAAnB;;AAEe,SAASd,UAAT,GAAsB;AACnC,MAAMe,MAAM,IAAZ;;AAEAA,MAAIC,GAAJ,CAAQ,SAAR,EAAmB,IAAId,YAAJ,EAAnB;;AAEA,MAAMe,eAAeF,IAAIG,OAAJ,CAAY,SAAZ,CAArB;AACAD,eAAaE,MAAb,CAAoBN,WAApB;AACAI,eAAaG,KAAb,CAAmBN,UAAnB;AAED;;QAEwBO,O,GAAhBnB,Y"
+}

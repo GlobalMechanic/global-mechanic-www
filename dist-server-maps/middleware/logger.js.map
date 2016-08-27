@@ -1,9 +1,0 @@
-)]}
-{
- "version": 3,
- "sources": "/Users/Global/Projects/global-mechanic-www/src-server/middleware/logger.js",
- "file": "/Users/Global/Projects/global-mechanic-www/dist-server/middleware/logger.js",
- "sourceRoot": "",
- "names": [],
- "mappings": ";;;;;;kBAEe,UAAS,GAAT,EAAc;AAC3B;AACA,MAAI,MAAJ;;AAEA,SAAO,UAAS,KAAT,EAAgB,GAAhB,EAAqB,GAArB,EAA0B,IAA1B,EAAgC;AACrC,QAAI,KAAJ,EAAW;AACT,UAAM,WAAa,MAAM,IAAN,SAAiB,MAAM,IAAvB,UAAkC,EAA/C,gBAA4D,IAAI,GAAhE,WAAyE,MAAM,OAArF;;AAEA,UAAI,MAAM,IAAN,KAAe,GAAnB,EAAwB;AACtB,0BAAQ,IAAR,CAAa,OAAb;AACD,OAFD,MAGK;AACH,0BAAQ,KAAR,CAAc,OAAd;AACA,0BAAQ,IAAR,CAAa,MAAM,KAAnB;AACD;AACF;;AAED,SAAK,KAAL;AACD,GAdD;AAeD,C;;AArBD"
-}

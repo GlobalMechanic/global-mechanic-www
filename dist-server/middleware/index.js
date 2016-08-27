@@ -9,7 +9,7 @@ exports.default = function () {
   var app = this;
 
   app.use((0, _notFoundHandler2.default)());
-  app.use((0, _logger2.default)(app));
+  app.use((0, _logging2.default)(app));
   app.use((0, _handler2.default)());
 };
 
@@ -21,9 +21,9 @@ var _notFoundHandler = require('./not-found-handler');
 
 var _notFoundHandler2 = _interopRequireDefault(_notFoundHandler);
 
-var _logger = require('./logger');
+var _logging = require('./logging');
 
-var _logger2 = _interopRequireDefault(_logger);
+var _logging2 = _interopRequireDefault(_logging);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-//# sourceMappingURL=/Users/Global/Projects/global-mechanic-www/dist-server-maps/middleware/index.js.map
+//# sourceMappingURL=/Users/bengaumond/Programming/global-mechanic-www/dist-server-src-maps/middleware/index.js.map

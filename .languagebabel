@@ -1,5 +1,5 @@
 {
-  "babelMapsPath":                    "dist-server-maps",
+  "babelMapsPath":                    "./dist-server-src-maps",
   "babelMapsAddUrl":                  true,
   "babelSourcePath":                  "src-server",
   "babelTranspilePath":               "dist-server",

@@ -21,19 +21,18 @@ export default class FreeWall extends React.Component {
     this.freewall.reset({
       selector: this.props.selector,
       animate: 0.25,
-      cellW: 125,
-      cellH: 125,
+      cellW: 80,
+      cellH: 80,
       gutterX: 0,
       gutterY: 0,
-      delay: 0
+      delay: 5
     })
     this.resize()
-
   }
 
   resize() {
     if (this.freewall && this.dom)
-      this.freewall.fitZone(this.dom.offsetWidth, this.props.targetHeight || DefaultTargetHeight)
+      this.freewall.fitWidth(this.dom.offsetWidth, this.props.targetHeight || DefaultTargetHeight)
   }
 
   componentDidMount() {
