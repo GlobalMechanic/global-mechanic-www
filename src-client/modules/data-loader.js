@@ -7,7 +7,7 @@ import $ from 'jquery'
 // Config
 /******************************************************************************/
 
-const host = 'http://0.0.0.0:3030'
+const host = 'http://192.168.1.158:3030'
 const config = rest(host).jquery($)
 const app = feathers().configure(config)
 
