@@ -4,10 +4,10 @@ import { Grid, Row } from 'react-bootstrap'
 import Background from './Background'
 
 const inverseStyledRoutes = ['work']
+const DefaultPortfolio = 'featured_work'
 
 function onInverseRoute(routes) {
   let current = routes[routes.length-1].path
-
   if (current)
     current = current.split('/')[1]
 
@@ -24,7 +24,9 @@ function PageNav(props) {
   if (props.inverse)
     className += ' inverse'
 
-  return <Link to={href} onlyActiveOnIndex={onlyActiveOnIndex} className={className} activeClassName="active" >{name}</Link>
+  return <Link to={href}
+    onlyActiveOnIndex={onlyActiveOnIndex}
+    className={className} activeClassName="active" >{name}</Link>
 }
 
 export default function Splash(props) {
@@ -40,11 +42,9 @@ export default function Splash(props) {
       <PageNav href="/" inverse={inverse}/>
       <PageNav name="About" inverse={inverse}/>
       <PageNav name="Directors" inverse={inverse}/>
-      <PageNav name="Work" href="/work/character" inverse={inverse}/>
+      <PageNav name="Work" href={`/work/${DefaultPortfolio}`} inverse={inverse}/>
     </Row>
-
     {props.children}
-
     <Background/>
   </Grid>
 }

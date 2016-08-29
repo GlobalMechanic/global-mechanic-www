@@ -35,4 +35,4 @@ Object.seal(log);
 
 global.is = _isExplicit2.default;
 global.log = log;
-//# sourceMappingURL=/Users/bengaumond/Programming/global-mechanic-www/dist-server-src-maps/globals.js.map
+//# sourceMappingURL=/Volumes/GM Production 02 External/Projects/Git/global-mechanic-www/dist-server-src-maps/globals.js.map

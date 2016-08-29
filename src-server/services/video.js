@@ -25,7 +25,7 @@ class VideoService {
 
       const filtered = {}
 
-      for (let i in videos) {
+      for (const i in videos) {
         const vid = videos[i]
         if (matcher(query, vid))
           filtered[i] = vid

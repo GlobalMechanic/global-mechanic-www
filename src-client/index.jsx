@@ -3,7 +3,7 @@ import './index.html'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { IndexRoute, Router, Route, browserHistory } from 'react-router'
-import { About, Directors, Work, Splash } from './components/pages'
+import { About, Directors, Work, Splash, Video } from './components/pages'
 import { Navigation } from './components'
 import { loadPortfolios, loadVideos } from './modules/data-loader'
 
@@ -50,6 +50,7 @@ function Website() {
       <Route path='/directors' component={Directors}/>
       <Route path='/work/:portfolio' component={Work}/>
       <Route path='/about' component={About}/>
+      <Route path='/videos/:video' component={Video}/>
     </Route>
   </Router>
 }

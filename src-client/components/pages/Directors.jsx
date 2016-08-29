@@ -6,6 +6,6 @@ import BodyText from '../BodyText'
 export default function Directors() {
   return <Grid fluid>
     <HeaderText>Directors</HeaderText>
-    <BodyText>Larry is a real piece of shit.</BodyText>
+    <BodyText>Information about directors will go here.</BodyText>
   </Grid>
 }

@@ -74,4 +74,4 @@ function initialize() {
 }
 
 exports.Service = VideoService;
-//# sourceMappingURL=/Users/bengaumond/Programming/global-mechanic-www/dist-server-src-maps/services/video.js.map
+//# sourceMappingURL=/Volumes/GM Production 02 External/Projects/Git/global-mechanic-www/dist-server-src-maps/services/video.js.map

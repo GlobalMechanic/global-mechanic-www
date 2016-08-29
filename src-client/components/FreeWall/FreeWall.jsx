@@ -21,8 +21,8 @@ export default class FreeWall extends React.Component {
     this.freewall.reset({
       selector: this.props.selector,
       animate: 0.25,
-      cellW: 80,
-      cellH: 80,
+      cellW: 100,
+      cellH: 100,
       gutterX: 0,
       gutterY: 0,
       delay: 5

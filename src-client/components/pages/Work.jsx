@@ -1,8 +1,7 @@
 import React from 'react'
-import randomColor from 'random-color'
+// import randomColor from 'random-color'
 
 import { DropdownButton, MenuItem, Grid } from 'react-bootstrap'
-import { Link } from 'react-router'
 import FreeWall from '../FreeWall'
 import { data, events } from '../../modules/data-loader'
 
@@ -28,7 +27,7 @@ function prettyName(name) {
 }
 
 function findCurrentPortfolio(name, portfolios) {
-  for (let i in portfolios) {
+  for (const i in portfolios) {
     const portfolio = portfolios[i]
     if (uglyName(portfolio.name) === name)
       return portfolio
@@ -40,7 +39,7 @@ function findCurrentPortfolio(name, portfolios) {
 function portfoliosAsLinks(portfolios, navigate) {
   const links = []
 
-  for (let i in portfolios) {
+  for (const i in portfolios) {
     const portfolio = portfolios[i]
 
     if (portfolio.scope !== 'public')
@@ -49,20 +48,20 @@ function portfoliosAsLinks(portfolios, navigate) {
     const key = uglyName(portfolio.name)
     const url = `/work/${key}`
 
-    links.push(<MenuItem onClick={() => navigate(url)}>{portfolio.name}</MenuItem>)
+    links.push(<MenuItem key={portfolio.id} onClick={() => navigate(url)}>{portfolio.name}</MenuItem>)
   }
 
   return links
 }
 
-function videosAsBlocks(videos, portfolio) {
+function videosAsBlocks(videos, portfolio, navigate) {
   const blocks = []
 
   if (portfolio)
-    for (let i in videos) {
+    for (const i in videos) {
       const video = videos[i]
       if (video.portfolios.some(pid => pid === portfolio.id))
-        blocks.push(<VideoBlock video={video}/>)
+        blocks.push(<VideoBlock key={video.id} video={video} navigate={navigate}/>)
     }
 
   return blocks
@@ -76,23 +75,24 @@ function VideoBlock(props) {
   const video = props.video
   const thumb_index = Math.floor(video.urls.thumb.length * 0.5)
   const thumb_url = video.urls.thumb[thumb_index]
+  const video_url = `/videos/${video.id}`
   const match = thumb_url.match(/(\d+)x(\d+)/)
 
   let { width, height } = match ? { width: parseInt(match[1]), height: parseInt(match[2])} : video
 
-  width = Math.min(width, 320 * 1.2)
-  height = Math.min(height, 180 * 1.2)
+  width = Math.min(width, 240 * 1.2)
+  height = Math.min(height, 135 * 1.2)
 
   return <div
-    key={video.id}
     className='freewall-block'
+    onClick={()=> props.navigate(video_url)}
     style={{
       width: width,
       height: height,
-      backgroundImage: `url(${thumb_url})`,
-      backgroundColor: '#000'
+      backgroundImage: `url(${thumb_url})`
     }}>
-
+    <div className='video-block'>
+    </div>
   </div>
 }
 
@@ -104,7 +104,7 @@ export default class Work extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = { portfolios: {}, videos: {}}
+    this.state = { portfolios: {}, videos: {} }
     this.navigate = this.navigate.bind(this)
   }
 
@@ -139,7 +139,7 @@ export default class Work extends React.Component {
 
       <Grid fluid style={{ marginTop:'25px' }}>
         <FreeWall id='work-freewall' selector=".freewall-block" targetHeight={500}>
-          { videosAsBlocks(videos, currentPortfolio) }
+          { videosAsBlocks(videos, currentPortfolio, this.navigate) }
         </FreeWall>
       </Grid>
     </div>

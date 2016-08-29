@@ -24,6 +24,7 @@
         2
       ],
       "no-var": "error",
+      "prefer-const": "error",
       "linebreak-style": [
         "error",
         "unix"
