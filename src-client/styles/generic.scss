@@ -24,10 +24,15 @@ p, a {
   p, a {
     color: $inverted-text-color;
   }
-  background-color: $inverted-bg-color;
 }
 
+.fill {
+  background-color: $bg-color;
+}
 
+.fill.inverse {
+  background-color: $inverted-bg-color;
+}
 
 //disables play button for mobile
 video::-webkit-media-controls-start-playback-button {

@@ -22,7 +22,7 @@ function TeamFreewall() {
 }
 
 function OurTeam() {
-  return <Inverted id="our-team-section" >
+  return <Inverted id="our-team-section" fill>
     <TitleText className="clickable" >Our Team</TitleText>
     <TeamFreewall/>
     <br/>
