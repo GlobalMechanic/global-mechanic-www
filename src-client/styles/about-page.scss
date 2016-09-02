@@ -1,0 +1,22 @@
+#about-page.navigate-enter {
+
+  position: absolute;
+  top: -100vh;
+
+  #our-team-section {
+    overflow: hidden;
+    height: 0px;
+  }
+}
+
+#about-page.navigate-enter-active {
+
+  position: absolute;
+  top: -100vh;
+  transition: top, 250ms;
+
+  #our-team-section {
+    height: auto;
+    transition: height, 250ms;
+  }
+}

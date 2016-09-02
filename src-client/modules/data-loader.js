@@ -7,7 +7,7 @@ import $ from 'jquery'
 // Config
 /******************************************************************************/
 
-const host = 'http://192.168.1.158:3030'
+const host = 'http://192.168.1.66:3030'
 const config = rest(host).jquery($)
 const app = feathers().configure(config)
 
@@ -28,20 +28,20 @@ const data = {
 
 export function loadPortfolios() {
   app.service('portfolios')
-     .find()
-     .then(portfolios => {
-       data.portfolios = portfolios
-       events.emit('portfolios-loaded', portfolios)
-     })
+   .find()
+   .then(portfolios => {
+     data.portfolios = portfolios
+     events.emit('portfolios-loaded', portfolios)
+   })
 }
 
 export function loadVideos() {
   app.service('videos')
-     .find()
-     .then(videos => {
-       data.videos = videos
-       events.emit('videos-loaded', videos)
-     })
+   .find()
+   .then(videos => {
+     data.videos = videos
+     events.emit('videos-loaded', videos)
+   })
 }
 
 /******************************************************************************/

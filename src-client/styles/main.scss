@@ -1,16 +1,11 @@
+@import './variables';
+
+@import './text';
+@import './generic';
 @import './background';
+
 @import './navigation';
-@import './freewall';
+
 @import './pages';
-@import './videos';
-@import './fonts';
-
-html {
-  overflow: hidden;
-  height: 100%;
-}
-
-body {
-  height: 100%;
-  overflow: auto;
-}
+@import './splash-page';
+// @import './about-page';

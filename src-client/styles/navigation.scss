@@ -1,68 +1,79 @@
-$nav-padding: 15px;
-$home-icon: 30px;
 
-.page-nav {
-  width: 100vw;
+$nav-holder-size: $title-size * 2 + $padding;
+
+#nav-holder {
   display: block;
-  padding-right: $nav-padding;
+  height: $nav-holder-size;
 
-  transition: background-color 0.25s;
-
-  .active {
-    color: black;
-    text-decoration: none;
+  @media screen and (max-width: $med-width) {
+    height: $nav-holder-size * $med-mult;
   }
 
-  .active.inverse {
-    color: gray;
+  @media screen and (max-width: $small-width) {
+    height: $nav-holder-size * $small-mult;
   }
 
-  .page-nav-home.active {
-    background-image: none;
+  @media screen and (max-width: $mini-width) {
+    height: $nav-holder-size * $mini-mult;
   }
 }
-.page-nav.inverse {
-  background-color: white;
+
+.nav-link {
+
+  margin-top: $padding;
+  margin-right: $padding;
+
+  @media screen and (max-width: $med-width) {
+    margin-top: $padding * $med-mult;
+    margin-right: $padding * $med-mult;
+  }
+
+  @media screen and (max-width: $small-width) {
+    margin-top: $padding * $small-mult;
+    margin-right: $padding * $small-mult;
+  }
+
+  @media screen and (max-width: $mini-width) {
+    margin-top: $padding * $mini-mult;
+    margin-right: $padding * $mini-mult;
+  }
+
 }
 
-.page-nav-item {
-  float: right;
-  margin-left: $nav-padding;
-  color: white;
-  text-decoration: none;
-  font-family: "Bebas-Neue-Regular";
+.nav-home {
 
-  transition: color 0.25s;
-}
-.page-nav-item.inverse {
-  color: black;
-}
-.page-nav-item:hover {
-  color: gray;
-  text-decoration: none;
-}
-.page-nav-item.inverse:hover {
-  color: black;
-  text-decoration: none;
+  background-image: url('assets/nut-white.svg');
+  transition: background-image $transition-time;
+
+  width: $title-size;
+  height: $title-size;
+
+  margin-top: $padding;
+  margin-left: $padding;
+
+  @media screen and (max-width: $med-width) {
+    width: $title-size * $med-mult;
+    height: $title-size * $med-mult;
+    margin-top: $padding * $med-mult;
+    margin-left: $padding * $med-mult;
+  }
+
+  @media screen and (max-width: $small-width) {
+    width: $title-size * $small-mult;
+    height: $title-size * $small-mult;
+    margin-top: $padding * $small-mult;
+    margin-left: $padding * $small-mult;
+  }
+
+  @media screen and (max-width: $mini-width) {
+    width: $title-size * $mini-mult;
+    height: $title-size * $mini-mult;
+    margin-top: $padding * $mini-mult;
+    margin-left: $padding * $mini-mult;
+  }
+
 }
 
-.page-nav-home {
-  float: left;
-  margin: $nav-padding * 0.5;
-  padding-left: 32px;
-  height: $home-icon;
-  width: $home-icon;
-  transition: background-image 0.25s;
-//  transition: opacity 0.25s;
-
-  background-image: url(../assets/nut-white.svg);
-}
-.page-nav-home.inverse {
-  background-image: url(../assets/nut-black.svg);
-}
-.page-nav-home:hover {
-  background-image: url(../assets/nut-gray.svg);
-}
-.page-nav-home.inverse:hover {
-  background-image: url(../assets/nut-black.svg);
+.nav-home.active,.nav-home:hover {
+  background-image: url('assets/nut-black.svg');
 }

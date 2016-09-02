@@ -3,7 +3,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: [
-    'bootstrap-loader',
     'webpack-dev-server/client?http://0.0.0.0:5000',
 //  'webpack/hot/only-dev-server',
     './src-client/index.jsx'
@@ -12,7 +11,7 @@ module.exports = {
     loaders: [
       {
         test: /\.s?css$/,
-        loader: ExtractTextPlugin.extract('style', 'raw', 'sass')
+        loaders: ['style', 'raw', 'sass']
       },
       {
         test: /\.(woff2?|svg)$/,
@@ -48,8 +47,11 @@ module.exports = {
     hot: false
   },
   plugins: [
+    //new ExtractTextPlugin('styles.css'),
     new webpack.ProvidePlugin({
-      is: 'is-explicit'
+      is: 'is-explicit',
+      $: 'jquery',
+      jQuery: 'jquery'
     }),
 //    new webpack.HotModuleReplacementPlugin()
   ]

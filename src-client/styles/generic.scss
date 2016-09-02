@@ -1,0 +1,35 @@
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+p, a {
+  color: $text-color;
+  text-decoration: none;
+}
+
+.clickable {
+  cursor: pointer;
+  transition: color $transition-time;
+}
+
+.clickable.active,.clickable:hover {
+  color: $inverted-text-color;
+}
+
+.inverse {
+  p, a {
+    color: $inverted-text-color;
+  }
+  background-color: $inverted-bg-color;
+}
+
+
+
+//disables play button for mobile
+video::-webkit-media-controls-start-playback-button {
+  display: none;
+}

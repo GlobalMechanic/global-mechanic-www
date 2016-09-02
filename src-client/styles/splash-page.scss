@@ -1,0 +1,76 @@
+#splash-page {
+
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    font-size: 15vw;
+  }
+
+  font-family: $title-font;
+  color: $text-color;
+  text-transform: uppercase;
+
+  z-index: -50;
+
+}
+
+#splash-page.navigate-enter {
+  top: -100vh;
+
+  #splash-background {
+    transform: scale(0,0);
+  }
+}
+
+#splash-page.navigate-enter.navigate-enter-active {
+  top: 0vh;
+  transition: top $transition-time ease-out;
+
+  #splash-background {
+    transform: scale(1,1);
+    transition: transform $transition-time;
+  }
+}
+
+#splash-page.navigate-leave {
+  transform: scale(1,1);
+  opacity: 1;
+
+  #splash-background {
+    opacity: 1;
+  }
+}
+
+#splash-page.navigate-leave.navigate-leave-active {
+  transform: scale(4,4);
+  opacity: 0;
+
+  #splash-background {
+    opacity: 0;
+    transition: opacity $transition-time;
+  }
+  transition: transform $transition-time, opacity $transition-time, ease-out;
+}
+
+#splash-background {
+
+  background: url(../assets/nut-white.svg) no-repeat center;
+  background-size: contain;
+  opacity: 0.5;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -50;
+
+}

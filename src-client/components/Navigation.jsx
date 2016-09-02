@@ -1,50 +1,53 @@
 import React from 'react'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+
 import { Link } from 'react-router'
-import { Grid, Row } from 'react-bootstrap'
 import Background from './Background'
 
-const inverseStyledRoutes = ['work']
-const DefaultPortfolio = 'featured_work'
+const AnimationTime = 500 //ms
 
-function onInverseRoute(routes) {
-  let current = routes[routes.length-1].path
-  if (current)
-    current = current.split('/')[1]
-
-  return inverseStyledRoutes.includes(current)
+function HomeIcon() {
+  return <Link to="/"
+    onlyActiveOnIndex={true}
+    className="nav-home left title clickable"
+    activeClassName="active" />
 }
 
-function PageNav(props) {
-
-  const name = props.name
-  const href = props.href || '/' + name.toLowerCase()
-  const onlyActiveOnIndex = href === '/'
-  let className = href === '/' ? 'page-nav-home' : 'page-nav-item'
-
-  if (props.inverse)
-    className += ' inverse'
-
-  return <Link to={href}
-    onlyActiveOnIndex={onlyActiveOnIndex}
-    className={className} activeClassName="active" >{name}</Link>
+function PageLink({to, children}) {
+  return <Link to={to}
+    className="nav-link right title clickable"
+           activeClassName="active">{children}</Link>
 }
 
-export default function Splash(props) {
+function PageHolder({children}) {
+  return <div id="page-holder">
+    {children}
+  </div>
+}
 
-  const inverse = onInverseRoute(props.routes)
-  let rowClass = 'page-nav'
+function NavHolder({children}) {
+  return <div id="nav-holder">
+    {children}
+  </div>
+}
 
-  if (inverse)
-    rowClass += ' inverse'
-
-  return <Grid fluid>
-    <Row className={rowClass}>
-      <PageNav href="/" inverse={inverse}/>
-      <PageNav name="About" inverse={inverse}/>
-      <PageNav name="Directors" inverse={inverse}/>
-      <PageNav name="Work" href={`/work/${DefaultPortfolio}`} inverse={inverse}/>
-    </Row>
-    {props.children}
+export default function Navigation({children, location}) {
+  return <div>
+    <NavHolder>
+      <HomeIcon/>
+      <PageLink to='/work'>Work</PageLink>
+      <PageLink to='/directors'>Directors</PageLink>
+      <PageLink to='/about'>About</PageLink>
+    </NavHolder>
+    <ReactCSSTransitionGroup
+      component={PageHolder}
+      transitionName="navigate"
+      transitionEnterTimeout={AnimationTime}
+      transitionLeaveTimeout={AnimationTime}>
+      {React.cloneElement(children, {
+        key: location.pathname
+      })}
+    </ReactCSSTransitionGroup>
     <Background/>
-  </Grid>
+  </div>
 }

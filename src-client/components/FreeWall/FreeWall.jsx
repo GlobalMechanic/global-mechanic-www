@@ -20,7 +20,7 @@ export default class FreeWall extends React.Component {
   reset() {
     this.freewall.reset({
       selector: this.props.selector,
-      animate: 0.25,
+      animate: 0.4,
       cellW: 100,
       cellH: 100,
       gutterX: 0,
@@ -39,11 +39,11 @@ export default class FreeWall extends React.Component {
     this.freewall = new Freewall(`#${this.props.id}`)
     this.reset()
 
-    addEvent(window, 'resize', this.resize)
+    $(window).on('resize', this.resize)
   }
 
   componentWillUnmount() {
-    removeEvent(window, 'resize', this.resize)
+    $(window).off('resize', this.resize)
   }
 
   componentDidUpdate() {

@@ -1,7 +1,9 @@
-import Background from './Background'
-import BodyText from './BodyText'
-import FreeWall from './FreeWall'
-import HeaderText from './HeaderText'
 import Navigation from './Navigation'
+import Background from './Background'
+import Spacer from './Spacer'
+import TitleText from './TitleText'
+import BodyText from './BodyText'
+import Inverted from './Inverted'
+import FreeWall from './FreeWall'
 
-export { Background, BodyText, FreeWall, HeaderText, Navigation }
+export { Navigation, Background, Spacer, BodyText, TitleText, Inverted, FreeWall }
