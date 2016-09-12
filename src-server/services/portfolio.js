@@ -34,7 +34,7 @@ class PortfolioService {
 
       const filtered = {}
 
-      for (let i in folios) {
+      for (const i in folios) {
         const folio = folios[i]
         if (matcher(query, folio))
           filtered[i] = folio

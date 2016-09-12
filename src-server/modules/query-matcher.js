@@ -2,7 +2,7 @@ export default function(query, doc) {
   query = query || {}
   doc = doc || {}
 
-  for (let i in query) {
+  for (const i in query) {
     if (i in doc === false)
       continue
 

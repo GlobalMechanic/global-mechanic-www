@@ -8,6 +8,7 @@ import Freewall from './freewall-bengaumond-forked'
 /******************************************************************************/
 // Exports
 /******************************************************************************/
+const DefaultCellSize = 80
 
 export default class FreeWall extends React.Component {
 
@@ -18,11 +19,12 @@ export default class FreeWall extends React.Component {
   }
 
   reset() {
+    const { props } = this
     this.freewall.reset({
       selector: this.props.selector,
       animate: 0.4,
-      cellW: 100,
-      cellH: 100,
+      cellW: props.cellSize || DefaultCellSize,
+      cellH: props.cellSize || DefaultCellSize,
       gutterX: 0,
       gutterY: 0,
       delay: 5

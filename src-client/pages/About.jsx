@@ -1,30 +1,55 @@
 import React from 'react'
+import { browserHistory } from 'react-router'
 import Page from './Page'
+import staff from '../modules/staff'
 import { TitleText, BodyText, Inverted, FreeWall } from '../components'
 
 import randomColor from 'random-color'
 
 const rHex = () => randomColor().hexString()
+//
+// function rInt(lo=50, high=250) {
+//   const range = Math.random() * (high - lo)
+//   return Math.round(range + lo)
+// }
 
-function rInt(lo=50, high=250) {
-  const range = Math.random() * (high - lo)
-  return Math.round(range + lo)
+const FeaturedWidth = 800
+const FeaturedHeight = 960
+
+function StaffMember({path, name, image, width, height, writeup, current}) {
+
+  const featured = path === current
+
+  const click = () => {
+    if (!featured)
+      browserHistory.push(`/about/${path}`)
+  }
+
+  return <div
+    onClick={click}
+    key={name} className='block'
+    style={{
+      backgroundColor: rHex(),
+      width: featured ? FeaturedWidth : width,
+      height: featured ? FeaturedHeight : height
+    }}>
+    {
+      featured ? <p className="body"><h3>{name}</h3>{writeup}</p> : null
+    }
+    <div className={`staff-picture${featured ? ' featured' : ''}`} style={{backgroundImage: `url(${image})`}}/>
+  </div>
 }
 
-function TeamFreewall() {
+function TeamFreewall({current}) {
   return <FreeWall id="free-wall" selector=".block" targetHeight={500}>
-    { Array.from({length:20}, (val,key) => <div
-      key={key} className="block"
-      style={{backgroundColor: rHex(), width: rInt(100,250), height: rInt(50,200)}}>
-      {`cell-${key}`}
-    </div>) }
+    { staff.map(data => <StaffMember key={data.path} {...data} current={current}/>) }
   </FreeWall>
 }
 
-function OurTeam() {
+function OurTeam({current}) {
   return <Inverted id="our-team-section" fill>
     <TitleText className="clickable" >Our Team</TitleText>
-    <TeamFreewall/>
+    <TeamFreewall current={current}/>
     <br/>
     <TitleText mini>Suite 208 - 1525 West 8th Avenue</TitleText>
     <TitleText mini>Vancouver BC</TitleText>
@@ -37,7 +62,8 @@ function OurTeam() {
   </Inverted>
 }
 
-export default function About() {
+export default function About({params}) {
+  const current = params.staff
   return <Page id="about-page">
     <TitleText>Global Mechanic is a design studio.</TitleText>
     <TitleText>We experiment, we create, we make beautiful things to affect how people think and see the world.</TitleText>
@@ -53,6 +79,6 @@ export default function About() {
     <br/>
     <br/>
     <br/>
-    <OurTeam/>
+    <OurTeam current={current} />
   </Page>
 }

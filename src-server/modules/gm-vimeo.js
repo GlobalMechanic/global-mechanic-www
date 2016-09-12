@@ -144,8 +144,8 @@ export default function() {
 
   const app = this
 
-  let vimeoOptions = app.get('vimeo')
-  for (let i in vimeoOptions)
+  const vimeoOptions = app.get('vimeo')
+  for (const i in vimeoOptions)
     config[i] = is(vimeoOptions[i], Object) ? Object.assign({}, vimeoOptions[i]) : vimeoOptions[i]
 
   library = new Vimeo(config.clientId, config.clientSecret)
@@ -164,7 +164,7 @@ export function videos() {
   .then(() => {
     const folios = cache.portfolios.data
     const promises = []
-    for (let i in folios) {
+    for (const i in folios) {
       const folio = folios[i]
       promises.push(fetch_videos(folio.id))
     }

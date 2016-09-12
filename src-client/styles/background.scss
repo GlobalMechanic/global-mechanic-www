@@ -1,4 +1,4 @@
-.video-background-overlay {
+#video-background-overlay {
   position: fixed;
 
   top: 0px;
@@ -15,7 +15,11 @@
   transition: background-color $transition-time;
 }
 
-.video-background {
+#video-background-overlay.dark {
+  background-color: rgba(0,0,0, $overlay-opacity);
+}
+
+#video-background {
   position: fixed;
 
   top: 50%;
@@ -31,4 +35,8 @@
 
   transform: translateX(-50%) translateY(-50%);
   background-size: cover;
+}
+
+#video-background.dark {
+  -webkit-filter: blur(10px);
 }

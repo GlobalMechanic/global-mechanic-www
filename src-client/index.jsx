@@ -32,7 +32,9 @@ function Website() {
       <Route path='/work/:portfolio' inverse component={Work}>
         {/* <Route path='/work/:portfolio/:video' component={Video}/> */}
       </Route>
-      <Route path='/about' component={About}/>
+      <Route path='/about' component={About}>
+        <Route path='/about/:staff' component={About}/>
+      </Route>
     </Route>
   </Router>
 }
