@@ -16,40 +16,54 @@ const rHex = () => randomColor().hexString()
 const FeaturedWidth = 800
 const FeaturedHeight = 960
 
-function StaffMember({path, name, image, width, height, writeup, current}) {
+function StaffMember({path, name, image, width, height, writeup, featured, onClick}) {
 
-  const featured = path === current
-
-  const click = () => {
-    if (!featured)
-      browserHistory.push(`/about/${path}`)
-  }
+  const isFeatured = path === featured
 
   return <div
-    onClick={click}
     key={name} className='block'
+    onClick={onClick}
     style={{
       backgroundColor: rHex(),
-      width: featured ? FeaturedWidth : width,
-      height: featured ? FeaturedHeight : height
+      width: isFeatured ? FeaturedWidth : width,
+      height: isFeatured ? FeaturedHeight : height
     }}>
-    {
-      featured ? <p className="body"><h3>{name}</h3>{writeup}</p> : null
-    }
-    <div className={`staff-picture${featured ? ' featured' : ''}`} style={{backgroundImage: `url(${image})`}}/>
+    { isFeatured ? <h3>{name}</h3> : null }
+    { isFeatured ? <p className="body">{writeup}</p> : null }
+    <div className={`staff-picture${isFeatured ? ' featured' : ''}`} style={{backgroundImage: `url(${image})`}}/>
   </div>
 }
 
-function TeamFreewall({current}) {
-  return <FreeWall id="free-wall" selector=".block" targetHeight={500}>
-    { staff.map(data => <StaffMember key={data.path} {...data} current={current}/>) }
-  </FreeWall>
+class TeamFreewall extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      featured: null
+    }
+  }
+
+  setFeatured(featured) {
+    this.setState({featured})
+    $(window).trigger('reset')
+  }
+
+  render() {
+    const featured = this.state.featured
+
+    return <FreeWall id="free-wall" selector=".block" >
+      { staff.map(data => <StaffMember
+        key={data.path} {...data}
+        onClick={()=>{this.setFeatured(data.path)}}
+        featured={featured}/>) }
+    </FreeWall>
+  }
 }
 
-function OurTeam({current}) {
+function OurTeam() {
   return <Inverted id="our-team-section" fill>
     <TitleText className="clickable" >Our Team</TitleText>
-    <TeamFreewall current={current}/>
+    <TeamFreewall />
     <br/>
     <TitleText mini>Suite 208 - 1525 West 8th Avenue</TitleText>
     <TitleText mini>Vancouver BC</TitleText>
@@ -62,8 +76,7 @@ function OurTeam({current}) {
   </Inverted>
 }
 
-export default function About({params}) {
-  const current = params.staff
+export default function About() {
   return <Page id="about-page">
     <TitleText>Global Mechanic is a design studio.</TitleText>
     <TitleText>We experiment, we create, we make beautiful things to affect how people think and see the world.</TitleText>
@@ -79,6 +92,6 @@ export default function About({params}) {
     <br/>
     <br/>
     <br/>
-    <OurTeam current={current} />
+    <OurTeam />
   </Page>
 }

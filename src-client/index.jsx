@@ -29,12 +29,8 @@ function Website() {
     <Route path='/' component={Navigation}>
       <IndexRoute component={Splash} />
       <Route path='/directors' component={Directors}/>
-      <Route path='/work/:portfolio' inverse component={Work}>
-        {/* <Route path='/work/:portfolio/:video' component={Video}/> */}
-      </Route>
-      <Route path='/about' component={About}>
-        <Route path='/about/:staff' component={About}/>
-      </Route>
+      <Route path='/work/:portfolio' inverse component={Work}/>
+      <Route path='/about' component={About}/>
     </Route>
   </Router>
 }
