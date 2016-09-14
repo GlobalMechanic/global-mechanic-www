@@ -54,7 +54,7 @@ class TeamFreewall extends React.Component {
     return <FreeWall id="free-wall" selector=".block" >
       { staff.map(data => <StaffMember
         key={data.path} {...data}
-        onClick={()=>{this.setFeatured(data.path)}}
+        // onClick={()=>{this.setFeatured(data.path)}}
         featured={featured}/>) }
     </FreeWall>
   }
