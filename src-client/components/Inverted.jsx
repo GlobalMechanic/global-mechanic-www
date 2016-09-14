@@ -6,5 +6,5 @@ export default function Inverted({children, className, fill, ...other}) {
   if (fill)
     classes += classes.length == 0 ? 'fill' : ' fill'
 
-  return <div {...other} className={classes}>{children}</div>
+  return React.createElement('div', { className: classes, ...other }, children)
 }

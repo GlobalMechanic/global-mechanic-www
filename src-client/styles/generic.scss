@@ -27,11 +27,60 @@ p, a {
 }
 
 .fill {
+  width: 100%;
   background-color: $bg-color;
 }
 
 .fill.inverse {
+  width: 100%;
   background-color: $inverted-bg-color;
+}
+
+.padded {
+  padding-left: $padding;
+  padding-right: $padding;
+}
+
+.padded-bottom {
+  padding-bottom: $padding;
+}
+
+.padded-bottom {
+  padding-top: $padding;
+}
+
+.mini-width {
+  @extend .padded;
+  max-width: $mini-width;
+}
+
+.small-width {
+  @extend .padded;
+  max-width: $small-width;
+}
+
+.med-width {
+  @extend .padded;
+  max-width: $med-width;
+}
+
+.large-width {
+  @extend .padded;
+  max-width: $large-width;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0px;
+}
+
+.block {
+  overflow: hidden;
 }
 
 //disables play button for mobile

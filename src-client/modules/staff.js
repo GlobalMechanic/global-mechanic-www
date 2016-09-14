@@ -4,6 +4,7 @@ export default [
     name: 'Allison Barry',
     path: 'allison',
     image: require('../assets/staff-allison.jpg'),
+    director: false,
     width: 160,
     height: 160,
     writeup: 'Bringing years of experience in project management, client relations,'+
@@ -18,6 +19,7 @@ export default [
     width: 240,
     height: 240,
     image: require('../assets/staff-ben.jpg'),
+    director: false,
     writeup: 'Ben Gaumond is a generalist who specializes in everything. As a '+
     'former male model who turned down an acting career to work at Global Mechanic, '+
     'Ben is far and away the most brilliant man on the planet. He can solve two '+
@@ -36,6 +38,7 @@ export default [
     width: 160,
     height: 160,
     image: require('../assets/staff-brodie.jpg'),
+    director: false,
     writeup: 'Is a capable and friendly producer. He has a warm, inviting smile '+
     'and a soft handshake. Buttery soft, like cotton candy. He’s never been to '+
     'jail and doesn’t gamble. One time he stayed up until 9:30 pm, but it was by '+
@@ -49,6 +52,7 @@ export default [
     width: 320,
     height: 240,
     image: require('../assets/staff-bruce.jpg'),
+    director: false,
     writeup: 'Bruce Alcock, founder and Creative Director, is an artist whose animated '+
     'shorts – Impromptu, Vive la Rose, At the Quinte Hotel, Wrong Number Phone Message '+
     'and 54 Hours - have won accolades at festivals worldwide. Bruce’s wide-ranging '+
@@ -72,6 +76,7 @@ export default [
     width: 160,
     height: 160,
     image: require('../assets/staff-chez.jpg'),
+    director: false,
     writeup: '“Chez” has been an integral part of Global Mechanic for 12 years. '+
     'Lead Storyboard Artist for five seasons of PBS’s Emmy-nominated Fetch! with '+
     'Ruff Ruffman, he also designed and animated countless TV commercials, animated '+
@@ -87,14 +92,16 @@ export default [
     width: 240,
     height: 240,
     image: require('../assets/staff-dan.jpg'),
+    director: true,
     writeup: 'Daniel Sousa is an excellent man.'
   },
   {
     name: 'Dirk Van De Vondel',
     path: 'dirk',
-    width: 240,
+    width: 160,
     height: 160,
     image: require('../assets/staff-dirk.jpg'),
+    director: true,
     writeup: 'Author of different shorts and a large amount of adverts for firms'+
     ' such as SEAT, Coca-Cola, Tate Gallery or Nokia, the work of Van de Vondel '+
     '(Zaire, 1960) is characterised by a skilful and furious stroke leading one '+
@@ -105,9 +112,10 @@ export default [
   {
     name: 'Jerald',
     path: 'jerald',
-    width: 320,
-    height: 240,
+    width: 400,
+    height: 400,
     image: require('../assets/staff-jerald.jpg'),
+    director: true,
     writeup: 'Jerald writes the best damn call sheets this side of Stanely Park'
   },
   {
@@ -116,6 +124,7 @@ export default [
     width: 160,
     height: 160,
     image: require('../assets/staff-marv.jpg'),
+    director: true,
     writeup: 'Marv Newland began a career making animated films in Los Angeles with'+
     ' the creation of the short Bambi Meets Godzilla. In 1970 he moved to Toronto, '+
     'Canada where he designed, directed and animated television commercials, ID’s for '+
@@ -131,14 +140,16 @@ export default [
     width: 240,
     height: 240,
     image: require('../assets/staff-morten.jpg'),
+    director: true,
     writeup: 'Morten is not from the Adams family.'
   },
   {
     name: 'Nathaniel Akin',
     path: 'nathaniel',
-    width: 160,
-    height: 160,
+    width: 320,
+    height: 320,
     image: require('../assets/staff-nathaniel.jpg'),
+    director: true,
     writeup: 'Nathaniel Akin has a rich background in commercial and independent '+
     'production accompanied by a deep respect for beautiful silly images. After '+
     'art school, he made set sculpture for feature lms and commercials, was cinematographer '+
@@ -153,14 +164,16 @@ export default [
     width: 240,
     height: 160,
     image: require('../assets/staff-rachel.jpg'),
+    director: false,
     writeup: 'Rachel Welsh is extremely photogenic. She’s the one we put on posters.'
   },
   {
     name: 'Rich',
     path: 'rich',
-    width: 160,
-    height: 160,
+    width: 320,
+    height: 240,
     image: require('../assets/staff-rich.jpg'),
+    director: true,
     writeup: 'Rich invented boats.'
   },
   {
@@ -169,6 +182,7 @@ export default [
     width: 240,
     height: 240,
     image: require('../assets/staff-ryan.jpg'),
+    director: false,
     writeup: 'Art Director Ryan Kane relocated to Vancouver and joined Global Mechanic,'+
     ' after 6 years as an Art Director, Senior Motion graphics and VFX Supervisor '+
     'in Ireland’s largest design studio. Ryan’s experience includes AAA properties '+
@@ -182,6 +196,7 @@ export default [
     width: 240,
     height: 240,
     image: require('../assets/staff-tina.jpg'),
+    director: false,
     writeup: 'Executive Producer Tina Ouellette oversees all Global Mechanic business'+
     ' and supervises all aspects of client services. Leveraging decades of experience'+
     ' in production, Tina specializes in putting together and inspiring both cross-media'+
@@ -194,9 +209,10 @@ export default [
   {
     name: 'Tom',
     path: 'tom',
-    width: 160,
-    height: 160,
+    width: 320,
+    height: 320,
     image: require('../assets/staff-tom.jpg'),
+    director: true,
     writeup: 'Tom has been making hand-drawn animated films and commercials since'+
     ' 1990, and is a valuable addition to the Global Mechanic roster. Tom’s distinct, '+
     'original style of animation is showcased in both films and commercials. Companies '+
