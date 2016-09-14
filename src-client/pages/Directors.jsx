@@ -2,7 +2,7 @@ import React from 'react'
 import { browserHistory } from 'react-router'
 import Page from './Page'
 import staff from '../modules/staff'
-import { TitleText, BodyText, Inverted, FreeWall, Content, Footer } from '../components'
+import { TitleText, BodyText, FreeWall, Content } from '../components'
 
 import randomColor from 'random-color'
 
@@ -41,7 +41,7 @@ function Director({path, name, image, width, height, writeup, current}) {
 }
 
 function Directors({current}) {
-
+  console.log(staff)
   return <FreeWall id="director-free-wall" selector=".block" className="med-width">
     {
       staff
@@ -55,6 +55,7 @@ export default function About() {
   return <Page id="directors-page" >
     <Content id="directors-content" >
       <TitleText>Directors</TitleText>
+      <BodyText>These are our directors</BodyText>
       <br/>
       <Directors className="padded-bottom"/>
     </Content>

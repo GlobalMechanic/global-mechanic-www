@@ -23,22 +23,13 @@ export default class FreeWall extends React.Component {
   reset() {
     const { animTime, cellSize, selector } = this.props
     this.freewall.reset({
-<<<<<<< Updated upstream
       selector: selector,
       animate: animTime || DefaultAnimTime,
       cellW: cellSize || DefaultCellSize,
       cellH: cellSize || DefaultCellSize,
-=======
-      selector: props.selector,
-      animate: 0.4,
-      cellW: props.cellSize || DefaultCellSize,
-      cellH: props.cellSize || DefaultCellSize,
->>>>>>> Stashed changes
-      gutterX: 0,
       gutterY: 0,
       delay: 5
     })
-
     this.resize()
   }
 
@@ -49,10 +40,10 @@ export default class FreeWall extends React.Component {
 
   componentDidMount() {
     this.freewall = new Freewall(`#${this.props.id}`)
-    this.reset()
 
     $(window).on('resize', this.resize)
     $(window).on('reset', this.reset)
+    $(window).trigger('reset')
   }
 
   componentWillUnmount() {

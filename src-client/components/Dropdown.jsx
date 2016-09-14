@@ -1,5 +1,4 @@
 import React from 'react'
-import TitleText from './TitleText'
 
 export default class Dropdown extends React.Component {
   render() {

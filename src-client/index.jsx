@@ -25,8 +25,8 @@ window.onload = () => {
 
 function Website() {
 
-  return <Router history={browserHistory}>
-    <Route path='/' component={Navigation}>
+  return <Router history={browserHistory} >
+    <Route path='/' component={Navigation} >
       <IndexRoute component={Splash} />
       <Route path='/directors' component={Directors}/>
       <Route path='/work/:portfolio' inverse component={Work}/>
