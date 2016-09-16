@@ -1,5 +1,5 @@
 import React from 'react'
-
+import is from 'is-explicit'
 //this class will keep things stuck to the bottom, because I can't figure out reliable css to do the same
 
 let $window
