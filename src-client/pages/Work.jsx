@@ -2,8 +2,10 @@ import React from 'react'
 import Page from './Page'
 import { Dropdown } from '../components'
 
-export default function Work() {
-  return <Page id="work-page">
-    <Dropdown>portfolio</Dropdown>
+//bring the old dropdown back
+
+export default function Work(props) {
+  return <Page id="work-page" {...props}>
+    <Dropdown className="padded">portfolio</Dropdown>
   </Page>
 }

@@ -2,24 +2,18 @@ import React from 'react'
 import { browserHistory } from 'react-router'
 import Page from './Page'
 import staff from '../modules/staff'
-import { TitleText, BodyText, FreeWall, Content } from '../components'
+import { FreeWall, Content, Dropdown } from '../components'
 
 import randomColor from 'random-color'
 
 const rHex = () => randomColor().hexString()
-//
-// function rInt(lo=50, high=250) {
-//   const range = Math.random() * (high - lo)
-//   return Math.round(range + lo)
-// }
 
 const FeaturedWidth = 800
 const FeaturedHeight = 960
 
-function Director({path, name, image, width, height, writeup, current}) {
+function Director({ path, name, image, width, height, writeup, current }) {
 
   const featured = path === current
-
   const click = () => {
     if (!featured)
       browserHistory.push(`/about/${path}`)
@@ -38,9 +32,10 @@ function Director({path, name, image, width, height, writeup, current}) {
     }
     <div className={`staff-picture${featured ? ' featured' : ''}`} style={{backgroundImage: `url(${image})`}}/>
   </div>
+
 }
 
-function Directors({current}) {
+function Directors({ current }) {
   return <FreeWall id="director-free-wall" selector=".block" className="med-width center">
     {
       staff
@@ -50,9 +45,10 @@ function Directors({current}) {
   </FreeWall>
 }
 
-export default function About() {
-  return <Page id="directors-page" >
+export default function About(props) {
+  return <Page id="directors-page" {...props}>
     <Content id="directors-content" >
+      <Dropdown className="padded"/>
       <Directors />
     </Content>
   </Page>

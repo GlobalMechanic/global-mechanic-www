@@ -2,8 +2,9 @@ import React from 'react'
 import Page from './Page'
 import { TitleText, BodyText, Inverted, Content, Footer } from '../components'
 
-export default function About() {
-  return <Page id='about-page'>
+export default function About(props) {
+
+  return <Page id='about-page' {...props}>
     <Content id='about-page-content'>
       <TitleText>Global Mechanic is a design studio.</TitleText>
       <TitleText>We experiment, we create, we make beautiful things to affect how people think and see the world.</TitleText>

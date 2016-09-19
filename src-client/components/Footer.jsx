@@ -35,8 +35,6 @@ export default class Footer extends React.Component {
     const bottom = $window.height() > this.$target.height() + this.$target.offset().top + this.$this.height()
     const classes = bottom ? 'bottom' : ''
 
-    console.log($window.height(), this.$target.height() + this.$target.offset().top + this.$this.height())
-
     this.setState({ classes })
   }
 

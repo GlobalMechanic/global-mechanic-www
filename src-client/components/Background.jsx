@@ -8,19 +8,25 @@ export default class Background extends React.Component {
   constructor(props) {
     super(props)
     this.state = { classes: '' }
-    this.onBackgroundChange = this.onBackgroundChange.bind(this)
+    this.backgroundStyleChange = this.backgroundStyleChange.bind(this)
   }
 
-  onBackgroundChange(type) {
-    this.setState({classes: type})    
+  backgroundStyleChange(data) {
+    let classes = ''
+
+    for (const key in data)
+      if(data[key] === true)
+        classes += classes === '' ? key : ` ${key}`
+    this.setState({ classes })
+
   }
 
   componentDidMount() {
-    events.on('background-change', this.onBackgroundChange)
+    events.on('background-style', this.backgroundStyleChange)
   }
 
   componentWillUnmount() {
-    events.removeEventListener('background-change', this.onBackgroundChange)
+    events.removeEventListener('background-style', this.backgroundStyleChange)
   }
 
   render() {

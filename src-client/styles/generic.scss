@@ -24,6 +24,10 @@ p, a {
   p, a {
     color: $inverted-text-color;
   }
+
+  .clickable.active,.clickable:hover {
+    color: $inverted-text-hover-color;
+  }
 }
 
 .fill {

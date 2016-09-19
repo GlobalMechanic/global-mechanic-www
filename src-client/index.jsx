@@ -34,7 +34,7 @@ function Website() {
       <IndexRoute component={Splash} />
       <Route path='/directors' inverse component={Directors}/>
       <Route path='/work/:portfolio' inverse component={Work}/>
-      <Route path='/about' component={About}/>
+      <Route path='/about' dark component={About}/>
     </Route>
   </Router>
 }

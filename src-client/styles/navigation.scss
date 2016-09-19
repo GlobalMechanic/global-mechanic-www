@@ -42,7 +42,7 @@ $nav-holder-size: $title-size * 2 + $padding;
 
 .nav-home {
 
-  background-image: url('/assets/nut-white.svg');
+  background-image: url(../assets/nut-white.svg);
   transition: background-image $transition-time;
 
   width: $title-size;
@@ -74,12 +74,18 @@ $nav-holder-size: $title-size * 2 + $padding;
 
 }
 
-.nav-home.active,.nav-home:hover {
-  background-image: url('/assets/nut-black.svg');
+.nav-home:hover {
+  background-image: url(../assets/nut-black.svg);
 }
 
 #nav-holder.inverse {
+
   .nav-home {
-    background-image: url('/assets/nut-black.svg');
+    background-image: url(../assets/nut-black.svg);
   }
+
+  .nav-home:hover {
+    background-image: url(../assets/nut-gray.svg);
+  }
+
 }
