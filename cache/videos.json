@@ -1,5 +1,5 @@
 {
-  "timestamp": "2016-09-15T19:59:21.393Z",
+  "timestamp": "2016-09-16T20:58:55.450Z",
   "data": {
     "7717027": {
       "id": "7717027",
@@ -103,7 +103,8 @@
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/85498357?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Chalkboard\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
         "432036",
-        "434495"
+        "434495",
+        "631613"
       ],
       "urls": {
         "thumb": [
@@ -195,6 +196,7 @@
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/85498469?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Feral\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
         "370432",
+        "400062",
         "406234"
       ],
       "urls": {
@@ -465,6 +467,7 @@
       "portfolios": [
         "370372",
         "370432",
+        "400062",
         "434495",
         "457414",
         "492756",
@@ -553,6 +556,36 @@
       },
       "status": "available"
     },
+    "85498723": {
+      "id": "85498723",
+      "name": "There",
+      "description": null,
+      "duration": 32,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/85498723?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"There\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631712"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/465293591_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/465293591_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/465293591_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/465293591_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/465293591_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/465293591_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/85498723.hd.mp4?s=ac024e3e1f950772e8f1158e06708b41684b821b&profile_id=113&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/85498723.mobile.mp4?s=390622db0110204cd6d843374515641c7b7f18bb&profile_id=116&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/85498723.sd.mp4?s=7cadee2a37db077ec95c53731992e948d3719082&profile_id=112&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/85498723.m3u8?s=25a61ccb1931ced6ff16c3731fcd05e0172961d5&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/85498723"
+      },
+      "status": "available"
+    },
     "85498724": {
       "id": "85498724",
       "name": "Vive la Rose",
@@ -585,6 +618,36 @@
       },
       "status": "available"
     },
+    "85498727": {
+      "id": "85498727",
+      "name": "Where to Vote",
+      "description": null,
+      "duration": 15,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/85498727?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Where to Vote\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631636"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/465214087_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/465214087_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/465214087_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/465214087_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/465214087_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/465214087_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/85498727.hd.mp4?s=cdd150c61a292d2930e0714f63402b9e820aa29f&profile_id=113&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/85498727.sd.mp4?s=0889ac11e350800abcf832ac84289efbceef19ca&profile_id=112&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/85498727.mobile.mp4?s=dc89f884430dcf313fdd3a685a4eeaee3785aa61&profile_id=116&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/85498727.m3u8?s=2531ee70e289405988513cab2d34afb129d669c3&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/85498727"
+      },
+      "status": "available"
+    },
     "85559998": {
       "id": "85559998",
       "name": "Beijing Flip Book",
@@ -594,7 +657,8 @@
       "height": 720,
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/85559998?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Beijing Flip Book\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
-        "406234"
+        "406234",
+        "631613"
       ],
       "urls": {
         "thumb": [
@@ -747,7 +811,8 @@
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/85568969?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Moving Day\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
         "370366",
-        "434493"
+        "434493",
+        "631712"
       ],
       "urls": {
         "thumb": [
@@ -1383,7 +1448,8 @@
       "height": 720,
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/86737589?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Bus\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
-        "370365"
+        "370365",
+        "400039"
       ],
       "urls": {
         "thumb": [
@@ -1437,6 +1503,36 @@
           "https://player.vimeo.com/external/86737824.m3u8?s=18d943ba4019512dbe4f0b6575fb1ab8ae04988a&oauth2_token_id=61459556"
         ],
         "main": "https://vimeo.com/86737824"
+      },
+      "status": "available"
+    },
+    "87715579": {
+      "id": "87715579",
+      "name": "Aertel",
+      "description": null,
+      "duration": 30,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/87715579?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Aertel\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631712"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/465884750_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/465884750_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/465884750_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/465884750_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/465884750_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/465884750_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/87715579.sd.mp4?s=4c84e252886e102c0800ac19d432a369c2bf5c18&profile_id=112&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/87715579.hd.mp4?s=a6fbf9eabbd1b7a8e78c5902da1828a1b56fd90a&profile_id=113&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/87715579.mobile.mp4?s=b649f87af3ecea07d1cb9bd78876a47da4674817&profile_id=116&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/87715579.m3u8?s=cc30949aa7c528ead742e2b732943878156896b9&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/87715579"
       },
       "status": "available"
     },
@@ -1697,7 +1793,8 @@
       "height": 1080,
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/87725357?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1920\" height=\"1080\" frameborder=\"0\" title=\"Abuelo Park\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
-        "402927"
+        "402927",
+        "631636"
       ],
       "urls": {
         "thumb": [
@@ -1788,7 +1885,8 @@
       "height": 720,
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/87726543?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Avery Matthews\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
-        "402927"
+        "402927",
+        "631619"
       ],
       "urls": {
         "thumb": [
@@ -1806,6 +1904,33 @@
           "https://player.vimeo.com/external/87726543.m3u8?s=e280995ef8a71e07d8a33d2720f720cbd76de372&oauth2_token_id=61459556"
         ],
         "main": "https://vimeo.com/87726543"
+      },
+      "status": "available"
+    },
+    "87726549": {
+      "id": "87726549",
+      "name": "Bistro Bread",
+      "description": null,
+      "duration": 30,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/87726549?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Bistro Bread\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631613"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/465992114_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/465992114_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/465992114_295x166.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/87726549.hd.mp4?s=2547a4763d2ed7de006c8d2c4c01c6dc0fb6d6cd&profile_id=113&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/87726549.sd.mp4?s=f6f3fdf42df2c264d18e181ac9fde0ff2e6902b7&profile_id=112&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/87726549.mobile.mp4?s=90d5b72a494bbd4d5c4467407538d80eb9cbf81a&profile_id=116&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/87726549.m3u8?s=bccea7ad2ae4b61606af1d4081260a99efea64af&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/87726549"
       },
       "status": "available"
     },
@@ -1903,6 +2028,37 @@
           "https://player.vimeo.com/external/87809053.m3u8?s=1f9855abf85ce6b2ff8f27ace6b16c2362a8ccd6&oauth2_token_id=61459556"
         ],
         "main": "https://vimeo.com/87809053"
+      },
+      "status": "available"
+    },
+    "87810018": {
+      "id": "87810018",
+      "name": "Banana",
+      "description": null,
+      "duration": 21,
+      "width": 1920,
+      "height": 1080,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/87810018?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1920\" height=\"1080\" frameborder=\"0\" title=\"Banana\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631636"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/524340290_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/524340290_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/524340290_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/524340290_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/524340290_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/524340290_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/87810018.hd.mp4?s=cc2a88d254783dfd37c223ed86ae0ea1048939fd&profile_id=119&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/87810018.hd.mp4?s=cc2a88d254783dfd37c223ed86ae0ea1048939fd&profile_id=113&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/87810018.mobile.mp4?s=dd885a6a73610e549bfebe420659705d0e1da49d&profile_id=116&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/87810018.sd.mp4?s=148d80b57629732235e930e56d3f56e1aa613906&profile_id=112&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/87810018.m3u8?s=46248f0ee6f4a970f49eb724bdd2b1c99e356833&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/87810018"
       },
       "status": "available"
     },
@@ -2074,7 +2230,8 @@
       "height": 720,
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/87817925?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Black Hula\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
-        "406234"
+        "406234",
+        "631613"
       ],
       "urls": {
         "thumb": [
@@ -2122,6 +2279,36 @@
           "https://player.vimeo.com/external/87818728.m3u8?s=abff9b9cc7526101b9886e42e0506b7d8af8e5c8&oauth2_token_id=61459556"
         ],
         "main": "https://vimeo.com/87818728"
+      },
+      "status": "available"
+    },
+    "87821936": {
+      "id": "87821936",
+      "name": "3 in 1",
+      "description": null,
+      "duration": 30,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/87821936?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"3 in 1\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631712"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/466036380_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/466036380_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/466036380_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/466036380_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/466036380_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/466036380_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/87821936.sd.mp4?s=a9cfa126d9b4164f8f0fbd5fc076fc12ff5a1683&profile_id=112&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/87821936.mobile.mp4?s=aa7534dfd70a177147e4e432b9cc604647998429&profile_id=116&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/87821936.hd.mp4?s=1e5fcb4c5c33567e49fdb3637c6cee64b85b5870&profile_id=113&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/87821936.m3u8?s=3c75a2f7ed0145b1241f6f90718473b06ea0fe64&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/87821936"
       },
       "status": "available"
     },
@@ -2465,6 +2652,66 @@
       },
       "status": "available"
     },
+    "87886250": {
+      "id": "87886250",
+      "name": "Bubbly Bathtime Baby",
+      "description": null,
+      "duration": 20,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/87886250?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Bubbly Bathtime Baby\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631626"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/466129025_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/466129025_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/466129025_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/466129025_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/466129025_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/466129025_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/87886250.mobile.mp4?s=48c2b0b9ab5d6518ef3d157783fac84bf83541c8&profile_id=116&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/87886250.hd.mp4?s=cd4aaca683b352c399bd8c4a21c52c5b17ccdb87&profile_id=113&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/87886250.sd.mp4?s=0f27c40f1ff5f74b84b5fa7e3d478c73450ca32c&profile_id=112&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/87886250.m3u8?s=44d56cf4c3150d237ca96447df5eeafb6d4aca8a&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/87886250"
+      },
+      "status": "available"
+    },
+    "87886254": {
+      "id": "87886254",
+      "name": "Code Yellow",
+      "description": null,
+      "duration": 30,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/87886254?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Code Yellow\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "400062"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/466129663_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/466129663_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/466129663_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/466129663_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/466129663_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/466129663_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/87886254.hd.mp4?s=a04f6d8dff3d0df40f1fa9f8316b5812868d5cf4&profile_id=113&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/87886254.sd.mp4?s=cb96aad003ead5eb23b262c809889ece6f4ffba8&profile_id=112&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/87886254.mobile.mp4?s=b80b5782561bb38523eabb581b70fbf28edf1528&profile_id=116&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/87886254.m3u8?s=a61134ae92def73cd9578a32ca3ab15447633893&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/87886254"
+      },
+      "status": "available"
+    },
     "87886841": {
       "id": "87886841",
       "name": "Camel Test",
@@ -2505,6 +2752,7 @@
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/87886842?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Charlotte&#039;s Web: opening tiltes\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
         "370435",
+        "400062",
         "463263",
         "543784"
       ],
@@ -2602,7 +2850,8 @@
         "500799",
         "506448",
         "512948",
-        "515067"
+        "515067",
+        "631712"
       ],
       "urls": {
         "thumb": [
@@ -2742,6 +2991,33 @@
           "https://player.vimeo.com/external/88111017.m3u8?s=fe5484d7f2d647df41dd1cf9aeca6307c2c2a5de&oauth2_token_id=61459556"
         ],
         "main": "https://vimeo.com/88111017"
+      },
+      "status": "available"
+    },
+    "88111240": {
+      "id": "88111240",
+      "name": "Best Doctors",
+      "description": null,
+      "duration": 20,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/88111240?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Best Doctors\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631712"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/466440045_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/466440045_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/466440045_295x166.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/88111240.mobile.mp4?s=c075b188bda560c319f3c4f67d2c57bdb7883379&profile_id=116&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/88111240.hd.mp4?s=4e19e363fffe0c00b263e57bdba0f6fede8a49d1&profile_id=113&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/88111240.sd.mp4?s=0dcf9988171e9ed815650ee40fec4d9ebf6e0560&profile_id=112&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/88111240.m3u8?s=ea4225cdee478056a62bb84fc53d819594a8ec80&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/88111240"
       },
       "status": "available"
     },
@@ -2904,7 +3180,8 @@
       "height": 720,
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/88812423?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Channels\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
-        "370437"
+        "370437",
+        "631712"
       ],
       "urls": {
         "thumb": [
@@ -2935,7 +3212,8 @@
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/88812424?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Bundle\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
         "370376",
-        "449835"
+        "449835",
+        "631712"
       ],
       "urls": {
         "thumb": [
@@ -3290,7 +3568,8 @@
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/89120464?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Darklight Festival\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
         "370376",
-        "506658"
+        "506658",
+        "631712"
       ],
       "urls": {
         "thumb": [
@@ -3373,6 +3652,36 @@
       },
       "status": "available"
     },
+    "89121288": {
+      "id": "89121288",
+      "name": "Cheer",
+      "description": null,
+      "duration": 5,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/89121288?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Cheer\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631636"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/467753774_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/467753774_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/467753774_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/467753774_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/467753774_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/467753774_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/89121288.hd.mp4?s=9e7e50bd5b8968e57832aecb3a0ea10926f3f225&profile_id=113&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/89121288.mobile.mp4?s=c08b8ec5af9d98b66d15c9ca1e9bc146e82b3965&profile_id=116&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/89121288.sd.mp4?s=b9ae010a840b16e0b63f989c018f3163e684a3ed&profile_id=112&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/89121288.m3u8?s=c5fd635569b879b89f24cfb8e758cf5d20538fd2&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/89121288"
+      },
+      "status": "available"
+    },
     "89121292": {
       "id": "89121292",
       "name": "Dance Fever (French)",
@@ -3413,7 +3722,8 @@
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/89121631?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Blast Beat\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
         "370365",
-        "575141"
+        "575141",
+        "631712"
       ],
       "urls": {
         "thumb": [
@@ -3458,6 +3768,33 @@
           "https://player.vimeo.com/external/89130842.m3u8?s=5482fb6a5c8d72afe6144a9d7e36fa15b87554b6&oauth2_token_id=61459556"
         ],
         "main": "https://vimeo.com/89130842"
+      },
+      "status": "available"
+    },
+    "89354721": {
+      "id": "89354721",
+      "name": "Easy",
+      "description": null,
+      "duration": 20,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/89354721?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Easy\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631712"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/468068984_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/468068984_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/468068984_295x166.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/89354721.mobile.mp4?s=cab883419b65042be981fac16a5f0f70987f39a3&profile_id=116&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/89354721.hd.mp4?s=01af9682fb63e771cf51307b38958c19b58a149d&profile_id=113&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/89354721.sd.mp4?s=d5e38584f0fa1ed93e1d9ff1b11581c28de6695e&profile_id=112&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/89354721.m3u8?s=aefff77897e0879dceb9c97300039f1311fcf48b&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/89354721"
       },
       "status": "available"
     },
@@ -3580,6 +3917,36 @@
           "https://player.vimeo.com/external/89355034.m3u8?s=1442c64abaa92f0d3f92a8632e8a78f4d4aab224&oauth2_token_id=61459556"
         ],
         "main": "https://vimeo.com/89355034"
+      },
+      "status": "available"
+    },
+    "89355396": {
+      "id": "89355396",
+      "name": "Dog Head",
+      "description": null,
+      "duration": 5,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/89355396?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Dog Head\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631613"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/468070080_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/468070080_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/468070080_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/468070080_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/468070080_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/468070080_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/89355396.mobile.mp4?s=a2142f5a19fb8eba1e069a161d1cccfdd0c84d96&profile_id=116&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/89355396.sd.mp4?s=d67c0fc3f0f0d80fc5510a61bb1d98db248ab34b&profile_id=112&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/89355396.hd.mp4?s=0957e37860db5e5c7936eb4a2e27924e618c69a5&profile_id=113&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/89355396.m3u8?s=ac3940cb1b88f993efd4073d450696f196af0c88&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/89355396"
       },
       "status": "available"
     },
@@ -4090,6 +4457,36 @@
       },
       "status": "available"
     },
+    "89637707": {
+      "id": "89637707",
+      "name": "Frog Box",
+      "description": null,
+      "duration": 31,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/89637707?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Frog Box\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631626"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/468479690_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/468479690_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/468479690_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/468479690_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/468479690_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/468479690_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/89637707.mobile.mp4?s=c3238010cdd6059ade786405f06e30e0a0fd79e6&profile_id=116&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/89637707.hd.mp4?s=3ab6e7561bc98d8a6ab5ccf23ce81a06e996a3c2&profile_id=113&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/89637707.sd.mp4?s=50ecebac085904c109d269e62d70e182e92048a5&profile_id=112&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/89637707.m3u8?s=11a87569c30291c2e70b52fd35ccf7a2f3eaac7a&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/89637707"
+      },
+      "status": "available"
+    },
     "89637994": {
       "id": "89637994",
       "name": "Geology",
@@ -4506,7 +4903,8 @@
         "434495",
         "531726",
         "543341",
-        "543784"
+        "543784",
+        "631619"
       ],
       "urls": {
         "thumb": [
@@ -4710,6 +5108,36 @@
       },
       "status": "available"
     },
+    "89725933": {
+      "id": "89725933",
+      "name": "Giant",
+      "description": null,
+      "duration": 10,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/89725933?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Giant\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631636"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/468625169_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/468625169_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/468625169_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/468625169_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/468625169_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/468625169_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/89725933.mobile.mp4?s=41d7ee102b0583e79c885e9243d86968ef964b87&profile_id=116&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/89725933.hd.mp4?s=38f86922912c8a60bda9bd8ef2dfbf8211e68b10&profile_id=113&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/89725933.sd.mp4?s=7cbf9d42c22bee2d45334ae3b4e91d10c9ace061&profile_id=112&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/89725933.m3u8?s=b5139e06d74c16443f22c5a7d39a5ccd5d661d51&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/89725933"
+      },
+      "status": "available"
+    },
     "89725939": {
       "id": "89725939",
       "name": "Ground",
@@ -4769,6 +5197,36 @@
           "https://player.vimeo.com/external/89725941.m3u8?s=28cf5cb8489b2b52c52259d141964d02d011fdb0&oauth2_token_id=61459556"
         ],
         "main": "https://vimeo.com/89725941"
+      },
+      "status": "available"
+    },
+    "89726083": {
+      "id": "89726083",
+      "name": "Hillbilly Bears",
+      "description": null,
+      "duration": 124,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/89726083?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Hillbilly Bears\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631619"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/468624626_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/468624626_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/468624626_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/468624626_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/468624626_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/468624626_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/89726083.mobile.mp4?s=33dcfcfd95565f080b179c59977a598049229c4f&profile_id=116&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/89726083.sd.mp4?s=739ccadab5cba1208ac2584ec874a25eb2f1af4f&profile_id=112&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/89726083.hd.mp4?s=4dfdfc0e862c9d554958fcbd25901852a7a0c5c6&profile_id=113&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/89726083.m3u8?s=a67ddcf6eda016395d32482983af8a7f398cf61b&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/89726083"
       },
       "status": "available"
     },
@@ -5579,6 +6037,66 @@
       },
       "status": "available"
     },
+    "90172414": {
+      "id": "90172414",
+      "name": "Kokanee 1",
+      "description": null,
+      "duration": 42,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/90172414?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Kokanee 1\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631626"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/469363232_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/469363232_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/469363232_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/469363232_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/469363232_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/469363232_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/90172414.sd.mp4?s=c3decfa26c2ed332f6132a89c50d00016cfff088&profile_id=112&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/90172414.mobile.mp4?s=bd095f5a640cfaeb523c698d88b3886c8826dfcc&profile_id=116&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/90172414.hd.mp4?s=4f07f27291967a8c8180c27f5cd4f6ac05d695e2&profile_id=113&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/90172414.m3u8?s=2576cd497fa20357cf268ae58862f943179fe4c9&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/90172414"
+      },
+      "status": "available"
+    },
+    "90172845": {
+      "id": "90172845",
+      "name": "Knock",
+      "description": null,
+      "duration": 30,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/90172845?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Knock\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631636"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/469209921_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/469209921_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/469209921_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/469209921_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/469209921_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/469209921_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/90172845.mobile.mp4?s=8fd6eb340a3ea71d14174209eaea3df498d60e3a&profile_id=116&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/90172845.sd.mp4?s=f21d2a100a1251c0e770028e66a0c6bc8f16aac1&profile_id=112&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/90172845.hd.mp4?s=1af0cabbb25e93ab94790a894e7fba243787c88b&profile_id=113&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/90172845.m3u8?s=0cd94d7f8adf4f0e1bc7b02eda5baedf9faf5b53&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/90172845"
+      },
+      "status": "available"
+    },
     "90172997": {
       "id": "90172997",
       "name": "Lady",
@@ -6159,6 +6677,36 @@
       },
       "status": "available"
     },
+    "90593187": {
+      "id": "90593187",
+      "name": "M & M",
+      "description": null,
+      "duration": 30,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/90593187?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"M &amp; M\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631626"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/469955610_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/469955610_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/469955610_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/469955610_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/469955610_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/469955610_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/90593187.hd.mp4?s=091b7b4fce6abfbd3a810cbaa3ab6769cf8411aa&profile_id=113&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/90593187.sd.mp4?s=6cc2487bff55908046d9b62b2641515cbb14a238&profile_id=112&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/90593187.mobile.mp4?s=151cbbbfdf564db69866262c4f1fe9e1ded43b6c&profile_id=116&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/90593187.m3u8?s=424ddc41267f04d1d861ca4d3570deff8448bfc9&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/90593187"
+      },
+      "status": "available"
+    },
     "90593188": {
       "id": "90593188",
       "name": "Lunch",
@@ -6200,7 +6748,8 @@
       "portfolios": [
         "357398",
         "536944",
-        "575141"
+        "575141",
+        "631636"
       ],
       "urls": {
         "thumb": [
@@ -6380,6 +6929,36 @@
       },
       "status": "available"
     },
+    "90593670": {
+      "id": "90593670",
+      "name": "Monster",
+      "description": null,
+      "duration": 17,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/90593670?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Monster\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631619"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/469968066_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/469968066_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/469968066_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/469968066_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/469968066_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/469968066_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/90593670.hd.mp4?s=7957ab92acfbae5f5be0fc62b26ac6d94f72d69c&profile_id=113&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/90593670.sd.mp4?s=bf0494ea01206c4c744b3ff4893f76d24b17e359&profile_id=112&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/90593670.mobile.mp4?s=3429cb50d8b565f3fa055dda240afb1533614808&profile_id=116&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/90593670.m3u8?s=720e17ccfab19599a90f89916f1da9509361ec4c&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/90593670"
+      },
+      "status": "available"
+    },
     "90991130": {
       "id": "90991130",
       "name": "Napa Test",
@@ -6451,7 +7030,8 @@
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/90991388?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"10th Birthday\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
         "381675",
-        "531726"
+        "531726",
+        "631613"
       ],
       "urls": {
         "thumb": [
@@ -6708,7 +7288,8 @@
         "463622",
         "500799",
         "536944",
-        "541927"
+        "541927",
+        "631636"
       ],
       "urls": {
         "thumb": [
@@ -7370,7 +7951,8 @@
         "463263",
         "512957",
         "549158",
-        "571736"
+        "571736",
+        "631636"
       ],
       "urls": {
         "thumb": [
@@ -7579,6 +8161,36 @@
       },
       "status": "available"
     },
+    "91735260": {
+      "id": "91735260",
+      "name": "Seed",
+      "description": null,
+      "duration": 30,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/91735260?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Seed\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631636"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/472432542_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472432542_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472432542_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472432542_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472432542_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472432542_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/91735260.sd.mp4?s=df36b8b00dbb59bb49cb2752720a6580ad6c93af&profile_id=112&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/91735260.hd.mp4?s=53550118002900c496e3d23d3de42ba3d2aaa547&profile_id=113&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/91735260.mobile.mp4?s=b22b6a452be6f73542e1886ebea804e7688f961e&profile_id=116&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/91735260.m3u8?s=5053649c7f55639470d25e298a2acf8b232d4b7c&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/91735260"
+      },
+      "status": "available"
+    },
     "91735392": {
       "id": "91735392",
       "name": "Scottish Rite",
@@ -7618,7 +8230,8 @@
       "height": 720,
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/91735514?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"World Winner Scrabble\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
-        "531156"
+        "531156",
+        "631636"
       ],
       "urls": {
         "thumb": [
@@ -7669,6 +8282,36 @@
           "https://player.vimeo.com/external/91735555.m3u8?s=1af7dfcc6f70d7a7dc54cf16fc670b9d436cbacb&oauth2_token_id=61459556"
         ],
         "main": "https://vimeo.com/91735555"
+      },
+      "status": "available"
+    },
+    "91735559": {
+      "id": "91735559",
+      "name": "RTE Sport",
+      "description": null,
+      "duration": 45,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/91735559?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"RTE Sport\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631712"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/472431157_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472431157_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472431157_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472431157_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472431157_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472431157_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/91735559.hd.mp4?s=c74a7f75f8ccdf183fd6e39aa637123b906c7b7d&profile_id=113&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/91735559.mobile.mp4?s=6e32ae4506f93006bbebf683c2a02731d12230c5&profile_id=116&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/91735559.sd.mp4?s=b913cf7567ec8173c109b86dd67cf66a7c92a86a&profile_id=112&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/91735559.m3u8?s=23183aca674e9608d297251a4f8ed37376bf9163&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/91735559"
       },
       "status": "available"
     },
@@ -7838,7 +8481,8 @@
       "height": 720,
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/91735874?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Rehabcare\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
-        "494596"
+        "494596",
+        "631712"
       ],
       "urls": {
         "thumb": [
@@ -7931,7 +8575,8 @@
         "370376",
         "470203",
         "512957",
-        "553310"
+        "553310",
+        "631712"
       ],
       "urls": {
         "thumb": [
@@ -8120,6 +8765,36 @@
       },
       "status": "available"
     },
+    "91737698": {
+      "id": "91737698",
+      "name": "SunFizz",
+      "description": null,
+      "duration": 30,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/91737698?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"SunFizz\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631619"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/471505438_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/471505438_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/471505438_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/471505438_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/471505438_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/471505438_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/91737698.sd.mp4?s=a21c5737c5a7d969fe2cc1ee68101f440436821e&profile_id=112&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/91737698.mobile.mp4?s=5ec4fbf650fef1d86b57b7e9c7b3cde2377c1cf8&profile_id=116&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/91737698.hd.mp4?s=28bd9e62b258888dbefacc94c9ac2c41a36f02bb&profile_id=113&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/91737698.m3u8?s=ffce7e4ffd0596fcca23f411f434ac5de477c53b&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/91737698"
+      },
+      "status": "available"
+    },
     "92666640": {
       "id": "92666640",
       "name": "Spring 2",
@@ -8226,7 +8901,8 @@
       "portfolios": [
         "370432",
         "406234",
-        "434495"
+        "434495",
+        "631613"
       ],
       "urls": {
         "thumb": [
@@ -8463,6 +9139,36 @@
           "https://player.vimeo.com/external/92756597.m3u8?s=b31203790143358d8e858dcf6193c7d472d13bfd&oauth2_token_id=61459556"
         ],
         "main": "https://vimeo.com/92756597"
+      },
+      "status": "available"
+    },
+    "92756600": {
+      "id": "92756600",
+      "name": "Young Scientist",
+      "description": null,
+      "duration": 30,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/92756600?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Young Scientist\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631712"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/472754624_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472754624_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472754624_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472754624_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472754624_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472754624_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/92756600.hd.mp4?s=6b6af8baff956bf1063fb4059f7d28885ef6ee9f&profile_id=113&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/92756600.mobile.mp4?s=3a776460d2ec8d3fb97cd3c4b954f5f2a3f2f69e&profile_id=116&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/92756600.sd.mp4?s=a5e17c68de4251eeac68bba3a970d7e7588e92d9&profile_id=112&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/92756600.m3u8?s=728bf145651aab699337768d4d389a943502c7ad&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/92756600"
       },
       "status": "available"
     },
@@ -8707,7 +9413,8 @@
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/92950266?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Glasgow Warriors\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
         "370376",
-        "553310"
+        "553310",
+        "631712"
       ],
       "urls": {
         "thumb": [
@@ -8728,6 +9435,36 @@
       },
       "status": "available"
     },
+    "92950268": {
+      "id": "92950268",
+      "name": "Value",
+      "description": null,
+      "duration": 20,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/92950268?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Value\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631712"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/472849456_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472849456_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472849456_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472849456_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472849456_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472849456_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/92950268.mobile.mp4?s=29a56ee4867c127661382b2060646af246ce6497&profile_id=116&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/92950268.hd.mp4?s=d1e6cec9907ef9d0c39f6992c46bbf798ede5b7e&profile_id=113&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/92950268.sd.mp4?s=c69b92a0d674a5281a6b12cc2207a8f99bbe30fb&profile_id=112&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/92950268.m3u8?s=0600022084765ac10ed88db02826e22ba9f9a124&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/92950268"
+      },
+      "status": "available"
+    },
     "92950270": {
       "id": "92950270",
       "name": "Archives of Babel",
@@ -8737,6 +9474,7 @@
       "height": 720,
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/92950270?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Archives of Babel\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
+        "400062",
         "533120"
       ],
       "urls": {
@@ -8758,6 +9496,36 @@
       },
       "status": "available"
     },
+    "92968558": {
+      "id": "92968558",
+      "name": "Uncle Gus",
+      "description": null,
+      "duration": 51,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/92968558?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Uncle Gus\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631619"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/472882789_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472882789_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472882789_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472882789_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472882789_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472882789_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/92968558.sd.mp4?s=0ceb8ab23774da968a9456db86f7bc1c24798501&profile_id=112&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/92968558.mobile.mp4?s=0aec16184025f12c5b8c940569ebd218f47eb276&profile_id=116&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/92968558.hd.mp4?s=c60170009d6ce1c144ff82c42907716d3ae25a71&profile_id=113&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/92968558.m3u8?s=cdc7c01a994966d64ed9a553c4992e4cbd4a3db7&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/92968558"
+      },
+      "status": "available"
+    },
     "92968563": {
       "id": "92968563",
       "name": "Turn Debt",
@@ -8767,7 +9535,8 @@
       "height": 720,
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/92968563?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Turn Debt\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
-        "370437"
+        "370437",
+        "631712"
       ],
       "urls": {
         "thumb": [
@@ -8846,6 +9615,36 @@
           "https://player.vimeo.com/external/92968931.m3u8?s=a66698762986e3e9d753e8bdfd6e7d7855e37f57&oauth2_token_id=61459556"
         ],
         "main": "https://vimeo.com/92968931"
+      },
+      "status": "available"
+    },
+    "92968932": {
+      "id": "92968932",
+      "name": "GAA",
+      "description": null,
+      "duration": 15,
+      "width": 1280,
+      "height": 720,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/92968932?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"GAA\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "631712"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/472881551_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472881551_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472881551_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472881551_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472881551_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/472881551_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/92968932.mobile.mp4?s=57def46529398806e495bad8bfe5bff518978710&profile_id=116&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/92968932.hd.mp4?s=579bb0b8fc170d9abb1c7c438576fb046475c758&profile_id=113&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/92968932.sd.mp4?s=99830d5aaba66f9ac9c99ed4ed344652203f7b32&profile_id=112&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/92968932.m3u8?s=c9e6eb82b5c17340b344ec9368c184004df32fa1&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/92968932"
       },
       "status": "available"
     },
@@ -9505,7 +10304,8 @@
       "height": 720,
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/95881190?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Rally 7\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
-        "531726"
+        "531726",
+        "631619"
       ],
       "urls": {
         "thumb": [
@@ -9571,7 +10371,8 @@
         "370363",
         "434368",
         "435205",
-        "543784"
+        "543784",
+        "631619"
       ],
       "urls": {
         "thumb": [
@@ -10299,7 +11100,8 @@
         "541927",
         "553310",
         "573917",
-        "608802"
+        "608802",
+        "631626"
       ],
       "urls": {
         "thumb": [

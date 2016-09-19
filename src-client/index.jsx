@@ -14,9 +14,13 @@ import { loadPortfolios, loadVideos } from './modules/data-loader'
 /******************************************************************************/
 
 window.onload = () => {
-  ReactDOM.render(<Website/>, document.getElementsByTagName('main')[0])
+
+  const mainTag = document.getElementsByTagName('main')[0]
+
+  ReactDOM.render(<Website/>, mainTag)
   loadPortfolios()
   loadVideos()
+
 }
 
 /******************************************************************************/
@@ -28,7 +32,7 @@ function Website() {
   return <Router history={browserHistory} >
     <Route path='/' component={Navigation} >
       <IndexRoute component={Splash} />
-      <Route path='/directors' component={Directors}/>
+      <Route path='/directors' inverse component={Directors}/>
       <Route path='/work/:portfolio' inverse component={Work}/>
       <Route path='/about' component={About}/>
     </Route>

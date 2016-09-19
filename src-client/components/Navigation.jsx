@@ -38,6 +38,7 @@ function NavHolder({children, inverse}) {
 
 export default function Navigation({children, location, routes}) {
   const inverse = routes && !!routes[routes.length-1].inverse
+
   return <div>
     <NavHolder inverse={inverse}>
       <HomeIcon />
@@ -54,6 +55,6 @@ export default function Navigation({children, location, routes}) {
         key: location.pathname
       })}
     </ReactCSSTransitionGroup>
-    <Background dark={location.pathname !== '/'}/>
+    <Background/>
   </div>
 }
