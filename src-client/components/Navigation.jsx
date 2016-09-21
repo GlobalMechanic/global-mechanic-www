@@ -1,11 +1,10 @@
 import React from 'react'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+// import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import { Link } from 'react-router'
 import Background from './Background'
 
-const AnimationTime = 500 //ms
-const DefaulyPortfolio = 'featured_work'
+const DefaultPortfolio = 'featured_work'
 
 function HomeIcon() {
 
@@ -22,12 +21,6 @@ function PageLink({to, children}) {
            activeClassName='active'>{children}</Link>
 }
 
-function PageHolder({children}) {
-  return <div id='page-holder' >
-    {children}
-  </div>
-}
-
 function NavHolder({children, inverse}) {
   const classes = inverse ? ' inverse' : ''
 
@@ -36,25 +29,26 @@ function NavHolder({children, inverse}) {
   </div>
 }
 
-export default function Navigation({children, location, routes}) {
+export default function Navigation({children, routes}) {
   const inverse = routes && !!routes[routes.length-1].inverse
 
   return <div>
     <NavHolder inverse={inverse}>
       <HomeIcon />
-      <PageLink to={`/work/${DefaulyPortfolio}`}>Work</PageLink>
       <PageLink to='/directors'>Directors</PageLink>
       <PageLink to='/about'>About</PageLink>
+      <PageLink to={`/work/${DefaultPortfolio}`}>Work</PageLink>
     </NavHolder>
-    <ReactCSSTransitionGroup
+    {/* <ReactCSSTransitionGroup
       component={PageHolder}
       transitionName='navigate'
       transitionEnterTimeout={AnimationTime}
       transitionLeaveTimeout={AnimationTime}>
       {React.cloneElement(children, {
-        key: location.pathname
+      key: location.pathname
       })}
-    </ReactCSSTransitionGroup>
+    </ReactCSSTransitionGroup> */}
+    {children}
     <Background/>
   </div>
 }

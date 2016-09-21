@@ -9,7 +9,7 @@
 
   z-index: -99;
 
-  background: url(../assets/overlay-texture.png) repeat;
+  background: url(/assets/overlay-texture.png) repeat;
   background-color: rgba(0,0,0,0.0);
 
   transition: background-color $transition-time, background $transition-time;

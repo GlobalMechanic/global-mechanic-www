@@ -1,55 +1,43 @@
 import React from 'react'
+import directors from '../modules/directors'
 import { browserHistory } from 'react-router'
-import Page from './Page'
-import staff from '../modules/staff'
 import { FreeWall, Content, Dropdown } from '../components'
 
-import randomColor from 'random-color'
+import Page from './Page'
 
-const rHex = () => randomColor().hexString()
+const dropdownSelect = (e, dir) => {
+  browserHistory.push(`/directors/${dir.id}`)
+}
 
-const FeaturedWidth = 800
-const FeaturedHeight = 960
+function DirectorBlock({ id, name, image, width, height }) {
 
-function Director({ path, name, image, width, height, writeup, current }) {
-
-  const featured = path === current
   const click = () => {
-    if (!featured)
-      browserHistory.push(`/about/${path}`)
+    browserHistory.push(`/directors/${id}`)
   }
 
   return <div
     onClick={click}
-    key={name} className='block'
+    key={name} className='director-block bulge'
     style={{
-      backgroundColor: rHex(),
-      width: featured ? FeaturedWidth : width,
-      height: featured ? FeaturedHeight : height
+      width,
+      height
     }}>
-    {
-      featured ? <p className="body"><h3>{name}</h3>{writeup}</p> : null
-    }
-    <div className={`staff-picture${featured ? ' featured' : ''}`} style={{backgroundImage: `url(${image})`}}/>
+    <div className="staff-picture" style={{backgroundImage: `url(${image})`}}/>
   </div>
 
 }
 
-function Directors({ current }) {
-  return <FreeWall id="director-free-wall" selector=".block" className="med-width center">
-    {
-      staff
-      .filter(data => data.director)
-        .map(data => <Director key={data.path} {...data} current={current}/>)
-    }
-  </FreeWall>
-}
+export default function Directors(props) {
 
-export default function About(props) {
   return <Page id="directors-page" {...props}>
     <Content id="directors-content" >
-      <Dropdown className="padded"/>
-      <Directors />
+      <Dropdown title="Directors" items={directors} onSelection={dropdownSelect}/>
+      { props.params.director ?
+        props.children :
+          <FreeWall key={props.params.director} id="director-free-wall" selector=".director-block">
+            { directors
+              .map(dir => <DirectorBlock key={dir.id} {...dir}/>) }
+          </FreeWall> }
     </Content>
   </Page>
 }

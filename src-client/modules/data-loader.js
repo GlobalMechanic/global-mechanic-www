@@ -26,6 +26,19 @@ const data = {
 // Fetch
 /******************************************************************************/
 
+function randomCellSize(plus = 1) {
+  return (plus + Math.ceil(Math.random() * 3)) * 50
+}
+
+function randomizeWidthAndHeight(videos) {
+  for (const i in videos) {
+    videos[i].width = randomCellSize(3)
+    videos[i].height = randomCellSize(2)
+  }
+
+  return videos
+}
+
 export function loadPortfolios() {
   app.service('portfolios')
    .find()
@@ -39,8 +52,8 @@ export function loadVideos() {
   app.service('videos')
    .find()
    .then(videos => {
-     data.videos = videos
-     events.emit('videos-loaded', videos)
+     data.videos = randomizeWidthAndHeight(videos)
+     events.emit('videos-loaded', data.videos)
    })
 }
 

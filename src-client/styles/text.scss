@@ -1,8 +1,8 @@
 @font-face {
 
   font-family: 'Bebas-Neue-Regular';
-  src: url('../assets/bebasneue-webfont.woff2') format('woff2'),
-       url('../assets/bebasneue-webfont.woff') format('woff');
+  src: url('/assets/bebasneue-webfont.woff2') format('woff2'),
+       url('/assets/bebasneue-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 
@@ -14,6 +14,7 @@ $body-font: Helvetica;
 .text {
   line-height: 1em;
   letter-spacing: $title-kerning;
+  transition: font-size $transition-time;
 }
 
 .title {
@@ -53,6 +54,37 @@ $body-font: Helvetica;
     font-size: $title-size * $mini-mult * $mini-mult;
   }
 }
+
+.title.small {
+  font-size: $title-size * $small-mult;
+  @media screen and (max-width: $med-width) {
+    font-size: $title-size * $med-mult * $small-mult;
+  }
+
+  @media screen and (max-width: $small-width) {
+    font-size: $title-size * $small-mult * $small-mult;
+  }
+
+  @media screen and (max-width: $mini-width) {
+    font-size: $title-size * $mini-mult * $small-mult;
+  }
+}
+
+.title.medium {
+  font-size: $title-size * $med-mult;
+  @media screen and (max-width: $med-width) {
+    font-size: $title-size * $med-mult * $med-mult;
+  }
+
+  @media screen and (max-width: $small-width) {
+    font-size: $title-size * $small-mult * $med-mult;
+  }
+
+  @media screen and (max-width: $mini-width) {
+    font-size: $title-size * $mini-mult * $med-mult;
+  }
+}
+
 
 .body {
   @extend .text;

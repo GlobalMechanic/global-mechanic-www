@@ -1,0 +1,41 @@
+
+.video-page {
+
+  width: 100vw;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 100;
+  background: rgba(0,0,0,0.75);
+
+}
+
+.video-player {
+
+  width: $video-width;
+  height: $video-height;
+
+  @media screen and (max-width: $med-width) {
+    width: $video-width * $med-mult;
+    height: $video-height * $med-mult;
+  }
+
+  @media screen and (max-width: $small-width) {
+    width: $video-width * $small-mult;
+    height: $video-height * $small-mult;
+  }
+
+  @media screen and (max-width: $mini-width) {
+    width: $video-width * $mini-mult;
+    height: $video-height * $mini-mult;
+  }
+
+  transition: width $transition-time, height $transition-time;
+
+  padding-top: 220px;
+
+  margin: auto;
+  display: block;
+
+}

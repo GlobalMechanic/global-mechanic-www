@@ -1,18 +1,18 @@
-$large-width: 1400px;
-$med-width: 1100px;
+$large-width: 1500px;
+$med-width: 1200px;
 $small-width: 800px;
 $mini-width: 500px;
 
 $title-size: 62px;
 $title-kerning: 0px;
-$body-size: 22px;
+$body-size: 28px;
 $body-kerning: inherit;
 
 $padding: 20px;
 
-$med-mult: 0.8;
-$small-mult: 0.675;
-$mini-mult: 0.425;
+$med-mult: 0.75;
+$small-mult: 0.50;
+$mini-mult: 0.36;
 
 $text-color: white;
 $inverted-text-color: black;
@@ -21,5 +21,12 @@ $inverted-text-hover-color: gray;
 $bg-color: transparent;
 $inverted-bg-color: $text-color;
 $overlay-opacity: 0.6;
+
+$video-width: 960px;
+$video-height: 540px;
+
+$dropdown-font-size: 120px;
+$dropdown-caret-width: 32px;
+$dropdown-caret-height: 26px;
 
 $transition-time: 500ms;

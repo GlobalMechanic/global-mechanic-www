@@ -5,7 +5,7 @@ import './styles/main.scss'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Navigation } from './components'
-import { Splash, Directors, About, Work } from './pages'
+import { Splash, Directors, Director, About, Work, Video, Staff } from './pages'
 import { IndexRoute, Router, Route, browserHistory } from 'react-router'
 import { loadPortfolios, loadVideos } from './modules/data-loader'
 
@@ -32,9 +32,17 @@ function Website() {
   return <Router history={browserHistory} >
     <Route path='/' component={Navigation} >
       <IndexRoute component={Splash} />
-      <Route path='/directors' inverse component={Directors}/>
-      <Route path='/work/:portfolio' inverse component={Work}/>
-      <Route path='/about' dark component={About}/>
+      <Route path='/directors' inverse component={Directors}>
+        <Route path='/directors/:director' inverse component={Director}>
+          <Route path='/directors/:director/:video' inverse component={Video} />
+        </Route>
+      </Route>
+      <Route path='/work/:portfolio' inverse component={Work}>
+        <Route path='/work/:portfolio/:video' inverse component={Video} />
+      </Route>
+      <Route path='/about' dark component={About}>
+        <Route path='/about/:staff' dark component={Staff} />
+      </Route>
     </Route>
   </Router>
 }

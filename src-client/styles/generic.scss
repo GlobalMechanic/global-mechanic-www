@@ -91,3 +91,14 @@ p, a {
 video::-webkit-media-controls-start-playback-button {
   display: none;
 }
+
+.bulge {
+  transform: scale(1,1);
+  transition: transform $transition-time !important;
+}
+
+.bulge:hover {
+  position: relative;
+  z-index: 1;
+  transform: scale(1.05,1.05) !important;
+}
