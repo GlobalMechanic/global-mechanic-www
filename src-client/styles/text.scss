@@ -12,13 +12,13 @@ $title-font: "Bebas-Neue-Regular";
 $body-font: Helvetica;
 
 .text {
-  line-height: 1em;
   letter-spacing: $title-kerning;
   transition: font-size $transition-time;
 }
 
 .title {
   @extend .text;
+  line-height: 0.9em;
 
   font-family: $title-font;
   font-size: $title-size;
@@ -41,6 +41,7 @@ $body-font: Helvetica;
 }
 
 .title.mini {
+  line-height: 0.9em;
   font-size: $title-size * $mini-mult;
   @media screen and (max-width: $med-width) {
     font-size: $title-size * $med-mult * $mini-mult;
@@ -56,6 +57,7 @@ $body-font: Helvetica;
 }
 
 .title.small {
+  line-height: 0.9em;
   font-size: $title-size * $small-mult;
   @media screen and (max-width: $med-width) {
     font-size: $title-size * $med-mult * $small-mult;
@@ -71,6 +73,7 @@ $body-font: Helvetica;
 }
 
 .title.medium {
+  line-height: 0.9em;
   font-size: $title-size * $med-mult;
   @media screen and (max-width: $med-width) {
     font-size: $title-size * $med-mult * $med-mult;
@@ -88,6 +91,7 @@ $body-font: Helvetica;
 
 .body {
   @extend .text;
+  line-height: 1.25em;
 
   font-family: $body-font;
   font-size: $body-size;
@@ -104,6 +108,7 @@ $body-font: Helvetica;
 
 .body.mini {
   font-size: $body-size * $mini-mult;
+  line-height: 1.25em;
 
   @media screen and (max-width: $med-width) {
     font-size: $body-size * $med-mult * $mini-mult;

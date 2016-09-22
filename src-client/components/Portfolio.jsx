@@ -59,9 +59,9 @@ export default class Portfolio extends React.Component {
   }
 
   render() {
-    const { id, urlPrefix } = this.props
+    const { id, urlPrefix, ...other } = this.props
     const { videos } = this.state
-    return <FreeWall id={id} selector=".video-block" >
+    return <FreeWall id={id} key={id} selector=".video-block" {...other}>
       { videos.map(video => <VideoBlock key={video.id} video={video} urlPrefix={urlPrefix} />) }
     </FreeWall>
   }

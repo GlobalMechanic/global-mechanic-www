@@ -27,7 +27,7 @@ const data = {
 /******************************************************************************/
 
 function randomCellSize(plus = 1) {
-  return (plus + Math.ceil(Math.random() * 3)) * 50
+  return (plus + Math.ceil(Math.random() * 5)) * 50
 }
 
 function randomizeWidthAndHeight(videos) {

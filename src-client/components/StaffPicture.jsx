@@ -10,7 +10,9 @@ export default function StaffPicture({className, staff, ...other}) {
 
   return <div className={'staff-writeup' + (className || '')}>
     <div className='staff-picture' style={style} {...other} />
-    <TitleText>{staff.name}</TitleText>
-    <BodyText>{staff.writeup}</BodyText>
+    <div className='staff-bio'>
+      <TitleText>{staff.name}</TitleText>
+      <BodyText>{staff.writeup}</BodyText>
+    </div>
   </div>
 }

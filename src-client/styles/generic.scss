@@ -17,7 +17,7 @@ p, a {
 }
 
 .clickable.active,.clickable:hover {
-  color: $inverted-text-color;
+  color: $inverted-text-hover-color;
 }
 
 .inverse {
@@ -93,12 +93,10 @@ video::-webkit-media-controls-start-playback-button {
 }
 
 .bulge {
-  transform: scale(1,1);
-  transition: transform $transition-time !important;
+  opacity: 1 !important;
+  transition: opacity $transition-time;
 }
 
 .bulge:hover {
-  position: relative;
-  z-index: 1;
-  transform: scale(1.05,1.05) !important;
+  opacity: 0.5 !important;
 }

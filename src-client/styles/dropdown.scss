@@ -45,6 +45,7 @@
   }
 
   .clickable:hover {
+    transition: color $transition-time;
     .caret {
       background-image: url(/assets/caret-gray.svg);
       transform: scale(1.25,1.25);
@@ -59,6 +60,8 @@
   opacity: 0;
   height: 0px;
   overflow: hidden;
+  padding-bottom: $padding * 0.5;
+  background-color: white;
   transition: opacity $transition-time;
 }
 
@@ -69,4 +72,7 @@
 
 .dropdown-item {
   background-color: $text-color;
+  padding-left: $padding;
+  padding-right: $padding;
+  padding-top: $padding * 0.125;
 }

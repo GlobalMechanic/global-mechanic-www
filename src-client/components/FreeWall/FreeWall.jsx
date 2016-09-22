@@ -9,7 +9,7 @@ import Freewall from './freewall-bengaumond-forked'
 // Exports
 /******************************************************************************/
 const DefaultCellSize = 80
-const DefaultAnimTime = 0.4
+const DefaultAnimTime = 0.5
 
 export default class FreeWall extends React.Component {
 
@@ -29,7 +29,7 @@ export default class FreeWall extends React.Component {
       cellH: cellSize || DefaultCellSize,
       gutterY: 0,
       gutterX: 0,
-      delay: 5
+      delay: 10
     })
     this.resize()
   }
@@ -62,9 +62,9 @@ export default class FreeWall extends React.Component {
 
     const { id, className, children } = this.props
 
-    return <div id={id} className={className} ref={div => this.dom = div}>
+    return <div className='freewall-container'><div id={id} className={className} ref={div => this.dom = div}>
       {children}
-    </div>
+    </div></div>
   }
 
 }

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2016-09-21T18:31:44.409Z",
+  "timestamp": "2016-09-22T23:46:50.043Z",
   "data": {
     "7717027": {
       "id": "7717027",
@@ -12721,6 +12721,192 @@
           "https://player.vimeo.com/external/174729298.m3u8?s=de1c7f57ba1637aeb68ed73c7ea5b4deacfcc8c5&oauth2_token_id=61459556"
         ],
         "main": "https://vimeo.com/174729298"
+      },
+      "status": "available"
+    },
+    "183889413:97eb910909": {
+      "id": "183889413:97eb910909",
+      "name": "Julian Frost - Dumb Ways To Die",
+      "description": null,
+      "duration": 182,
+      "width": 1920,
+      "height": 1080,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/183889413?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1920\" height=\"1080\" frameborder=\"0\" title=\"Julian Frost - Dumb Ways To Die\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "634980"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/593221742_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221742_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221742_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221742_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221742_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221742_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/183889413.hd.mp4?s=93d224fe1d751b8579ab9c09fe63e9637d7db830&profile_id=119&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/183889413.hd.mp4?s=93d224fe1d751b8579ab9c09fe63e9637d7db830&profile_id=174&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/183889413.sd.mp4?s=f353c2dfe57b943bcbb514d4dedfcf39f0fb64ec&profile_id=164&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/183889413.sd.mp4?s=f353c2dfe57b943bcbb514d4dedfcf39f0fb64ec&profile_id=165&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/183889413.m3u8?s=0b72bcd2ab6cb38af81406ad93e86b3daca7756c&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/183889413/97eb910909"
+      },
+      "status": "available"
+    },
+    "183890785:eb00e6313d": {
+      "id": "183890785:eb00e6313d",
+      "name": "Julian Frost - Dumb Ways To Valentine",
+      "description": null,
+      "duration": 28,
+      "width": 1920,
+      "height": 1080,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/183890785?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1920\" height=\"1080\" frameborder=\"0\" title=\"Julian Frost - Dumb Ways To Valentine\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "634980"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/593223234_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593223234_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593223234_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593223234_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593223234_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593223234_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/183890785.sd.mp4?s=e75c5a931800a99f0e12d39028866ef46aca42c9&profile_id=165&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/183890785.hd.mp4?s=d851ac28b2598b5ae7ef099ea9e73a7535a21a8b&profile_id=174&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/183890785.sd.mp4?s=e75c5a931800a99f0e12d39028866ef46aca42c9&profile_id=164&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/183890785.hd.mp4?s=d851ac28b2598b5ae7ef099ea9e73a7535a21a8b&profile_id=119&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/183890785.m3u8?s=a2c3ff24fec11611a9afd8246fb0ba0c26f465c4&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/183890785/eb00e6313d"
+      },
+      "status": "available"
+    },
+    "183889419:fc46fffef7": {
+      "id": "183889419:fc46fffef7",
+      "name": "Julian Frost - Passion",
+      "description": null,
+      "duration": 15,
+      "width": 1920,
+      "height": 1080,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/183889419?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1920\" height=\"1080\" frameborder=\"0\" title=\"Julian Frost - Passion\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "634980"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/593221359_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221359_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221359_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221359_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221359_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221359_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/183889419.sd.mp4?s=e0fe987134fbb7e9eca5e7922c7cbb4052270c3b&profile_id=164&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/183889419.sd.mp4?s=e0fe987134fbb7e9eca5e7922c7cbb4052270c3b&profile_id=165&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/183889419.hd.mp4?s=82466f7c6174db2fa519541fea03375d8afe0dba&profile_id=174&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/183889419.hd.mp4?s=82466f7c6174db2fa519541fea03375d8afe0dba&profile_id=119&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/183889419.m3u8?s=f367ccdcab51c143b9eb6f4fd497245c9bb4d319&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/183889419/fc46fffef7"
+      },
+      "status": "available"
+    },
+    "183889418:bab611f3c3": {
+      "id": "183889418:bab611f3c3",
+      "name": "Julian Frost - Home Insurance",
+      "description": null,
+      "duration": 30,
+      "width": 1920,
+      "height": 1080,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/183889418?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1920\" height=\"1080\" frameborder=\"0\" title=\"Julian Frost - Home Insurance\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "634980"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/593221400_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221400_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221400_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221400_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221400_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221400_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/183889418.hd.mp4?s=e50c9b0cb9176b1b75053ef905087adb71e7fb43&profile_id=119&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/183889418.sd.mp4?s=1583a2cfb3b97b7d6fbf807f1a1e08c75e27d373&profile_id=165&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/183889418.sd.mp4?s=1583a2cfb3b97b7d6fbf807f1a1e08c75e27d373&profile_id=164&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/183889418.hd.mp4?s=e50c9b0cb9176b1b75053ef905087adb71e7fb43&profile_id=174&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/183889418.m3u8?s=e03b7c65d4751c1afd030b641aa03f4279a8332c&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/183889418/bab611f3c3"
+      },
+      "status": "available"
+    },
+    "183889417:8cad1e4050": {
+      "id": "183889417:8cad1e4050",
+      "name": "Julian Frost - IC Motor",
+      "description": null,
+      "duration": 30,
+      "width": 1920,
+      "height": 1080,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/183889417?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1920\" height=\"1080\" frameborder=\"0\" title=\"Julian Frost - IC Motor\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "634980"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/593221399_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221399_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221399_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221399_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221399_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221399_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/183889417.sd.mp4?s=fd1d8dc99bd7fe418cfdc06374ce0fe448256c81&profile_id=164&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/183889417.hd.mp4?s=0f98ffea103109c2c84a4e8abb7369529eb19fa3&profile_id=119&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/183889417.sd.mp4?s=fd1d8dc99bd7fe418cfdc06374ce0fe448256c81&profile_id=165&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/183889417.hd.mp4?s=0f98ffea103109c2c84a4e8abb7369529eb19fa3&profile_id=174&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/183889417.m3u8?s=30611af6d3e07b0e69fd84e178eb560aefb821f3&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/183889417/8cad1e4050"
+      },
+      "status": "available"
+    },
+    "183889416:2a99167c7a": {
+      "id": "183889416:2a99167c7a",
+      "name": "Julian Frost - Bananas",
+      "description": null,
+      "duration": 39,
+      "width": 1920,
+      "height": 1080,
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/183889416?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1920\" height=\"1080\" frameborder=\"0\" title=\"Julian Frost - Bananas\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "portfolios": [
+        "634980"
+      ],
+      "urls": {
+        "thumb": [
+          "https://i.vimeocdn.com/video/593221325_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221325_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221325_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221325_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221325_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/593221325_1280x720.jpg?r=pad"
+        ],
+        "file": [
+          "http://player.vimeo.com/external/183889416.sd.mp4?s=2a8df8466def1eecc09637602a9bec90aa1173b7&profile_id=165&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/183889416.hd.mp4?s=88e42a267b0fa07858e66837fa4ccb26b32c1144&profile_id=119&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/183889416.sd.mp4?s=2a8df8466def1eecc09637602a9bec90aa1173b7&profile_id=164&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/183889416.hd.mp4?s=88e42a267b0fa07858e66837fa4ccb26b32c1144&profile_id=174&oauth2_token_id=61459556",
+          "https://player.vimeo.com/external/183889416.m3u8?s=fa434dac2feca64c586d8a211e80c88f15dbe65e&oauth2_token_id=61459556"
+        ],
+        "main": "https://vimeo.com/183889416/2a99167c7a"
       },
       "status": "available"
     }

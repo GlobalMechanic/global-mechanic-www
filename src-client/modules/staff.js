@@ -89,12 +89,10 @@ export default [
     width: 160,
     height: 160,
     image: require('../assets/staff-brodie.jpg'),
-    writeup: 'Is a capable and friendly producer. He has a warm, inviting smile '+
-    'and a soft handshake. Buttery soft, like cotton candy. He’s never been to '+
-    'jail and doesn’t gamble. One time he stayed up until 9:30 pm, but it was by '+
-    'mistake. If a kilogram of mass was created every time Brodie politely apologized, '+
-    'our solar system would be home to the largest supermassive black hole in the '+
-    'observable universe.'
+    writeup: 'Donec vitae iaculis nunc, non posuere massa. Donec id maximus risus.'+
+    ' Donec in lectus gravida diam malesuada blandit in ultrices nibh. Suspendisse'+
+    ' ut viverra dolor. Integer tincidunt vel enim sed interdum. Proin vel varius'+
+    ' nunc. Curabitur vel lorem bibendum, aliquet nisl ac, bibendum ipsum.'
   },
   {
     name: 'Ben Gaumond',
@@ -103,16 +101,10 @@ export default [
     height: 160,
     main: false,
     image: require('../assets/staff-ben.jpg'),
-    writeup: 'Ben Gaumond is a generalist who specializes in everything. As a '+
-    'former male model who turned down an acting career to work at Global Mechanic, '+
-    'Ben is far and away the most brilliant man on the planet. He can solve two '+
-    'rubix cubes at once blindfolded using his feet while wearing combat boots in '+
-    'seven seconds. He can drink a gallon of Coors Light before getting tipsy, '+
-    'but he prefers micro-brews. He can recite all of Beethoven’s seventh symphony '+
-    'from memory using his vocal chords, and it totally sounds like a real piano. '+
-    'Doctors have often used transfusions of his blood to cure dementia in the elderly,'+
-    ' and cancer in infants. His limbs can regenerate if severed, he’s 47 feet tall'+
-    ' and he invented gravity.'
+    writeup: 'Donec vitae iaculis nunc, non posuere massa. Donec id maximus risus.'+
+    ' Donec in lectus gravida diam malesuada blandit in ultrices nibh. Suspendisse'+
+    ' ut viverra dolor. Integer tincidunt vel enim sed interdum. Proin vel varius'+
+    ' nunc. Curabitur vel lorem bibendum, aliquet nisl ac, bibendum ipsum.'
   },
   {
     name: 'Rachel Welsh',
@@ -121,6 +113,9 @@ export default [
     height: 160,
     main: false,
     image: require('../assets/staff-rachel.jpg'),
-    writeup: 'Rachel Welsh is extremely photogenic. She’s the one we put on posters.'
+    writeup: 'Donec vitae iaculis nunc, non posuere massa. Donec id maximus risus.'+
+    ' Donec in lectus gravida diam malesuada blandit in ultrices nibh. Suspendisse'+
+    ' ut viverra dolor. Integer tincidunt vel enim sed interdum. Proin vel varius'+
+    ' nunc. Curabitur vel lorem bibendum, aliquet nisl ac, bibendum ipsum.'
   }
-]
+].filter(dir => dir.writeup !== null && dir.portfolio !== null)

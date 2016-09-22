@@ -36,8 +36,8 @@ export default function Navigation({children, routes}) {
     <NavHolder inverse={inverse}>
       <HomeIcon />
       <PageLink to='/directors'>Directors</PageLink>
-      <PageLink to='/about'>About</PageLink>
       <PageLink to={`/work/${DefaultPortfolio}`}>Work</PageLink>
+      <PageLink to='/about'>About</PageLink>
     </NavHolder>
     {/* <ReactCSSTransitionGroup
       component={PageHolder}

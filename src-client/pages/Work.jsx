@@ -63,7 +63,7 @@ export default class Work extends React.Component {
     return <Page id="work-page" {...this.props}>
       <Content id="work-content">
         <Dropdown title={ portfolio ? portfolio.name : 'work' } items={publicPortfolios} onSelection={navigate}/>
-        { portfolio ? <Portfolio key={id} id={id} portfolio={portfolio.id} urlPrefix={`/work/${path}/`} className="med-width"/> : null }
+        { portfolio ? <Portfolio key={id} id={id} portfolio={portfolio.id} urlPrefix={`/work/${path}/`} /> : null }
         { this.props.children }
       </Content>
     </Page>

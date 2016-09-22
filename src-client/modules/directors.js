@@ -1,6 +1,30 @@
 
 export default [
   {
+    name: 'Bruce Alcock',
+    id: 'bruce',
+    width: 320,
+    height: 320,
+    portfolio: 399990,
+    image: require('../assets/staff-bruce-alt.png'),
+    writeup: 'Bruce Alcock, founder and Creative Director, is an artist whose animated '+
+    'shorts – Impromptu, Vive la Rose, At the Quinte Hotel, Wrong Number Phone Message '+
+    'and 54 Hours - have won accolades at festivals worldwide. Bruce’s wide-ranging '+
+    'background in music and art expresses itself in a varied and inventive approach '+
+    'to every project. His design-based TV commercials have led to award-winning '+
+    'campaigns for clients like Coca-Cola, Molson, Chrysler, Bell and Proctor & Gamble; '+
+    'his art projects include an interactive film for Canada’s pavilion in the Venice '+
+    'Biennale of Architecture, multi-screen typographical animation for the dance/ '+
+    'theatre/poetry/music piece The Four Horsemen with Toronto’s Volcano Theatre, '+
+    'set design and projection work for Art in Times’s I Send You This Cadmium Red '+
+    'and ongoing gallery shows of his paintings and installations. \nBruce studied '+
+    'tuba performance and comparative literature at the University of Toronto, then '+
+    'moved to Barcelona, where he apprenticed with animator Dirk Van de Vondel. He '+
+    'also designed the font Soupbone, distributed by FontShop International. Global '+
+    'Mechanic is his third production company; he founded Cuppa Coffee Animation '+
+    'in Toronto (1991) and Tricky Pictures in Chicago (1995).'
+  },
+  {
     name: 'Daniel Sousa',
     id: 'daniel',
     width: 240,
@@ -27,20 +51,6 @@ export default [
     'to think this author animates as if he were kicking the enemy. Based in Barcelona '+
     'since 1990, he combines his role as an independent advertising producer and '+
     'creator with collaborations with other creators in the visual and scenic ambit.'
-  },
-  {
-    name: 'Jerald Schoenroth',
-    id: 'jerald',
-    width: 400,
-    height: 400,
-    portfolio: 631626,
-    image: require('../assets/staff-jerald.jpg'),
-    writeup: 'Praesent faucibus consequat nisl varius ullamcorper. Nulla sit amet'+
-    ' metus lacus. Quisque elit massa, tempor at leo ut, cursus suscipit metus. '+
-    'Proin consectetur facilisis lacus a elementum. Sed non dignissim lorem. Class '+
-    'aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos '+
-    'himenaeos. Duis id felis volutpat, feugiat risus sed, posuere justo. Phasellus '+
-    'dictum massa in nunc pellentesque, id sodales dolor dignissim. Aenean sit amet posuere nisi.'
   },
   {
     name: 'Marv Newland',
@@ -74,8 +84,8 @@ export default [
   {
     name: 'Nathaniel Akin',
     id: 'nathaniel',
-    width: 280,
-    height: 280,
+    width: 320,
+    height: 320,
     portfolio: 631636,
     image: require('../assets/staff-nathaniel.jpg'),
     writeup: 'Nathaniel Akin has a rich background in commercial and independent '+
@@ -89,8 +99,8 @@ export default [
   {
     name: 'Rich Ferguson-Hull',
     id: 'rich',
-    width: 320,
-    height: 240,
+    width: 220,
+    height: 220,
     portfolio: 631619,
     image: require('../assets/staff-rich.jpg'),
     writeup: 'Donec vitae iaculis nunc, non posuere massa. Donec id maximus risus.'+
@@ -123,7 +133,7 @@ export default [
     id: 'julian',
     width: 360,
     height: 360,
-    portfolio: null,
+    portfolio: 634980,
     image: require('../assets/staff-julian.jpg'),
     writeup: 'Julian specialises in design-driven comedic animation. His work has'+
     ' won Cannes Lion Grand Prixs, Webbys, an Annecy Cristal, and been honoured by'+

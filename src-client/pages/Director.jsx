@@ -9,7 +9,7 @@ export default function Director(props) {
   const { children, ...other } = props
   const director = directors.filter(dir => dir.id === id)[0]
 
-  return <Page id={id} className="inverse padded" {...other}>
+  return <Page id={id} className="inverse" {...other}>
     <StaffPicture staff={director}></StaffPicture>
     <Portfolio id='directors-portfolio' portfolio={director.portfolio} urlPrefix={`/directors/${director.id}/`}/>
     { children }

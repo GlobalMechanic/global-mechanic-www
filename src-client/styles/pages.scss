@@ -1,8 +1,3 @@
-.page {
-  p {
-    @extend .med-width;
-  }
-}
 
 .staff-picture {
 
@@ -16,17 +11,33 @@
 
 }
 
+$img-size: 180px;
+
 .staff-writeup {
-  display: inline-block;
-  padding: $padding * 0.5 $padding $padding * 0.5 $padding;
+  padding-left: $padding + 4px;
+  padding-top: $padding * 0.15;
+  min-height: $img-size;
+  padding-bottom: $padding;
+  margin-top: -$padding * 0.2;
+
+  .staff-bio {
+    margin-left: $img-size + $padding;
+
+    .body {
+      margin-top: $padding * 0.5;
+    }
+
+  }
+
   .staff-picture {
-    float: left;
-    margin-right: $padding;
-    opacity: 1;
     cursor: auto;
-    width: 180px;
-    height: 180px;
-    display: inline-block;
+
+    opacity: 1;
+
+    width: $img-size;
+    height: $img-size;
+
+    float: left;
   }
 }
 
