@@ -15,7 +15,7 @@ function VideoBlock({ video, urlPrefix }) {
   const video_url = urlPrefix + video.id
 
   const { width, height } = video
-  
+
   return <div
     className='video-block clickable bulge'
     onClick={() => navigate(video_url)}

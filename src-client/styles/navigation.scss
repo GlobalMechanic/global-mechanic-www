@@ -74,7 +74,7 @@ $nav-holder-size: $title-size * 2 + $padding;
 
 }
 
-.nav-home:hover {
+.nav-home:hover, .nav-home.active {
   background-image: url(/assets/nut-black.svg);
 }
 
@@ -84,7 +84,7 @@ $nav-holder-size: $title-size * 2 + $padding;
     background-image: url(/assets/nut-black.svg);
   }
 
-  .nav-home:hover {
+  .nav-home:hover, .nav-home.active {
     background-image: url(/assets/nut-gray.svg);
   }
 

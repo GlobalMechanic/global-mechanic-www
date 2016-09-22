@@ -2,3 +2,5 @@ node_modules
 master
 test.js
 src-client-old
+cache/portfolios.json
+cache/videos.json
