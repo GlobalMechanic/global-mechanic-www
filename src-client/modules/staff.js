@@ -5,7 +5,6 @@ export default [
     id: 'bruce',
     width: 240,
     height: 160,
-    main: true,
     image: require('../assets/staff-bruce.jpg'),
     writeup: 'Bruce Alcock, founder and Creative Director, is an artist whose animated '+
     'shorts – Impromptu, Vive la Rose, At the Quinte Hotel, Wrong Number Phone Message '+
@@ -29,7 +28,6 @@ export default [
     id: 'tina',
     width: 240,
     height: 160,
-    main: true,
     image: require('../assets/staff-tina.jpg'),
     writeup: 'Executive Producer Tina Ouellette oversees all Global Mechanic business'+
     ' and supervises all aspects of client services. Leveraging decades of experience'+
@@ -45,7 +43,6 @@ export default [
     id: 'ryan',
     width: 240,
     height: 160,
-    main: true,
     image: require('../assets/staff-ryan.jpg'),
     writeup: 'Art Director Ryan Kane relocated to Vancouver and joined Global Mechanic,'+
     ' after 6 years as an Art Director, Senior Motion graphics and VFX Supervisor '+
@@ -60,28 +57,28 @@ export default [
     image: require('../assets/staff-allison.jpg'),
     width: 160,
     height: 160,
-    main: false,
-    writeup: 'Bringing years of experience in project management, client relations,'+
-    ' business development and contracts administration, Allison has a bold inventiveness '+
-    'for everything she produces. When not wearing her many hats in the studio she '+
-    'can be found searching for sunshine and beach breaks on foreign grounds. And '+
-    'trying to make people smile.'
+    writeup: 'Business Affairs Allison Barry offers years of experience in project'+
+    ' management, client relations, business development and contracts administration.'+
+    ' Joining Global Mechanic in 2011, Allison embodies a variety of roles within'+
+    ' the studio and is an invaluable asset to the company. Her portfolio ranges'+
+    ' from producing commercial spots with inventive finesse, to supervising Global'+
+    ' Mechanic’s recruitment plan, marketing strategy, and networking relationships'+
+    ' with new business partners and collaborators.'
   },
   {
     name: 'Cesare Batista',
     id: 'chez',
     width: 160,
     height: 160,
-    main: false,
     image: require('../assets/staff-chez.jpg'),
-    writeup: '“Chez” has been an integral part of Global Mechanic for 12 years. '+
-    'Lead Storyboard Artist for five seasons of PBS’s Emmy-nominated Fetch! with '+
-    'Ruff Ruffman, he also designed and animated countless TV commercials, animated '+
-    'and storyboarded on award-winning films At the Quinte Hotel, Long Tack Sam, '+
-    'Vive la Rose, Impromptu and 54 Hours.  His abilities range from an unerring '+
-    'sense of story, through expertise in any illustrative style, to inventive approaches '+
-    'to pipeline, to beautiful animated movement. A consistently positive force '+
-    'for great creative work, Chez ups the game of all he works with.'
+    writeup: 'Animation Director Cesare Battista, “Chez”, has been an integral part'+
+    ' of Global Mechanic for 12 years. Lead Storyboard Artist for five seasons of'+
+    ' PBS’s Emmy-nominated Fetch! with Ruff Ruffman, he also designed and animated'+
+    ' countless TV commercials, animated and storyboarded on award-winning films'+
+    ' At the Quinte Hotel, Long Tack Sam, Vive la Rose, Impromptu and 54 Hours. '+
+    ' His abilities range from an unerring sense of story, through expertise in any'+
+    ' illustrative style, to inventive approaches to pipeline, to beautiful animated'+
+    ' movement.'
   },
   {
     name: 'Chris Brode',
@@ -89,33 +86,32 @@ export default [
     width: 160,
     height: 160,
     image: require('../assets/staff-brodie.jpg'),
-    writeup: 'Donec vitae iaculis nunc, non posuere massa. Donec id maximus risus.'+
-    ' Donec in lectus gravida diam malesuada blandit in ultrices nibh. Suspendisse'+
-    ' ut viverra dolor. Integer tincidunt vel enim sed interdum. Proin vel varius'+
-    ' nunc. Curabitur vel lorem bibendum, aliquet nisl ac, bibendum ipsum.'
+    writeup: 'Producer Chris Brodie has worked in the Vancouver production industry'+
+    ' since graduating with an MA from Screen Academy Scotland in 2009. His experience'+
+    ' in live-action commercial and children’s television production led him to Global'+
+    ' Mechanic in 2012, where he now produces animated series and commercials. He'+
+    ' enjoys running logistics in the creative field, solving problems and communicating'+
+    ' with clients to ensure his productions deliver at the highest quality, on-time'+
+    ' and on-budget.'
   },
   {
     name: 'Ben Gaumond',
     id: 'ben',
     width: 160,
     height: 160,
-    main: false,
     image: require('../assets/staff-ben.jpg'),
-    writeup: 'Donec vitae iaculis nunc, non posuere massa. Donec id maximus risus.'+
-    ' Donec in lectus gravida diam malesuada blandit in ultrices nibh. Suspendisse'+
-    ' ut viverra dolor. Integer tincidunt vel enim sed interdum. Proin vel varius'+
-    ' nunc. Curabitur vel lorem bibendum, aliquet nisl ac, bibendum ipsum.'
+    writeup: 'Technical Director Ben Gaumond is an all around film professional '+
+    'and aficionado. When he’s not overseeing technical aspects at Global Mechanic '+
+    'during office hours, he’s filming and pursuing creative efforts. He has a well '+
+    'rounded skillset and thinks that sleeping is for the weak.'
   },
   {
     name: 'Rachel Welsh',
     id: 'rachel',
     width: 160,
     height: 160,
-    main: false,
     image: require('../assets/staff-rachel.jpg'),
-    writeup: 'Donec vitae iaculis nunc, non posuere massa. Donec id maximus risus.'+
-    ' Donec in lectus gravida diam malesuada blandit in ultrices nibh. Suspendisse'+
-    ' ut viverra dolor. Integer tincidunt vel enim sed interdum. Proin vel varius'+
-    ' nunc. Curabitur vel lorem bibendum, aliquet nisl ac, bibendum ipsum.'
+    writeup: 'Rachel is rad and good at stuff. She\'s very photogenic. She\'s the'+
+    ' one we put on the posters and stuff.'
   }
 ].filter(dir => dir.writeup !== null && dir.portfolio !== null)

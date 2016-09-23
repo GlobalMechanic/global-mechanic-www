@@ -15,13 +15,23 @@ $img-size: 180px;
 
 .staff-writeup {
   padding-left: $padding + 4px;
+  padding-right: $padding;
   padding-top: $padding * 0.15;
-  min-height: $img-size;
   padding-bottom: $padding;
   margin-top: -$padding * 0.2;
 
+  min-height: $img-size;
+
+  @media screen and (max-width: $small-width) {
+    min-height: $img-size * $small-mult;
+  }
+
   .staff-bio {
     margin-left: $img-size + $padding;
+
+    @media screen and (max-width: $small-width) {
+      margin-left: $img-size * $small-mult + $padding;
+    }
 
     .body {
       margin-top: $padding * 0.5;
@@ -36,6 +46,11 @@ $img-size: 180px;
 
     width: $img-size;
     height: $img-size;
+
+    @media screen and (max-width: $small-width) {
+      width: $img-size * $small-mult;
+      height: $img-size * $small-mult;
+    }
 
     float: left;
   }
