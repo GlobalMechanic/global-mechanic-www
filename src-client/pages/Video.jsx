@@ -14,6 +14,16 @@ export default class Video extends React.Component {
       video: null,
     }
     this.setVideos = this.setVideos.bind(this)
+    this.resize = this.resize.bind(this)
+    this.$player = null
+  }
+
+  resize() {
+    if (!this.$player || this.$player.length === 0)
+      return
+
+    const y = Math.max((window.innerHeight - this.$player.height()) * 0.5, 0)
+    this.$player.css('paddingTop', y)
   }
 
   setVideos(allVideos) {
@@ -33,20 +43,30 @@ export default class Video extends React.Component {
 
   componentDidMount() {
     events.on('videos-loaded', this.setVideos)
+    $(window).on('resize', this.resize)
+
     if (data.videos)
       this.setVideos(data.videos)
   }
 
   componentWillUnmount() {
     events.removeListener('videos-loaded', this.setVideos)
+    $(window).off('resize', this.resize)
+  }
+
+  componentDidUpdate() {
+    this.resize()
   }
 
   render() {
     const video = this.state.video
+    const id = this.props.params.video
 
-    return video ? <div className="video-page clickable" onClick={goBack} >
-      <iframe className="video-player" src={`//player.vimeo.com/video/${this.props.params.video}`}
+    return video ? <div className="video-page clickable" onClick={goBack}>
+
+      <iframe className="video-player" src={`//player.vimeo.com/video/${id}`}
         frameBorder={false} title={false} badge={false} byline={false}
+        ref={player => this.$player = $(player)}
         webkitallowfullscreen
         mozallowfullscreen
         allowfullscreen />

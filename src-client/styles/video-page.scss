@@ -2,7 +2,7 @@
 .video-page {
 
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   position: fixed;
   top: 0px;
   left: 0px;
@@ -32,8 +32,6 @@
   }
 
   transition: width $transition-time, height $transition-time;
-
-  padding-top: 220px;
 
   margin: auto;
   display: block;
