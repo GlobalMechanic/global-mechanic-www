@@ -25,7 +25,7 @@ export default [
     ' consults on projects for organizations like the NFB, ECIAD and Vancouver Film School.'
   },
   {
-    name: 'Tina Oulette',
+    name: 'Tina Ouellette',
     id: 'tina',
     width: 240,
     height: 160,
@@ -34,7 +34,7 @@ export default [
     ' business and supervises all aspects of client services. Leveraging decades'+
     ' of experience in production, Tina specializes in putting together and inspiring'+
     ' both cross-media and cross-functional collaborations. Tina’s management experience'+
-    ' ranges multi-platform digital projects to commercials, documentaries, network'+
+    ' ranges from multi-platform digital projects to commercials, documentaries, network'+
     ' news, broadcast sports, films, series TV and extensive branding work. Tina'+
     ' is profoundly aware of the importance of clear communication with clients,'+
     ' worldwide, ensuring that projects fulfill the mandates of all stakeholders'+
@@ -67,7 +67,7 @@ export default [
     ' to building networking relationships with new business partners and collaborators.'
   },
   {
-    name: 'Cesare Batista',
+    name: 'Cesare Battista',
     id: 'chez',
     width: 160,
     height: 160,
@@ -82,13 +82,13 @@ export default [
     ' movement. '
   },
   {
-    name: 'Chris Brode',
+    name: 'Chris Brodie',
     id: 'chris',
     width: 160,
     height: 160,
     image: require('../assets/staff-brodie.jpg'),
     writeup: 'Producer Chris Brodie has worked in the Vancouver production industry'+
-    ' since graduating with an MA from Screen Academy Scotland in 2009. His experience'+
+    ' since graduating with a MA from Screen Academy Scotland in 2009. His experience'+
     ' in live-action commercial and children’s television production led him to Global'+
     ' Mechanic in 2012, where he now produces animated series and commercials. He'+
     ' enjoys running logistics in the creative field, solving problems and communicating'+

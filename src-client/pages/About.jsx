@@ -32,10 +32,10 @@ export default function About(props) {
       <TitleText className="padded">Global Mechanic is a design studio.</TitleText>
       <TitleText className="padded">We experiment, we create, we make beautiful things.</TitleText>
       <BodyText className="padded">Founded in 2000 by Bruce Alcock, Global Mechanic has produced hundred of hours of award winning content for films,
-        commercials, telvision series, digital media and art projects. Oscar and Emmy nominated, we're well decorated in festival and
+        commercials, television series, digital media and art projects. Oscar and Emmy nominated, we're well decorated in festival and
       ad circuits worldwide.</BodyText>
       <BodyText className="padded">With a core staff of seasoned creatives and producers, we hub and spoke to handle projects small and large. That makes us
-        nible, adaptive, and it saves us from getting set in our ways. It's a studio culture of invention and collboration, where change is
+        nible, adaptive, and it saves us from getting set in our ways. It's a studio culture of invention and collaboration, where change is
       expected. Welcome, even.</BodyText>
       <BodyText className="padded">It shows in our work. We love what we do, for big ad agencies and clients like Leo Burnett, Grey, Ogilvy, BBDO, Coca-Cola,
         BMW, P&G, Nestle and Bell. For broadcasters like PBS, the Cartoon Network, Nickelodean and CBC, the films we produce independently and in
@@ -45,8 +45,8 @@ export default function About(props) {
     <Inverted id='our-team-section' fill className='padded-bottom'>
       <br/>
       { onStaffMember
-        ? <Link to='/about'><TitleText className='clickable padded'>HONORABLE STAFF</TitleText></Link>
-        : <TitleText className='padded'>HONORABLE STAFF</TitleText>
+        ? <Link to='/about'><TitleText className='clickable padded'>KEY STAFF</TitleText></Link>
+          : <TitleText className='padded'>KEY STAFF</TitleText>
       }
       <br/>
       { props.params.staff ?

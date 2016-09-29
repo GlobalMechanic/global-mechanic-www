@@ -60,7 +60,10 @@ export default class Video extends React.Component {
 
   render() {
     const video = this.state.video
-    const id = this.props.params.video
+    let id = this.props.params.video
+
+    if (id.includes(':'))
+      id = id.split(':')[0]
 
     return video ? <div className="video-page clickable" onClick={goBack}>
 
