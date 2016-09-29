@@ -6,22 +6,23 @@ export default [
     width: 240,
     height: 160,
     image: require('../assets/staff-bruce.jpg'),
-    writeup: 'Bruce Alcock, founder and Creative Director, is an artist whose animated '+
-    'shorts – Impromptu, Vive la Rose, At the Quinte Hotel, Wrong Number Phone Message '+
-    'and 54 Hours - have won accolades at festivals worldwide. Bruce’s wide-ranging '+
-    'background in music and art expresses itself in a varied and inventive approach '+
-    'to every project. His design-based TV commercials have led to award-winning '+
-    'campaigns for clients like Coca-Cola, Molson, Chrysler, Bell and Proctor & Gamble; '+
-    'his art projects include an interactive film for Canada’s pavilion in the Venice '+
-    'Biennale of Architecture, multi-screen typographical animation for the dance/ '+
-    'theatre/poetry/music piece The Four Horsemen with Toronto’s Volcano Theatre, '+
-    'set design and projection work for Art in Times’s I Send You This Cadmium Red '+
-    'and ongoing gallery shows of his paintings and installations. \nBruce studied '+
-    'tuba performance and comparative literature at the University of Toronto, then '+
-    'moved to Barcelona, where he apprenticed with animator Dirk Van de Vondel. He '+
-    'also designed the font Soupbone, distributed by FontShop International. Global '+
-    'Mechanic is his third production company; he founded Cuppa Coffee Animation '+
-    'in Toronto (1991) and Tricky Pictures in Chicago (1995).'
+    writeup: 'Founder and Creative Director, Bruce Alcock, has produced countless'+
+    ' award-winning projects throughout his expansive career. As Creative Director,'+
+    ' Bruce supervises all work made by the studio, including TV series for broadcasters'+
+    ' like PBS and the Cartoon Network. Global Mechanic is Bruce’s third production'+
+    ' company, where multiple modes of production inform one another, mixing the'+
+    ' professional rigour of commercial work with the creative spirit and critical'+
+    ' aesthetic of art projects. In addition to ongoing film, commercial and art'+
+    ' projects, Bruce thoroughly enjoys speaking about Global Mechanic’s approach'+
+    ' to animation and production, one which is oriented around hybridisation and'+
+    ' experimental techniques. In June 2016, Bruce was asked to present his life’s'+
+    ' animation work in advertising at the Annecy International Film Festival. He’s'+
+    ' also given workshops and masterclasses at home and abroad, from St. John’s,'+
+    ' Newfoundland to Edinburgh, Scotland. Bruce has sat on juries at the Ottawa'+
+    ' International Animation Festival and the Canadian Screen Awards, while also'+
+    ' moderating panels at KidScreen, Boards Advertising Conference and OIAF. Sharing'+
+    ' his passion with like-minded individuals, he regularly mentors filmmakers and'+
+    ' consults on projects for organizations like the NFB, ECIAD and Vancouver Film School.'
   },
   {
     name: 'Tina Oulette',
@@ -29,14 +30,15 @@ export default [
     width: 240,
     height: 160,
     image: require('../assets/staff-tina.jpg'),
-    writeup: 'Executive Producer Tina Ouellette oversees all Global Mechanic business'+
-    ' and supervises all aspects of client services. Leveraging decades of experience'+
-    ' in production, Tina specializes in putting together and inspiring both cross-media'+
-    ' and cross-functional collaborations. Tina’s management experience ranges multi-platform'+
-    ' digital projects to commercials, documentaries, network news, broadcast sports,'+
-    ' films, series TV and extensive branding work. Tina is profoundly aware of '+
-    'the importance of clear communication with clients, worldwide, ensuring that '+
-    'projects fulfill the mandates of all stakeholders and reach the target audience'
+    writeup: 'Executive Producer and CEO, Tina Ouellette oversees all Global Mechanic'+
+    ' business and supervises all aspects of client services. Leveraging decades'+
+    ' of experience in production, Tina specializes in putting together and inspiring'+
+    ' both cross-media and cross-functional collaborations. Tina’s management experience'+
+    ' ranges multi-platform digital projects to commercials, documentaries, network'+
+    ' news, broadcast sports, films, series TV and extensive branding work. Tina'+
+    ' is profoundly aware of the importance of clear communication with clients,'+
+    ' worldwide, ensuring that projects fulfill the mandates of all stakeholders'+
+    ' and reach the target audience.'
   },
   {
     name: 'Ryan Kane',
@@ -45,11 +47,11 @@ export default [
     height: 160,
     image: require('../assets/staff-ryan.jpg'),
     writeup: 'Art Director Ryan Kane relocated to Vancouver and joined Global Mechanic,'+
-    ' after 6 years as an Art Director, Senior Motion graphics and VFX Supervisor '+
-    'in Ireland’s largest design studio. Ryan’s experience includes AAA properties '+
-    'and brands such as Halo, Dead Rising, McDonalds and Levi’s. He has won many '+
-    'graphic design and VFX awards, and rounds out the studio with his seasoned '+
-    'eye and talent for 3D and VFX.'
+    ' after 6 years as an Art Director, Senior Motion graphics and VFX Supervisor'+
+    ' in Ireland’s largest design studio. Ryan’s experience includes AAA properties'+
+    ' and brands such as Halo, Dead Rising, McDonalds and Levi’s. He has won many'+
+    ' graphic design and VFX awards, and rounds out the studio with his seasoned'+
+    ' eye and talent for 3D and VFX.'
   },
   {
     name: 'Allison Barry',
@@ -59,11 +61,10 @@ export default [
     height: 160,
     writeup: 'Business Affairs Allison Barry offers years of experience in project'+
     ' management, client relations, business development and contracts administration.'+
-    ' Joining Global Mechanic in 2011, Allison embodies a variety of roles within'+
+    ' Joining Global Mechanic in 2010, Allison embodies a variety of roles within'+
     ' the studio and is an invaluable asset to the company. Her portfolio ranges'+
-    ' from producing commercial spots with inventive finesse, to supervising Global'+
-    ' Mechanic’s recruitment plan, marketing strategy, and networking relationships'+
-    ' with new business partners and collaborators.'
+    ' from supervising Global Mechanic’s recruitment plan and marketing strategy,'+
+    ' to building networking relationships with new business partners and collaborators.'
   },
   {
     name: 'Cesare Batista',
@@ -76,9 +77,9 @@ export default [
     ' PBS’s Emmy-nominated Fetch! with Ruff Ruffman, he also designed and animated'+
     ' countless TV commercials, animated and storyboarded on award-winning films'+
     ' At the Quinte Hotel, Long Tack Sam, Vive la Rose, Impromptu and 54 Hours. '+
-    ' His abilities range from an unerring sense of story, through expertise in any'+
-    ' illustrative style, to inventive approaches to pipeline, to beautiful animated'+
-    ' movement.'
+    ' His abilities range from an unerring sense of story, through expertise in '+
+    'any illustrative style, to inventive approaches to pipeline, to beautiful animated'+
+    ' movement. '
   },
   {
     name: 'Chris Brode',
@@ -100,10 +101,12 @@ export default [
     width: 160,
     height: 160,
     image: require('../assets/staff-ben.jpg'),
-    writeup: 'Technical Director Ben Gaumond is an all around film professional '+
-    'and aficionado. When he’s not overseeing technical aspects at Global Mechanic '+
-    'during office hours, he’s filming and pursuing creative efforts. He has a well '+
-    'rounded skillset and thinks that sleeping is for the weak.'
+    writeup: 'Technical Director Ben Gaumond specializes in technology services,'+
+    ' video editing and management of data services. Ben is continually adapting'+
+    ' and refining Global Mechanic’s technical infrastructure, relying on his multi-dimensional'+
+    ' knowledge of app development and coding languages to provide sophisticated'+
+    ' and resourceful solutions. When he\'s not overseeing all of Global Mechanic\'s'+
+    ' technical aspects, he\'s filming and pursuing creative efforts. '
   },
   {
     name: 'Rachel Welsh',
@@ -111,7 +114,10 @@ export default [
     width: 160,
     height: 160,
     image: require('../assets/staff-rachel.jpg'),
-    writeup: 'Rachel is rad and good at stuff. She\'s very photogenic. She\'s the'+
-    ' one we put on the posters and stuff.'
+    writeup: 'Associate Producer Rachel Welsh graduated from the University of British'+
+    ' Columbia in 2012 with an interdisciplinary degree in English Literature and'+
+    ' Women’s Studies. Her enthusiasm, commitment and broad range of interests have'+
+    ' made her an indispensable part of Global Mechanic, as her position has expanded'+
+    ' from research and development to include commercial production.'
   }
 ].filter(dir => dir.writeup !== null && dir.portfolio !== null)

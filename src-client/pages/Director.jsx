@@ -11,7 +11,9 @@ export default function Director(props) {
 
   return <Page id={id} className="inverse" {...other}>
     <StaffPicture staff={director}></StaffPicture>
-    <Portfolio id='directors-portfolio' portfolio={director.portfolio} urlPrefix={`/directors/${director.id}/`}/>
+    <Portfolio id='directors-portfolio' key={director.id} portfolio={director.portfolio}
+      portfolioImagesHack={director.portfolioImagesHack}
+      urlPrefix={`/directors/${director.id}/`} />
     { children }
   </Page>
 }

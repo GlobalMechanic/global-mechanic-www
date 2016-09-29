@@ -7,6 +7,17 @@ function navigate(url) {
   browserHistory.push(url)
 }
 
+function ImageBlock({ width, height, url }) {
+  return <div
+    className='video-block'
+    style={{
+      width: width || 160,
+      height: height || 160,
+      backgroundImage: `url(${url})`
+    }}>
+  </div>
+}
+
 function VideoBlock({ video, urlPrefix }) {
 
   urlPrefix = urlPrefix || '/'
@@ -59,10 +70,16 @@ export default class Portfolio extends React.Component {
   }
 
   render() {
-    const { id, urlPrefix, ...other } = this.props
+    const { id, urlPrefix, portfolioImagesHack, ...other } = this.props
     const { videos } = this.state
+
+    const imageBlocks = (portfolioImagesHack || []).map(img => <ImageBlock key={img.url} {...img}/>)
+    const videoBlocks = videos.map(video => <VideoBlock key={video.id} video={video} urlPrefix={urlPrefix} />)
+
+    const blocks = videoBlocks.concat(imageBlocks)
+
     return <FreeWall id={id} key={id} selector=".video-block" {...other}>
-      { videos.map(video => <VideoBlock key={video.id} video={video} urlPrefix={urlPrefix} />) }
+      { blocks }
     </FreeWall>
   }
 }
