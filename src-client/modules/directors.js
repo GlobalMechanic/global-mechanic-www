@@ -25,26 +25,6 @@ export default [
     ' in Chicago (1995).'
   },
   {
-    name: 'Daniel Sousa',
-    id: 'daniel',
-    width: 240,
-    height: 240,
-    portfolio: 400062,
-    image: require('../assets/staff-dan.jpg'),
-    writeup: 'Daniel Sousa is an accomplished director and an Academy Award nominee.'+
-    ' In 2003 he was awarded a Moving Image Fund production grant by the LEF Foundation'+
-    ' to produce Fable (2005). In 2008 he was the recipient of a production grant'+
-    ' from the Creative Capital Foundation for the film, Feral. His films have screened'+
-    ' at a number of animation film festivals including Annecy, Melbourne, Ottawa'+
-    ' and Anima. In addition to his independent projects, Daniel has worked as a'+
-    ' director and animator with Cartoon Network, Olive Jar Studios, Global Mechanic,'+
-    ' and Duck. He is a founding member of Handcrankedfilm, a film makers’ collective,'+
-    ' along with Jeff Sias, Bryan Papciak, and Jake Mahaffy. Daniel has taught at'+
-    ' several colleges in the New England area, including Harvard University, The'+
-    ' Museum School, and The Art Institute of Boston. Since 2001 he has been teaching'+
-    ' at the Rhode Island School of Design.'
-  },
-  {
     name: 'Dirk Van De Vondel',
     id: 'dirk',
     width: 200,
@@ -60,22 +40,6 @@ export default [
     ' and dynamic lines, a deep love of texture and creating at the edges of possibility.'+
     ' For many years, Dirk co-founded and ran a popular outdoor film festival, Xinacittà,'+
     ' in Barcelona. '
-  },
-  {
-    name: 'Marv Newland',
-    id: 'marv',
-    width: 240,
-    height: 160,
-    portfolio: 631613,
-    image: require('../assets/staff-marv.jpg'),
-    writeup: 'Marv Newland began a career making animated films in Los Angeles with '+
-    'the creation of the short Bambi Meets Godzilla. In 1970 he moved to Toronto, '+
-    'Canada where he designed, directed and animated television commercials, ID’s '+
-    'for Sesame Street, and segments for longer films. In late 1972 Newland moved '+
-    'to Vancouver, Canada where he free-lanced for local and American production '+
-    'companies. In 1975 Newland founded the animated film production company INTERNATIONAL '+
-    'ROCKETSHIP LIMITED in Vancouver, where he continues to produce and direct animated '+
-    'short films.'
   },
   {
     name: 'Morten Vinther',
@@ -103,6 +67,42 @@ export default [
     ' branding for the Nickelodeon digital animation channel ‘Nicktoons’.'
   },
   {
+    name: 'Daniel Sousa',
+    id: 'daniel',
+    width: 240,
+    height: 240,
+    portfolio: 400062,
+    image: require('../assets/staff-dan.jpg'),
+    writeup: 'Daniel Sousa is an accomplished director and an Academy Award nominee.'+
+    ' In 2003 he was awarded a Moving Image Fund production grant by the LEF Foundation'+
+    ' to produce Fable (2005). In 2008 he was the recipient of a production grant'+
+    ' from the Creative Capital Foundation for the film, Feral. His films have screened'+
+    ' at a number of animation film festivals including Annecy, Melbourne, Ottawa'+
+    ' and Anima. In addition to his independent projects, Daniel has worked as a'+
+    ' director and animator with Cartoon Network, Olive Jar Studios, Global Mechanic,'+
+    ' and Duck. He is a founding member of Handcrankedfilm, a film makers’ collective,'+
+    ' along with Jeff Sias, Bryan Papciak, and Jake Mahaffy. Daniel has taught at'+
+    ' several colleges in the New England area, including Harvard University, The'+
+    ' Museum School, and The Art Institute of Boston. Since 2001 he has been teaching'+
+    ' at the Rhode Island School of Design.'
+  },
+  {
+    name: 'Marv Newland',
+    id: 'marv',
+    width: 240,
+    height: 160,
+    portfolio: 631613,
+    image: require('../assets/staff-marv.jpg'),
+    writeup: 'Marv Newland began a career making animated films in Los Angeles with '+
+    'the creation of the short Bambi Meets Godzilla. In 1970 he moved to Toronto, '+
+    'Canada where he designed, directed and animated television commercials, ID’s '+
+    'for Sesame Street, and segments for longer films. In late 1972 Newland moved '+
+    'to Vancouver, Canada where he free-lanced for local and American production '+
+    'companies. In 1975 Newland founded the animated film production company INTERNATIONAL '+
+    'ROCKETSHIP LIMITED in Vancouver, where he continues to produce and direct animated '+
+    'short films.'
+  },
+  {
     name: 'Rich Ferguson-Hull',
     id: 'rich',
     width: 220,
@@ -128,7 +128,7 @@ export default [
     ' studio in Connecticut, where he lives with his wife and two sons.'
   },
   {
-    name: 'Tom Shroeder',
+    name: 'Tom Schroeder',
     id: 'tom',
     width: 320,
     height: 320,
