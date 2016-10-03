@@ -2,6 +2,8 @@ import './index.html'
 import 'normalize.css'
 import './styles/main.scss'
 
+import './polyfill'
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Navigation } from './components'
