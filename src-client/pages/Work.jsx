@@ -55,14 +55,14 @@ export default class Work extends React.Component {
   render() {
     const { portfolios } = this.state
     const path = this.props.params.portfolio
-    const publicPortfolios = portfolios.filter(port => port.scope === 'public')
+    const publicPortfolios = portfolios.filter(port => port.scope === 'public' || port.id === '640648')
     const portfolio = portfolios.filter(port => pathified(port.name) === path)[0]
 
     const id = path + '-portfolio'
 
     return <Page id="work-page" {...this.props}>
       <Content id="work-content">
-        <Dropdown title={ portfolio ? portfolio.name : 'work' } items={publicPortfolios} onSelection={navigate}/>
+        <Dropdown title={ portfolio ? portfolio.name : '' } items={publicPortfolios} onSelection={navigate}/>
         { portfolio ? <Portfolio key={id} id={id} portfolio={portfolio.id} urlPrefix={`/work/${path}/`} /> : null }
         { this.props.children }
       </Content>

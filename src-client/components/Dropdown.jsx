@@ -2,8 +2,9 @@ import React from 'react'
 import TitleText from './TitleText'
 import is from 'is-explicit'
 
-function Caret() {
-  return <span className='caret'/>
+function Caret({show}) {
+
+  return show ? <span className='caret'/> : null
 }
 
 function Item({value, onSelection}) {
@@ -65,7 +66,7 @@ export default class Dropdown extends React.Component {
     const { open } = this.state
 
     return <div className={`dropdown padded inverse ${className || ''}`} {...other} onClick={this.setOpen} >
-      <h1 className='clickable' >{this.props.title}<Caret /></h1>
+      <h1 className='clickable' >{this.props.title}<Caret show={!!this.props.title}/></h1>
       <List items={items} open={open} onSelection={this.setSelected} $dom={this.$dom}/>
     </div>
   }

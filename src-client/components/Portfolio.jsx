@@ -3,6 +3,7 @@ import { FreeWall } from './index'
 import { browserHistory } from 'react-router'
 import { events, data } from '../modules/data-loader'
 import { Image } from './Image'
+import TitleText from './TitleText'
 
 function navigate(url) {
   browserHistory.push(url)
@@ -10,7 +11,7 @@ function navigate(url) {
 
 function ImageBlock({ width, height, url, onClick }) {
   return <div
-    className='video-block clickable bulge'
+    className='cell-block clickable bulge'
     onClick={onClick}
     style={{
       width: width || 160,
@@ -31,7 +32,7 @@ function VideoBlock({ video, urlPrefix }) {
   const { width, height } = video
 
   return <div
-    className='video-block clickable bulge'
+    className='cell-block clickable bulge'
     onClick={() => navigate(video_url)}
     style={{
       width,
@@ -39,6 +40,10 @@ function VideoBlock({ video, urlPrefix }) {
       backgroundImage: `url(${thumb_url})`
     }}>
   </div>
+}
+
+function PortfolioTitle({place, children}) {
+  return place ? <TitleText className='padded' style={{paddingBottom: '0.25em'}}>{children}</TitleText> : null
 }
 
 export default class Portfolio extends React.Component {
@@ -89,16 +94,31 @@ export default class Portfolio extends React.Component {
     const { id, urlPrefix, portfolioImagesHack, ...other } = this.props
     const { videos, image } = this.state
 
-    const imageBlocks = (portfolioImagesHack || []).map(img => <ImageBlock key={img.url} onClick={() => this.setImage(img)} {...img}/>)
+    const imageBlocks = [], gifBlocks = []
+    const imagePort = portfolioImagesHack || []
+
+    imagePort.forEach(img => {
+      const arr = img.url.includes('.gif') ? gifBlocks : imageBlocks
+      arr.push(<ImageBlock key={img.url} onClick={() => this.setImage(img)} {...img}/>)
+    })
+
     const videoBlocks = videos.map(video => <VideoBlock key={video.id} video={video} urlPrefix={urlPrefix} />)
 
-    const blocks = videoBlocks.concat(imageBlocks)
+    videoBlocks.push(gifBlocks)
 
     return <div>
+      <PortfolioTitle place={!!portfolioImagesHack}>Videos</PortfolioTitle>
       { image ? <Image {...image} close={this.clearImage}/> : null }
-      <FreeWall id={id} key={id} selector=".video-block" {...other}>
-        { blocks }
+      <FreeWall id={id} key={id} selector=".cell-block" {...other}>
+        { videoBlocks }
       </FreeWall>
+      <br/>
+      <PortfolioTitle place={!!portfolioImagesHack}>Illustrations</PortfolioTitle>
+      { portfolioImagesHack ?
+        <FreeWall id={id+'images'} key={id+'images'} selector=".cell-block" {...other}>
+          { imageBlocks }
+        </FreeWall>
+      : null }
     </div>
   }
 }

@@ -28,6 +28,7 @@
 
   h1 {
     @extend .text;
+    min-width: 400px;
     margin: auto;
     font-family: $title-font;
     font-weight: normal;

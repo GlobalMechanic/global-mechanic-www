@@ -6,6 +6,10 @@
   float: right;
 }
 
+html {
+   overflow-y: scroll;
+}
+
 p, a {
   color: $text-color;
   text-decoration: none;

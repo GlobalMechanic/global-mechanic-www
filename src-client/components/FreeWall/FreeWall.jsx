@@ -29,7 +29,7 @@ export default class FreeWall extends React.Component {
       cellH: cellSize || DefaultCellSize,
       gutterY: 0,
       gutterX: 0,
-      delay: 50
+      delay: 0
     })
     this.resize()
   }

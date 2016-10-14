@@ -1,5 +1,5 @@
 {
-  "timestamp": "2016-10-03T18:11:41.215Z",
+  "timestamp": "2016-10-13T20:11:55.748Z",
   "data": {
     "7717027": {
       "id": "7717027",
@@ -134,7 +134,8 @@
       "height": 720,
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/85498358?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Connections\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
-        "512948"
+        "512948",
+        "641094"
       ],
       "urls": {
         "thumb": [
@@ -197,7 +198,8 @@
       "portfolios": [
         "370432",
         "400062",
-        "406234"
+        "406234",
+        "640648"
       ],
       "urls": {
         "thumb": [
@@ -328,8 +330,7 @@
         "395108",
         "400084",
         "512948",
-        "517240",
-        "551117"
+        "517240"
       ],
       "urls": {
         "thumb": [
@@ -473,7 +474,8 @@
         "434495",
         "457414",
         "492756",
-        "549158"
+        "549158",
+        "640648"
       ],
       "urls": {
         "thumb": [
@@ -1148,7 +1150,6 @@
         "540162",
         "541927",
         "549158",
-        "551126",
         "553310",
         "555700",
         "563607",
@@ -1488,7 +1489,6 @@
         "500799",
         "533120",
         "536944",
-        "551126",
         "608802"
       ],
       "urls": {
@@ -2687,12 +2687,12 @@
     },
     "87886842": {
       "id": "87886842",
-      "name": "Charlotte's Web: opening tiltes",
+      "name": "Charlotte's Web: opening titles",
       "description": null,
       "duration": 69,
       "width": 1280,
       "height": 720,
-      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/87886842?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Charlotte&#039;s Web: opening tiltes\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/87886842?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Charlotte&#039;s Web: opening titles\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
         "370435",
         "400062",
@@ -3816,7 +3816,8 @@
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/89355034?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Dream\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
         "470864",
-        "515067"
+        "515067",
+        "641094"
       ],
       "urls": {
         "thumb": [
@@ -4328,12 +4329,12 @@
       ],
       "urls": {
         "thumb": [
-          "https://i.vimeocdn.com/video/526856235_100x75.jpg?r=pad",
-          "https://i.vimeocdn.com/video/526856235_200x150.jpg?r=pad",
-          "https://i.vimeocdn.com/video/526856235_295x166.jpg?r=pad",
-          "https://i.vimeocdn.com/video/526856235_640x360.jpg?r=pad",
-          "https://i.vimeocdn.com/video/526856235_960x540.jpg?r=pad",
-          "https://i.vimeocdn.com/video/526856235_1280x720.jpg?r=pad"
+          "https://i.vimeocdn.com/video/595322487_100x75.jpg?r=pad",
+          "https://i.vimeocdn.com/video/595322487_200x150.jpg?r=pad",
+          "https://i.vimeocdn.com/video/595322487_295x166.jpg?r=pad",
+          "https://i.vimeocdn.com/video/595322487_640x360.jpg?r=pad",
+          "https://i.vimeocdn.com/video/595322487_960x540.jpg?r=pad",
+          "https://i.vimeocdn.com/video/595322487_1280x720.jpg?r=pad"
         ],
         "file": [
           "http://player.vimeo.com/external/89637704.sd.mp4?s=1a44a59d00436538f5298597ce6724ecb7fe89fe&profile_id=112&oauth2_token_id=61459556",
@@ -4721,7 +4722,8 @@
         "406234",
         "432036",
         "512948",
-        "593278"
+        "593278",
+        "640648"
       ],
       "urls": {
         "thumb": [
@@ -5163,7 +5165,8 @@
         "470864",
         "512948",
         "534770",
-        "549078"
+        "549078",
+        "640648"
       ],
       "urls": {
         "thumb": [
@@ -5372,36 +5375,6 @@
           "https://player.vimeo.com/external/90039298.m3u8?s=0069649152ef7c13e9137810aee744008dc50298&oauth2_token_id=61459556"
         ],
         "main": "https://vimeo.com/90039298"
-      },
-      "status": "available"
-    },
-    "90039301": {
-      "id": "90039301",
-      "name": "Horse Mountain",
-      "description": null,
-      "duration": 205,
-      "width": 1280,
-      "height": 720,
-      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/90039301?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Horse Mountain\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
-      "portfolios": [
-        "551117"
-      ],
-      "urls": {
-        "thumb": [
-          "https://i.vimeocdn.com/video/469057782_100x75.jpg?r=pad",
-          "https://i.vimeocdn.com/video/469057782_200x150.jpg?r=pad",
-          "https://i.vimeocdn.com/video/469057782_295x166.jpg?r=pad",
-          "https://i.vimeocdn.com/video/469057782_640x360.jpg?r=pad",
-          "https://i.vimeocdn.com/video/469057782_960x540.jpg?r=pad",
-          "https://i.vimeocdn.com/video/469057782_1280x720.jpg?r=pad"
-        ],
-        "file": [
-          "http://player.vimeo.com/external/90039301.hd.mp4?s=1a8bff1cdbc085ed79a916982230690442326b2a&profile_id=113&oauth2_token_id=61459556",
-          "http://player.vimeo.com/external/90039301.mobile.mp4?s=9bed7575e62e5a64357f8779440445baca8eb426&profile_id=116&oauth2_token_id=61459556",
-          "http://player.vimeo.com/external/90039301.sd.mp4?s=b1ec631f7155cef2da9d4a69c2cff7c89542f4a5&profile_id=112&oauth2_token_id=61459556",
-          "https://player.vimeo.com/external/90039301.m3u8?s=f9da0b4e48b6dbd2d42aa040b5de4a462f81f936&oauth2_token_id=61459556"
-        ],
-        "main": "https://vimeo.com/90039301"
       },
       "status": "available"
     },
@@ -8216,8 +8189,7 @@
       "height": 720,
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/91735684?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Rise Up\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
-        "370365",
-        "551117"
+        "370365"
       ],
       "urls": {
         "thumb": [
@@ -8568,7 +8540,6 @@
         "522206",
         "534770",
         "540162",
-        "551117",
         "563607",
         "579300"
       ],
@@ -10015,8 +9986,7 @@
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/95880497?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"JAL Dreams\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
         "370435",
-        "470230",
-        "551117"
+        "470230"
       ],
       "urls": {
         "thumb": [
@@ -10034,36 +10004,6 @@
           "https://player.vimeo.com/external/95880497.m3u8?s=08ba556ba49d9a5426c331f2ad90c4c5e28e5bc5&oauth2_token_id=61459556"
         ],
         "main": "https://vimeo.com/95880497"
-      },
-      "status": "available"
-    },
-    "95880499": {
-      "id": "95880499",
-      "name": "Fable (Excerpt)",
-      "description": null,
-      "duration": 26,
-      "width": 1280,
-      "height": 720,
-      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/95880499?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Fable (Excerpt)\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
-      "portfolios": [
-        "551117"
-      ],
-      "urls": {
-        "thumb": [
-          "https://i.vimeocdn.com/video/475907273_100x75.jpg?r=pad",
-          "https://i.vimeocdn.com/video/475907273_200x150.jpg?r=pad",
-          "https://i.vimeocdn.com/video/475907273_295x166.jpg?r=pad",
-          "https://i.vimeocdn.com/video/475907273_640x360.jpg?r=pad",
-          "https://i.vimeocdn.com/video/475907273_960x540.jpg?r=pad",
-          "https://i.vimeocdn.com/video/475907273_1280x720.jpg?r=pad"
-        ],
-        "file": [
-          "http://player.vimeo.com/external/95880499.hd.mp4?s=ab7b22ee4d90131f8f798ef98b39471d583108e0&profile_id=113&oauth2_token_id=61459556",
-          "http://player.vimeo.com/external/95880499.mobile.mp4?s=035c99bd191cbff0765ed731dae952344a4c4c3a&profile_id=116&oauth2_token_id=61459556",
-          "http://player.vimeo.com/external/95880499.sd.mp4?s=4721b7b6bfbd8ecf0ece94acb74cb9365d59d58c&profile_id=112&oauth2_token_id=61459556",
-          "https://player.vimeo.com/external/95880499.m3u8?s=5a071bd837715ad0f0a87416b698a38747d0ca89&oauth2_token_id=61459556"
-        ],
-        "main": "https://vimeo.com/95880499"
       },
       "status": "available"
     },
@@ -10329,37 +10269,6 @@
       },
       "status": "available"
     },
-    "98362889": {
-      "id": "98362889",
-      "name": "Quini Consumer",
-      "description": null,
-      "duration": 103,
-      "width": 1920,
-      "height": 1080,
-      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/98362889?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1920\" height=\"1080\" frameborder=\"0\" title=\"Quini Consumer\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
-      "portfolios": [
-        "551117"
-      ],
-      "urls": {
-        "thumb": [
-          "https://i.vimeocdn.com/video/479052048_100x75.jpg?r=pad",
-          "https://i.vimeocdn.com/video/479052048_200x150.jpg?r=pad",
-          "https://i.vimeocdn.com/video/479052048_295x166.jpg?r=pad",
-          "https://i.vimeocdn.com/video/479052048_640x360.jpg?r=pad",
-          "https://i.vimeocdn.com/video/479052048_960x540.jpg?r=pad",
-          "https://i.vimeocdn.com/video/479052048_1280x720.jpg?r=pad"
-        ],
-        "file": [
-          "http://player.vimeo.com/external/98362889.hd.mp4?s=87c5c4e95ba17f347d953e6089d5f3ce76d4ba48&profile_id=113&oauth2_token_id=61459556",
-          "http://player.vimeo.com/external/98362889.mobile.mp4?s=84ae359b34c3b293e1a0cdc6ebab48f68ab30214&profile_id=116&oauth2_token_id=61459556",
-          "http://player.vimeo.com/external/98362889.sd.mp4?s=99b28310442d7f5acdd95a838d1ef358788c89c8&profile_id=112&oauth2_token_id=61459556",
-          "http://player.vimeo.com/external/98362889.hd.mp4?s=87c5c4e95ba17f347d953e6089d5f3ce76d4ba48&profile_id=119&oauth2_token_id=61459556",
-          "https://player.vimeo.com/external/98362889.m3u8?s=0d136046663dabbeaa79a0e1e3f703b0ac55b707&oauth2_token_id=61459556"
-        ],
-        "main": "https://vimeo.com/98362889"
-      },
-      "status": "available"
-    },
     "100125839": {
       "id": "100125839",
       "name": "Movie Show Open",
@@ -10501,7 +10410,8 @@
         "492756",
         "531156",
         "549078",
-        "556877"
+        "556877",
+        "640648"
       ],
       "urls": {
         "thumb": [
@@ -10538,7 +10448,8 @@
         "463263",
         "492756",
         "531156",
-        "593278"
+        "593278",
+        "640648"
       ],
       "urls": {
         "thumb": [
@@ -10570,7 +10481,8 @@
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/114381185?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1920\" height=\"1080\" frameborder=\"0\" title=\"Neo 0:30\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
         "470864",
-        "593278"
+        "593278",
+        "641094"
       ],
       "urls": {
         "thumb": [
@@ -10760,7 +10672,8 @@
         "563607",
         "593278",
         "608853",
-        "638563"
+        "638563",
+        "640648"
       ],
       "urls": {
         "thumb": [
@@ -10798,7 +10711,6 @@
         "508829",
         "522206",
         "549158",
-        "551117",
         "563607",
         "575141"
       ],
@@ -10973,7 +10885,8 @@
         "522206",
         "563589",
         "575141",
-        "608853"
+        "608853",
+        "640648"
       ],
       "urls": {
         "thumb": [
@@ -11007,7 +10920,8 @@
         "426501",
         "435197",
         "470230",
-        "549078"
+        "549078",
+        "640648"
       ],
       "urls": {
         "thumb": [
@@ -11043,10 +10957,10 @@
         "457414",
         "522206",
         "531156",
-        "551117",
         "563589",
         "575141",
-        "586334"
+        "586334",
+        "641094"
       ],
       "urls": {
         "thumb": [
@@ -11174,7 +11088,8 @@
       "height": 1080,
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/132886030?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1920\" height=\"1080\" frameborder=\"0\" title=\"TomTom Live\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
-        "608853"
+        "608853",
+        "641094"
       ],
       "urls": {
         "thumb": [
@@ -11654,7 +11569,9 @@
       "portfolios": [
         "494596",
         "575141",
-        "602824"
+        "602824",
+        "640648",
+        "641094"
       ],
       "urls": {
         "thumb": [
@@ -11778,7 +11695,8 @@
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/144792631?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1280\" height=\"720\" frameborder=\"0\" title=\"Jam Hotel\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
         "370372",
-        "608893"
+        "608893",
+        "640648"
       ],
       "urls": {
         "thumb": [
@@ -11910,7 +11828,8 @@
         "563607",
         "573917",
         "575141",
-        "608853"
+        "608853",
+        "640648"
       ],
       "urls": {
         "thumb": [
@@ -11942,9 +11861,9 @@
       "portfolios": [
         "357398",
         "541927",
-        "551126",
         "553310",
-        "602688"
+        "602688",
+        "640648"
       ],
       "urls": {
         "thumb": [
@@ -11976,7 +11895,6 @@
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/158974823?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1920\" height=\"1080\" frameborder=\"0\" title=\"Grocery Gas\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
         "370376",
-        "551126",
         "563607",
         "586334",
         "602688"
@@ -12010,7 +11928,8 @@
       "height": 1080,
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/161519846?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1920\" height=\"1080\" frameborder=\"0\" title=\"MoneyMart Easy Tax\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
-        "370376"
+        "370376",
+        "640648"
       ],
       "urls": {
         "thumb": [
@@ -12555,37 +12474,6 @@
       },
       "status": "available"
     },
-    "184949510:e04937f76c": {
-      "id": "184949510:e04937f76c",
-      "name": "CMYK",
-      "description": null,
-      "duration": 437,
-      "width": 1920,
-      "height": 1080,
-      "embedHtml": "<iframe src=\"https://player.vimeo.com/video/184949510?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1920\" height=\"1080\" frameborder=\"0\" title=\"CMYK\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
-      "portfolios": [
-        "631613"
-      ],
-      "urls": {
-        "thumb": [
-          "https://i.vimeocdn.com/video/594546368_100x75.jpg?r=pad",
-          "https://i.vimeocdn.com/video/594546368_200x150.jpg?r=pad",
-          "https://i.vimeocdn.com/video/594546368_295x166.jpg?r=pad",
-          "https://i.vimeocdn.com/video/594546368_640x360.jpg?r=pad",
-          "https://i.vimeocdn.com/video/594546368_960x540.jpg?r=pad",
-          "https://i.vimeocdn.com/video/594546368_1280x720.jpg?r=pad"
-        ],
-        "file": [
-          "http://player.vimeo.com/external/184949510.hd.mp4?s=2428ea6e2aa47914ce223b26f96d91087878d5f6&profile_id=119&oauth2_token_id=61459556",
-          "http://player.vimeo.com/external/184949510.hd.mp4?s=2428ea6e2aa47914ce223b26f96d91087878d5f6&profile_id=174&oauth2_token_id=61459556",
-          "http://player.vimeo.com/external/184949510.sd.mp4?s=0ce5fa69a7710ffc5f0634402aca1ced1881c5a1&profile_id=164&oauth2_token_id=61459556",
-          "http://player.vimeo.com/external/184949510.sd.mp4?s=0ce5fa69a7710ffc5f0634402aca1ced1881c5a1&profile_id=165&oauth2_token_id=61459556",
-          "https://player.vimeo.com/external/184949510.m3u8?s=8a68cac667c028a0beec3a4d6b7d68c47e9b5d0f&oauth2_token_id=61459556"
-        ],
-        "main": "https://vimeo.com/184949510/e04937f76c"
-      },
-      "status": "available"
-    },
     "184903644:38bd5935f2": {
       "id": "184903644:38bd5935f2",
       "name": "RichFergusonHull_HarveyBirdmanClip01",
@@ -12654,7 +12542,8 @@
       "height": 1080,
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/184903650?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1920\" height=\"1080\" frameborder=\"0\" title=\"RichFergusonHull_UglyAmericansClip01\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
-        "631619"
+        "631619",
+        "640648"
       ],
       "urls": {
         "thumb": [
@@ -12775,7 +12664,8 @@
       "height": 1080,
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/184903646?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1920\" height=\"1080\" frameborder=\"0\" title=\"RichFergusonHull_ScheduleAFlooringMeasure\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
-        "631619"
+        "631619",
+        "641094"
       ],
       "urls": {
         "thumb": [
@@ -12806,7 +12696,9 @@
       "height": 1080,
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/183889413?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1920\" height=\"1080\" frameborder=\"0\" title=\"Julian Frost - Dumb Ways To Die\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
-        "634980"
+        "634980",
+        "640648",
+        "641094"
       ],
       "urls": {
         "thumb": [
@@ -12961,7 +12853,8 @@
       "height": 1080,
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/183889416?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1920\" height=\"1080\" frameborder=\"0\" title=\"Julian Frost - Bananas\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
       "portfolios": [
-        "634980"
+        "634980",
+        "640648"
       ],
       "urls": {
         "thumb": [

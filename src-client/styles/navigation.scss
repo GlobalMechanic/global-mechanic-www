@@ -22,54 +22,59 @@ $nav-holder-size: $title-size * 1 + $padding;
 
   margin-top: $padding;
   margin-right: $padding * 1.5;
+  font-size: $nav-link-size;
 
   @media screen and (max-width: $med-width) {
     margin-top: $padding * $med-mult;
     margin-right: $padding * $med-mult;
+    font-size: $nav-link-size * $med-mult;
   }
 
   @media screen and (max-width: $small-width) {
     margin-top: $padding * $small-mult;
     margin-right: $padding * $small-mult;
+    font-size: $nav-link-size * $small-mult;
   }
 
   @media screen and (max-width: $mini-width) {
     margin-top: $padding * $mini-mult;
     margin-right: $padding * $mini-mult;
+    font-size: $nav-link-size * $mini-mult;
   }
 
 }
 
+$nut-margin-top: $padding * 0.8;
 .nav-home {
 
   background-image: url(/assets/nut-white.svg);
   transform: scale(1,1);
   transition: background-image $transition-time, transform $transition-time;
 
-  width: $title-size;
-  height: $title-size;
+  width: $nav-link-size;
+  height: $nav-link-size;
 
-  margin-top: $padding;
+  margin-top: $nut-margin-top;
   margin-left: $padding;
 
   @media screen and (max-width: $med-width) {
-    width: $title-size * $med-mult;
-    height: $title-size * $med-mult;
-    margin-top: $padding * $med-mult;
+    width: $nav-link-size * $med-mult;
+    height: $nav-link-size * $med-mult;
+    margin-top: $nut-margin-top * $med-mult;
     margin-left: $padding * $med-mult;
   }
 
   @media screen and (max-width: $small-width) {
-    width: $title-size * $small-mult;
-    height: $title-size * $small-mult;
-    margin-top: $padding * $small-mult;
+    width: $nav-link-size * $small-mult;
+    height: $nav-link-size * $small-mult;
+    margin-top: $nut-margin-top * $small-mult;
     margin-left: $padding * $small-mult;
   }
 
   @media screen and (max-width: $mini-width) {
-    width: $title-size * $mini-mult;
-    height: $title-size * $mini-mult;
-    margin-top: $padding * $mini-mult;
+    width: $nav-link-size * $mini-mult;
+    height: $nav-link-size * $mini-mult;
+    margin-top: $nut-margin-top * $mini-mult;
     margin-left: $padding * $mini-mult;
   }
 

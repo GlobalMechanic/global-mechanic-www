@@ -60,17 +60,46 @@
   transition: transform $transition-time, opacity $transition-time, ease-out;
 }
 
-#splash-background {
-
-  background: url(/assets/nut-white.svg) no-repeat center;
-  background-size: contain;
-  opacity: 0.5;
+#just_clicks_button {
   position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  z-index: -50;
+  right: $padding * 1.5;
+  bottom: $padding;
+}
 
+$play-button-width: 18px;
+$play-button-height: $play-button-width;
+
+.play-button {
+
+  display: inline-block;
+  background-image: url(/assets/play-button-white.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+
+  transform: scale(1,1);
+  transition: transform $transition-time, background-image $transition-time;
+
+  width: $play-button-width;
+  height: $play-button-height;
+
+  @media screen and (max-width: $med-width) {
+    width: $play-button-width * $med-mult;
+    height: $play-button-height * $med-mult;
+  }
+  @media screen and (max-width: $small-width) {
+    width: $play-button-width * $small-mult;
+    height: $play-button-height * $small-mult;
+  }
+  @media screen and (max-width: $mini-width) {
+    width: $play-button-width * $mini-mult;
+    height: $play-button-height * $mini-mult;
+  }
+}
+
+.clickable:hover {
+  transition: color $transition-time;
+  .play-button {
+    background-image: url(/assets/play-button-gray.svg);
+    transform: scale(1.25,1.25);
+  }
 }

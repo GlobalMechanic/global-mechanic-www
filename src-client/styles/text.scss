@@ -8,8 +8,18 @@
 
 }
 
+@font-face {
+	font-family: 'AvenirNext LT Pro';
+	src: url('/assets/AvenirNextLTPro-Light.eot');
+	src: url('/assets/AvenirNextLTPro-Light.eot?#iefix') format('embedded-opentype'),
+		url('/assets/AvenirNextLTPro-Light.woff') format('woff'),
+		url('/assets/AvenirNextLTPro-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+
 $title-font: "Bebas-Neue-Regular";
-$body-font: Helvetica;
+$body-font: "AvenirNext LT Pro";
 
 .text {
   letter-spacing: $title-kerning;
@@ -88,6 +98,24 @@ $body-font: Helvetica;
   }
 }
 
+.title.large {
+  line-height: 0.9em;
+  font-size: $title-size * $large-mult;
+  // font-size: $title-size * $large-mult;
+  @media screen and (max-width: $med-width) {
+    // font-size: $title-size * $med-mult * $large-mult;
+    font-size: 7.5vw;
+  }
+  //
+  // @media screen and (max-width: $small-width) {
+  //   font-size: $title-size * $small-mult * $large-mult;
+  // }
+  //
+  // @media screen and (max-width: $mini-width) {
+  //   font-size: $title-size * $mini-mult * $large-mult;
+  // }
+}
+
 
 .body {
   @extend .text;
@@ -118,4 +146,8 @@ $body-font: Helvetica;
     font-size: $body-size * $small-mult * $mini-mult;
   }
 
+}
+
+.grey {
+  color: $inverted-text-hover-color !important;
 }
