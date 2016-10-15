@@ -7,16 +7,16 @@ export default [
     height: 320,
     portfolio: 638563,
     image: require('../assets/staff-bruce-alt.png'),
-    writeup: 'Bruce Alcock, is an artist whose animated shorts – Impromptu, Vive'+
-    ' la Rose, At the Quinte Hotel, Wrong Number Phone Message and 54 Hours - have'+
+    writeup: 'Bruce Alcock, is an artist whose animated shorts – **Impromptu**, **Vive'+
+    ' la Rose**, **At the Quinte Hotel**, **Wrong Number Phone Message** and **54 Hours** - have'+
     ' won accolades at festivals worldwide. Bruce’s wide-ranging background in music'+
     ' and art expresses itself in a varied and inventive approach to every project.'+
     ' His design-based TV commercials have led to award-winning campaigns for clients'+
     ' like Coca-Cola, Molson, Chrysler, Bell and Procter & Gamble; his art projects'+
     ' include an interactive film for Canada’s pavilion in the Venice Biennale of'+
     ' Architecture, multi-screen typographical animation for the dance/ theatre/poetry/music'+
-    ' piece The Four Horsemen with Toronto’s Volcano Theatre, set design and projection'+
-    ' work for Art in Times’s I Send You This Cadmium Red and ongoing gallery shows'+
+    ' piece **The Four Horsemen** with Toronto’s Volcano Theatre, set design and projection'+
+    ' work for Art in Times’s **I Send You This Cadmium Red** and ongoing gallery shows'+
     ' of his paintings and installations. Bruce studied tuba performance and comparative'+
     ' literature at the University of Toronto, then moved to Barcelona, where he'+
     ' apprenticed with animator Dirk Van de Vondel. He also designed the font Soupbone,'+
@@ -30,13 +30,13 @@ export default [
     width: 200,
     height: 200,
     portfolio: 400039,
-    image: require('../assets/staff-dirk.jpg'),
+    image: require('../assets/staff-dirk.png'),
     writeup: 'Dirk Van de Vondel is a Belgian director, whose expansive career has'+
     ' spanned North America, the UK and parts of Europe. Earlier in his career, Dirk'+
-    ' directed at the top studios in London, later relocating to Spain in 1990. His'+
+    ' directed at top studios in London, later relocating to Spain in 1990. His'+
     ' obsessively experimental approach and beautiful drawings have drawn numerous'+
-    ' international clients - Coca-Cola, SEAT, The Tate Gallery, Nokia, MTV and '+
-    'British Airways. His work is characterized by fluid transformations, powerful'+
+    ' international clients - Coca-Cola, SEAT, The Tate Gallery, Nokia, MTV and'+
+    ' British Airways. His work is characterized by fluid transformations, powerful'+
     ' and dynamic lines, a deep love of texture and creating at the edges of possibility.'+
     ' For many years, Dirk co-founded and ran a popular outdoor film festival, Xinacittà,'+
     ' in Barcelona. '
@@ -63,8 +63,8 @@ export default [
     writeup: 'Nathaniel Akin is an award-winning director with more than 15 years'+
     ' of animation and design experience. In addition to directing and developing'+
     ' the look of a number of innovative commercial campaigns and short films he'+
-    ' directed the children\'s web series ‘All Terrain Brain’ and created station'+
-    ' branding for the Nickelodeon digital animation channel ‘Nicktoons’.'
+    ' directed the children\'s web series **All Terrain Brain** and created station'+
+    ' branding for the Nickelodeon digital animation channel Nicktoons.'
   },
   {
     name: 'Daniel Sousa',
@@ -73,12 +73,13 @@ export default [
     height: 240,
     portfolio: 400062,
     image: require('../assets/staff-dan.jpg'),
-    writeup: 'Daniel Sousa is an accomplished director and an Academy Award nominee.'+
+    writeup: 'Daniel Sousa is an accomplished director and an Academy Award nominee '+
+    ' (for his film **Feral**). '+
     ' In 2003 he was awarded a Moving Image Fund production grant by the LEF Foundation'+
-    ' to produce Fable (2005). In 2008 he was the recipient of a production grant'+
-    ' from the Creative Capital Foundation for the film, Feral. His films have screened'+
+    ' to produce **Fable** (2005). In 2008 he was the recipient of a production grant'+
+    ' from the Creative Capital Foundation for the film, **Feral**. His films have screened'+
     ' at a number of animation film festivals including Annecy, Melbourne, Ottawa'+
-    ' and Anima. In addition to his independent projects, Daniel has worked as a'+
+    ' and Anima Mundi. In addition to his independent projects, Daniel has worked as a'+
     ' director and animator with Cartoon Network, Olive Jar Studios, Global Mechanic,'+
     ' and Duck. He is a founding member of Handcrankedfilm, a film makers’ collective,'+
     ' along with Jeff Sias, Bryan Papciak, and Jake Mahaffy. Daniel has taught at'+
@@ -94,12 +95,12 @@ export default [
     portfolio: 631613,
     image: require('../assets/staff-marv.jpg'),
     writeup: 'Marv Newland began a career making animated films in Los Angeles with '+
-    'the creation of the short Bambi Meets Godzilla. In 1970 he moved to Toronto, '+
+    'the creation of the short **Bambi Meets Godzilla**. In 1970 he moved to Toronto, '+
     'Canada where he designed, directed and animated television commercials, ID’s '+
     'for Sesame Street, and segments for longer films. In late 1972 Newland moved '+
     'to Vancouver, Canada where he free-lanced for local and American production '+
-    'companies. In 1975 Newland founded the animated film production company INTERNATIONAL '+
-    'ROCKETSHIP LIMITED in Vancouver, where he continues to produce and direct animated '+
+    'companies. In 1975 Newland founded the animated film production company International '+
+    'Rocketship Limited in Vancouver, where he continues to produce and direct animated '+
     'short films.'
   },
   {
@@ -109,17 +110,17 @@ export default [
     height: 220,
     portfolio: 631619,
     image: require('../assets/staff-rich.jpg'),
-    writeup: 'Rich Ferguson-Hull is an animation director working primarily in the'+
-    ' fields of television and advertising.  He recently completed consulting and'+
-    ' storyboarding for the Emmy-nominated Adult Swim series “Your Pretty Face is'+
-    ' Going to Hell”, and is the animation consultant and designer for a show currently'+
+    writeup: 'Rich Ferguson-Hull works primarily in'+
+    ' television and advertising.  He recently completed consulting and'+
+    ' storyboarding for the Emmy-nominated Adult Swim series **Your Pretty Face is'+
+    ' Going to Hell**, and is the animation consultant and designer for a show currently'+
     ' in development at Georgia Public Television. Prior to that, he was a director'+
-    ' for the first and second seasons of the animated series Ugly Americans, which'+
+    ' for the first and second seasons of the animated series **Ugly Americans**, which'+
     ' aired on Comedy Central, and also directed two pilots for Cartoon Network,'+
     ' one of which he also created, co-wrote, and executive produced. Rich also was'+
-    ' the Supervising Director for Harvey Birdman, Attorney at Law, part of Cartoon'+
-    ' Network\'s late night animation block, Adult Swim. The Harvey Birdman Episode '+
-    '"Birdgirl of Guatanamole" won Best Animated Series For Adults at the Ottawa '+
+    ' the Supervising Director for **Harvey Birdman, Attorney at Law**, part of Cartoon'+
+    ' Network\'s late night animation block, Adult Swim. The **Harvey Birdman** Episode '+
+    '**Birdgirl of Guatanamole** won Best Animated Series For Adults at the Ottawa '+
     'International Animation Festival the year it aired.  Prior to directing that '+
     'series, Ferguson-Hull spent nine years at Olive Jar Studios of Boston and Los '+
     'Angeles, first as animator and director, and later as a Creative Director.  '+

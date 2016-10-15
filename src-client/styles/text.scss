@@ -26,6 +26,10 @@ $body-font: "AvenirNext LT Pro";
   transition: font-size $transition-time;
 }
 
+.italic {
+  font-style: italic;
+}
+
 .title {
   @extend .text;
   line-height: 0.9em;

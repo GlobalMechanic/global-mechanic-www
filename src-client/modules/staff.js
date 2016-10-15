@@ -49,7 +49,7 @@ export default [
     writeup: 'Art Director Ryan Kane relocated to Vancouver and joined Global Mechanic,'+
     ' after 6 years as an Art Director, Senior Motion graphics and VFX Supervisor'+
     ' in Ireland’s largest design studio. Ryan’s experience includes AAA properties'+
-    ' and brands such as Halo, Dead Rising, McDonalds and Levi’s. He has won many'+
+    ' and brands such as **Halo**, **Dead Rising**, McDonalds and Levi’s. He has won many'+
     ' graphic design and VFX awards, and rounds out the studio with his seasoned'+
     ' eye and talent for 3D and VFX.'
   },
@@ -76,7 +76,7 @@ export default [
     ' of Global Mechanic for 12 years. Lead Storyboard Artist for five seasons of'+
     ' PBS’s Emmy-nominated Fetch! with Ruff Ruffman, he also designed and animated'+
     ' countless TV commercials, animated and storyboarded on award-winning films'+
-    ' At the Quinte Hotel, Long Tack Sam, Vive la Rose, Impromptu and 54 Hours. '+
+    ' At the **Quinte Hotel, Long Tack Sam, Vive la Rose, Impromptu** and **54 Hours**. '+
     ' His abilities range from an unerring sense of story, through expertise in '+
     'any illustrative style, to inventive approaches to pipeline, to beautiful animated'+
     ' movement. '

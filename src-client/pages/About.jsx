@@ -69,10 +69,10 @@ export default class About extends React.Component {
           commercials, television series, digital media and art projects. Oscar and Emmy nominated, we're well decorated in festival and
         ad circuits worldwide.</BodyText>
         <BodyText className="padded">With a core staff of seasoned creatives and producers, we hub and spoke to handle projects small and large. That makes us
-          nible, adaptive, and it saves us from getting set in our ways. It's a studio culture of invention and collaboration, where change is
+          nimble, adaptive, and it saves us from getting set in our ways. It's a studio culture of invention and collaboration, where change is
         expected. Welcome, even.</BodyText>
         <BodyText className="padded">It shows in our work. We love what we do, for big ad agencies and clients like Leo Burnett, Grey, Ogilvy, BBDO, Coca-Cola,
-          BMW, P&G, Nestle and Bell. For broadcasters like PBS, the Cartoon Network, Nickelodean and CBC, the films we produce independently and in
+          BMW, P&G, Nestle and Bell. For broadcasters like PBS, the Cartoon Network, Nickelodeon and CBC, the films we produce independently and in
         co-production with the National Film Board of Canada (NFB), our theatre and installation work and, of course, constant experimentation for the fun of it.</BodyText>
       </Content>
 
@@ -92,13 +92,13 @@ export default class About extends React.Component {
             </FreeWall> }
         <br/>
         <div id='bottom-info'>
-          <TitleText className='padded small'>USA | Liz Laine Reps +1 312.329.1111</TitleText>
-          <TitleText className='padded small'>Canada | Hestyreps +1 416.482.0411</TitleText>
+          <TitleText className='padded small'>USA | Liz Laine Reps +1 312 329 1111</TitleText>
+          <TitleText className='padded small'>Canada | Hestyreps +1 416 482 0411</TitleText>
           <br/>
           <TitleText className='padded' mini>Suite 208 - 1525 West 8th Avenue</TitleText>
           <TitleText className='padded' mini>Vancouver BC</TitleText>
           <TitleText className='padded' mini>Canada V6J 1T5</TitleText>
-          <TitleText className='padded' mini>+1 (604) 733 7475</TitleText>
+          <TitleText className='padded' mini>+1 604 733 7475</TitleText>
           <TitleText className='padded' mini>studio@globalmechanic.com</TitleText>
         </div>
       </Inverted>

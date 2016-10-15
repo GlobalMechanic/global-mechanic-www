@@ -55,7 +55,7 @@ export default class Work extends React.Component {
   render() {
     const { portfolios } = this.state
     const path = this.props.params.portfolio
-    const publicPortfolios = portfolios.filter(port => port.scope === 'public' || port.id === '640648')
+    const publicPortfolios = portfolios.filter(port => port.scope === 'public')
     const portfolio = portfolios.filter(port => pathified(port.name) === path)[0]
 
     const id = path + '-portfolio'
