@@ -4,9 +4,13 @@ var _isExplicit = require('is-explicit');
 
 var _isExplicit2 = _interopRequireDefault(_isExplicit);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _path = require('path');
 
-//import 'source-map-support/register'
+var _path2 = _interopRequireDefault(_path);
+
+var _appModulePath = require('app-module-path');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /******************************************************************************/
 // Log Methods
@@ -30,9 +34,15 @@ log.types = {};
 Object.seal(log);
 
 /******************************************************************************/
+// Local Module Require
+/******************************************************************************/
+
+(0, _appModulePath.addPath)(_path2.default.resolve(__dirname, '../iso_modules'));
+
+/******************************************************************************/
 // Globals
 /******************************************************************************/
 
 global.is = _isExplicit2.default;
 global.log = log;
-//# sourceMappingURL=/Volumes/GM Production 02 External/Projects/Git/global-mechanic-www/dist-server-src-maps/globals.js.map
+//# sourceMappingURL=/Users/bengaumond/Programming/global-mechanic-www/dist-server-src-maps/globals.js.map

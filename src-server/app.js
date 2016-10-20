@@ -14,16 +14,16 @@ import bodyParser from 'body-parser'
 import { static as serveStatic } from 'feathers'
 import fallback from 'express-history-api-fallback'
 
-import services from './services'
 import middleware from './middleware'
-import vimeo from './modules/gm-vimeo'
 
+import { FOO } from 'test'
 /******************************************************************************/
 // Data
 /******************************************************************************/
 const app = feathers()
 const configURL = path.resolve(__dirname, '..')
 
+console.log(FOO)
 /******************************************************************************/
 // Config
 /******************************************************************************/
@@ -42,13 +42,9 @@ app.use(compress())
 
   .configure(hooks())
   .configure(rest())
-  .configure(services)
   .configure(middleware)
-  .configure(vimeo)
 
   .use(fallback('index.html', { publicURL }))
-  //Send every remaining path to index.html
-  .get('*', (req,res) => res.sendFile(path.join(publicURL, 'index.html')))
 
 /******************************************************************************/
 // Exports

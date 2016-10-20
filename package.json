@@ -46,6 +46,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "app-module-path": "^2.1.0",
     "body-parser": "^1.15.2",
     "compression": "^1.6.2",
     "cors": "^2.7.1",

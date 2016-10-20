@@ -1,11 +1,11 @@
-const webpack = require('webpack') //eslint-disable-line
+const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const path = require('path')
 
 module.exports = {
   entry: [
     'webpack-dev-server/client?http://0.0.0.0:5000',
-//  'webpack/hot/only-dev-server',
-    './src-client/index.jsx'
+    path.join(__dirname, 'src-client', 'index.jsx')
   ],
   module: {
     loaders: [
@@ -25,7 +25,6 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        //loaders: ['react-hot', 'babel']
         loaders: ['babel']
       },
       {
@@ -35,15 +34,16 @@ module.exports = {
       }]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
+    root: [ path.join(__dirname, 'iso_modules')]
   },
   output: {
-    path: __dirname + '/dist-client',
+    path: path.join(__dirname, 'dist-client'),
     publicPath: '/',
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: './src-client',
+    contentBase: path.join(__dirname, 'src-client'),
     hot: false
   },
   plugins: [
@@ -52,6 +52,5 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery'
     }),
-//    new webpack.HotModuleReplacementPlugin()
   ]
 }

@@ -1,0 +1,24 @@
+)]}
+{
+ "version": 3,
+ "sources": "/Users/bengaumond/Programming/global-mechanic-www/src-server/app.js",
+ "file": "/Users/bengaumond/Programming/global-mechanic-www/dist-server/app.js",
+ "sourceRoot": "",
+ "names": [
+  "app",
+  "configURL",
+  "resolve",
+  "__dirname",
+  "console",
+  "log",
+  "configure",
+  "publicURL",
+  "get",
+  "use",
+  "options",
+  "json",
+  "urlencoded",
+  "extended"
+ ],
+ "mappings": ";;;;;;AAGA;;;;AACA;;;;AACA;;;;AACA;;;;AAEA;;;;AACA;;;;AAEA;;;;AACA;;;;AAEA;;;;AAEA;;;;AAEA;;;;AACA;AACA;AACA;;AAXA;AAVA;AACA;AACA;AAoBA,IAAMA,MAAM,yBAAZ;AACA,IAAMC,YAAY,eAAKC,OAAL,CAAaC,SAAb,EAAwB,IAAxB,CAAlB;;AAEAC,QAAQC,GAAR;AACA;AACA;AACA;AACAL,IAAIM,SAAJ,CAAc,qCAAcL,SAAd,CAAd;;AAEA,IAAMM,YAAYP,IAAIQ,GAAJ,CAAQ,QAAR,CAAlB;AACA;;AAEAR,IAAIS,GAAJ,CAAQ,4BAAR,EACGC,OADH,CACW,GADX,EACgB,qBADhB,EAEGD,GAFH,CAEO,qBAFP;AAGA;AAHA,CAIGA,GAJH,CAIO,GAJP,EAIY,sBAAYF,SAAZ,CAJZ,EAKGE,GALH,CAKO,qBAAWE,IAAX,EALP,EAMGF,GANH,CAMO,qBAAWG,UAAX,CAAsB,EAAEC,UAAU,IAAZ,EAAtB,CANP,EAQGP,SARH,CAQa,8BARb,EASGA,SATH,CASa,6BATb,EAUGA,SAVH,uBAYGG,GAZH,CAYO,yCAAS,YAAT,EAAuB,EAAEF,oBAAF,EAAvB,CAZP;;AAcA;AACA;AACA;;kBAEeP,G"
+}
