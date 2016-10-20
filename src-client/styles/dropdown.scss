@@ -1,6 +1,6 @@
 .caret {
   display: inline-block;
-  background-image: url(/assets/caret-black.svg);
+  background-image: url(../assets/caret-black.svg);
   background-repeat: no-repeat;
   background-position: center;
   transform: scale(1,1);
@@ -48,7 +48,7 @@
   .clickable:hover {
     transition: color $transition-time;
     .caret {
-      background-image: url(/assets/caret-gray.svg);
+      background-image: url(../assets/caret-gray.svg);
       transform: scale(1.25,1.25);
     }
   }

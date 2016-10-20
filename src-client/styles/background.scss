@@ -1,6 +1,6 @@
 #gear-background {
 
-  background: url(/assets/nut-white.svg) no-repeat center;
+  background: url(../assets/nut-white.svg) no-repeat center;
   background-size: contain;
   opacity: 0.5;
   position: fixed;
@@ -24,7 +24,7 @@
 
   z-index: -99;
 
-  background: url(/assets/overlay-texture.png) repeat;
+  background: url(../assets/overlay-texture.png) repeat;
   background-color: rgba(0,0,0,0.0);
 
   transition: background-color $transition-time, background $transition-time;

@@ -47,7 +47,7 @@ $nav-holder-size: $title-size * 1 + $padding;
 $nut-margin-top: $padding * 0.8;
 .nav-home {
 
-  background-image: url(/assets/nut-white.svg);
+  background-image: url(../assets/nut-white.svg);
   transform: scale(1,1);
   transition: background-image $transition-time, transform $transition-time;
 
@@ -81,22 +81,22 @@ $nut-margin-top: $padding * 0.8;
 }
 
 .nav-home:hover {
-  background-image: url(/assets/nut-gray.svg);
+  background-image: url(../assets/nut-gray.svg);
   transform: scale(1.1,1.1);
 }
 
 .nav-home.active {
-  background-image: url(/assets/nut-gray.svg);
+  background-image: url(../assets/nut-gray.svg);
 }
 
 #nav-holder.inverse {
 
   .nav-home {
-    background-image: url(/assets/nut-black.svg);
+    background-image: url(../assets/nut-black.svg);
   }
 
   .nav-home:hover, .nav-home.active {
-    background-image: url(/assets/nut-gray.svg);
+    background-image: url(../assets/nut-gray.svg);
   }
 
 }
