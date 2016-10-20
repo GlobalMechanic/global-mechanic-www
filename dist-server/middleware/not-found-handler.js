@@ -6,9 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = function () {
 
-  return function (req, res, next) {
-
-    console.log(req, res, next);
+  return function (req, res) {
     res.redirect('/');
   };
 };

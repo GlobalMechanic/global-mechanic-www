@@ -1,16 +1,9 @@
 )]}
 {
  "version": 3,
- "sources": "/Users/bengaumond/Programming/global-mechanic-www/src-server/index.js",
- "file": "/Users/bengaumond/Programming/global-mechanic-www/dist-server/index.js",
+ "sources": "/Volumes/GM Production 02 External/Projects/Git/global-mechanic-www/src-server/index.js",
+ "file": "/Volumes/GM Production 02 External/Projects/Git/global-mechanic-www/dist-server/index.js",
  "sourceRoot": "",
- "names": [
-  "port",
-  "get",
-  "server",
-  "listen",
-  "on",
-  "log"
- ],
- "mappings": ";;AAAA;;AACA;;;;;;AAEA,IAAMA,OAAO,cAAIC,GAAJ,CAAQ,MAAR,CAAb;AACA,IAAMC,SAAS,cAAIC,MAAJ,CAAWH,IAAX,EAAiB,SAAjB,CAAf;;AAEAE,OAAOE,EAAP,CAAU,WAAV,EAAuB;AAAA,SAAMC,+CAA6CL,IAA7C,CAAN;AAAA,CAAvB"
+ "names": [],
+ "mappings": ";;AAAA;;AACA;;;;;;AAEA,IAAM,OAAO,QAAQ,GAAR,CAAY,IAAZ,IAAoB,cAAI,GAAJ,CAAQ,MAAR,CAAjC;AACA,IAAM,SAAS,cAAI,MAAJ,CAAW,IAAX,EAAiB,SAAjB,CAAf;;AAEA,OAAO,EAAP,CAAU,WAAV,EAAuB;AAAA,SAAM,+CAA6C,IAA7C,CAAN;AAAA,CAAvB"
 }
