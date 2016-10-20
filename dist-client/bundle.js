@@ -7010,7 +7010,7 @@
 	// Config
 	/******************************************************************************/
 
-	var host = 'http://192.168.1.32:3030';
+	var host = 'http://www.globalmechanic.com';
 	var config = (0, _client4.default)(host).jquery(_jquery2.default);
 	var app = (0, _client2.default)().configure(config);
 
