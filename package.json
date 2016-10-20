@@ -1,8 +1,8 @@
 {
   "name": "global-mechanic-www",
   "version": "1.0.0",
-  "description": "Global Mechanic website",
-  "main": "app",
+  "description": "Global Mechanic Website",
+  "main": "dist-server",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --require ./test/test-helper.js 'test/**/*.@(js|jsx)'",
     "test-watch": "npm run test -- --watch",
