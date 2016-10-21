@@ -35,6 +35,11 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js'
   },
+  externals: {
+    'react': 'React',
+    'react-dom': 'ReactDOM',
+    'react-router': 'ReactRouter'
+  },
   plugins: [
     new ExtractTextPlugin('styles.css')
   ]

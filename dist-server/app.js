@@ -44,35 +44,20 @@ var _middleware = require('./middleware');
 
 var _middleware2 = _interopRequireDefault(_middleware);
 
-var _helper = require('helper');
-
-var _helper2 = _interopRequireDefault(_helper);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /******************************************************************************/
-// Data
+// Config
 /******************************************************************************/
 
-//import favicon from 'serve-favicon'
-/******************************************************************************/
-// Dependencies
-/******************************************************************************/
 var app = (0, _feathers2.default)();
 var configURL = _path2.default.resolve(__dirname, '..');
 
-console.log(_helper2.default);
-/******************************************************************************/
-// Config
-/******************************************************************************/
 app.configure((0, _feathersConfiguration2.default)(configURL));
 
 var publicURL = app.get('public');
-//const faviconURL = path.join(publicURL, 'favicon.ico')
 
-app.use((0, _compression2.default)()).options('*', (0, _cors2.default)()).use((0, _cors2.default)())
-//  .use(favicon(faviconURL))
-.use('/', (0, _feathers.static)(publicURL)).use(_bodyParser2.default.json()).use(_bodyParser2.default.urlencoded({ extended: true })).configure((0, _feathersHooks2.default)()).configure((0, _feathersRest2.default)()).configure(_middleware2.default).use((0, _expressHistoryApiFallback2.default)('index.html', { publicURL: publicURL }));
+app.use((0, _compression2.default)()).options('*', (0, _cors2.default)()).use((0, _cors2.default)()).use('/', (0, _feathers.static)(publicURL)).use(_bodyParser2.default.json()).use(_bodyParser2.default.urlencoded({ extended: true })).configure((0, _feathersHooks2.default)()).configure((0, _feathersRest2.default)()).configure(_middleware2.default).use((0, _expressHistoryApiFallback2.default)('index.html', { publicURL: publicURL }));
 
 /******************************************************************************/
 // Exports

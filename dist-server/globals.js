@@ -1,5 +1,9 @@
 'use strict';
 
+var _seal = require('babel-runtime/core-js/object/seal');
+
+var _seal2 = _interopRequireDefault(_seal);
+
 var _isExplicit = require('is-explicit');
 
 var _isExplicit2 = _interopRequireDefault(_isExplicit);
@@ -31,7 +35,7 @@ log.types = {};
   };
 });
 
-Object.seal(log);
+(0, _seal2.default)(log);
 
 /******************************************************************************/
 // Local Module Require

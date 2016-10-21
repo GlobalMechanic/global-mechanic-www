@@ -7,7 +7,8 @@ const HtmlPlugin = require('html-webpack-plugin')
 
 config.plugins.push(
   new HtmlPlugin({
-    template: path.join(__dirname, '../src-client/template.production.html')
+    template: path.join(__dirname, '../src-client/template.production.html'),
+    inject: 'head'
   }),
   new FaviconsPlugin({
     logo: path.resolve(__dirname, '../favicon.png'),

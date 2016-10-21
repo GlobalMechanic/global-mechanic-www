@@ -11,7 +11,8 @@ config.devServer = {
 }
 
 config.plugins.push(new HtmlPlugin({
-  template: path.join(__dirname, '../src-client/template.dev.html')
+  template: path.join(__dirname, '../src-client/template.dev.html'),
+  inject: 'head'
 }))
 
 module.exports = config

@@ -16,7 +16,6 @@ import middleware from './middleware'
 // Config
 /******************************************************************************/
 
-
 const app = feathers()
 const configURL = path.resolve(__dirname, '..')
 
