@@ -12,4 +12,3 @@ exports.default = function () {
 };
 
 var _feathersErrors = require('feathers-errors');
-//# sourceMappingURL=/Users/bengaumond/Programming/global-mechanic-www/dist-server-src-maps/middleware/not-found-handler.js.map

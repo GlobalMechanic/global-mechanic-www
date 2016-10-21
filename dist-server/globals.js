@@ -37,7 +37,7 @@ Object.seal(log);
 // Local Module Require
 /******************************************************************************/
 
-(0, _appModulePath.addPath)(_path2.default.resolve(__dirname, '../iso_modules'));
+(0, _appModulePath.addPath)(_path2.default.resolve(__dirname, '../dist-iso-modules'));
 
 /******************************************************************************/
 // Globals
@@ -45,4 +45,3 @@ Object.seal(log);
 
 global.is = _isExplicit2.default;
 global.log = log;
-//# sourceMappingURL=/Users/bengaumond/Programming/global-mechanic-www/dist-server-src-maps/globals.js.map

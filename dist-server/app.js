@@ -44,7 +44,9 @@ var _middleware = require('./middleware');
 
 var _middleware2 = _interopRequireDefault(_middleware);
 
-var _test = require('test');
+var _helper = require('helper');
+
+var _helper2 = _interopRequireDefault(_helper);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -59,7 +61,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var app = (0, _feathers2.default)();
 var configURL = _path2.default.resolve(__dirname, '..');
 
-console.log(_test.FOO);
+console.log(_helper2.default);
 /******************************************************************************/
 // Config
 /******************************************************************************/
@@ -77,4 +79,3 @@ app.use((0, _compression2.default)()).options('*', (0, _cors2.default)()).use((0
 /******************************************************************************/
 
 exports.default = app;
-//# sourceMappingURL=/Users/bengaumond/Programming/global-mechanic-www/dist-server-src-maps/app.js.map

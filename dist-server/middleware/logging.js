@@ -22,4 +22,3 @@ function initialize(app) {
     next(error);
   };
 }
-//# sourceMappingURL=/Users/bengaumond/Programming/global-mechanic-www/dist-server-src-maps/middleware/logging.js.map

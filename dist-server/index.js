@@ -14,4 +14,3 @@ var server = _app2.default.listen(port, '0.0.0.0');
 server.on('listening', function () {
   return log('App enabled. Server listening on port ' + port);
 });
-//# sourceMappingURL=/Users/bengaumond/Programming/global-mechanic-www/dist-server-src-maps/index.js.map
