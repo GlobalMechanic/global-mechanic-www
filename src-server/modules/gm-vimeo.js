@@ -10,7 +10,7 @@ import { Vimeo } from 'vimeo'
 // Data
 /******************************************************************************/
 
-let library
+let api
 
 const SIX_HOURS = 1000 * 60 * 60 * 6 // ms * sec * min
 
@@ -46,26 +46,26 @@ function valid(timestamp) {
 function authenticate(asGM) {
   if (asGM) {
     log('Authenticate Vimeo as Global Mechanic')
-    library.access_token = config.privateAccess.token
+    api.access_token = config.privateAccess.token
 
-    return Promise.resolve(library.access_token)
+    return Promise.resolve(api.access_token)
   }
 
   if (!asGM && config.publicAccess.token) {
     log('Authenticate Vimeo as anonymous')
-    library.access_token = config.publicAccess.token
+    api.access_token = config.publicAccess.token
 
-    return Promise.resolve(library.access_token)
+    return Promise.resolve(api.access_token)
   }
 
   return new Promise((resolve, reject) => {
     log('Generating Vimeo Credentials')
-    library.generateClientCredentials(config.publicAccess.scope, (err, token) => {
+    api.generateClientCredentials(config.publicAccess.scope, (err, token) => {
       if (err)
         reject(err)
 
       if (token.access_token) {
-        library.access_token = config.publicAccess.token = token.access_token
+        api.access_token = config.publicAccess.token = token.access_token
         resolve()
       }
     })
@@ -75,7 +75,7 @@ function authenticate(asGM) {
 function fetch_videos(portfolio_id) {
 
   return new Promise((res, rej) => {
-    library.request({
+    api.request({
       path: `/users/${config.accountId}/portfolios/${portfolio_id}/videos?sort=manual`,
       query: QUERY
     }, (err, body) => {
@@ -112,7 +112,7 @@ function fetch_portfolios(_private) {
 
   return authenticate(_private)
   .then(() => new Promise((res,rej) => {
-    library.request({
+    api.request({
       path: `/users/${config.accountId}/portfolios?sort=alphabetical`,
       query: QUERY,
       headers: REQUEST_HEADERS
@@ -148,7 +148,7 @@ export default function() {
   for (const i in vimeoOptions)
     config[i] = is(vimeoOptions[i], Object) ? Object.assign({}, vimeoOptions[i]) : vimeoOptions[i]
 
-  library = new Vimeo(config.clientId, config.clientSecret)
+  api = new Vimeo(config.clientId, config.clientSecret)
 
 }
 
