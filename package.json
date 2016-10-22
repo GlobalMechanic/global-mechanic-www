@@ -6,13 +6,13 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --require ./test/test-helper.js 'test/**/*.@(js|jsx)'",
     "test-watch": "npm run test -- --watch",
-    "build-client": "rm -rf ./dist-client & webpack --config ./config/webpack.production.js",
-    "build-iso": "rm -rf ./dist-iso-modules & babel ./src-iso-modules --out-dir ./dist-iso-modules",
-    "build-server": "rm -rf ./dist-server & babel ./src-server --out-dir ./dist-server",
+    "build-client": "webpack --config ./config/webpack.production.js",
+    "build-iso": "babel ./src-iso-modules --out-dir ./dist-iso-modules",
+    "build-server": "babel ./src-server --out-dir ./dist-server",
     "dev-client": "webpack-dev-server --host 0.0.0.0 --port 5000 --history-api-fallback --config ./config/webpack.dev.js",
-    "dev-server": "npm run build-iso -- --watch & npm run build-server -- --watch & ./node_modules/.bin/nodemon --watch dist-server ./dist-server ",
-    "build": "npm run build-server & npm run build-iso & npm run build-client",
-    "start": "npm run build & node ./dist-server"
+    "dev-server": "npm run build-server -- --watch & npm run build-iso -- --watch & ./node_modules/.bin/nodemon --watch dist-server ./dist-server ",
+    "build": "rm -rf ./dist-client && rm -rf ./dist-iso-modules && rm -rf ./dist-server && npm run build-server & npm run build-iso & npm run build-client",
+    "start": "node ./dist-server"
   },
   "repository": {
     "type": "git",
@@ -48,6 +48,7 @@
     "react-hot-loader": "^1.3.0",
     "resolve-url-loader": "^1.6.0",
     "sass-loader": "^4.0.0",
+    "serve-favicon": "^2.3.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1",

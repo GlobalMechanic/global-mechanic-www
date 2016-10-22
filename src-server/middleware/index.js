@@ -1,12 +1,12 @@
 import handler from 'feathers-errors/handler'
-import notFound from './not-found-handler'
+import reactRouterTemplate from './react-router-template'
 import logging from './logging'
 
 export default function() {
 
   const app = this
 
-  app.use(notFound())
+  app.use(reactRouterTemplate(app))
   app.use(logging(app))
   app.use(handler())
 
