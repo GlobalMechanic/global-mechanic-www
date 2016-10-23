@@ -8,7 +8,6 @@ import routes from 'components/routes'
 
 import { NotFound, GeneralError } from 'feathers-errors'
 
-
 /******************************************************************************/
 // Helper
 /******************************************************************************/
