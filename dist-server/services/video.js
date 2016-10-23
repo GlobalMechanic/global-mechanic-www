@@ -5,30 +5,34 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Service = undefined;
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
 
 exports.default = initialize;
 
-var _gmVimeo = require('../modules/gm-vimeo');
+var _gmVimeo = require('modules/gm-vimeo');
 
 var vimeo = _interopRequireWildcard(_gmVimeo);
 
-var _queryMatcher = require('../modules/query-matcher');
+var _queryMatcher = require('modules/query-matcher');
 
 var _queryMatcher2 = _interopRequireDefault(_queryMatcher);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var VideoService = function () {
   function VideoService() {
-    _classCallCheck(this, VideoService);
+    (0, _classCallCheck3.default)(this, VideoService);
   }
 
-  _createClass(VideoService, [{
+  (0, _createClass3.default)(VideoService, [{
     key: 'get',
     value: function get(id) {
       return vimeo.videos().then(function (video) {
@@ -56,7 +60,6 @@ var VideoService = function () {
       });
     }
   }]);
-
   return VideoService;
 }();
 
@@ -74,4 +77,3 @@ function initialize() {
 }
 
 exports.Service = VideoService;
-//# sourceMappingURL=/Volumes/GM Production 02 External/Projects/Git/global-mechanic-www/dist-server-src-maps/services/video.js.map

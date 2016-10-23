@@ -1,5 +1,5 @@
-import * as vimeo from '../modules/gm-vimeo'
-import matcher from '../modules/query-matcher'
+import * as vimeo from 'modules/gm-vimeo'
+import matcher from 'modules/query-matcher'
 
 class VideoService {
   get(id) {

@@ -1,0 +1,83 @@
+import React from 'react'
+import Page from './Page'
+import { browserHistory } from 'react-router'
+import { Dropdown, Content, Portfolio } from 'components'
+import { events, data } from 'modules/data-loader'
+
+function pathified(str) {
+  return str.toLowerCase().replace(/ /g, '_').replace(/&/g,'and')
+}
+
+function navigate(e, value) {
+  browserHistory.push('/work/'+pathified(value.name))
+}
+
+export default class Work extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = { portfolios: [] }
+    this.setPortfolios = this.setPortfolios.bind(this)
+  }
+
+  setPortfolios(allPortfolios) {
+    const portfolios = []
+
+    for (const i in allPortfolios)
+      portfolios.push(allPortfolios[i])
+
+    this.setState({ portfolios })
+  }
+
+  componentDidMount() {
+    events.on('portfolios-loaded', this.setPortfolios)
+    if (data.portfolios)
+      this.setPortfolios(data.portfolios)
+  }
+
+  componentWillUnmount() {
+    events.removeListener('portfolios-loaded', this.setPortfolios)
+  }
+
+  setVideos(allVideos) {
+    const id = this.props.portfolio.toString()
+    const videos = []
+
+    for (const i in allVideos) {
+      const video = allVideos[i]
+      if (video.portfolios.includes(id))
+        videos.push(video)
+    }
+
+    this.setState({ videos })
+  }
+
+  getPortfolio(idOrName) {
+
+    for (const port of this.state.portfolios)
+      if (port.id === idOrName || pathified(port.name) === idOrName)
+        return port
+
+  }
+
+  render() {
+    const { portfolios } = this.state
+    const idOrName = this.props.params.portfolio
+    const publicPortfolios = portfolios.filter(port => port.scope === 'public')
+
+    const portfolio = this.getPortfolio(idOrName)
+
+    const id = portfolio ? pathified(portfolio.name) + '-portfolio'  : 'blank-portfolio'
+
+    const urlPrefixPath = portfolio && portfolio.scope === 'private' ? 'private/portfolio' : 'work'
+
+    return <Page id='work-page' {...this.props}>
+      <Content id='work-content'>
+        <Dropdown title={ portfolio ? portfolio.name : '' } items={publicPortfolios} onSelection={navigate}/>
+        { portfolio ? <Portfolio key={id} id={id} portfolio={portfolio.id} urlPrefix={`/${urlPrefixPath}/${idOrName}/`} /> : null }
+        { this.props.children }
+      </Content>
+    </Page>
+  }
+
+}

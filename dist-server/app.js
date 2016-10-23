@@ -44,43 +44,29 @@ var _expressHistoryApiFallback = require('express-history-api-fallback');
 
 var _expressHistoryApiFallback2 = _interopRequireDefault(_expressHistoryApiFallback);
 
-var _services = require('./services');
-
-var _services2 = _interopRequireDefault(_services);
-
 var _middleware = require('./middleware');
 
 var _middleware2 = _interopRequireDefault(_middleware);
 
-var _gmVimeo = require('./modules/gm-vimeo');
-
-var _gmVimeo2 = _interopRequireDefault(_gmVimeo);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/******************************************************************************/
-// Data
-/******************************************************************************/
-/******************************************************************************/
-// Dependencies
-/******************************************************************************/
-var app = (0, _feathers2.default)();
-var configURL = _path2.default.resolve(__dirname, '..');
 
 /******************************************************************************/
 // Config
 /******************************************************************************/
+
+var app = (0, _feathers2.default)();
+var configURL = _path2.default.resolve(__dirname, '..');
+var favURL = _path2.default.resolve(__dirname, '../favicon.png');
+
 app.configure((0, _feathersConfiguration2.default)(configURL));
 
 var publicURL = _path2.default.resolve(__dirname, app.get('public'));
-var faviconURL = _path2.default.join(publicURL, 'favicon.png');
+var faviconURL = _path2.default.resolve(__dirname, '../favicon.png');
 
-app.use((0, _compression2.default)()).options('*', (0, _cors2.default)()).use((0, _cors2.default)()).use((0, _serveFavicon2.default)(faviconURL)).use('/', (0, _feathers.static)(publicURL)).use(_bodyParser2.default.json()).use(_bodyParser2.default.urlencoded({ extended: true })).configure((0, _feathersHooks2.default)()).configure((0, _feathersRest2.default)()).configure(_services2.default).configure(_middleware2.default).configure(_gmVimeo2.default).use((0, _expressHistoryApiFallback2.default)('index.html', { publicURL: publicURL }));
-//Send every remaining path to index.html
+app.use((0, _compression2.default)()).options('*', (0, _cors2.default)()).use((0, _cors2.default)()).use((0, _serveFavicon2.default)(faviconURL)).use('/assets', (0, _feathers.static)(publicURL + '/assets')).use(_bodyParser2.default.json()).use(_bodyParser2.default.urlencoded({ extended: true })).use((0, _serveFavicon2.default)(favURL)).configure((0, _feathersHooks2.default)()).configure((0, _feathersRest2.default)()).configure(_middleware2.default).use((0, _expressHistoryApiFallback2.default)('index.html', { publicURL: publicURL }));
 
 /******************************************************************************/
 // Exports
 /******************************************************************************/
 
 exports.default = app;
-//# sourceMappingURL=/Volumes/GM Production 02 External/Projects/Git/global-mechanic-www/dist-server-src-maps/app.js.map

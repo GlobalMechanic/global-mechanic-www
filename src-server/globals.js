@@ -1,5 +1,6 @@
 import is from 'is-explicit'
-//import 'source-map-support/register'
+import path from 'path'
+import { addPath } from 'app-module-path'
 
 /******************************************************************************/
 // Log Methods
@@ -22,8 +23,15 @@ log.types = {};
 Object.seal(log)
 
 /******************************************************************************/
+// Local Module Require
+/******************************************************************************/
+
+addPath(path.resolve(__dirname, '../dist-iso'))
+
+/******************************************************************************/
 // Globals
 /******************************************************************************/
 
 global.is = is
 global.log = log
+global.isServer = true
