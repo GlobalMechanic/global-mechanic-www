@@ -4,26 +4,21 @@
 
 import React from 'react'
 
-import { IndexRoute, Route } from 'react-router'
+import { Route } from 'react-router'
 
-const LoadingNut = () => <div className='loading'>Loading</div>
-
-const Dummy = () => null
-
-export default <Route path='/' component={LoadingNut} >
-    <IndexRoute component={Dummy} />
-    <Route path='/directors' inverse component={Dummy}>
-      <Route path='/directors/:director' inverse component={Dummy}>
-        <Route path='/directors/:director/:video' inverse component={Dummy} />
+export default <Route path='/'>
+    <Route path='/directors'>
+      <Route path='/directors/:director' >
+        <Route path='/directors/:director/:video'/>
       </Route>
     </Route>
-    <Route path='/work/:portfolio' inverse component={Dummy}>
-      <Route path='/work/:portfolio/:video' inverse component={Dummy} />
+    <Route path='/work/:portfolio' >
+      <Route path='/work/:portfolio/:video'/>
     </Route>
-    <Route path='/private/portfolio/:portfolio' inverse component={Dummy}>
-      <Route path='/private/portfolio/:portfolio/:video' inverse component={Dummy} />
+    <Route path='/private/portfolio/:portfolio'>
+      <Route path='/private/portfolio/:portfolio/:video'/>
     </Route>
-    <Route path='/about' dark component={Dummy}>
-      <Route path='/about/:staff' dark component={Dummy} />
+    <Route path='/about' >
+      <Route path='/about/:staff'/>
     </Route>
   </Route>
