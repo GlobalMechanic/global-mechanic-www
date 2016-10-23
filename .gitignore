@@ -3,7 +3,3 @@ node_modules
 cache/portfolios.json
 cache/videos.json
 util/thumbnails
-
-dist-server
-dist-iso
-dist-client
