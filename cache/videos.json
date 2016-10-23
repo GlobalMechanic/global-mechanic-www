@@ -1,5 +1,5 @@
 {
-  "timestamp": "2016-10-20T00:22:27.367Z",
+  "timestamp": "2016-10-23T07:13:04.268Z",
   "data": {
     "7717027": {
       "id": "7717027",
@@ -10109,7 +10109,7 @@
       "id": "109277026",
       "name": "Coffee Run",
       "description": null,
-      "duration": 33,
+      "duration": 32,
       "width": 1920,
       "height": 1080,
       "embedHtml": "<iframe src=\"https://player.vimeo.com/video/109277026?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0\" width=\"1920\" height=\"1080\" frameborder=\"0\" title=\"Coffee Run\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
@@ -10137,9 +10137,9 @@
         ],
         "file": [
           "http://player.vimeo.com/external/109277026.hd.mp4?s=9ae0ef9d6ca856110df0787666997a7328e31e78&profile_id=119&oauth2_token_id=61459556",
-          "http://player.vimeo.com/external/109277026.hd.mp4?s=9ae0ef9d6ca856110df0787666997a7328e31e78&profile_id=113&oauth2_token_id=61459556",
-          "http://player.vimeo.com/external/109277026.sd.mp4?s=4621ac199a53419b6af40881b810fb787c49f16b&profile_id=112&oauth2_token_id=61459556",
-          "http://player.vimeo.com/external/109277026.mobile.mp4?s=ad992d4c715acabca98173e0af39113985c604bd&profile_id=116&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/109277026.sd.mp4?s=4621ac199a53419b6af40881b810fb787c49f16b&profile_id=164&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/109277026.hd.mp4?s=9ae0ef9d6ca856110df0787666997a7328e31e78&profile_id=174&oauth2_token_id=61459556",
+          "http://player.vimeo.com/external/109277026.sd.mp4?s=4621ac199a53419b6af40881b810fb787c49f16b&profile_id=165&oauth2_token_id=61459556",
           "https://player.vimeo.com/external/109277026.m3u8?s=fa274e1ef05a881e02533a18eee5aba0e19057af&oauth2_token_id=61459556"
         ],
         "main": "https://vimeo.com/109277026"

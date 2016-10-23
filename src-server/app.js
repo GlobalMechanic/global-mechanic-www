@@ -11,7 +11,9 @@ import bodyParser from 'body-parser'
 import { static as serveStatic } from 'feathers'
 import fallback from 'express-history-api-fallback'
 
-import middleware from './middleware'
+import vimeo from 'modules/gm-vimeo'
+import services from 'services'
+import middleware from 'middleware'
 
 /******************************************************************************/
 // Config
@@ -37,6 +39,8 @@ app.use(compress())
 
   .configure(hooks())
   .configure(rest())
+  .configure(vimeo)
+  .configure(services)
   .configure(middleware)
 
   .use(fallback('index.html', { publicURL }))

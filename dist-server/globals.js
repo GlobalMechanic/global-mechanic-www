@@ -42,6 +42,7 @@ log.types = {};
 /******************************************************************************/
 
 (0, _appModulePath.addPath)(_path2.default.resolve(__dirname, '../dist-iso'));
+(0, _appModulePath.addPath)(__dirname);
 
 /******************************************************************************/
 // Globals
