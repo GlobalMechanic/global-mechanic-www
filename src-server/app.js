@@ -11,7 +11,7 @@ import { static as serveStatic } from 'feathers'
 import fallback from 'express-history-api-fallback'
 import favicon from 'serve-favicon'
 
-import middleware from './middleware'
+import middleware from 'middleware'
 
 /******************************************************************************/
 // Config
@@ -28,7 +28,7 @@ const publicURL = app.get('public')
 app.use(compress())
   .options('*', cors())
   .use(cors())
-  
+
   .use('/assets', serveStatic(publicURL + '/assets'))
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))

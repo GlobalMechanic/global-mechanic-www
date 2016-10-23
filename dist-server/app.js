@@ -44,7 +44,7 @@ var _serveFavicon = require('serve-favicon');
 
 var _serveFavicon2 = _interopRequireDefault(_serveFavicon);
 
-var _middleware = require('./middleware');
+var _middleware = require('middleware');
 
 var _middleware2 = _interopRequireDefault(_middleware);
 
