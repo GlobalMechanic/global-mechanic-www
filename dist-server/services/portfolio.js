@@ -88,6 +88,7 @@ function initialize() {
   app.use('/portfolios', new PortfolioService());
 
   var portfolioService = app.service('/portfolios');
+
   portfolioService.before(beforeHooks);
   portfolioService.after(afterHooks);
 }

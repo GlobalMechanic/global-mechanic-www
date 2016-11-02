@@ -62,6 +62,7 @@ export default function initialize() {
   app.use('/portfolios', new PortfolioService())
 
   const portfolioService = app.service('/portfolios')
+
   portfolioService.before(beforeHooks)
   portfolioService.after(afterHooks)
 }

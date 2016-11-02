@@ -10,6 +10,10 @@
       "token": "f4e18ea01775318b82b90a1325909499",
       "scope": "public private"
     },
+    "gearsAccess": {
+      "token": "835cb24f5e93401dda657e8669366d16",
+      "scope": "public private purchased create edit delete interact upload"
+    },
     "publicAccess": {
       "token": false,
       "scope": "public"

@@ -31,6 +31,7 @@ exports.default = function () {
   }api = new _vimeo.Vimeo(config.clientId, config.clientSecret);
 };
 
+exports.invalidate = invalidate;
 exports.videos = videos;
 exports.portfolios = portfolios;
 
@@ -82,6 +83,7 @@ function valid(timestamp) {
   if (is(timestamp, String)) timestamp = Date.parse(timestamp);
 
   var since = new Date() - (timestamp || 0);
+
   return since < SIX_HOURS;
 }
 
@@ -182,7 +184,17 @@ function fetch_portfolios(_private) {
 
 var config = exports.config = {};
 
+function invalidate() {
+
+  cache.videos.timestamp = null;
+  cache.portfolios.timestamp = null;
+  cache.write();
+
+  log('vimeo cache invalidated');
+}
+
 function videos() {
+
   if (valid(cache.videos.timestamp)) return _promise2.default.resolve(cache.videos.data);
 
   var timestamp = new Date();

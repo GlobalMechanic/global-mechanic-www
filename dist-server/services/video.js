@@ -46,6 +46,8 @@ var VideoService = function () {
   }, {
     key: 'find',
     value: function find(params) {
+
+      console.log('what the fucks');
       var query = params ? params.query : {};
       return vimeo.videos().then(function (videos) {
         if (!query) return videos;
@@ -72,6 +74,7 @@ function initialize() {
   app.use('/videos', new VideoService());
 
   var videoService = app.service('/videos');
+
   videoService.before(beforeHooks);
   videoService.after(afterHooks);
 }

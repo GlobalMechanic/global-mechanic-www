@@ -8,6 +8,7 @@ exports.default = function () {
 
   var app = this;
 
+  app.get('/invalidate-vimeo-cache', (0, _invalidateCache2.default)());
   app.use((0, _reactRouterTemplate2.default)(app));
   app.use((0, _logging2.default)(app));
   app.use((0, _handler2.default)());
@@ -24,5 +25,9 @@ var _reactRouterTemplate2 = _interopRequireDefault(_reactRouterTemplate);
 var _logging = require('./logging');
 
 var _logging2 = _interopRequireDefault(_logging);
+
+var _invalidateCache = require('./invalidate-cache');
+
+var _invalidateCache2 = _interopRequireDefault(_invalidateCache);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

@@ -40,6 +40,7 @@ function valid(timestamp) {
     timestamp = Date.parse(timestamp)
 
   const since = new Date() - (timestamp || 0)
+
   return since < SIX_HOURS
 }
 
@@ -152,7 +153,17 @@ export default function() {
 
 }
 
+export function invalidate() {
+
+  cache.videos.timestamp = null
+  cache.portfolios.timestamp = null
+  cache.write()
+
+  log('vimeo cache invalidated')
+}
+
 export function videos() {
+
   if (valid(cache.videos.timestamp))
     return Promise.resolve(cache.videos.data)
 

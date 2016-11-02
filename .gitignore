@@ -1,3 +1,5 @@
 node_modules
 util/thumbnails
+util/fixed-thumbnails
 .env
+.DS_Store

@@ -34,7 +34,7 @@ function getThumbList() {
     const biggest = thumb[thumb.length - 1]
 
     thumbs.push({
-      name: video.name,
+      name: video.id + '_' + video.name,
       url: biggest
     })
   }
@@ -51,9 +51,7 @@ function downloadThumbs(thumbs) {
 
   const dl = i => {
     const url = thumbs[i].url
-    let fn = path.basename(url)
-    const _ = fn.indexOf('_')
-    fn = fn.substr(0, _) + '_' + thumbs[i].name + '.jpg'
+    const fn = thumbs[i].name + '.jpg'
 
     console.log(`downloading ${i} of ${thumbs.length}`)
 
@@ -67,4 +65,5 @@ function downloadThumbs(thumbs) {
   dl(dli)
 }
 
+// console.log(getThumbList())
 downloadThumbs(getThumbList())

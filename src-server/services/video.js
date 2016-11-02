@@ -16,6 +16,8 @@ class VideoService {
   }
 
   find(params) {
+
+    console.log('what the fucks')
     const query = params ? params.query : {}
     return vimeo
     .videos()
@@ -44,6 +46,7 @@ export default function initialize() {
   app.use('/videos', new VideoService())
 
   const videoService = app.service('/videos')
+
   videoService.before(beforeHooks)
   videoService.after(afterHooks)
 
