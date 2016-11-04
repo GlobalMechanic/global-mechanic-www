@@ -25,11 +25,6 @@ config.plugins.push(
   })
 )
 
-//Copy the signature file so it can be used as well
-const signatureFrom = path.resolve(__dirname, '../src-client/assets/gm-2017-signature.png')
-const signatureTo =  path.resolve(assets, 'gm-2017-signature.png')
-fs.createReadStream(signatureFrom).pipe(fs.createWriteStream(signatureTo))
-
 //
 // config.output = {
 //   path: path.resolve(__dirname, '../dist-client/assets'),

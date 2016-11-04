@@ -159,5 +159,14 @@ export default [
     writeup: 'Julian specialises in design-driven comedic animation. His work has'+
     ' won Cannes Lion Grand Prixs, Webbys, an Annecy Cristal, and been honoured by'+
     ' the London Design Museum. He lives in Melbourne, Australia, and quite likes ducks.'
+  },
+  {
+    name: 'Jerald Schoenroth',
+    id: 'jerald',
+    width: 400,
+    height: 360,
+    portfolio: 631626,
+    image: require('../assets/staff-jerald.jpg'),
+    writeup: ''
   }
 ].filter(dir => dir.writeup !== null && dir.portfolio !== null)

@@ -8,7 +8,7 @@ import fs from 'fs'
 function download(url, dest, cb) {
   const file = fs.createWriteStream(dest)
 
-  const request = https.get(url, response => {
+  https.get(url, response => {
 
     response.pipe(file)
     file.on('finish', () => file.close(cb))
@@ -65,5 +65,5 @@ function downloadThumbs(thumbs) {
   dl(dli)
 }
 
-// console.log(getThumbList())
-downloadThumbs(getThumbList())
+console.log(getThumbList())
+// downloadThumbs(getThumbList())

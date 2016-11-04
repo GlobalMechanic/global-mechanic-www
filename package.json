@@ -6,12 +6,13 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --require ./test/test-helper.js 'test/**/*.@(js|jsx)'",
     "test-watch": "npm run test -- --watch",
+    "copy-signature": "cp ./src-client/assets/gm-2017-signature.png ./dist-client/assets/gm-2017-signature.png",
     "build-client": "webpack --config ./config/webpack.production.js",
     "build-iso": "babel ./src-iso --out-dir ./dist-iso",
     "build-server": "babel ./src-server --out-dir ./dist-server",
-    "dev-client": "webpack-dev-server --host 0.0.0.0 --port 5000 --history-api-fallback --config ./config/webpack.dev.js",
-    "dev-server": "npm run build-server -- --watch & npm run build-iso -- --watch & ./node_modules/.bin/nodemon --watch dist-server --watch dist-iso ./dist-server ",
-    "build": "rm -rf ./dist-client && rm -rf ./dist-iso && rm -rf ./dist-server && npm run build-server & npm run build-iso & npm run build-client",
+    "develop-client": "webpack-dev-server --host 0.0.0.0 --port 5000 --history-api-fallback --config ./config/webpack.dev.js",
+    "develop-server": "npm run build-server -- --watch & npm run build-iso -- --watch & ./node_modules/.bin/nodemon --watch dist-server --watch dist-iso ./dist-server",
+    "build": "rm -rf ./dist-client && rm -rf ./dist-iso && rm -rf ./dist-server && npm run build-server && npm run build-iso && npm run build-client && npm run copy-signature",
     "start": "node ./dist-server"
   },
   "repository": {
