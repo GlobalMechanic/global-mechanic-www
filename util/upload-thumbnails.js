@@ -1,8 +1,9 @@
 
-import http from 'http'
+import request from 'request'
 import path from 'path'
 import fs from 'fs'
 import { Vimeo } from 'vimeo'
+import Queue from 'promise-queue'
 
 const thumbUrl = path.join(__dirname, 'fixed-thumbnails')
 const thumbs = fs
@@ -33,39 +34,25 @@ function uploadThumbnail(thumb) {
       if (err)
         reject(err)
 
-      setTimeout(() => resolve(response), 1000)
+      resolve(response)
     })
   })
   .then(response => new Promise((resolve, reject) => {
 
     const { link } = response
 
-    const host = 'https://i.cloud.vimeo.com'
-    const subpath = '/video/'
+    const rid = link
+      .substr(0, link.indexOf('?'))
+      .replace('https://i.cloud.vimeo.com/video/', '')
 
-    const rid = link.substr(0, link.indexOf('?')).replace(host + subpath, '')
+    const req = request.put(link)
 
-    const imageData = fs.readFileSync(thumbPath)
+    fs.createReadStream(thumbPath)
+      .pipe(req)
 
-    const query = {
-      host,
-      path: subpath + rid,
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'image/jpeg',
-        'Content-Length': Buffer.byteLength(imageData)
-      }
-    }
+    req.on('error', err => reject(err))
+    req.on('response', () => resolve(rid))
 
-    const req = http.request(query, res => {
-      res.setEncoding('utf8')
-      res.on('end', () => resolve(rid))
-    })
-    req.on('error', reject)
-    req.write(imageData)
-    req.end()
-
-    // fs.createReadStream(thumbPath).pipe(req)
   }))
   .then(rid => new Promise((resolve, reject) => {
 
@@ -81,11 +68,12 @@ function uploadThumbnail(thumb) {
 
       else resolve(body)
     })
-
   }))
+  .then(() => console.log(thumbPath + ' uploaded and made active.'))
+  .catch(err => console.error(err))
 
 }
 
-//upload a random thumb to test.
-uploadThumbnail(thumbs[0])
-.catch(err => console.error(err))
+const queue = new Queue(1, Infinity)
+
+thumbs.forEach(thumb => queue.add(() => uploadThumbnail(thumb)))

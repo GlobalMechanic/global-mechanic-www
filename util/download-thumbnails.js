@@ -53,8 +53,6 @@ function downloadThumbs(thumbs) {
     const url = thumbs[i].url
     const fn = thumbs[i].name + '.jpg'
 
-    console.log(`downloading ${i} of ${thumbs.length}`)
-
     const fdest = path.join(dest, fn)
     if (fs.existsSync(fdest))
       cb()
@@ -65,5 +63,4 @@ function downloadThumbs(thumbs) {
   dl(dli)
 }
 
-console.log(getThumbList())
-// downloadThumbs(getThumbList())
+downloadThumbs(getThumbList())

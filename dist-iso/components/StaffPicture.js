@@ -28,8 +28,20 @@ var _BodyText2 = _interopRequireDefault(_BodyText);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function italicize(writeup) {
-  return writeup.split('**').map(function (str, i) {
+function format(writeup) {
+  return writeup.split('\n').map(function (str, i) {
+    return _react2.default.createElement(
+      'p',
+      { key: i },
+      italicize(str)
+    );
+  });
+}
+
+function italicize() {
+  var paragraph = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
+
+  return paragraph.split('**').map(function (str, i) {
     return _react2.default.createElement(
       'span',
       { key: i, className: i % 2 == 1 ? 'italic' : '' },
@@ -63,7 +75,7 @@ function StaffPicture(_ref) {
       _react2.default.createElement(
         _BodyText2.default,
         null,
-        italicize(staff.writeup)
+        format(staff.writeup)
       )
     )
   );

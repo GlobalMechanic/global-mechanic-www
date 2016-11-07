@@ -167,6 +167,18 @@ export default [
     height: 360,
     portfolio: 631626,
     image: require('../assets/staff-jerald.jpg'),
-    writeup: ''
+    writeup: 'Jerald spent the first 10 years of his production career in film and'+
+    ' television. He then made the move to commercials where he received an invaluable'+
+    ' education in advertising, learning from countless talented directors. Jerald also'+
+    ' worked at an ad agency where he had the opportunity to write, produce and direct'+
+    ' spots.\n\n All of these experiences have given him a great appreciation for every '+
+    'step in the process of getting a commercial to air. It’s also why Jerald\'s '+
+    'directing style is so collaborative. He loves creating an atmosphere on set '+
+    'that encourages creative input from the agency, the client, as well as all '+
+    'departments of production.\n\n Jerald has a talent for working with kids and toys.'+
+    ' Some may see this as a gift of patience. He sees it as a love of play and the'+
+    ' ability to think like a child.\n\n Jerald also has a great passion for comedy '+
+    'and dialogue, which when you think about it, is also just like playing, but '+
+    'with bigger laughs at the end.'
   }
 ].filter(dir => dir.writeup !== null && dir.portfolio !== null)

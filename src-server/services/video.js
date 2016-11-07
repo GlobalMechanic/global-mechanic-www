@@ -17,7 +17,6 @@ class VideoService {
 
   find(params) {
 
-    console.log('what the fucks')
     const query = params ? params.query : {}
     return vimeo
     .videos()
