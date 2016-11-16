@@ -15,7 +15,7 @@ const thumbs = fs
 const api = new Vimeo(
 /*client-id*/    '422a6bcfb6327005cd45184db926a92e9a1e84a9',
 /*client-secret*/'Urp+9JGnI2JKjLDLVPpkmcBfWSatdd3q7uEeuadGELHkoQ7MPjcpaey+AGmeDtGctjlRzkjTsp9nMDBsPWLTCYJI+4mstwU/xk2yxmf901Gg/3l/2GUr4+bLs8Gcbnj7',
-/*access-token*/ '835cb24f5e93401dda657e8669366d16'
+/*access-token*/ '895386b5101aee6d4b8f4fa684161e8f'
 )
 
 function uploadThumbnail(thumb) {
@@ -25,17 +25,23 @@ function uploadThumbnail(thumb) {
   const thumbPath = path.join(__dirname, 'fixed-thumbnails', thumb)
 
   return new Promise((resolve, reject) => {
+
     api.request({
 
       method: 'POST',
-      path: `/videos/${vid}/pictures`
+      path: `/videos/${vid}/pictures`,
+      headers: {
+        'Content-Type': 'text/plain'
+      }
 
     }, (err, response) => {
+
       if (err)
         reject(err)
 
       resolve(response)
     })
+
   })
   .then(response => new Promise((resolve, reject) => {
 
@@ -74,6 +80,6 @@ function uploadThumbnail(thumb) {
 
 }
 
-const queue = new Queue(1, Infinity)
-
-thumbs.forEach(thumb => queue.add(() => uploadThumbnail(thumb)))
+// const queue = new Queue(1, Infinity)
+uploadThumbnail(thumbs[0])
+// thumbs.forEach(thumb => queue.add(() => uploadThumbnail(thumb)))
