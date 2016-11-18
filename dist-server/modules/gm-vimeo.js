@@ -223,10 +223,7 @@ function videos() {
           var video = _videos[ii];
           if (data[video.id]) (_data$video$id$portfo = data[video.id].portfolios).push.apply(_data$video$id$portfo, (0, _toConsumableArray3.default)(video.portfolios));else data[video.id] = video;
         }
-      } else {
-        log.error('results isn\'t an array, for some reason');
-        log.debug(_videos);
-      }
+      } else throw new Error('results isn\'t an array, for some reason');
     }
   }).then(function () {
 
@@ -236,7 +233,8 @@ function videos() {
 
     return cache.videos.data;
   }).catch(function (err) {
-    return log.error(err);
+    log.error(err);
+    return cache.videos.data;
   });
 }
 

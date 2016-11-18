@@ -196,10 +196,8 @@ export function videos() {
           else
             data[video.id] = video
         }
-      } else {
-        log.error('results isn\'t an array, for some reason')
-        log.debug(videos)
-      }
+      } else
+        throw new Error('results isn\'t an array, for some reason')
     }
   })
   .then(() => {
@@ -210,7 +208,10 @@ export function videos() {
 
     return cache.videos.data
   })
-  .catch(err => log.error(err))
+  .catch(err => {
+    log.error(err)
+    return cache.videos.data
+  })
 }
 
 export function portfolios() {
