@@ -52,7 +52,7 @@ var Footer = function (_React$Component) {
   function Footer(props) {
     (0, _classCallCheck3.default)(this, Footer);
 
-    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Footer).call(this, props));
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Footer.__proto__ || (0, _getPrototypeOf2.default)(Footer)).call(this, props));
 
     if (!(0, _isExplicit2.default)(_this.props.content, String)) throw new Error('the content property should be an id');
 

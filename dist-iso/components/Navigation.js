@@ -21,31 +21,45 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var DefaultPortfolio = 'featured_work';
 
-function HomeIcon() {
+function HomeIcon(_ref) {
+  var addTitle = _ref.addTitle;
 
-  return _react2.default.createElement(_reactRouter.Link, { to: '/',
-    onlyActiveOnIndex: true,
-    className: 'nav-home left title clickable',
-    activeClassName: 'active' });
+
+  var classes = 'nav-home left title clickable';
+  return _react2.default.createElement(
+    _reactRouter.Link,
+    { to: '/',
+      onlyActiveOnIndex: true,
+      className: classes,
+      activeClassName: 'active' },
+    addTitle ? _react2.default.createElement(
+      'span',
+      null,
+      'GlobalMechanic'
+    ) : null
+  );
 }
 
-function PageLink(_ref) {
-  var to = _ref.to;
-  var children = _ref.children;
+function PageLink(_ref2) {
+  var to = _ref2.to;
+  var hidden = _ref2.hidden;
+  var children = _ref2.children;
 
+
+  var classes = 'nav-link right title ' + (hidden ? 'hidden' : 'clickable');
 
   return _react2.default.createElement(
     _reactRouter.Link,
     { to: to,
-      className: 'nav-link right title clickable',
+      className: classes,
       activeClassName: 'active' },
     children
   );
 }
 
-function NavHolder(_ref2) {
-  var children = _ref2.children;
-  var inverse = _ref2.inverse;
+function NavHolder(_ref3) {
+  var children = _ref3.children;
+  var inverse = _ref3.inverse;
 
   var classes = inverse ? ' inverse' : '';
 
@@ -56,11 +70,13 @@ function NavHolder(_ref2) {
   );
 }
 
-function Navigation(_ref3) {
-  var children = _ref3.children;
-  var routes = _ref3.routes;
+function Navigation(_ref4) {
+  var children = _ref4.children;
+  var routes = _ref4.routes;
 
-  var inverse = routes && !!routes[routes.length - 1].inverse;
+  var currRoute = routes ? routes[routes.length - 1] : null;
+  var inverse = currRoute && currRoute.inverse;
+  var hidden = currRoute && currRoute.private;
 
   return _react2.default.createElement(
     'div',
@@ -68,20 +84,20 @@ function Navigation(_ref3) {
     _react2.default.createElement(
       NavHolder,
       { inverse: inverse },
-      _react2.default.createElement(HomeIcon, null),
+      _react2.default.createElement(HomeIcon, { addTitle: hidden }),
       _react2.default.createElement(
         PageLink,
-        { to: '/directors' },
+        { to: '/directors', hidden: hidden },
         'Directors'
       ),
       _react2.default.createElement(
         PageLink,
-        { to: '/work/' + DefaultPortfolio },
+        { to: '/work/' + DefaultPortfolio, hidden: hidden },
         'Work'
       ),
       _react2.default.createElement(
         PageLink,
-        { to: '/about' },
+        { to: '/about', hidden: hidden },
         'About'
       )
     ),

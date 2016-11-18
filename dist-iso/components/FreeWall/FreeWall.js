@@ -51,7 +51,7 @@ var FreeWall = function (_React$Component) {
   function FreeWall(props) {
     (0, _classCallCheck3.default)(this, FreeWall);
 
-    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(FreeWall).call(this, props));
+    var _this = (0, _possibleConstructorReturn3.default)(this, (FreeWall.__proto__ || (0, _getPrototypeOf2.default)(FreeWall)).call(this, props));
 
     _this.freewall = null;
     _this.resize = _this.resize.bind(_this);

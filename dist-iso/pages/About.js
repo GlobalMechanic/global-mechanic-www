@@ -78,7 +78,7 @@ var About = function (_React$Component) {
   function About(props) {
     (0, _classCallCheck3.default)(this, About);
 
-    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(About).call(this, props));
+    var _this = (0, _possibleConstructorReturn3.default)(this, (About.__proto__ || (0, _getPrototypeOf2.default)(About)).call(this, props));
 
     _this.state = { stick: false };
     return _this;

@@ -91,7 +91,7 @@ var Dropdown = function (_React$Component) {
   function Dropdown(props) {
     (0, _classCallCheck3.default)(this, Dropdown);
 
-    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Dropdown).call(this, props));
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Dropdown.__proto__ || (0, _getPrototypeOf2.default)(Dropdown)).call(this, props));
 
     _this.state = {
       open: false
@@ -140,20 +140,22 @@ var Dropdown = function (_React$Component) {
       var _props = this.props;
       var className = _props.className;
       var items = _props.items;
-      var other = (0, _objectWithoutProperties3.default)(_props, ['className', 'items']);
+      var titleOnly = _props.titleOnly;
+      var other = (0, _objectWithoutProperties3.default)(_props, ['className', 'items', 'titleOnly']);
       var open = this.state.open;
 
 
       return _react2.default.createElement(
         'div',
-        (0, _extends3.default)({ className: 'dropdown padded inverse ' + (className || '') }, other, { onClick: this.setOpen }),
+        (0, _extends3.default)({ className: 'dropdown padded inverse ' + (className || '') }, other, {
+          onClick: titleOnly ? null : this.setOpen }),
         _react2.default.createElement(
           'h1',
-          { className: 'clickable' },
+          { className: titleOnly ? '' : 'clickable' },
           this.props.title,
-          _react2.default.createElement(Caret, { show: !!this.props.title })
+          _react2.default.createElement(Caret, { show: !!this.props.title && !titleOnly })
         ),
-        _react2.default.createElement(List, { items: items, open: open, onSelection: this.setSelected, $dom: this.$dom })
+        titleOnly ? null : _react2.default.createElement(List, { items: items, open: open, onSelection: this.setSelected, $dom: this.$dom })
       );
     }
   }]);

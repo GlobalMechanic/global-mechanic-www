@@ -71,9 +71,11 @@ export default class Work extends React.Component {
 
     const urlPrefixPath = portfolio && portfolio.scope === 'private' ? 'private/portfolio' : 'work'
 
+    const route = this.props.route
+
     return <Page id='work-page' {...this.props}>
       <Content id='work-content'>
-        <Dropdown title={ portfolio ? portfolio.name : '' } items={publicPortfolios} onSelection={navigate}/>
+        <Dropdown title={ portfolio ? portfolio.name : '' } items={publicPortfolios} titleOnly={route.private} onSelection={navigate}/>
         { portfolio ? <Portfolio key={id} id={id} portfolio={portfolio.id} urlPrefix={`/${urlPrefixPath}/${idOrName}/`} /> : null }
         { this.props.children }
       </Content>

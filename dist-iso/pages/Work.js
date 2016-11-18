@@ -62,7 +62,7 @@ var Work = function (_React$Component) {
   function Work(props) {
     (0, _classCallCheck3.default)(this, Work);
 
-    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Work).call(this, props));
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Work.__proto__ || (0, _getPrototypeOf2.default)(Work)).call(this, props));
 
     _this.state = { portfolios: [] };
     _this.setPortfolios = _this.setPortfolios.bind(_this);
@@ -147,13 +147,15 @@ var Work = function (_React$Component) {
 
       var urlPrefixPath = portfolio && portfolio.scope === 'private' ? 'private/portfolio' : 'work';
 
+      var route = this.props.route;
+
       return _react2.default.createElement(
         _Page2.default,
         (0, _extends3.default)({ id: 'work-page' }, this.props),
         _react2.default.createElement(
           _components.Content,
           { id: 'work-content' },
-          _react2.default.createElement(_components.Dropdown, { title: portfolio ? portfolio.name : '', items: publicPortfolios, onSelection: navigate }),
+          _react2.default.createElement(_components.Dropdown, { title: portfolio ? portfolio.name : '', items: publicPortfolios, titleOnly: route.private, onSelection: navigate }),
           portfolio ? _react2.default.createElement(_components.Portfolio, { key: id, id: id, portfolio: portfolio.id, urlPrefix: '/' + urlPrefixPath + '/' + idOrName + '/' }) : null,
           this.props.children
         )

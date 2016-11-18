@@ -6,18 +6,22 @@ import Background from './Background'
 
 const DefaultPortfolio = 'featured_work'
 
-function HomeIcon() {
+function HomeIcon({addTitle}) {
 
+  const classes = 'nav-home left title clickable'
   return <Link to='/'
     onlyActiveOnIndex
-    className='nav-home left title clickable'
-    activeClassName='active' />
+    className={classes}
+    activeClassName='active' >{addTitle ? <span>GlobalMechanic</span> : null}</Link>
 }
 
-function PageLink({to, children}) {
+function PageLink({to, hidden, children}) {
+
+  const classes = 'nav-link right title ' +
+    (hidden ? 'hidden' : 'clickable')
 
   return <Link to={to}
-    className='nav-link right title clickable'
+    className={classes}
     activeClassName='active'>{children}</Link>
 }
 
@@ -30,14 +34,16 @@ function NavHolder({children, inverse}) {
 }
 
 export default function Navigation({children, routes}) {
-  const inverse = routes && !!routes[routes.length-1].inverse
+  const currRoute = routes ? routes[routes.length-1] : null
+  const inverse = currRoute && currRoute.inverse
+  const hidden = currRoute && currRoute.private
 
   return <div>
     <NavHolder inverse={inverse}>
-      <HomeIcon />
-      <PageLink to='/directors'>Directors</PageLink>
-      <PageLink to={`/work/${DefaultPortfolio}`}>Work</PageLink>
-      <PageLink to='/about'>About</PageLink>
+      <HomeIcon addTitle={hidden}/>
+      <PageLink to='/directors' hidden={hidden}>Directors</PageLink>
+      <PageLink to={`/work/${DefaultPortfolio}`} hidden={hidden}>Work</PageLink>
+      <PageLink to='/about' hidden={hidden}>About</PageLink>
     </NavHolder>
     {/* <ReactCSSTransitionGroup
       component={PageHolder}

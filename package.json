@@ -76,6 +76,7 @@
     "react-addons-css-transition-group": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-router": "^2.8.1",
-    "request": "^2.78.0"
+    "request": "^2.78.0",
+    "vimeo": "^1.2.0"
   }
 }

@@ -39,7 +39,7 @@ function format(writeup) {
 }
 
 function italicize() {
-  var paragraph = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
+  var paragraph = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
   return paragraph.split('**').map(function (str, i) {
     return _react2.default.createElement(

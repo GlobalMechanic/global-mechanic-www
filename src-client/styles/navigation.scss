@@ -23,6 +23,7 @@ $nav-holder-size: $title-size * 1 + $padding;
   margin-top: $padding;
   margin-right: $padding * 1.5;
   font-size: $nav-link-size;
+  transition: opacity $transition-time;
 
   @media screen and (max-width: $med-width) {
     margin-top: $padding * $med-mult;
@@ -42,6 +43,11 @@ $nav-holder-size: $title-size * 1 + $padding;
     font-size: $nav-link-size * $mini-mult;
   }
 
+}
+
+.nav-link.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 $nut-margin-top: $padding * 0.8;
@@ -78,6 +84,14 @@ $nut-margin-top: $padding * 0.8;
     margin-left: $padding * $mini-mult;
   }
 
+}
+
+.nav-home {
+  span {
+    position: relative;
+    left: 0.9em;
+    top: -0.0125em;
+  }
 }
 
 .nav-home:hover {

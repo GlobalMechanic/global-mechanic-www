@@ -46,7 +46,7 @@ var Background = function (_React$Component) {
   function Background(props) {
     (0, _classCallCheck3.default)(this, Background);
 
-    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Background).call(this, props));
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Background.__proto__ || (0, _getPrototypeOf2.default)(Background)).call(this, props));
 
     _this.state = { classes: '' };
     _this.backgroundStyleChange = _this.backgroundStyleChange.bind(_this);

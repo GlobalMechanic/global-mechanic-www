@@ -62,12 +62,13 @@ export default class Dropdown extends React.Component {
   }
 
   render() {
-    const { className, items, ...other } = this.props
+    const { className, items, titleOnly, ...other } = this.props
     const { open } = this.state
 
-    return <div className={`dropdown padded inverse ${className || ''}`} {...other} onClick={this.setOpen} >
-      <h1 className='clickable' >{this.props.title}<Caret show={!!this.props.title}/></h1>
-      <List items={items} open={open} onSelection={this.setSelected} $dom={this.$dom}/>
+    return <div className={`dropdown padded inverse ${className || ''}`} {...other}
+      onClick={titleOnly ? null : this.setOpen} >
+      <h1 className={titleOnly ? '': 'clickable'} >{this.props.title}<Caret show={!!this.props.title && !titleOnly}/></h1>
+      {titleOnly ? null : <List items={items} open={open} onSelection={this.setSelected} $dom={this.$dom}/>}
     </div>
   }
 

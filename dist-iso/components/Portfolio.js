@@ -114,7 +114,7 @@ var Portfolio = function (_React$Component) {
   function Portfolio(props) {
     (0, _classCallCheck3.default)(this, Portfolio);
 
-    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Portfolio).call(this, props));
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Portfolio.__proto__ || (0, _getPrototypeOf2.default)(Portfolio)).call(this, props));
 
     _this.state = {
       videos: [],

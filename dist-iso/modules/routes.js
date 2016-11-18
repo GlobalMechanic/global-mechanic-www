@@ -36,8 +36,8 @@ exports.default = _react2.default.createElement(
   ),
   _react2.default.createElement(
     _reactRouter.Route,
-    { path: '/private/portfolio/:portfolio', inverse: true, component: _pages.Work },
-    _react2.default.createElement(_reactRouter.Route, { path: '/private/portfolio/:portfolio/:video', inverse: true, component: _pages.Video })
+    { path: '/private/portfolio/:portfolio', inverse: true, 'private': true, component: _pages.Work },
+    _react2.default.createElement(_reactRouter.Route, { path: '/private/portfolio/:portfolio/:video', inverse: true, 'private': true, component: _pages.Video })
   ),
   _react2.default.createElement(
     _reactRouter.Route,

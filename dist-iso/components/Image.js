@@ -37,7 +37,7 @@ var Image = exports.Image = function (_React$Component) {
   function Image(props) {
     (0, _classCallCheck3.default)(this, Image);
 
-    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Image).call(this, props));
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Image.__proto__ || (0, _getPrototypeOf2.default)(Image)).call(this, props));
 
     _this.state = {
       video: null

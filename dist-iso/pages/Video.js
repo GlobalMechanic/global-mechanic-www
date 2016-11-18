@@ -44,7 +44,7 @@ var Video = function (_React$Component) {
   function Video(props) {
     (0, _classCallCheck3.default)(this, Video);
 
-    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Video).call(this, props));
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Video.__proto__ || (0, _getPrototypeOf2.default)(Video)).call(this, props));
 
     _this.state = {
       video: null
