@@ -21,6 +21,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var DefaultPortfolio = 'featured_work';
 
+function HomeTitle() {
+  return _react2.default.createElement(
+    'span',
+    { style: { display: 'inline-block', width: '5.7em' } },
+    'Global Mechanic'
+  );
+}
+
 function HomeIcon(_ref) {
   var addTitle = _ref.addTitle;
 
@@ -32,11 +40,7 @@ function HomeIcon(_ref) {
       onlyActiveOnIndex: true,
       className: classes,
       activeClassName: 'active' },
-    addTitle ? _react2.default.createElement(
-      'span',
-      null,
-      'GlobalMechanic'
-    ) : null
+    addTitle ? _react2.default.createElement(HomeTitle, null) : null
   );
 }
 

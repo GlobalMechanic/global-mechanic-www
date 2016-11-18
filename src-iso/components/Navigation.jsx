@@ -6,13 +6,18 @@ import Background from './Background'
 
 const DefaultPortfolio = 'featured_work'
 
+
+function HomeTitle() {
+  return <span style={{display:'inline-block', width:'5.7em'}}>Global Mechanic</span>
+}
+
 function HomeIcon({addTitle}) {
 
   const classes = 'nav-home left title clickable'
   return <Link to='/'
     onlyActiveOnIndex
     className={classes}
-    activeClassName='active' >{addTitle ? <span>GlobalMechanic</span> : null}</Link>
+    activeClassName='active' >{addTitle ? <HomeTitle/> : null}</Link>
 }
 
 function PageLink({to, hidden, children}) {
