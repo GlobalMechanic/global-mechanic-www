@@ -24,7 +24,7 @@ var DefaultPortfolio = 'featured_work';
 function HomeTitle() {
   return _react2.default.createElement(
     'span',
-    { style: { display: 'inline-block', width: '5.7em' } },
+    null,
     'Global Mechanic'
   );
 }

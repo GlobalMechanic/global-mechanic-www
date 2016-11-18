@@ -88,9 +88,11 @@ $nut-margin-top: $padding * 0.8;
 
 .nav-home {
   span {
-    position: relative;
     left: 0.9em;
     top: -0.0125em;
+    width: 5.7em;
+    position: relative;
+    display: inline-block;
   }
 }
 

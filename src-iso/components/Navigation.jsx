@@ -8,7 +8,7 @@ const DefaultPortfolio = 'featured_work'
 
 
 function HomeTitle() {
-  return <span style={{display:'inline-block', width:'5.7em'}}>Global Mechanic</span>
+  return <span>Global Mechanic</span>
 }
 
 function HomeIcon({addTitle}) {
