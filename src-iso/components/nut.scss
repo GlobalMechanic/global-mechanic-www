@@ -1,0 +1,24 @@
+.nut {
+  width: 1.75rem;
+  height: 1.75rem;
+  fill: $text-color;
+  transition: fill $animation-time;
+  display: inline-block;
+
+  position: relative;
+  top: 0.17rem;
+}
+
+.clickable.active,.clickable:hover {
+  .nut {
+    fill: $text-color-inverted-hover;
+  }
+}
+
+.inverse {
+  .clickable.active,.clickable:hover {
+    .nut {
+      fill: $text-color-inverted-hover;
+    }
+  }
+}

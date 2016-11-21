@@ -12,6 +12,7 @@ import fallback from 'express-history-api-fallback'
 import favicon from 'serve-favicon'
 
 import middleware from 'middleware'
+import services from 'services'
 
 /******************************************************************************/
 // Config
@@ -37,6 +38,7 @@ app.use(compress())
   .configure(hooks())
   .configure(rest())
   .configure(middleware)
+  .configure(services)
 
   .use(fallback('index.html', { publicURL }))
 

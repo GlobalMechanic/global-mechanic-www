@@ -6,9 +6,9 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = function (app) {
 
+  //Create Template
   var publicURL = app.get('public');
   var indexHtmlURL = _path2.default.join(publicURL, 'index.html');
-
   template = _fs2.default.readFileSync(indexHtmlURL, 'utf-8').split('<main/>');
 
   return function (req, res, next) {
@@ -36,7 +36,7 @@ var _server = require('react-dom/server');
 
 var _reactRouter = require('react-router');
 
-var _routes = require('components/routes');
+var _routes = require('modules/routes');
 
 var _routes2 = _interopRequireDefault(_routes);
 

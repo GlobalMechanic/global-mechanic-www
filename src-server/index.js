@@ -1,3 +1,4 @@
+import './node_modules/normalize.css/normalize.css'
 import './globals'
 import app from './app'
 

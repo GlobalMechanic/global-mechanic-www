@@ -1,0 +1,34 @@
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.padded {
+  padding: $padding;
+}
+
+.clickable {
+  cursor: pointer;
+  transition: color $animation-time;
+}
+
+.invisible {
+  opacity: 0;
+  pointer-events: none;
+  cursor: default;
+}
+
+.clickable.active, .clickable:hover {
+  color: $text-color-inverted-hover;
+}
+
+.inverse {
+    color: $text-color-inverted;
+
+  .clickable.active,.clickable:hover {
+    color: $text-color-inverted-hover;
+  }
+}

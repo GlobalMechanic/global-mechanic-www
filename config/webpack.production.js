@@ -3,6 +3,8 @@ const path = require('path')
 const UglifyJsPlugin = require('webpack').optimize.UglifyJsPlugin
 const HtmlPlugin = require('html-webpack-plugin')
 
+config.output.path = path.join(config.output.path, 'assets')
+
 config.plugins.push(
 
   new HtmlPlugin({

@@ -1,0 +1,33 @@
+$links-height: $padding + 2rem;
+$home-link-width: 13.5rem;
+
+#links {
+  height: $links-height;
+
+  #home-link {
+    overflow: hidden;
+    width: 2rem;
+    transition: width $animation-time;
+
+    #home-link-mask {
+
+      #home-link-title {
+        display: inline-block;
+        margin-left: 0.3rem;
+      };
+
+      display: inline-block;
+      width: $home-link-width;
+    }
+
+  }
+
+  #home-link.active {
+    width: $home-link-width;
+  }
+
+  .link {
+    margin-left: $padding;
+  }
+
+}

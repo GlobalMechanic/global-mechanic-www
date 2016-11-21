@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+require('./node_modules/normalize.css/normalize.css');
+
 require('./globals');
 
 var _app = require('./app');

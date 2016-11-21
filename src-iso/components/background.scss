@@ -1,0 +1,48 @@
+$overlay-dark-opacity: 0.6;
+//disables play button for mobile
+video::-webkit-media-controls-start-playback-button {
+  display: none;
+}
+
+#video-background-overlay {
+  position: fixed;
+
+  top: 0em;
+  left: 0em;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: -99;
+
+  background: url(../assets/overlay-texture.png) repeat;
+  background-color: rgba(0,0,0,0.0);
+
+  transition: background-color $animation-time, background $animation-time;
+}
+
+#video-background-overlay.dark {
+  background-color: rgba(0,0,0, $overlay-dark-opacity)
+}
+
+#video-background {
+  position: fixed;
+
+  top: 50%;
+  left: 50%;
+
+  min-width: 100%;
+  min-height: 100%;
+
+  width: auto;
+  height: auto;
+
+  z-index: -100;
+
+  transform: translateX(-50%) translateY(-50%);
+  background-size: cover;
+}
+
+#video-background.dark {
+  -webkit-filter: blur(10px);
+}

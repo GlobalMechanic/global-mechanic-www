@@ -3,11 +3,17 @@ const config = require('./webpack.default.js')
 
 const HtmlPlugin = require('html-webpack-plugin')
 
-config.entry.unshift('webpack-dev-server/client?http://0.0.0.0:5000')
+const port = 3000
+const host = '0.0.0.0'
+
+config.entry.unshift(`webpack-dev-server/client?http://${host}:${port}`)
 
 config.devServer = {
   contentBase: path.resolve(__dirname, '../dist-client'),
-  hot: false
+  hot: false,
+  host,
+  port,
+  historyApiFallback: true,
 }
 
 config.plugins.push(new HtmlPlugin({
