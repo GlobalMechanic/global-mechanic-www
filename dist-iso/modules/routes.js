@@ -20,6 +20,7 @@ exports.default = _react2.default.createElement(
   _reactRouter.Route,
   { path: '/', component: _components.Navigation },
   _react2.default.createElement(_reactRouter.IndexRoute, { component: _pages.Home }),
+  _react2.default.createElement(_reactRouter.Route, { path: '/directors', inverse: true, component: _pages.Directors }),
   _react2.default.createElement(_reactRouter.Route, { path: '/work/:portfolio', inverse: true, component: _pages.Work }),
   _react2.default.createElement(_reactRouter.Route, { path: '/about', dark: true, component: _pages.About })
 );

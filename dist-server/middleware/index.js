@@ -8,6 +8,7 @@ exports.default = function () {
 
   var app = this;
 
+  app.get('/background', (0, _background2.default)());
   app.use((0, _reactRouterTemplate2.default)(app));
   app.use((0, _logging2.default)(app));
   app.use((0, _handler2.default)());
@@ -16,6 +17,10 @@ exports.default = function () {
 var _handler = require('feathers-errors/handler');
 
 var _handler2 = _interopRequireDefault(_handler);
+
+var _background = require('./background');
+
+var _background2 = _interopRequireDefault(_background);
 
 var _reactRouterTemplate = require('./react-router-template');
 

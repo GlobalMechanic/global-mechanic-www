@@ -30,7 +30,7 @@ function HomeLink() {
     React.createElement(
       'div',
       { id: 'home-link-mask' },
-      React.createElement(_Nut2.default, null),
+      React.createElement(_Nut2.default, { id: 'home-nut' }),
       React.createElement(
         'h1',
         { id: 'home-link-title' },
@@ -73,7 +73,7 @@ function Links(_ref2) {
     ),
     React.createElement(
       PageLink,
-      { to: '/work' },
+      { to: '/work/featured_work' },
       'Work'
     ),
     React.createElement(

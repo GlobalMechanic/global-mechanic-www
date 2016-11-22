@@ -1,14 +1,16 @@
 import React from 'react'
 import classNames from 'classnames'
 
-export default function Background({poster, video, type, dark}) {
+export default function Background({dark}) {
 
   const classes = classNames({ dark })
+  const poster = 'http://0.0.0.0:3030/background?poster=true'
+  const src = 'http://0.0.0.0:3030/background'
 
   return <div>
     <div id='video-background-overlay' className={classes}/>
-    <video id='video-background' className={classes} poster={poster} loop autoPlayer muted >
-      <source src={video} type={type || 'video/mp4'} />
+    <video id='video-background' className={classes} poster={poster} autoPlay loop muted >
+      <source src={src} type='video/mp4' />
     </video>
   </div>
 }

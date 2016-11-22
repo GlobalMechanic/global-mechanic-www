@@ -6,6 +6,7 @@
     },
     "extends": "eslint:recommended",
     "installedESLint": true,
+    "parser": "babel-eslint",
     "parserOptions": {
       "ecmaFeatures": {
         "experimentalObjectRestSpread": true,
@@ -47,9 +48,6 @@
       "is": false,
       "log": false,
       "addEvent": false,
-      "removeEvent": false,
-      "$": false,
-      "jQuery": false,
-      "freewall": false
+      "removeEvent": false
     }
 }

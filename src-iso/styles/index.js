@@ -1,8 +1,8 @@
 
 const variables = {
   animationTime: { value: 500, units: 'ms'},
-  rootFontSize: { value: 1, units: 'em'},
-  padding: { value: 1, units: 'rem'}
+  rootFontSize: { value: 1.25, units: 'em'},
+  padding: { value: 0.8, units: 'rem'}
 }
 
 const colors = {

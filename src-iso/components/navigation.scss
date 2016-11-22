@@ -1,19 +1,29 @@
 $links-height: $padding + 2rem;
 $home-link-width: 13.5rem;
+$home-icon-dim: 2rem;
+$nut-time: $animation-time * 0.5;
 
 #links {
   height: $links-height;
 
   #home-link {
+
     overflow: hidden;
-    width: 2rem;
-    transition: width $animation-time;
+    width: $home-icon-dim;
+    transition: width $nut-time;
+
+    #home-nut {
+      position: absolute;
+      transition: width $nut-time, height $nut-time, opacity $nut-time, fill $nut-time;
+      width: $home-icon-dim;
+      height: $home-icon-dim;
+    }
 
     #home-link-mask {
 
       #home-link-title {
         display: inline-block;
-        margin-left: 0.3rem;
+        margin-left: $home-icon-dim;
       };
 
       display: inline-block;
@@ -23,7 +33,15 @@ $home-link-width: 13.5rem;
   }
 
   #home-link.active {
-    width: $home-link-width;
+    // this width needs to be $home-link-width on private pages
+    // width: $home-link-width;
+
+    #home-nut {
+      @extend %splash;
+      position: absolute;
+      opacity: 0.5;
+      fill: $text-color;
+    }
   }
 
   .link {

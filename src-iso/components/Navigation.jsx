@@ -8,7 +8,7 @@ function HomeLink() {
     id='home-link' className='left clickable'
     activeClassName='active' >
       <div id='home-link-mask'>
-        <Nut/>
+        <Nut id='home-nut'/>
         <h1 id='home-link-title'>Global Mechanic</h1>
       </div>
     </Link>
@@ -28,7 +28,7 @@ function Links({inverse}) {
   return <div id='links' className={classes}>
     <HomeLink/>
     <PageLink to='/directors'>Directors</PageLink>
-    <PageLink to='/work'>Work</PageLink>
+    <PageLink to='/work/featured_work'>Work</PageLink>
     <PageLink to='/about'>About</PageLink>
   </div>
 }
