@@ -41,8 +41,8 @@ function HomeLink() {
 }
 
 function PageLink(_ref) {
-  var to = _ref.to;
-  var children = _ref.children;
+  var to = _ref.to,
+      children = _ref.children;
 
   return React.createElement(
     _reactRouter.Link,
@@ -85,15 +85,15 @@ function Links(_ref2) {
 }
 
 function Navigation(_ref3) {
-  var children = _ref3.children;
-  var routes = _ref3.routes;
+  var children = _ref3.children,
+      routes = _ref3.routes;
 
 
   var route = routes ? routes[routes.length - 1] : {};
 
   //Navigation should be styled inverse if the current route is
-  var inverse = route.inverse;
-  var dark = route.dark;
+  var inverse = route.inverse,
+      dark = route.dark;
 
 
   return React.createElement(

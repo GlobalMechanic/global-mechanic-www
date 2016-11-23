@@ -22,15 +22,16 @@ var _components = require('../components');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var random = Math.random;
-var round = Math.round;
+var random = Math.random,
+    round = Math.round,
+    min = Math.min;
 
 
 var c = function c() {
   return round(random() * 255);
 };
 var d = function d() {
-  return round(50 + random() * 450);
+  return round(100 + random() * 300);
 };
 
 function Staff() {
@@ -38,7 +39,7 @@ function Staff() {
   var blocks = [];
   for (var i = 0; i < 25; i++) {
     var width = d();
-    var height = d();
+    var height = min(d(), width);
     var backgroundColor = 'rgb(' + [c(), c(), c()] + ')';
     blocks.push({
       width: width,

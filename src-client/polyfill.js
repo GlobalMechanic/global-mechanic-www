@@ -3,7 +3,7 @@ window.Object.assign = window.Object.assign || require('object-assign')
 
 window.Promise = window.Promise || require('promise-polyfill')
 
-window.addEventListener = (event, target, method) => {
+window.addEvent = (event, target, method) => {
 
   if (target.addEventListener)
     target.addEventListener(event, method, false)
@@ -13,7 +13,7 @@ window.addEventListener = (event, target, method) => {
 
 }
 
-window.removeEventListener = (event, target, method) => {
+window.removeEvent = (event, target, method) => {
 
   if (target.addEventListener)
     target.removeEventListener(event, method, false)

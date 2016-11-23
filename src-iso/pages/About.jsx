@@ -2,17 +2,17 @@ import React from 'react'
 import Page from './Page'
 import { Freewall } from '../components'
 
-const { random, round } = Math
+const { random, round, min } = Math
 
 const c = () => round(random() * 255)
-const d = () => round(50 + random() * 450)
+const d = () => round(100 + random() * 300)
 
 function Staff() {
 
   const blocks = []
   for (let i = 0; i < 25; i++) {
     const width = d()
-    const height = d()
+    const height = min(d(), width)
     const backgroundColor = `rgb(${[c(), c(), c()]})`
     blocks.push({
       width,

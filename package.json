@@ -8,8 +8,8 @@
     "test-watch": "npm run test -- --watch",
     "build-scss": "node_modules/.bin/babel-node util/build-index-and-variables-scss.js",
     "build-client": "rm -rf ./dist-client && webpack --config ./config/webpack.production.js",
-    "build-iso": "rm -rf ./dist-iso && babel ./src-iso --out-dir ./dist-iso",
-    "build-server": "rm -rf ./dist-server && babel ./src-server --out-dir ./dist-server",
+    "build-iso": "rm -rf ./dist-iso && node_modules/.bin/babel ./src-iso --out-dir ./dist-iso",
+    "build-server": "rm -rf ./dist-server && node_modules/.bin/babel ./src-server --out-dir ./dist-server",
     "develop-client": "webpack-dev-server --config ./config/webpack.dev.js",
     "develop-server": "npm run build-server -- --watch & npm run build-iso -- --watch & ./node_modules/.bin/nodemon --watch dist-server  --watch dist-iso ./dist-server ",
     "build": "npm run build-server & npm run build-iso & npm run build-client",
@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/GlobalMechanic/global-mechanic-www#readme",
   "devDependencies": {
+    "babel-cli": "^6.18.0",
     "babel-core": "^6.10.4",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.4",
@@ -59,6 +60,7 @@
   "dependencies": {
     "app-module-path": "^2.1.0",
     "body-parser": "^1.15.2",
+    "classnames": "^2.2.5",
     "compression": "^1.6.2",
     "cors": "^2.8.1",
     "dotenv": "^2.0.0",
