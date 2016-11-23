@@ -20,10 +20,39 @@ $title-font: 'Bebas-Neue-Regular';
 $body-font: 'AvenirNext LT Pro';
 
 html {
-  font-family: $body-font;
   font-size: $root-font-size;
   overflow-y: scroll;
+  font-family: $body-font;
   color: $text-color;
+
+  @media screen and (max-width: $med-width){
+    font-size: $root-font-size * 0.9;
+  }
+
+  @media screen and (max-width: $small-width){
+    font-size: $root-font-size * 0.75;
+  }
+
+  @media screen and (max-width: $mini-width){
+    font-size: $root-font-size * 0.45;
+  }
+}
+
+.inverse > * {
+  color: $text-color-inverted;
+}
+
+.clickable.active, .clickable:hover {
+  color: $text-color-hover !important;
+}
+
+a {
+  color: $text-color;
+  text-decoration: none;
+}
+
+p {
+  font-size: 0.9rem;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -31,9 +60,5 @@ h1,h2,h3,h4,h5,h6 {
   letter-spacing: 0em;
   -webkit-margin-before: 0em;
   -webkit-margin-after: 0em;
-}
-
-a {
-  color: $text-color;
-  text-decoration: none;
+  font-weight: lighter;
 }

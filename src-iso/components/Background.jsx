@@ -9,7 +9,7 @@ export default function Background({dark}) {
 
   return <div>
     <div id='video-background-overlay' className={classes}/>
-    <video id='video-background' className={classes} poster={poster} autoPlay loop muted >
+    <video id='video-background' className={classes} loop autoPlay muted poster={poster} >
       <source src={src} type='video/mp4' />
     </video>
   </div>

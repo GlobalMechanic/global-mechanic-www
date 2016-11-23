@@ -8,7 +8,29 @@ var _extends2 = require('babel-runtime/helpers/extends');
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-exports.default = About;
+var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
 
 var _react = require('react');
 
@@ -22,9 +44,9 @@ var _components = require('../components');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var random = Math.random,
-    round = Math.round,
-    min = Math.min;
+var random = Math.random;
+var round = Math.round;
+var min = Math.min;
 
 
 var c = function c() {
@@ -35,26 +57,23 @@ var d = function d() {
 };
 
 function Staff() {
-
-  var blocks = [];
-  for (var i = 0; i < 25; i++) {
-    var width = d();
-    var height = min(d(), width);
-    var backgroundColor = 'rgb(' + [c(), c(), c()] + ')';
-    blocks.push({
-      width: width,
-      height: height,
-      backgroundColor: backgroundColor
-    });
-  }
-
-  return _react2.default.createElement(
-    _components.Freewall,
-    null,
-    blocks.map(function (block) {
-      return _react2.default.createElement('div', { style: (0, _extends3.default)({}, block) });
-    })
-  );
+  //
+  // const blocks = []
+  // for (let i = 0; i < 25; i++) {
+  //   const width = d()
+  //   const height = min(d(), width)
+  //   const backgroundColor = `rgb(${[c(), c(), c()]})`
+  //   blocks.push({
+  //     width,
+  //     height,
+  //     backgroundColor
+  //   })
+  // }
+  //
+  // return <Freewall>{
+  //   blocks.map(block => <div style={{...block}} />)
+  // }</Freewall>
+  return null;
 }
 
 function Writeup() {
@@ -144,17 +163,74 @@ function Block(_ref) {
   );
 }
 
-function About(_ref2) {
-  var children = _ref2.children;
+var About = function (_Component) {
+  (0, _inherits3.default)(About, _Component);
 
-  return _react2.default.createElement(
-    _Page2.default,
-    { id: 'about-page' },
-    _react2.default.createElement(Writeup, null),
-    _react2.default.createElement(
-      Block,
-      null,
-      children
-    )
-  );
-}
+  function About() {
+    var _Object$getPrototypeO;
+
+    var _temp, _this, _ret;
+
+    (0, _classCallCheck3.default)(this, About);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(About)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
+      height: null
+    }, _this.setBounds = function () {
+
+      if (!_this.ref) return;
+
+      var bounds = _this.ref.getBoundingClientRect();
+      var height = innerHeight - bounds.top;
+
+      _this.setState({ height: height });
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+  }
+
+  (0, _createClass3.default)(About, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      addEvent('resize', window, this.setBounds);
+      this.setBounds();
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps() {
+      this.setBounds();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props;
+      var children = _props.children;
+      var other = (0, _objectWithoutProperties3.default)(_props, ['children']);
+      var height = this.state.height;
+
+
+      var style = height ? {
+        minHeight: height
+      } : null;
+
+      return _react2.default.createElement(
+        _Page2.default,
+        (0, _extends3.default)({ pageRef: function pageRef(ref) {
+            return _this2.ref = ref;
+          }, style: style, id: 'about-page' }, other),
+        _react2.default.createElement(Writeup, null),
+        _react2.default.createElement(
+          Block,
+          null,
+          children
+        )
+      );
+    }
+  }]);
+  return About;
+}(_react.Component);
+
+exports.default = About;

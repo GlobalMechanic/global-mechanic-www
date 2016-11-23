@@ -3,16 +3,14 @@
   transition: fill $animation-time;
 }
 
-.clickable.active,.clickable:hover {
+.inverse {
   .nut {
-    fill: $text-color-inverted-hover;
+    fill: $text-color-inverted;
   }
 }
 
-.inverse {
-  .clickable.active,.clickable:hover {
-    .nut {
-      fill: $text-color-inverted-hover;
-    }
+.clickable.active,.clickable:hover {
+  .nut {
+    fill: $text-color-hover;
   }
 }

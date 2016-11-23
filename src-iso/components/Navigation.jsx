@@ -1,7 +1,13 @@
+import React, { addons, cloneElement } from 'react'
 import classNames from 'classnames'
 import { Link } from 'react-router'
 import Background from './Background'
 import Nut from './Nut'
+// import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+
+import { variables } from 'styles'
+
+const Transition = addons ? addons.CSSTransitionGroup : null
 
 function HomeLink() {
   return <Link to='/' onlyActiveOnIndex
@@ -33,16 +39,29 @@ function Links({inverse}) {
   </div>
 }
 
+function Pages({children, ...other}) {
+  return <div id='pages' {...other}>{children}</div>
+}
+
 export default function Navigation({children, routes}) {
 
   const route = routes ? routes[routes.length - 1] : {}
 
   //Navigation should be styled inverse if the current route is
-  const { inverse, dark } = route
+  const { inverse, dark, transition } = route
+
+  const path = route.path || 'home'
+  const key = path.match(/(\w+)/)[1]
 
   return <div>
     <Links inverse={inverse}/>
-    {children}
+    { Transition ? <Transition
+      component={Pages}
+      transitionName={transition || 'none'}
+      transitionEnterTimeout={variables.animationTime.value}
+      transitionLeaveTimeout={variables.animationTime.value}>
+      {cloneElement(children, { key })}
+    </Transition> : children}
     <Background dark={dark}/>
   </div>
 

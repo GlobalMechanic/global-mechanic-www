@@ -29,7 +29,7 @@ function Background(_ref) {
     _react2.default.createElement('div', { id: 'video-background-overlay', className: classes }),
     _react2.default.createElement(
       'video',
-      { id: 'video-background', className: classes, poster: poster, autoPlay: true, loop: true, muted: true },
+      { id: 'video-background', className: classes, loop: true, autoPlay: true, muted: true, poster: poster },
       _react2.default.createElement('source', { src: src, type: 'video/mp4' })
     )
   );

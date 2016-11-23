@@ -20,15 +20,3 @@
   pointer-events: none;
   cursor: default;
 }
-
-.clickable.active, .clickable:hover {
-  color: $text-color-inverted-hover;
-}
-
-.inverse {
-    color: $text-color-inverted;
-
-  .clickable.active,.clickable:hover {
-    color: $text-color-inverted-hover;
-  }
-}

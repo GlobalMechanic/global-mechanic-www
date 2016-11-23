@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Page from './Page'
 import { Freewall } from '../components'
 
@@ -8,22 +8,23 @@ const c = () => round(random() * 255)
 const d = () => round(100 + random() * 300)
 
 function Staff() {
-
-  const blocks = []
-  for (let i = 0; i < 25; i++) {
-    const width = d()
-    const height = min(d(), width)
-    const backgroundColor = `rgb(${[c(), c(), c()]})`
-    blocks.push({
-      width,
-      height,
-      backgroundColor
-    })
-  }
-
-  return <Freewall>{
-    blocks.map(block => <div style={{...block}} />)
-  }</Freewall>
+  //
+  // const blocks = []
+  // for (let i = 0; i < 25; i++) {
+  //   const width = d()
+  //   const height = min(d(), width)
+  //   const backgroundColor = `rgb(${[c(), c(), c()]})`
+  //   blocks.push({
+  //     width,
+  //     height,
+  //     backgroundColor
+  //   })
+  // }
+  //
+  // return <Freewall>{
+  //   blocks.map(block => <div style={{...block}} />)
+  // }</Freewall>
+  return null
 
 }
 
@@ -76,12 +77,47 @@ function Block({children}) {
   </div>
 }
 
-export default function About({children}) {
-  return <Page id='about-page'>
+export default class About extends Component {
 
-    <Writeup/>
+  state = {
+    height: null
+  }
 
-    <Block>{children}</Block>
+  componentDidMount() {
+    addEvent('resize', window, this.setBounds)
+    this.setBounds()
+  }
 
-  </Page>
+  componentWillReceiveProps() {
+    this.setBounds()
+  }
+
+  setBounds = () => {
+
+    if (!this.ref)
+      return
+
+    const bounds = this.ref.getBoundingClientRect()
+    const height = innerHeight - bounds.top
+
+    this.setState({ height })
+  }
+
+  render() {
+
+    const { children, ...other } = this.props
+    const { height } = this.state
+
+    const style = height ? {
+      minHeight: height
+    } : null
+
+    return <Page pageRef={ref => this.ref = ref} style={style} id='about-page' {...other}>
+
+      <Writeup/>
+
+      <Block>{children}</Block>
+
+    </Page>
+  }
 }

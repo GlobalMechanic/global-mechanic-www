@@ -5,15 +5,22 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var variables = {
-  animationTime: { value: 500, units: 'ms' },
+
+  largeWidth: { value: 1500, units: 'px' },
+  medWidth: { value: 1200, units: 'px' },
+  smallWidth: { value: 800, units: 'px' },
+  miniWidth: { value: 500, units: 'px' },
+
+  animationTime: { value: 250, units: 'ms' },
   rootFontSize: { value: 1.25, units: 'em' },
   padding: { value: 0.8, units: 'rem' }
+
 };
 
 var colors = {
   textColor: '#fff',
+  textColorHover: '#aaa',
   textColorInverted: '#000',
-  textColorInvertedHover: '#aaa',
   bgColor: 'transparent'
 };
 

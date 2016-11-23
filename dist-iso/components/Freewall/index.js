@@ -34,14 +34,14 @@ var _isExplicit2 = _interopRequireDefault(_isExplicit);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var floor = Math.floor,
-    max = Math.max;
+var floor = Math.floor;
+var max = Math.max;
 
 
 function Block(_ref) {
-  var coords = _ref.coords,
-      dimension = _ref.dimension,
-      children = _ref.children;
+  var coords = _ref.coords;
+  var dimension = _ref.dimension;
+  var children = _ref.children;
 
 
   var style = {
@@ -62,7 +62,7 @@ var Freewall = function (_React$Component) {
   (0, _inherits3.default)(Freewall, _React$Component);
 
   function Freewall() {
-    var _ref2;
+    var _Object$getPrototypeO;
 
     var _temp, _this, _ret;
 
@@ -72,7 +72,7 @@ var Freewall = function (_React$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref2 = Freewall.__proto__ || (0, _getPrototypeOf2.default)(Freewall)).call.apply(_ref2, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Freewall)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
       data: []
     }, _this.floorCoord = function (axis) {
 
@@ -208,8 +208,8 @@ var Freewall = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'freewall', ref: function ref(_ref3) {
-            return _this3.ref = _ref3;
+        { className: 'freewall', ref: function ref(_ref2) {
+            return _this3.ref = _ref2;
           } },
         data.map(function (d) {
           return _react2.default.createElement(
