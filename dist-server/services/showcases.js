@@ -16,10 +16,13 @@ exports.default = function () {
     Model: db
   };
 
-  app.use('/showcases', (0, _feathersNedb2.default)(options));
+  app.use('/assets/showcases', (0, _feathersNedb2.default)(options));
 
-  var webShowcases = app.service('showcases');
-  var showcases = _gears2.default.service('products');
+  var webShowcases = app.service('assets/showcases');
+  var showcases = _gears2.default.service('showcases');
+
+  webShowcases.before(beforeHooks);
+  webShowcases.after(afterHooks);
 
   _gears2.default.sync(showcases, webShowcases);
 };
@@ -40,4 +43,44 @@ var _gears = require('modules/gears');
 
 var _gears2 = _interopRequireDefault(_gears);
 
+var _feathersHooks = require('feathers-hooks');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/******************************************************************************/
+// Hooks
+/******************************************************************************/
+
+var disableExternal = (0, _feathersHooks.disable)('external');
+var SCOPES = ['private', 'public'];
+
+function websiteFilter(hook, next) {
+  var result = hook.result;
+  var params = hook.params;
+
+  //no filtering on internal calls
+
+  if (!params.provider) return next();
+
+  //only send showcases with public or private scopes
+  hook.result = result.filter(function (showcase) {
+    return showcase.website && SCOPES.includes(showcase.website.scope);
+  });
+
+  next(null, hook);
+}
+
+var beforeHooks = {
+  get: disableExternal,
+  create: disableExternal,
+  update: disableExternal,
+  patch: disableExternal
+};
+
+var afterHooks = {
+  find: websiteFilter
+};
+
+/******************************************************************************/
+// Initialize
+/******************************************************************************/

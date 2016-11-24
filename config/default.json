@@ -6,6 +6,7 @@
     "email": "studio@globalmechanic.com",
     "password": "L0bst3r!"
   },
+  "gears-host": "http://localhost:4100",
   "auth": {
     "idField": "id",
     "token": {

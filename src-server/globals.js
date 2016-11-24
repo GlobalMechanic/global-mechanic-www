@@ -35,3 +35,4 @@ addPath(__dirname)
 
 global.is = is
 global.log = log
+global.HOST = ''

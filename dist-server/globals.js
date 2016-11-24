@@ -50,3 +50,4 @@ log.types = {};
 
 global.is = _isExplicit2.default;
 global.log = log;
+global.HOST = '';

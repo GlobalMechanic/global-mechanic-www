@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Page from './Page'
+import { people } from 'modules/data'
+
 import { Freewall } from '../components'
 
 const { random, round, min } = Math
@@ -7,25 +9,54 @@ const { random, round, min } = Math
 const c = () => round(random() * 255)
 const d = () => round(100 + random() * 300)
 
-function Staff() {
-  //
-  // const blocks = []
-  // for (let i = 0; i < 25; i++) {
-  //   const width = d()
-  //   const height = min(d(), width)
-  //   const backgroundColor = `rgb(${[c(), c(), c()]})`
-  //   blocks.push({
-  //     width,
-  //     height,
-  //     backgroundColor
-  //   })
-  // }
-  //
-  // return <Freewall>{
-  //   blocks.map(block => <div style={{...block}} />)
-  // }</Freewall>
-  return null
+// function Staff() {
+//
+//   const blocks = []
+//   for (let i = 0; i < 25; i++) {
+//     const width = d()
+//     const height = min(d(), width)
+//     const backgroundColor = `rgb(${[c(), c(), c()]})`
+//     blocks.push({
+//       width,
+//       height,
+//       backgroundColor
+//     })
+//   }
+//
+//   return <Freewall>{
+//     blocks.map(block => <div style={{...block}} />)
+//   }</Freewall>
+//   return null
+//
+// }
 
+class Staff extends Component {
+
+  state = {
+    people: []
+  }
+
+  setPeople() {
+
+    people
+    .then(data => this.setState({
+      people: data
+    }))
+    
+  }
+
+  componentDidMount() {
+    this.setPeople()
+  }
+
+  render() {
+
+    const { people } = this.state
+
+    return <div>
+      {people.map(person => <div key={person._id}>{person.email}</div>)}
+    </div>
+  }
 }
 
 function Writeup() {

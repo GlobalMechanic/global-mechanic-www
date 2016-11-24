@@ -16,10 +16,12 @@ exports.default = function () {
     Model: db
   };
 
-  app.use('/products', (0, _feathersNedb2.default)(options));
+  app.use('/assets/products', (0, _feathersNedb2.default)(options));
 
-  var webProducts = app.service('products');
+  var webProducts = app.service('assets/products');
   var products = _gears2.default.service('products');
+
+  webProducts.before(beforeHooks);
 
   _gears2.default.sync(products, webProducts);
 };
@@ -40,4 +42,23 @@ var _gears = require('modules/gears');
 
 var _gears2 = _interopRequireDefault(_gears);
 
+var _feathersHooks = require('feathers-hooks');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/******************************************************************************/
+// Hooks
+/******************************************************************************/
+
+var disableExternal = (0, _feathersHooks.disable)('external');
+
+var beforeHooks = {
+  get: disableExternal,
+  create: disableExternal,
+  update: disableExternal,
+  patch: disableExternal
+};
+
+/******************************************************************************/
+// Initialize
+/******************************************************************************/

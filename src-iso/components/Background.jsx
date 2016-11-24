@@ -1,11 +1,13 @@
 import React from 'react'
 import classNames from 'classnames'
 
+/* global HOST */
+
 export default function Background({dark}) {
 
   const classes = classNames({ dark })
-  const poster = 'http://0.0.0.0:3030/background?poster=true'
-  const src = 'http://0.0.0.0:3030/background'
+  const poster = HOST + '/assets/background?poster=true'
+  const src = HOST + '/assets/background'
 
   return <div>
     <div id='video-background-overlay' className={classes}/>

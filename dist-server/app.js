@@ -66,7 +66,7 @@ app.configure((0, _feathersConfiguration2.default)(configURL));
 
 var publicURL = app.get('public');
 
-app.use((0, _compression2.default)()).options('*', (0, _cors2.default)()).use((0, _cors2.default)()).use('/assets', (0, _feathers.static)(publicURL + '/assets')).use(_bodyParser2.default.json()).use(_bodyParser2.default.urlencoded({ extended: true })).use((0, _serveFavicon2.default)(favURL)).configure((0, _feathersHooks2.default)()).configure((0, _feathersRest2.default)()).configure(_middleware2.default).configure(_services2.default).use((0, _expressHistoryApiFallback2.default)('index.html', { publicURL: publicURL }));
+app.use((0, _compression2.default)()).options('*', (0, _cors2.default)()).use((0, _cors2.default)()).use('/assets', (0, _feathers.static)(publicURL + '/assets')).use(_bodyParser2.default.json()).use(_bodyParser2.default.urlencoded({ extended: true })).use((0, _serveFavicon2.default)(favURL)).configure((0, _feathersHooks2.default)()).configure((0, _feathersRest2.default)()).configure(_services2.default).configure(_middleware2.default).use((0, _expressHistoryApiFallback2.default)('index.html', { publicURL: publicURL }));
 
 /******************************************************************************/
 // Exports

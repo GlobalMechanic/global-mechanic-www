@@ -37,8 +37,8 @@ app.use(compress())
 
   .configure(hooks())
   .configure(rest())
-  .configure(middleware)
   .configure(services)
+  .configure(middleware)
 
   .use(fallback('index.html', { publicURL }))
 

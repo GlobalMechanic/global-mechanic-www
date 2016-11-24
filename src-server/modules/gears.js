@@ -1,4 +1,7 @@
-import feathers from 'feathers-client'
+import feathers from 'feathers/client'
+import hooks from 'feathers-hooks'
+import socketio from 'feathers-socketio/client'
+import authentication from 'feathers-authentication/client'
 import io from 'socket.io-client'
 
 const socket = io('http://localhost:4100')
@@ -6,9 +9,9 @@ const socket = io('http://localhost:4100')
 let credentials = null
 
 const gears = feathers()
-  .configure(feathers.hooks())
-  .configure(feathers.socketio(socket))
-  .configure(feathers.authentication())
+  .configure(hooks())
+  .configure(socketio(socket))
+  .configure(authentication())
 
 gears.login = newCreds => {
   if (is(newCreds, Object))

@@ -8,7 +8,7 @@ exports.default = function () {
 
   var app = this;
 
-  app.get('/background', (0, _background2.default)());
+  app.get('/assets/background', (0, _background2.default)());
   app.use((0, _reactRouterTemplate2.default)(app));
   app.use((0, _logging2.default)(app));
   app.use((0, _handler2.default)());

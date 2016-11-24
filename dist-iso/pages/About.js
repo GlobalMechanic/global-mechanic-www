@@ -40,6 +40,8 @@ var _Page = require('./Page');
 
 var _Page2 = _interopRequireDefault(_Page);
 
+var _data = require('modules/data');
+
 var _components = require('../components');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -56,25 +58,83 @@ var d = function d() {
   return round(100 + random() * 300);
 };
 
-function Staff() {
-  //
-  // const blocks = []
-  // for (let i = 0; i < 25; i++) {
-  //   const width = d()
-  //   const height = min(d(), width)
-  //   const backgroundColor = `rgb(${[c(), c(), c()]})`
-  //   blocks.push({
-  //     width,
-  //     height,
-  //     backgroundColor
-  //   })
-  // }
-  //
-  // return <Freewall>{
-  //   blocks.map(block => <div style={{...block}} />)
-  // }</Freewall>
-  return null;
-}
+// function Staff() {
+//
+//   const blocks = []
+//   for (let i = 0; i < 25; i++) {
+//     const width = d()
+//     const height = min(d(), width)
+//     const backgroundColor = `rgb(${[c(), c(), c()]})`
+//     blocks.push({
+//       width,
+//       height,
+//       backgroundColor
+//     })
+//   }
+//
+//   return <Freewall>{
+//     blocks.map(block => <div style={{...block}} />)
+//   }</Freewall>
+//   return null
+//
+// }
+
+var Staff = function (_Component) {
+  (0, _inherits3.default)(Staff, _Component);
+
+  function Staff() {
+    var _Object$getPrototypeO;
+
+    var _temp, _this, _ret;
+
+    (0, _classCallCheck3.default)(this, Staff);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Staff)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
+      people: []
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+  }
+
+  (0, _createClass3.default)(Staff, [{
+    key: 'setPeople',
+    value: function setPeople() {
+      var _this2 = this;
+
+      _data.people.then(function (data) {
+        return _this2.setState({
+          people: data
+        });
+      });
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.setPeople();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var people = this.state.people;
+
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        people.map(function (person) {
+          return _react2.default.createElement(
+            'div',
+            { key: person._id },
+            person.email
+          );
+        })
+      );
+    }
+  }]);
+  return Staff;
+}(_react.Component);
 
 function Writeup() {
   return _react2.default.createElement(
@@ -163,31 +223,31 @@ function Block(_ref) {
   );
 }
 
-var About = function (_Component) {
-  (0, _inherits3.default)(About, _Component);
+var About = function (_Component2) {
+  (0, _inherits3.default)(About, _Component2);
 
   function About() {
-    var _Object$getPrototypeO;
+    var _Object$getPrototypeO2;
 
-    var _temp, _this, _ret;
+    var _temp2, _this3, _ret2;
 
     (0, _classCallCheck3.default)(this, About);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
+    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(About)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
+    return _ret2 = (_temp2 = (_this3 = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO2 = (0, _getPrototypeOf2.default)(About)).call.apply(_Object$getPrototypeO2, [this].concat(args))), _this3), _this3.state = {
       height: null
-    }, _this.setBounds = function () {
+    }, _this3.setBounds = function () {
 
-      if (!_this.ref) return;
+      if (!_this3.ref) return;
 
-      var bounds = _this.ref.getBoundingClientRect();
+      var bounds = _this3.ref.getBoundingClientRect();
       var height = innerHeight - bounds.top;
 
-      _this.setState({ height: height });
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+      _this3.setState({ height: height });
+    }, _temp2), (0, _possibleConstructorReturn3.default)(_this3, _ret2);
   }
 
   (0, _createClass3.default)(About, [{
@@ -204,7 +264,7 @@ var About = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this4 = this;
 
       var _props = this.props;
       var children = _props.children;
@@ -219,7 +279,7 @@ var About = function (_Component) {
       return _react2.default.createElement(
         _Page2.default,
         (0, _extends3.default)({ pageRef: function pageRef(ref) {
-            return _this2.ref = ref;
+            return _this4.ref = ref;
           }, style: style, id: 'about-page' }, other),
         _react2.default.createElement(Writeup, null),
         _react2.default.createElement(

@@ -12,9 +12,21 @@ var _extends2 = require('babel-runtime/helpers/extends');
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _feathersClient = require('feathers-client');
+var _client = require('feathers/client');
 
-var _feathersClient2 = _interopRequireDefault(_feathersClient);
+var _client2 = _interopRequireDefault(_client);
+
+var _feathersHooks = require('feathers-hooks');
+
+var _feathersHooks2 = _interopRequireDefault(_feathersHooks);
+
+var _client3 = require('feathers-socketio/client');
+
+var _client4 = _interopRequireDefault(_client3);
+
+var _client5 = require('feathers-authentication/client');
+
+var _client6 = _interopRequireDefault(_client5);
 
 var _socket = require('socket.io-client');
 
@@ -26,7 +38,7 @@ var socket = (0, _socket2.default)('http://localhost:4100');
 
 var credentials = null;
 
-var gears = (0, _feathersClient2.default)().configure(_feathersClient2.default.hooks()).configure(_feathersClient2.default.socketio(socket)).configure(_feathersClient2.default.authentication());
+var gears = (0, _client2.default)().configure((0, _feathersHooks2.default)()).configure((0, _client4.default)(socket)).configure((0, _client6.default)());
 
 gears.login = function (newCreds) {
   if (is(newCreds, Object)) credentials = newCreds;

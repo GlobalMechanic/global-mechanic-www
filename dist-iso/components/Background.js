@@ -15,13 +15,15 @@ var _classnames2 = _interopRequireDefault(_classnames);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/* global HOST */
+
 function Background(_ref) {
   var dark = _ref.dark;
 
 
   var classes = (0, _classnames2.default)({ dark: dark });
-  var poster = 'http://0.0.0.0:3030/background?poster=true';
-  var src = 'http://0.0.0.0:3030/background';
+  var poster = HOST + '/assets/background?poster=true';
+  var src = HOST + '/assets/background';
 
   return _react2.default.createElement(
     'div',
