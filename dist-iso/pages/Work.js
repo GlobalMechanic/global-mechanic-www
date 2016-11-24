@@ -35,7 +35,7 @@ function Work(_ref) {
   return _react2.default.createElement(
     _Page2.default,
     (0, _extends3.default)({ id: 'work-page' }, other),
-    _react2.default.createElement(_components.Dropdown, { title: 'live action & animation', items: DUMMY_LIST }),
+    _react2.default.createElement(_components.Dropdown, { title: 'character', items: DUMMY_LIST }),
     children
   );
 }

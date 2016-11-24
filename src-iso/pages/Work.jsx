@@ -19,7 +19,7 @@ const DUMMY_LIST = [
 
 export default function Work({children, ...other}) {
   return <Page id='work-page' {...other}>
-    <Dropdown title='live action & animation' items={DUMMY_LIST} />
+    <Dropdown title='character' items={DUMMY_LIST} />
     {children}
   </Page>
 }

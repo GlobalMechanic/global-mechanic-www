@@ -2,6 +2,10 @@
   "host": "localhost",
   "port": 3030,
   "public": "../dist-client/",
+  "gears-authentication": {
+    "email": "studio@globalmechanic.com",
+    "password": "L0bst3r!"
+  },
   "auth": {
     "idField": "id",
     "token": {

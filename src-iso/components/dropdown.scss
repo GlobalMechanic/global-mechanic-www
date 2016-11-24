@@ -1,5 +1,6 @@
 $li-height: 2rem;
 $open-time: $animation-time * 0.8;
+$scaled-up: scale(1.2, 1.2);
 
 .dropdown-container {
   background-color: $bg-color-inverted;
@@ -23,6 +24,7 @@ $open-time: $animation-time * 0.8;
 .dropdown-caret {
   width: 0.25em;
   height: 0.25em;
+  margin-left: 0.05em;
   fill: $text-color-inverted;
   transition: fill $animation-time, transform $animation-time;
 }
@@ -30,19 +32,19 @@ $open-time: $animation-time * 0.8;
 .clickable.active, .clickable:hover {
   .dropdown-caret {
     fill: $text-color-hover;
-    transform: scale(1.25,1.25);
+    transform: $scaled-up;
   }
 }
 
 .dropdown-open {
   .clickable.active, .clickable:hover {
     .dropdown-caret {
-      transform: scale(1.25, 1.25) rotate(180deg);
+      transform: $scaled-up rotate(180deg);
     }
   }
 
   .dropdown-caret {
-    transform: scale(1.25, 1.25) rotate(180deg);
+    transform: $scaled-up rotate(180deg);
   }
 }
 
@@ -51,7 +53,7 @@ $open-time: $animation-time * 0.8;
   position: relative;
 
   h1 {
-    padding-left: $padding;
+    padding-left: $padding * 0.875;
     font-size: 5rem;
   }
 
