@@ -158,7 +158,7 @@ var Cells = function () {
 
 var Layout = function () {
   function Layout() {
-    var dimension = arguments.length <= 0 || arguments[0] === undefined ? 50 : arguments[0];
+    var dimension = arguments.length <= 0 || arguments[0] === undefined ? 40 : arguments[0];
     (0, _classCallCheck3.default)(this, Layout);
 
     _initialiseProps.call(this);
@@ -169,17 +169,24 @@ var Layout = function () {
   (0, _createClass3.default)(Layout, [{
     key: 'apply',
     value: function apply(blocks) {
+      var _this2 = this;
+
       this.cells = new Cells(this.floorAxis(this.bounds ? this.bounds.width : Infinity));
 
-      //run is going to hold a bunch of variables that I want available for the
-      //duration of apply(), but should go out of scope afterward
-      var run = {
-        unplaced: blocks.slice(),
-        placed: []
-      };
+      var unplaced = blocks.slice();
 
-      while (run.unplaced.length > 0) {
-        this.placeBest(run);
+      //ensure no block is too big
+      blocks.forEach(function (block) {
+        var coords = block.coords;
+        if (coords.dim.x > _this2.cells.limits.x) {
+          var oldX = coords.dim.x;
+          coords.dim.x = _this2.cells.limits.x;
+          coords.dim.y = (0, _math.round)(coords.dim.y * (coords.dim.x / oldX));
+        }
+      });
+
+      while (unplaced.length > 0) {
+        this.place(unplaced);
       }var freeArea = this.cells.getFreeArea();
       while (freeArea.pos.x > 0 || freeArea.pos.y < this.cells.max.y) {
         this.resizeAdjacent(freeArea);
@@ -187,19 +194,12 @@ var Layout = function () {
       }
     }
   }, {
-    key: 'placeBest',
-    value: function placeBest(run) {
+    key: 'place',
+    value: function place(unplaced) {
       var freeArea = this.cells.getFreeArea();
 
-      var bestBlock = this.pluckBestFit(run.unplaced, freeArea);
-      if (!bestBlock) {
-        var _success = this.resizeAdjacent(freeArea);
-        if (!_success) {
-          console.error('could not place block in area', freeArea);
-          run.unplaced = [];
-        }
-        return;
-      }
+      var bestBlock = this.pluckAnyFit(unplaced, freeArea);
+      if (!bestBlock) return this.resizeAdjacent(freeArea);
 
       var coords = bestBlock.coords;
       if (coords.dim.x > freeArea.dim.x) {
@@ -214,7 +214,7 @@ var Layout = function () {
       coords.pos.y = freeArea.pos.y;
 
       var success = this.cells.tryFill(bestBlock);
-      if (success) run.placed.push(bestBlock);else console.warn(bestBlock, ' could not be placed');
+      if (!success) console.warn(bestBlock, ' could not be placed');
     }
   }, {
     key: 'resizeAdjacent',
@@ -243,13 +243,10 @@ var Layout = function () {
       return success;
     }
   }, {
-    key: 'pluckBestFit',
-    value: function pluckBestFit(blocks, freeArea) {
+    key: 'pluckAnyFit',
+    value: function pluckAnyFit(blocks, freeArea) {
 
       var onlyX = freeArea.dim.y === Infinity;
-
-      var closest = null;
-      var index = null;
 
       for (var i = 0; i < blocks.length; i++) {
         var coords = blocks[i].coords;
@@ -258,36 +255,24 @@ var Layout = function () {
         var diffX = freeArea.dim.x - coords.dim.x;
         var diffY = onlyX ? 0 : freeArea.dim.y - coords.dim.y;
 
-        //stop immediatly if perfect match
-        if (diffX === 0 && diffY === 0) {
-          index = i;
-          break;
-        }
-
-        //blocks too big wont match
-        if (diffX < 0 || diffY < 0) continue;
-
-        var area = (0, _math.abs)(diffX) * onlyX ? 1 : (0, _math.abs)(diffY);
-        if (closest === null || area < closest) {
-          closest = area;
-          index = i;
-        }
+        //stop immediatly if any match
+        if (diffX >= 0 && diffY >= 0) return blocks.splice(i, 1)[0];
       }
 
-      return index === null ? null : blocks.splice(index, 1)[0];
+      return null;
     }
   }]);
   return Layout;
 }();
 
 var _initialiseProps = function _initialiseProps() {
-  var _this2 = this;
+  var _this3 = this;
 
   this.floorAxis = function (axis) {
 
     if (!(0, _isExplicit2.default)(axis, Number)) return 1;
 
-    var dimension = _this2.dimension;
+    var dimension = _this3.dimension;
 
     return (0, _math.max)((0, _math.floor)(axis / dimension), 1);
   };

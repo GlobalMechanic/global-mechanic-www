@@ -19,12 +19,12 @@ exports.default = function () {
   app.use('/assets/people', (0, _feathersNedb2.default)(options));
 
   var people = app.service('assets/people');
-  var users = _gears2.default.service('users');
+  var users = (0, _gears.service)('users');
 
   people.before(beforeHooks);
   people.after(afterHooks);
 
-  _gears2.default.sync(users, people);
+  (0, _gears.sync)(users, people, ['staffData', 'portrait'], ['directorData', 'portrait']);
 };
 
 var _nedb = require('nedb');
@@ -40,8 +40,6 @@ var _path = require('path');
 var _path2 = _interopRequireDefault(_path);
 
 var _gears = require('modules/gears');
-
-var _gears2 = _interopRequireDefault(_gears);
 
 var _feathersHooks = require('feathers-hooks');
 

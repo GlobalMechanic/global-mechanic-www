@@ -5,18 +5,6 @@ import is from 'is-explicit'
 import classNames from 'classnames'
 
 /******************************************************************************/
-// Helper
-/******************************************************************************/
-const coordSize = (a,b) => {
-
-  const areaA = a.dim.x * a.dim.y
-  const areaB = b.dim.x * b.dim.y
-
-  return areaA < areaB ? 1 : areaA > areaB ? -1 : 0
-
-}
-
-/******************************************************************************/
 // Exports
 /******************************************************************************/
 
@@ -38,8 +26,8 @@ export default class Grid extends Component {
     layout: new Layout(),
     getCellId: (block, i) => i,
     sizeFunc: () => {
-      const width = 2 + random() * 3
-      const height = 1 + random() * 3
+      const width = 3 + random() * 5
+      const height = width - 1
 
       return { width, height}
     }
@@ -64,17 +52,13 @@ export default class Grid extends Component {
   }
 
   createBlocksFromItems(items = []) {
-    const coords = items
-      .map(this.createNewCoords)
-      .sort(coordSize)
-
-    return coords.map((coord, i) => {
-      return {
-        item: items[i],
-        coords: coord
-      }
-
-    })
+    return items
+      .map(item => {
+        return {
+          item,
+          coords: this.createNewCoords(item)
+        }
+      })
   }
 
   applyLayout = props => {
@@ -107,9 +91,7 @@ export default class Grid extends Component {
       height: coords.dim.y * dimension
     }
 
-    const index = i, total = this.state.blocks.length
-
-    return createElement(component, { style, item, index, total, key: getCellId(block,i), featured })
+    return createElement(component, { style, item, key: getCellId(block,i), featured })
   }
 
   componentDidMount() {

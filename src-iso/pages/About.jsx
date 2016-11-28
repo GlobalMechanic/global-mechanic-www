@@ -3,33 +3,24 @@ import Page from './Page'
 import { Collection, Grid } from '../components'
 import { floor } from 'modules/math'
 
+/* global HOST */
+
 import classNames from 'classnames'
 
-function Profile({style, item, index, total, featured}) {
+function Profile({ style, item, featured }) {
 
-  const channel = 50 + floor((1 - index/total) * 150)
   style = {
     ...style,
-    backgroundColor: `rgb(${channel}, ${channel}, 255)`
+    backgroundImage: `url(${HOST}/assets/file/${item.staffData.portrait})`
   }
 
-  return <div className='profile' style={style}>
-    {item.email}
-  </div>
+  return <div className='profile' style={style} />
 }
 
 function Staff({documents}) {
 
-  let items = []
-
-  for (let i = 0; i < 90; i++) {
-    items.push({ email: i})
-  }
-
-  items = documents
-
-  return <Grid id='staff-wall' component={Profile} items={items}
-    sizeFunc={() => Object({width: 5, height: 4})}
+  return <Grid id='staff-wall' component={Profile} items={documents}
+    sizeFunc={() => Object({ width: 5, height: 4 })}
   />
 
 }

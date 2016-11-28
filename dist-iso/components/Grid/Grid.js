@@ -53,17 +53,6 @@ var _classnames2 = _interopRequireDefault(_classnames);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /******************************************************************************/
-// Helper
-/******************************************************************************/
-var coordSize = function coordSize(a, b) {
-
-  var areaA = a.dim.x * a.dim.y;
-  var areaB = b.dim.x * b.dim.y;
-
-  return areaA < areaB ? 1 : areaA > areaB ? -1 : 0;
-};
-
-/******************************************************************************/
 // Exports
 /******************************************************************************/
 
@@ -136,24 +125,21 @@ var Grid = function (_Component) {
         height: coords.dim.y * dimension
       };
 
-      var index = i,
-          total = _this.state.blocks.length;
-
-      return (0, _react.createElement)(component, { style: style, item: item, index: index, total: total, key: getCellId(block, i), featured: featured });
+      return (0, _react.createElement)(component, { style: style, item: item, key: getCellId(block, i), featured: featured });
     }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
 
   (0, _createClass3.default)(Grid, [{
     key: 'createBlocksFromItems',
     value: function createBlocksFromItems() {
+      var _this3 = this;
+
       var items = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
 
-      var coords = items.map(this.createNewCoords).sort(coordSize);
-
-      return coords.map(function (coord, i) {
+      return items.map(function (item) {
         return {
-          item: items[i],
-          coords: coord
+          item: item,
+          coords: _this3.createNewCoords(item)
         };
       });
     }
@@ -170,7 +156,7 @@ var Grid = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var blocks = this.state.blocks;
       var _props2 = this.props;
@@ -202,7 +188,7 @@ var Grid = function (_Component) {
       return _react2.default.createElement(
         'div',
         (0, _extends3.default)({ className: classes, style: style, ref: function ref(_ref) {
-            return _this3.ref = _ref;
+            return _this4.ref = _ref;
           } }, other),
         blocks.map(this.createCell)
       );
@@ -224,8 +210,8 @@ Grid.defaultProps = {
     return i;
   },
   sizeFunc: function sizeFunc() {
-    var width = 2 + (0, _math.random)() * 3;
-    var height = 1 + (0, _math.random)() * 3;
+    var width = 3 + (0, _math.random)() * 5;
+    var height = width - 1;
 
     return { width: width, height: height };
   }

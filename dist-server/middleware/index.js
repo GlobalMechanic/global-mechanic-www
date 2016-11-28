@@ -8,6 +8,7 @@ exports.default = function () {
 
   var app = this;
 
+  app.get('/assets/file/:id', (0, _serveFile2.default)());
   app.get('/assets/background', (0, _background2.default)());
   app.use((0, _reactRouterTemplate2.default)(app));
   app.use((0, _logging2.default)(app));
@@ -17,6 +18,10 @@ exports.default = function () {
 var _handler = require('feathers-errors/handler');
 
 var _handler2 = _interopRequireDefault(_handler);
+
+var _serveFile = require('./serve-file');
+
+var _serveFile2 = _interopRequireDefault(_serveFile);
 
 var _background = require('./background');
 

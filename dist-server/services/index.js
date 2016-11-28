@@ -8,17 +8,10 @@ exports.default = function () {
 
   var app = this;
 
-  var credentials = app.get('gears-authentication');
-  _gears2.default.login(credentials);
-
   app.configure(_people2.default);
   app.configure(_products2.default);
   app.configure(_showcases2.default);
 };
-
-var _gears = require('modules/gears');
-
-var _gears2 = _interopRequireDefault(_gears);
 
 var _people = require('./people');
 

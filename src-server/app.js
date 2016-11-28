@@ -13,6 +13,7 @@ import favicon from 'serve-favicon'
 
 import middleware from 'middleware'
 import services from 'services'
+import gears from 'modules/gears'
 
 /******************************************************************************/
 // Config
@@ -37,8 +38,10 @@ app.use(compress())
 
   .configure(hooks())
   .configure(rest())
+  .configure(gears)
   .configure(services)
   .configure(middleware)
+
 
   .use(fallback('index.html', { publicURL }))
 

@@ -19,11 +19,11 @@ exports.default = function () {
   app.use('/assets/products', (0, _feathersNedb2.default)(options));
 
   var webProducts = app.service('assets/products');
-  var products = _gears2.default.service('products');
+  var products = (0, _gears.service)('products');
 
   webProducts.before(beforeHooks);
 
-  _gears2.default.sync(products, webProducts);
+  (0, _gears.sync)(products, webProducts, 'portrait');
 };
 
 var _nedb = require('nedb');
@@ -39,8 +39,6 @@ var _path = require('path');
 var _path2 = _interopRequireDefault(_path);
 
 var _gears = require('modules/gears');
-
-var _gears2 = _interopRequireDefault(_gears);
 
 var _feathersHooks = require('feathers-hooks');
 

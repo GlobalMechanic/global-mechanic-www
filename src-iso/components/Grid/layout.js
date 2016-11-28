@@ -110,22 +110,27 @@ class Cells {
 
 export default class Layout {
 
-  constructor(dimension = 50) {
+  constructor(dimension = 40) {
     this.dimension = dimension
   }
 
   apply(blocks) {
     this.cells = new Cells(this.floorAxis(this.bounds ? this.bounds.width : Infinity))
 
-    //run is going to hold a bunch of variables that I want available for the
-    //duration of apply(), but should go out of scope afterward
-    const run = {
-      unplaced: blocks.slice(),
-      placed: []
-    }
+    const unplaced = blocks.slice()
 
-    while (run.unplaced.length > 0)
-      this.placeBest(run)
+    //ensure no block is too big
+    blocks.forEach(block => {
+      const coords = block.coords
+      if (coords.dim.x > this.cells.limits.x) {
+        const oldX = coords.dim.x
+        coords.dim.x = this.cells.limits.x
+        coords.dim.y = round(coords.dim.y * (coords.dim.x / oldX))
+      }
+    })
+
+    while (unplaced.length > 0)
+      this.place(unplaced)
 
     let freeArea = this.cells.getFreeArea()
     while (freeArea.pos.x > 0 || freeArea.pos.y < this.cells.max.y) {
@@ -135,18 +140,12 @@ export default class Layout {
 
   }
 
-  placeBest(run) {
+  place(unplaced) {
     const freeArea = this.cells.getFreeArea()
 
-    const bestBlock = this.pluckBestFit(run.unplaced, freeArea)
-    if (!bestBlock) {
-      const success = this.resizeAdjacent(freeArea)
-      if (!success) {
-        console.error('could not place block in area', freeArea)
-        run.unplaced = []
-      }
-      return
-    }
+    const bestBlock = this.pluckAnyFit(unplaced, freeArea)
+    if (!bestBlock)
+      return this.resizeAdjacent(freeArea)
 
     const coords = bestBlock.coords
     if (coords.dim.x > freeArea.dim.x) {
@@ -162,9 +161,7 @@ export default class Layout {
     coords.pos.y = freeArea.pos.y
 
     const success = this.cells.tryFill(bestBlock)
-    if (success)
-      run.placed.push(bestBlock)
-    else
+    if (!success)
       console.warn(bestBlock, ' could not be placed')
 
   }
@@ -197,12 +194,9 @@ export default class Layout {
     return success
   }
 
-  pluckBestFit(blocks, freeArea) {
+  pluckAnyFit(blocks, freeArea) {
 
     const onlyX = freeArea.dim.y === Infinity
-
-    let closest = null
-    let index = null
 
     for (let i = 0; i < blocks.length; i++) {
       const { coords } = blocks[i]
@@ -210,25 +204,12 @@ export default class Layout {
       const diffX = freeArea.dim.x - coords.dim.x
       const diffY = onlyX ? 0 : freeArea.dim.y - coords.dim.y
 
-      //stop immediatly if perfect match
-      if (diffX === 0 && diffY === 0) {
-        index = i
-        break
-      }
-
-      //blocks too big wont match
-      if (diffX < 0 || diffY < 0)
-        continue
-
-      const area = abs(diffX) * onlyX ? 1 : abs(diffY)
-      if (closest === null || area < closest) {
-        closest = area
-        index = i
-      }
-
+      //stop immediatly if any match
+      if (diffX >= 0 && diffY >= 0)
+        return blocks.splice(i, 1)[0]
     }
 
-    return index === null ? null : blocks.splice(index, 1)[0]
+    return null
   }
 
   floorAxis = axis => {

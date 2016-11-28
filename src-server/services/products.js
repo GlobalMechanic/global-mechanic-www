@@ -1,7 +1,7 @@
 import NeDB from 'nedb'
 import service from 'feathers-nedb'
 import path from 'path'
-import gears from 'modules/gears'
+import { service as gearsService, sync } from 'modules/gears'
 
 import { disable } from 'feathers-hooks'
 
@@ -37,10 +37,10 @@ export default function() {
   app.use('/assets/products', service(options))
 
   const webProducts = app.service('assets/products')
-  const products = gears.service('products')
+  const products = gearsService('products')
 
   webProducts.before(beforeHooks)
 
-  gears.sync(products, webProducts)
+  sync(products, webProducts, 'portrait')
 
 }

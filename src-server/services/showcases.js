@@ -1,7 +1,7 @@
 import NeDB from 'nedb'
 import service from 'feathers-nedb'
 import path from 'path'
-import gears from 'modules/gears'
+import { service as gearsService, sync } from 'modules/gears'
 import { disable } from 'feathers-hooks'
 
 /******************************************************************************/
@@ -55,11 +55,11 @@ export default function() {
   app.use('/assets/showcases', service(options))
 
   const webShowcases = app.service('assets/showcases')
-  const showcases = gears.service('showcases')
+  const showcases = gearsService('showcases')
 
   webShowcases.before(beforeHooks)
   webShowcases.after(afterHooks)
 
-  gears.sync(showcases, webShowcases)
+  sync(showcases, webShowcases)
 
 }

@@ -53,36 +53,23 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Profile(_ref) {
   var style = _ref.style;
   var item = _ref.item;
-  var index = _ref.index;
-  var total = _ref.total;
   var featured = _ref.featured;
 
 
-  var channel = 50 + (0, _math.floor)((1 - index / total) * 150);
   style = (0, _extends3.default)({}, style, {
-    backgroundColor: 'rgb(' + channel + ', ' + channel + ', 255)'
+    backgroundImage: 'url(' + HOST + '/assets/file/' + item.staffData.portrait + ')'
   });
 
-  return _react2.default.createElement(
-    'div',
-    { className: 'profile', style: style },
-    item.email
-  );
+  return _react2.default.createElement('div', { className: 'profile', style: style });
 }
+
+/* global HOST */
 
 function Staff(_ref2) {
   var documents = _ref2.documents;
 
 
-  var items = [];
-
-  for (var i = 0; i < 90; i++) {
-    items.push({ email: i });
-  }
-
-  items = documents;
-
-  return _react2.default.createElement(_components.Grid, { id: 'staff-wall', component: Profile, items: items,
+  return _react2.default.createElement(_components.Grid, { id: 'staff-wall', component: Profile, items: documents,
     sizeFunc: function sizeFunc() {
       return Object({ width: 5, height: 4 });
     }

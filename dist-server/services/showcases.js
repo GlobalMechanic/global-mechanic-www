@@ -19,12 +19,12 @@ exports.default = function () {
   app.use('/assets/showcases', (0, _feathersNedb2.default)(options));
 
   var webShowcases = app.service('assets/showcases');
-  var showcases = _gears2.default.service('showcases');
+  var showcases = (0, _gears.service)('showcases');
 
   webShowcases.before(beforeHooks);
   webShowcases.after(afterHooks);
 
-  _gears2.default.sync(showcases, webShowcases);
+  (0, _gears.sync)(showcases, webShowcases);
 };
 
 var _nedb = require('nedb');
@@ -40,8 +40,6 @@ var _path = require('path');
 var _path2 = _interopRequireDefault(_path);
 
 var _gears = require('modules/gears');
-
-var _gears2 = _interopRequireDefault(_gears);
 
 var _feathersHooks = require('feathers-hooks');
 
