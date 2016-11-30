@@ -1,6 +1,6 @@
 import React, { PropTypes, Component, createElement } from 'react'
 import Layout from './layout'
-import { random, max, round } from 'modules/math'
+import { Vector, random, max, round } from 'modules/math'
 import is from 'is-explicit'
 import classNames from 'classnames'
 
@@ -19,11 +19,13 @@ export default class Grid extends Component {
     items: PropTypes.arrayOf(Object).isRequired,
     layout: PropTypes.instanceOf(Layout).isRequired,
     getCellId: PropTypes.func.isRequired,
-    sizeFunc: PropTypes.func
+    sizeFunc: PropTypes.func,
+    autoBounds: PropTypes.bool
   }
 
   static defaultProps = {
     layout: new Layout(),
+    autoBounds: true,
     getCellId: (block, i) => i,
     sizeFunc: () => {
       const width = 3 + random() * 5
@@ -62,27 +64,56 @@ export default class Grid extends Component {
   }
 
   applyLayout = props => {
-
     props = props || this.props
 
-    const { layout, items } = props
-    const { ref } = this
+    const { layout, items, featured } = props
+    const { ref, state } = this
 
-    const blocks = this.createBlocksFromItems(items)
+    const needsUpdate = !featured || state.blocks.length === 0
+    const blocks = needsUpdate
+      ? this.createBlocksFromItems(items)
+      : this.state.blocks
 
     layout.bounds = ref.getBoundingClientRect()
-    layout.apply(blocks)
 
-    this.setState({ blocks })
+    if (needsUpdate) {
+      layout.apply(blocks)
+      this.spliceBlocks(blocks)
+    }
+  }
+
+  resize = () => {
+    this.applyLayout()
+  }
+
+  spliceBlocks(input) {
+    let output = this.state.blocks
+
+    if (input.length < output.length) {
+      output.splice(0, input.length, ...input)
+      for (let i = input.length; i < output.length; i++)
+        output[i].coords.dim = Vector.zero
+    } else
+      output = input
+
+    this.setState({ blocks: output })
+  }
+
+
+  createCells() {
+    const { blocks } = this.state
+    return blocks.map(this.createCell)
   }
 
   createCell = (block, i) => {
 
     const { coords, item } = block
-    const { layout, component, getCellId, featuredId } = this.props
+    const { layout, component, getCellId, featured } = this.props
 
     const { dimension } = layout
-    const featured = featuredId && getCellId(block.i) === featuredId
+    const id = getCellId(block.item, i)
+    const isFeatured = featured && id === featured
+    const hasFeatured = is(featured)
 
     const style = {
       left: coords.pos.x * dimension,
@@ -91,11 +122,16 @@ export default class Grid extends Component {
       height: coords.dim.y * dimension
     }
 
-    return createElement(component, { style, item, key: getCellId(block,i), featured })
+    return createElement(component, { style, item, key: i, isFeatured, hasFeatured })
   }
 
   componentDidMount() {
     this.applyLayout()
+    addEvent('resize', window, this.resize)
+  }
+
+  componentWillUnmount() {
+    removeEvent('resize', window, this.resize)
   }
 
   componentWillReceiveProps(props) {
@@ -104,23 +140,21 @@ export default class Grid extends Component {
 
   render() {
 
-    const { blocks } = this.state
-
-    const { layout, className, ...other } = this.props
-
+    const { layout, className, featured, autoBounds, ...other } = this.props
     const { cells, dimension } = layout
 
     let style = other.style
-    if (cells && dimension) {
-      let unusedWidth = (cells.limits.x - cells.max.x) * dimension
-      unusedWidth += layout.bounds.width % dimension
+    if (autoBounds && cells && dimension && !featured) {
+      const unusedWidth = layout.bounds.width % dimension
 
       style = style || {}
-      style.height = cells.max.y * dimension,
+      style.height = cells.max.y * dimension
       style.left = unusedWidth * 0.5
     }
 
-    const classes = classNames('grid', className)
+    const classes = classNames('grid', {
+      'grid-featured': is(featured)
+    }, className)
 
     delete other.component
     delete other.items
@@ -128,9 +162,11 @@ export default class Grid extends Component {
     delete other.getCellId
     delete other.sizeFunc
     delete other.style
+    delete other.featured
+    delete other.className
 
     return <div className={classes} style={style} ref={ref => this.ref = ref} {...other}>
-      {blocks.map(this.createCell)}
+      {this.createCells()}
     </div>
 
   }

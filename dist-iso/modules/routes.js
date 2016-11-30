@@ -20,7 +20,7 @@ exports.default = _react2.default.createElement(
   _reactRouter.Route,
   { path: '/', component: _components.Navigation },
   _react2.default.createElement(_reactRouter.IndexRoute, { transition: 'navigate', component: _pages.Home }),
-  _react2.default.createElement(_reactRouter.Route, { path: '/directors', transition: 'navigate', inverse: true, component: _pages.Directors }),
-  _react2.default.createElement(_reactRouter.Route, { path: '/work/:portfolio', transition: 'navigate', inverse: true, component: _pages.Work }),
-  _react2.default.createElement(_reactRouter.Route, { path: '/about', transition: 'navigate', dark: true, component: _pages.About })
+  _react2.default.createElement(_reactRouter.Route, { path: '/directors(/:director)', transition: 'navigate', inverse: true, component: _pages.Directors }),
+  _react2.default.createElement(_reactRouter.Route, { path: '/work/:portfolio(/:video)', transition: 'navigate', inverse: true, component: _pages.Work }),
+  _react2.default.createElement(_reactRouter.Route, { path: '/about(/:staff)', transition: 'navigate', dark: true, component: _pages.About })
 );

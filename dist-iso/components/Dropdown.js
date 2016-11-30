@@ -28,6 +28,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _helper = require('modules/helper');
+
+var _reactRouter = require('react-router');
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
@@ -67,6 +71,8 @@ function Title(_ref) {
 
 function List(_ref2) {
   var items = _ref2.items;
+  var selected = _ref2.selected;
+  var select = _ref2.select;
 
 
   if (items.length === 0) return null;
@@ -74,10 +80,19 @@ function List(_ref2) {
   return _react2.default.createElement(
     'ul',
     null,
-    items.map(function (item, i) {
+    items.map(function (item) {
+
+      var id = (0, _helper.urlify)(item);
+      var classes = (0, _classnames2.default)('clickable', {
+        active: selected === id
+      });
+
       return _react2.default.createElement(
         'li',
-        { className: 'clickable', key: i },
+        { className: classes, key: id,
+          onClick: function onClick() {
+            return select(id);
+          } },
         item
       );
     })
@@ -101,9 +116,16 @@ var Dropdown = function (_Component) {
     return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Dropdown)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
       open: false
     }, _this.toggleOpen = function (e) {
+
       e.preventDefault();
       _this.setState({ open: !_this.state.open });
-    }, _this.setSelected = function (e, value) {}, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+    }, _this.select = function (value) {
+      var path = _this.props.path;
+
+      _reactRouter.browserHistory.push('/' + path + value);
+
+      _this.setState({ open: false });
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
 
   (0, _createClass3.default)(Dropdown, [{
@@ -112,6 +134,7 @@ var Dropdown = function (_Component) {
       var _props = this.props;
       var title = _props.title;
       var items = _props.items;
+      var selected = _props.selected;
 
       var classes = (0, _classnames2.default)('dropdown', {
         'dropdown-open': this.state.open
@@ -128,7 +151,7 @@ var Dropdown = function (_Component) {
             { items: items, onClick: this.toggleOpen },
             title
           ),
-          _react2.default.createElement(List, { items: items })
+          _react2.default.createElement(List, { items: items, selected: selected, select: this.select })
         )
       );
     }
@@ -138,7 +161,8 @@ var Dropdown = function (_Component) {
 
 Dropdown.propTypes = {
   title: _react.PropTypes.string,
-  items: _react.PropTypes.array
+  items: _react.PropTypes.array,
+  path: _react.PropTypes.string
 };
 Dropdown.defaultProps = {
   items: []

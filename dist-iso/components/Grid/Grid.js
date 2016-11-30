@@ -12,6 +12,10 @@ var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProp
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
+var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
+
+var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+
 var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -90,22 +94,28 @@ var Grid = function (_Component) {
         return _this.applyLayout(props);
       }, 100);
     }, _this.applyLayout = function (props) {
-
       props = props || _this.props;
 
       var _props = props;
       var layout = _props.layout;
       var items = _props.items;
+      var featured = _props.featured;
       var _this2 = _this;
       var ref = _this2.ref;
+      var state = _this2.state;
 
 
-      var blocks = _this.createBlocksFromItems(items);
+      var needsUpdate = !featured || state.blocks.length === 0;
+      var blocks = needsUpdate ? _this.createBlocksFromItems(items) : _this.state.blocks;
 
       layout.bounds = ref.getBoundingClientRect();
-      layout.apply(blocks);
 
-      _this.setState({ blocks: blocks });
+      if (needsUpdate) {
+        layout.apply(blocks);
+        _this.spliceBlocks(blocks);
+      }
+    }, _this.resize = function () {
+      _this.applyLayout();
     }, _this.createCell = function (block, i) {
       var coords = block.coords;
       var item = block.item;
@@ -113,10 +123,12 @@ var Grid = function (_Component) {
       var layout = _this$props.layout;
       var component = _this$props.component;
       var getCellId = _this$props.getCellId;
-      var featuredId = _this$props.featuredId;
+      var featured = _this$props.featured;
       var dimension = layout.dimension;
 
-      var featured = featuredId && getCellId(block.i) === featuredId;
+      var id = getCellId(block.item, i);
+      var isFeatured = featured && id === featured;
+      var hasFeatured = (0, _isExplicit2.default)(featured);
 
       var style = {
         left: coords.pos.x * dimension,
@@ -125,7 +137,7 @@ var Grid = function (_Component) {
         height: coords.dim.y * dimension
       };
 
-      return (0, _react.createElement)(component, { style: style, item: item, key: getCellId(block, i), featured: featured });
+      return (0, _react.createElement)(component, { style: style, item: item, key: i, isFeatured: isFeatured, hasFeatured: hasFeatured });
     }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
 
@@ -144,9 +156,38 @@ var Grid = function (_Component) {
       });
     }
   }, {
+    key: 'spliceBlocks',
+    value: function spliceBlocks(input) {
+      var output = this.state.blocks;
+
+      if (input.length < output.length) {
+        var _output;
+
+        (_output = output).splice.apply(_output, [0, input.length].concat((0, _toConsumableArray3.default)(input)));
+        for (var i = input.length; i < output.length; i++) {
+          output[i].coords.dim = _math.Vector.zero;
+        }
+      } else output = input;
+
+      this.setState({ blocks: output });
+    }
+  }, {
+    key: 'createCells',
+    value: function createCells() {
+      var blocks = this.state.blocks;
+
+      return blocks.map(this.createCell);
+    }
+  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.applyLayout();
+      addEvent('resize', window, this.resize);
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      removeEvent('resize', window, this.resize);
     }
   }, {
     key: 'componentWillReceiveProps',
@@ -158,25 +199,28 @@ var Grid = function (_Component) {
     value: function render() {
       var _this4 = this;
 
-      var blocks = this.state.blocks;
       var _props2 = this.props;
       var layout = _props2.layout;
       var className = _props2.className;
-      var other = (0, _objectWithoutProperties3.default)(_props2, ['layout', 'className']);
+      var featured = _props2.featured;
+      var autoBounds = _props2.autoBounds;
+      var other = (0, _objectWithoutProperties3.default)(_props2, ['layout', 'className', 'featured', 'autoBounds']);
       var cells = layout.cells;
       var dimension = layout.dimension;
 
 
       var style = other.style;
-      if (cells && dimension) {
-        var unusedWidth = (cells.limits.x - cells.max.x) * dimension;
-        unusedWidth += layout.bounds.width % dimension;
+      if (autoBounds && cells && dimension && !featured) {
+        var unusedWidth = layout.bounds.width % dimension;
 
         style = style || {};
-        style.height = cells.max.y * dimension, style.left = unusedWidth * 0.5;
+        style.height = cells.max.y * dimension;
+        style.left = unusedWidth * 0.5;
       }
 
-      var classes = (0, _classnames2.default)('grid', className);
+      var classes = (0, _classnames2.default)('grid', {
+        'grid-featured': (0, _isExplicit2.default)(featured)
+      }, className);
 
       delete other.component;
       delete other.items;
@@ -184,13 +228,15 @@ var Grid = function (_Component) {
       delete other.getCellId;
       delete other.sizeFunc;
       delete other.style;
+      delete other.featured;
+      delete other.className;
 
       return _react2.default.createElement(
         'div',
         (0, _extends3.default)({ className: classes, style: style, ref: function ref(_ref) {
             return _this4.ref = _ref;
           } }, other),
-        blocks.map(this.createCell)
+        this.createCells()
       );
     }
   }]);
@@ -202,10 +248,12 @@ Grid.propTypes = {
   items: _react.PropTypes.arrayOf(Object).isRequired,
   layout: _react.PropTypes.instanceOf(_layout2.default).isRequired,
   getCellId: _react.PropTypes.func.isRequired,
-  sizeFunc: _react.PropTypes.func
+  sizeFunc: _react.PropTypes.func,
+  autoBounds: _react.PropTypes.bool
 };
 Grid.defaultProps = {
   layout: new _layout2.default(),
+  autoBounds: true,
   getCellId: function getCellId(block, i) {
     return i;
   },

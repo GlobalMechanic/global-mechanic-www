@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Collection = exports.Dropdown = exports.Grid = exports.Nut = exports.Background = exports.Navigation = undefined;
+exports.Showcase = exports.Profile = exports.Collection = exports.Dropdown = exports.Grid = exports.Nut = exports.Background = exports.Navigation = undefined;
 
 var _Navigation = require('./Navigation');
 
@@ -29,6 +29,14 @@ var _Grid = require('./Grid');
 
 var _Grid2 = _interopRequireDefault(_Grid);
 
+var _Profile = require('./Profile');
+
+var _Profile2 = _interopRequireDefault(_Profile);
+
+var _Showcase = require('./Showcase');
+
+var _Showcase2 = _interopRequireDefault(_Showcase);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.Navigation = _Navigation2.default;
@@ -37,3 +45,5 @@ exports.Nut = _Nut2.default;
 exports.Grid = _Grid2.default;
 exports.Dropdown = _Dropdown2.default;
 exports.Collection = _Collection2.default;
+exports.Profile = _Profile2.default;
+exports.Showcase = _Showcase2.default;

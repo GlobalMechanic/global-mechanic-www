@@ -5,6 +5,8 @@ $nut-time: $animation-time * 1;
 
 #links {
   height: $links-height;
+  position: relative;
+  z-index: 500;
 
   #home-link {
 

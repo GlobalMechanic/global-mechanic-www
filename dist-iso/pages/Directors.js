@@ -12,7 +12,7 @@ var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProp
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-exports.default = Work;
+exports.default = Directors;
 
 var _react = require('react');
 
@@ -24,16 +24,37 @@ var _Page2 = _interopRequireDefault(_Page);
 
 var _components = require('../components');
 
+var _Profile = require('../components/Profile');
+
+var _Profile2 = _interopRequireDefault(_Profile);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function Work(_ref) {
-  var children = _ref.children;
-  var other = (0, _objectWithoutProperties3.default)(_ref, ['children']);
+function DirectorList(_ref) {
+  var documents = _ref.documents;
+  var selected = _ref.selected;
+
+
+  return _react2.default.createElement(_components.Dropdown, { title: 'Directors', items: documents.map(function (doc) {
+      return (0, _Profile.getFullName)(doc);
+    }),
+    path: 'directors/', selected: selected });
+}
+
+function Directors(_ref2) {
+  var children = _ref2.children;
+  var other = (0, _objectWithoutProperties3.default)(_ref2, ['children']);
+
+
+  var selected = other.routeParams.portfolio;
 
   return _react2.default.createElement(
     _Page2.default,
     (0, _extends3.default)({ id: 'directors-page' }, other),
-    _react2.default.createElement(_components.Dropdown, { title: 'directors' }),
+    _react2.default.createElement(_components.Collection, { selected: selected, component: DirectorList, service: 'people',
+      filter: function filter(item) {
+        return item.role === 'director';
+      } }),
     children
   );
 }

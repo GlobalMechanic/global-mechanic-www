@@ -1,27 +1,25 @@
 import React, { Component } from 'react'
 import Page from './Page'
 import { Collection, Grid } from '../components'
-import { floor } from 'modules/math'
-
-/* global HOST */
+import { browserHistory } from 'react-router'
+import { urlify } from 'modules/helper'
+import Profile, { getFullName } from '../components/Profile'
 
 import classNames from 'classnames'
 
-function Profile({ style, item, featured }) {
-
-  style = {
-    ...style,
-    backgroundImage: `url(${HOST}/assets/file/${item.staffData.portrait})`
-  }
-
-  return <div className='profile' style={style} />
+function AboutProfile(props) {
+  return <Profile
+    getImage={item => item.staffData.portrait}
+    getWriteup={item => item.staffData.essay}
+    path='about/'
+    {...props}/>
 }
 
-function Staff({documents}) {
+function Staff({featured, documents}) {
 
-  return <Grid id='staff-wall' component={Profile} items={documents}
-    sizeFunc={() => Object({ width: 5, height: 4 })}
-  />
+  return <Grid id='staff-wall' component={AboutProfile} items={documents}
+    getCellId={item => urlify(getFullName(item))} featured={featured}
+    sizeFunc={() => Object({ width: 5, height: 4 })} />
 
 }
 
@@ -54,13 +52,23 @@ function Writeup() {
   </div>
 }
 
-function Block({children}) {
+function KeyStaffButton({featured}) {
+  const classes = classNames({
+    clickable: featured
+  })
+
+  const click = featured ? () => browserHistory.push('/about') : null
+
+  return <h1 className={classes} onClick={click}>Key Staff</h1>
+}
+
+function Block({featured, children}) {
   return <div id='about-block' className='inverse padded'>
 
-    <h1>Key Staff</h1>
+    <KeyStaffButton featured={featured}/>
     <br/>
 
-    {children ? children : <Collection service='people' component={Staff}/> }
+    { children ? children : <Collection service='people' featured={featured} component={Staff}/> }
 
     <h2>USA | Liz Laine Reps +1 312 329 1111</h2>
     <h2>Canada | Hestyreps +1 416 482 0411</h2>
@@ -98,8 +106,9 @@ export default class About extends Component {
     if (!this.ref)
       return
 
+    const scroll = document.documentElement.scrollTop || document.body.scrollTop
     const bounds = this.ref.getBoundingClientRect()
-    const height = innerHeight - bounds.top
+    const height = innerHeight - (scroll + bounds.top)
 
     this.setState({ height })
   }
@@ -109,6 +118,8 @@ export default class About extends Component {
     const { children, ...other } = this.props
     const { height } = this.state
 
+    const { staff } = this.props.params
+
     const style = height ? {
       minHeight: height
     } : null
@@ -117,7 +128,7 @@ export default class About extends Component {
 
       <Writeup/>
 
-      <Block>{children}</Block>
+      <Block featured={staff}>{children}</Block>
 
     </Page>
   }

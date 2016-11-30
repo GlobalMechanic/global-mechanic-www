@@ -42,7 +42,13 @@ var _Page2 = _interopRequireDefault(_Page);
 
 var _components = require('../components');
 
-var _math = require('modules/math');
+var _reactRouter = require('react-router');
+
+var _helper = require('modules/helper');
+
+var _Profile = require('../components/Profile');
+
+var _Profile2 = _interopRequireDefault(_Profile);
 
 var _classnames = require('classnames');
 
@@ -50,30 +56,30 @@ var _classnames2 = _interopRequireDefault(_classnames);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function Profile(_ref) {
-  var style = _ref.style;
-  var item = _ref.item;
-  var featured = _ref.featured;
-
-
-  style = (0, _extends3.default)({}, style, {
-    backgroundImage: 'url(' + HOST + '/assets/file/' + item.staffData.portrait + ')'
-  });
-
-  return _react2.default.createElement('div', { className: 'profile', style: style });
+function AboutProfile(props) {
+  return _react2.default.createElement(_Profile2.default, (0, _extends3.default)({
+    getImage: function getImage(item) {
+      return item.staffData.portrait;
+    },
+    getWriteup: function getWriteup(item) {
+      return item.staffData.essay;
+    },
+    path: 'about/'
+  }, props));
 }
 
-/* global HOST */
+function Staff(_ref) {
+  var featured = _ref.featured;
+  var documents = _ref.documents;
 
-function Staff(_ref2) {
-  var documents = _ref2.documents;
 
-
-  return _react2.default.createElement(_components.Grid, { id: 'staff-wall', component: Profile, items: documents,
+  return _react2.default.createElement(_components.Grid, { id: 'staff-wall', component: AboutProfile, items: documents,
+    getCellId: function getCellId(item) {
+      return (0, _helper.urlify)((0, _Profile.getFullName)(item));
+    }, featured: featured,
     sizeFunc: function sizeFunc() {
       return Object({ width: 5, height: 4 });
-    }
-  });
+    } });
 }
 
 function Writeup() {
@@ -109,19 +115,34 @@ function Writeup() {
   );
 }
 
+function KeyStaffButton(_ref2) {
+  var featured = _ref2.featured;
+
+  var classes = (0, _classnames2.default)({
+    clickable: featured
+  });
+
+  var click = featured ? function () {
+    return _reactRouter.browserHistory.push('/about');
+  } : null;
+
+  return _react2.default.createElement(
+    'h1',
+    { className: classes, onClick: click },
+    'Key Staff'
+  );
+}
+
 function Block(_ref3) {
+  var featured = _ref3.featured;
   var children = _ref3.children;
 
   return _react2.default.createElement(
     'div',
     { id: 'about-block', className: 'inverse padded' },
-    _react2.default.createElement(
-      'h1',
-      null,
-      'Key Staff'
-    ),
+    _react2.default.createElement(KeyStaffButton, { featured: featured }),
     _react2.default.createElement('br', null),
-    children ? children : _react2.default.createElement(_components.Collection, { service: 'people', component: Staff }),
+    children ? children : _react2.default.createElement(_components.Collection, { service: 'people', featured: featured, component: Staff }),
     _react2.default.createElement(
       'h2',
       null,
@@ -183,8 +204,9 @@ var About = function (_Component) {
 
       if (!_this.ref) return;
 
+      var scroll = document.documentElement.scrollTop || document.body.scrollTop;
       var bounds = _this.ref.getBoundingClientRect();
-      var height = innerHeight - bounds.top;
+      var height = innerHeight - (scroll + bounds.top);
 
       _this.setState({ height: height });
     }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
@@ -210,6 +232,7 @@ var About = function (_Component) {
       var children = _props.children;
       var other = (0, _objectWithoutProperties3.default)(_props, ['children']);
       var height = this.state.height;
+      var staff = this.props.params.staff;
 
 
       var style = height ? {
@@ -224,7 +247,7 @@ var About = function (_Component) {
         _react2.default.createElement(Writeup, null),
         _react2.default.createElement(
           Block,
-          null,
+          { featured: staff },
           children
         )
       );

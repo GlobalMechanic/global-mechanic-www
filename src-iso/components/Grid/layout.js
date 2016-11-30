@@ -132,11 +132,11 @@ export default class Layout {
     while (unplaced.length > 0)
       this.place(unplaced)
 
-    let freeArea = this.cells.getFreeArea()
-    while (freeArea.pos.x > 0 || freeArea.pos.y < this.cells.max.y) {
-      this.resizeAdjacent(freeArea)
-      freeArea = this.cells.getFreeArea()
-    }
+    // let freeArea = this.cells.getFreeArea()
+    // while (freeArea.pos.x > 0 || freeArea.pos.y < this.cells.max.y) {
+    //   this.resizeAdjacent(freeArea)
+    //   freeArea = this.cells.getFreeArea()
+    // }
 
   }
 

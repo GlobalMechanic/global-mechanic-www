@@ -45,14 +45,3 @@
   @extend %social;
   background-image: url(../assets/facebook.svg)
 }
-
-.profile {
-  display: inline-block;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  position: absolute;
-  filter: grayscale(100%);
-  transition: width $animation-time, height $animation-time, top $animation-time, left $animation-time;
-  overflow: hidden;
-}

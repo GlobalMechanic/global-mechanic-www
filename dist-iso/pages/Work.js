@@ -26,16 +26,36 @@ var _components = require('../components');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var DUMMY_LIST = ['line drawing', 'mixed media', 'stop motion', 'series', 'cartoon style', 'live action & animation', 'character', 'fine art - painterly', 'type', 'films', 'infographics', 'featured work'];
+function ShowcaseDropdown(_ref) {
+  var documents = _ref.documents;
+  var selected = _ref.selected;
 
-function Work(_ref) {
-  var children = _ref.children;
-  var other = (0, _objectWithoutProperties3.default)(_ref, ['children']);
+
+  var title = selected ? selected.replace(/_/g, ' ') : 'Work';
+
+  return _react2.default.createElement(_components.Dropdown, { title: title, items: documents.map(function (doc) {
+      return doc.name;
+    }),
+    path: 'work/', selected: selected });
+}
+
+function Work(_ref2) {
+  var children = _ref2.children;
+  var other = (0, _objectWithoutProperties3.default)(_ref2, ['children']);
+
+
+  var showcase = other.routeParams.portfolio;
+  var video = other.routeParams.video;
+  var path = other.location.pathname;
 
   return _react2.default.createElement(
     _Page2.default,
     (0, _extends3.default)({ id: 'work-page' }, other),
-    _react2.default.createElement(_components.Dropdown, { title: 'character', items: DUMMY_LIST }),
+    _react2.default.createElement(_components.Collection, { selected: showcase, component: ShowcaseDropdown, service: 'showcases',
+      filter: function filter(item) {
+        return item.website.scope === 'public';
+      } }),
+    _react2.default.createElement(_components.Showcase, { id: 'work-wall', featuredShowcase: showcase, featuredVideo: video, autoBounds: false, path: path }),
     children
   );
 }

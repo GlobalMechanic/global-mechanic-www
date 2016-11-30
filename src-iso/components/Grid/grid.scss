@@ -2,6 +2,9 @@
   position: relative;
   display: block;
   left: 0px;
-  height: 0px;
   transition: left $animation-time, height $animation-time;
+}
+
+.grid.grid-featured {
+
 }

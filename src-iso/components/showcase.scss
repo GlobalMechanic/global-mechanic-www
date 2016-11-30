@@ -1,0 +1,70 @@
+$panim-time: $animation-time * 2;
+
+.product {
+  position: absolute;
+  overflow: hidden;
+  cursor: pointer;
+
+  transition: opacity $panim-time, width $panim-time, height $panim-time,
+    top $panim-time, left $panim-time, transform $panim-time;
+
+  .product-image {
+    position: relative;
+    transition: height $panim-time, width $panim-time, background-image $panim-time;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #aaa;
+    width: 100%;
+    height: 100%;
+  }
+
+  .product-modal {
+    position: fixed;
+    opacity: 0;
+    background-color: black;
+    top: 0rem;
+    bottom: 100vh;
+    left: 0rem;
+    right: 0rem;
+    z-index: 0;
+
+    transition: bottom $animation-time, opacity $animation-time;
+
+  }
+
+}
+
+.product-video {
+  position: fixed;
+  background-color: black;
+  z-index: 1500;
+  opacity: 0;
+  pointer-events: none;
+
+  transition: height $panim-time, width $panim-time,
+  top $panim-time, left $panim-time, opacity $animation-time;
+}
+
+.product-video.product-video-show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.product.product-featured {
+  .product-modal {
+    bottom: 0vh;
+    opacity: 0.5;
+    z-index: 1000;
+  }
+}
+
+.showcase.grid {
+  // position: absolute;
+  background-color: $bg-color-inverted;
+  top: 0rem;
+  left: 0rem;
+  right: 0rem;
+  height: 100vh;
+
+}
