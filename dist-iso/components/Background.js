@@ -15,15 +15,18 @@ var _classnames2 = _interopRequireDefault(_classnames);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* global HOST */
+//Because ServerSide rendering isn't done with webpack, and therefore can't
+//require .jpg or .mp4 files
+var isBrowser = typeof window !== 'undefined';
+
+var poster = isBrowser ? require('../assets/background-poster.jpg') : '';
+var video = isBrowser ? require('../assets/background-video.mp4') : '';
 
 function Background(_ref) {
   var dark = _ref.dark;
 
 
   var classes = (0, _classnames2.default)({ dark: dark });
-  var poster = HOST + '/assets/background?poster=true';
-  var src = HOST + '/assets/background';
 
   return _react2.default.createElement(
     'div',
@@ -32,7 +35,7 @@ function Background(_ref) {
     _react2.default.createElement(
       'video',
       { id: 'video-background', className: classes, loop: true, autoPlay: true, muted: true, poster: poster },
-      _react2.default.createElement('source', { src: src, type: 'video/mp4' })
+      _react2.default.createElement('source', { src: video, type: 'video/mp4' })
     )
   );
 }

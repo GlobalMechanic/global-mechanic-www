@@ -46,7 +46,7 @@ function Work(_ref2) {
 
   var showcase = other.routeParams.portfolio;
   var video = other.routeParams.video;
-  var path = other.location.pathname;
+  var path = '/work/' + showcase;
 
   return _react2.default.createElement(
     _Page2.default,
@@ -55,7 +55,7 @@ function Work(_ref2) {
       filter: function filter(item) {
         return item.website.scope === 'public';
       } }),
-    _react2.default.createElement(_components.Showcase, { id: 'work-wall', featuredShowcase: showcase, featuredVideo: video, autoBounds: false, path: path }),
+    _react2.default.createElement(_components.Showcase, { id: 'work-wall', featuredShowcase: showcase, featuredProduct: video, autoBounds: false, path: path }),
     children
   );
 }

@@ -159,11 +159,15 @@ var Cells = function () {
 var Layout = function () {
   function Layout() {
     var dimension = arguments.length <= 0 || arguments[0] === undefined ? 40 : arguments[0];
+    var fill = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+    var autoBounds = arguments.length <= 2 || arguments[2] === undefined ? true : arguments[2];
     (0, _classCallCheck3.default)(this, Layout);
 
     _initialiseProps.call(this);
 
     this.dimension = dimension;
+    this.fill = fill;
+    this.autoBounds = autoBounds;
   }
 
   (0, _createClass3.default)(Layout, [{
@@ -187,11 +191,13 @@ var Layout = function () {
 
       while (unplaced.length > 0) {
         this.place(unplaced);
-      } // let freeArea = this.cells.getFreeArea()
-      // while (freeArea.pos.x > 0 || freeArea.pos.y < this.cells.max.y) {
-      //   this.resizeAdjacent(freeArea)
-      //   freeArea = this.cells.getFreeArea()
-      // }
+      }if (!this.fill) return;
+
+      var freeArea = this.cells.getFreeArea();
+      while (freeArea.pos.x > 0 || freeArea.pos.y < this.cells.max.y) {
+        this.resizeAdjacent(freeArea);
+        freeArea = this.cells.getFreeArea();
+      }
     }
   }, {
     key: 'place',

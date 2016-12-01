@@ -63,13 +63,13 @@ export default class Grid extends Component {
       })
   }
 
-  applyLayout = props => {
+  applyLayout = (props, resize) => {
     props = props || this.props
 
     const { layout, items, featured } = props
     const { ref, state } = this
 
-    const needsUpdate = !featured || state.blocks.length === 0
+    const needsUpdate = !featured || state.blocks.length === 0 || resize
     const blocks = needsUpdate
       ? this.createBlocksFromItems(items)
       : this.state.blocks
@@ -83,7 +83,7 @@ export default class Grid extends Component {
   }
 
   resize = () => {
-    this.applyLayout()
+    this.applyLayout(this.props, true)
   }
 
   spliceBlocks(input) {
@@ -145,12 +145,12 @@ export default class Grid extends Component {
 
     let style = other.style
     if (autoBounds && cells && dimension && !featured) {
-      const unusedWidth = layout.bounds.width % dimension
-
       style = style || {}
       style.height = cells.max.y * dimension
-      style.left = unusedWidth * 0.5
     }
+
+    if (style)
+      delete style.left
 
     const classes = classNames('grid', {
       'grid-featured': is(featured)

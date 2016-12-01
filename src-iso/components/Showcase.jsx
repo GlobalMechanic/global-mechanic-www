@@ -4,51 +4,69 @@ import { browserHistory } from 'react-router'
 import { showcases, products } from 'modules/data'
 import { urlify } from 'modules/helper'
 import classNames from 'classnames'
-import { max, min } from 'modules/math'
+
 /* global HOST */
 
 
-function Video({info, show, style}) {
-  const classes = classNames('product-video', {
-    'product-video-show': show
-  })
+function Vimeo({vimeoId}) {
 
-  if (show) {
-    style.width = min(info.width, innerWidth)
-    style.height = min(info.height, innerHeight)
-    style.top = max((innerHeight - style.height) * 0.5, 0)
-    style.left = max((innerWidth - style.width) * 0.5, 0)
-  }
-
-  return <div className={classes} style={style}/>
-}
-
-function Product({item, style, isFeatured}, {path}) {
-
-  const thumbStyle = {
-    backgroundImage: `url(${HOST}/assets/file/${item.portrait})`
-  }
-
-  const classes = classNames('product', {
-    'product-featured': isFeatured
-  })
-
-  const id = urlify(item.name)
-
-  const targetPath = (path + '/' + id).replace(/\/\//g, '/')
-
-  const click = () => browserHistory.push(targetPath)
-
-  return <div>
-    <div className={classes} style={style} onClick={click} >
-      <div className='product-image' style={thumbStyle}/>
-    </div>
-    <Video info={item.video} show={isFeatured} style={style}/>
-    <div className='product-modal'/>
+  return <div className='product-video' >
+    { vimeoId
+      ? <iframe src={`//player.vimeo.com/video/${vimeoId}?badge=0&title=0&portrait=0&byline=0&embed=0`}
+        frameBorder={false}/>
+      : null }
   </div>
-
 }
-Product.contextTypes = {
+
+function ProductFeature({items, featured}, {path}) {
+
+  const back = () => browserHistory.push(path)
+  const hasFeature = !!featured
+
+  const classes = classNames('product-feature', {
+    'product-feature-show': hasFeature
+  })
+
+  const item = hasFeature
+    ? items.filter(item => urlify(item.name) === featured)[0]
+    : null
+
+  const video = item ? item.video : {}
+  const description = (item && item.description ? item.description : '').trim()
+  const name = (item && item.name ? item.name : '').trim()
+
+  return <div className={classes}>
+    <div className='product-modal' onClick={back}/>
+    <div className='product-detail'>
+      <Vimeo {...video}/>
+      {name ? <h2 className='product-title'>{name}</h2> : null}
+      {description ? <p className='product-description'>{description}</p> : null }
+    </div>
+  </div>
+}
+ProductFeature.contextTypes = {
+  path: PropTypes.string.isRequired
+}
+
+function ProductCell({ isFeatured, hasFeatured, style, item }, {path}) {
+
+  const forward = () => {
+    const id = urlify(item.name)
+    const to = (path + '/' + id).replace(/\/\//g, '/')
+
+    browserHistory.push(to)
+  }
+
+  style.backgroundImage = `url(${HOST}/assets/file/${item.portrait})`
+  style.height = isFeatured ? 0 : style.height
+
+  const classes = classNames('product-cell', {
+    'product-cell-disabled': hasFeatured
+  })
+
+  return <div style={style} className={classes} onClick={forward} />
+}
+ProductCell.contextTypes = {
   path: PropTypes.string.isRequired
 }
 
@@ -77,7 +95,7 @@ export default class Showcase extends React.Component {
 
   render() {
 
-    const { featuredShowcase, featuredVideo, ...other } = this.props
+    const { featuredShowcase, featuredProduct, ...other } = this.props
     const { showcases, products } = this.state
 
     const showcase = showcases.filter(show => urlify(show.name) === featuredShowcase || show._id === featuredShowcase)[0]
@@ -85,8 +103,11 @@ export default class Showcase extends React.Component {
 
     delete other.path
 
-    return <Grid items={items} component={Product} getCellId={item => urlify(item.name)}
-      className='showcase' {...other} featured={featuredVideo}/>
+    return <div>
+      <ProductFeature items={items} featured={featuredProduct} />
+      <Grid items={items} component={ProductCell} getCellId={item => urlify(item.name)}
+        className='showcase' {...other} featured={featuredProduct}/>
+    </div>
   }
 
 }

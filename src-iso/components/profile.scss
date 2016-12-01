@@ -6,7 +6,8 @@
     top $animation-time, left $animation-time, transform $animation-time;
 
   .profile-image {
-    transition: height $animation-time, width $animation-time, transform $animation-time;
+    transition: height $animation-time, width $animation-time,
+      transform $animation-time, background-image $animation-time;
     cursor: pointer;
 
     background-position: center;

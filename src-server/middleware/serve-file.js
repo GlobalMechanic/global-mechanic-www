@@ -3,6 +3,7 @@ import path from 'path'
 import mime from 'mime'
 
 const STORAGE_URL = path.resolve(__dirname, '../../storage/files')
+export const ONE_YEAR = 31557600
 
 export default function () {
 
@@ -20,8 +21,9 @@ export default function () {
         const file = path.join(STORAGE_URL, fn)
         const mimeType = mime.lookup(fn)
 
-        res.setHeader('Content-disposition', 'inline; filename=' + fn)
+        res.setHeader('Content-Disposition', `inline; filename=${fn}`)
         res.setHeader('Content-Type', mimeType)
+        res.setHeader('Cache-Control', `public, max-age=${ONE_YEAR}`)
 
         const read = fs.createReadStream(file)
         read.pipe(res)

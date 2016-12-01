@@ -1,6 +1,6 @@
 import is from 'is-explicit'
 
-import { floor, abs, round, max, Vector } from 'modules/math'
+import { floor, round, max, Vector } from 'modules/math'
 
 const LAYOUT_LOOP_BREAK = Symbol('layout-loop-break')
 
@@ -110,8 +110,10 @@ class Cells {
 
 export default class Layout {
 
-  constructor(dimension = 40) {
+  constructor(dimension = 40, fill = false, autoBounds = true) {
     this.dimension = dimension
+    this.fill = fill
+    this.autoBounds = autoBounds
   }
 
   apply(blocks) {
@@ -132,11 +134,15 @@ export default class Layout {
     while (unplaced.length > 0)
       this.place(unplaced)
 
-    // let freeArea = this.cells.getFreeArea()
-    // while (freeArea.pos.x > 0 || freeArea.pos.y < this.cells.max.y) {
-    //   this.resizeAdjacent(freeArea)
-    //   freeArea = this.cells.getFreeArea()
-    // }
+
+    if (!this.fill)
+      return
+
+    let freeArea = this.cells.getFreeArea()
+    while (freeArea.pos.x > 0 || freeArea.pos.y < this.cells.max.y) {
+      this.resizeAdjacent(freeArea)
+      freeArea = this.cells.getFreeArea()
+    }
 
   }
 

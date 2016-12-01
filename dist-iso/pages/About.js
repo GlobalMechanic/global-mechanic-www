@@ -42,6 +42,8 @@ var _Page2 = _interopRequireDefault(_Page);
 
 var _components = require('../components');
 
+var _Grid = require('../components/Grid');
+
 var _reactRouter = require('react-router');
 
 var _helper = require('modules/helper');
@@ -73,11 +75,13 @@ function Staff(_ref) {
   var documents = _ref.documents;
 
 
-  return _react2.default.createElement(_components.Grid, { id: 'staff-wall', component: AboutProfile, items: documents,
+  var layout = new _Grid.Layout(50, true);
+
+  return _react2.default.createElement(_Grid.Grid, { id: 'staff-wall', component: AboutProfile, items: documents,
     getCellId: function getCellId(item) {
       return (0, _helper.urlify)((0, _Profile.getFullName)(item));
     }, featured: featured,
-    sizeFunc: function sizeFunc() {
+    layout: layout, sizeFunc: function sizeFunc() {
       return Object({ width: 5, height: 4 });
     } });
 }

@@ -14,12 +14,12 @@ export default function Work({children, ...other}) {
 
   const showcase = other.routeParams.portfolio
   const video = other.routeParams.video
-  const path = other.location.pathname
+  const path = `/work/${showcase}`
 
   return <Page id='work-page' {...other}>
     <Collection selected={showcase} component={ShowcaseDropdown} service='showcases'
       filter={item => item.website.scope === 'public'}/>
-    <Showcase id='work-wall' featuredShowcase={showcase} featuredVideo={video} autoBounds={false} path={path} />
+    <Showcase id='work-wall' featuredShowcase={showcase} featuredProduct={video} autoBounds={false} path={path} />
     {children}
   </Page>
 }

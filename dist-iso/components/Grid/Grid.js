@@ -93,7 +93,7 @@ var Grid = function (_Component) {
       _this.layoutTimer = setTimeout(function () {
         return _this.applyLayout(props);
       }, 100);
-    }, _this.applyLayout = function (props) {
+    }, _this.applyLayout = function (props, resize) {
       props = props || _this.props;
 
       var _props = props;
@@ -105,7 +105,7 @@ var Grid = function (_Component) {
       var state = _this2.state;
 
 
-      var needsUpdate = !featured || state.blocks.length === 0;
+      var needsUpdate = !featured || state.blocks.length === 0 || resize;
       var blocks = needsUpdate ? _this.createBlocksFromItems(items) : _this.state.blocks;
 
       layout.bounds = ref.getBoundingClientRect();
@@ -115,7 +115,7 @@ var Grid = function (_Component) {
         _this.spliceBlocks(blocks);
       }
     }, _this.resize = function () {
-      _this.applyLayout();
+      _this.applyLayout(_this.props, true);
     }, _this.createCell = function (block, i) {
       var coords = block.coords;
       var item = block.item;
@@ -211,12 +211,11 @@ var Grid = function (_Component) {
 
       var style = other.style;
       if (autoBounds && cells && dimension && !featured) {
-        var unusedWidth = layout.bounds.width % dimension;
-
         style = style || {};
         style.height = cells.max.y * dimension;
-        style.left = unusedWidth * 0.5;
       }
+
+      if (style) delete style.left;
 
       var classes = (0, _classnames2.default)('grid', {
         'grid-featured': (0, _isExplicit2.default)(featured)

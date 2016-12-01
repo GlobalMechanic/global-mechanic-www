@@ -50,67 +50,95 @@ var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _math = require('modules/math');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* global HOST */
 
-function Video(_ref) {
-  var info = _ref.info;
-  var show = _ref.show;
-  var style = _ref.style;
+function Vimeo(_ref) {
+  var vimeoId = _ref.vimeoId;
 
-  var classes = (0, _classnames2.default)('product-video', {
-    'product-video-show': show
-  });
-
-  if (show) {
-    style.width = (0, _math.min)(info.width, innerWidth);
-    style.height = (0, _math.min)(info.height, innerHeight);
-    style.top = (0, _math.max)((innerHeight - style.height) * 0.5, 0);
-    style.left = (0, _math.max)((innerWidth - style.width) * 0.5, 0);
-  }
-
-  return _react2.default.createElement('div', { className: classes, style: style });
-}
-
-function Product(_ref2, _ref3) {
-  var item = _ref2.item;
-  var style = _ref2.style;
-  var isFeatured = _ref2.isFeatured;
-  var path = _ref3.path;
-
-
-  var thumbStyle = {
-    backgroundImage: 'url(' + HOST + '/assets/file/' + item.portrait + ')'
-  };
-
-  var classes = (0, _classnames2.default)('product', {
-    'product-featured': isFeatured
-  });
-
-  var id = (0, _helper.urlify)(item.name);
-
-  var targetPath = (path + '/' + id).replace(/\/\//g, '/');
-
-  var click = function click() {
-    return _reactRouter.browserHistory.push(targetPath);
-  };
 
   return _react2.default.createElement(
     'div',
-    null,
-    _react2.default.createElement(
-      'div',
-      { className: classes, style: style, onClick: click },
-      _react2.default.createElement('div', { className: 'product-image', style: thumbStyle })
-    ),
-    _react2.default.createElement(Video, { info: item.video, show: isFeatured, style: style }),
-    _react2.default.createElement('div', { className: 'product-modal' })
+    { className: 'product-video' },
+    vimeoId ? _react2.default.createElement('iframe', { src: '//player.vimeo.com/video/' + vimeoId + '?badge=0&title=0&portrait=0&byline=0&embed=0',
+      frameBorder: false }) : null
   );
 }
-Product.contextTypes = {
+
+function ProductFeature(_ref2, _ref3) {
+  var items = _ref2.items;
+  var featured = _ref2.featured;
+  var path = _ref3.path;
+
+
+  var back = function back() {
+    return _reactRouter.browserHistory.push(path);
+  };
+  var hasFeature = !!featured;
+
+  var classes = (0, _classnames2.default)('product-feature', {
+    'product-feature-show': hasFeature
+  });
+
+  var item = hasFeature ? items.filter(function (item) {
+    return (0, _helper.urlify)(item.name) === featured;
+  })[0] : null;
+
+  var video = item ? item.video : {};
+  var description = (item && item.description ? item.description : '').trim();
+  var name = (item && item.name ? item.name : '').trim();
+
+  return _react2.default.createElement(
+    'div',
+    { className: classes },
+    _react2.default.createElement('div', { className: 'product-modal', onClick: back }),
+    _react2.default.createElement(
+      'div',
+      { className: 'product-detail' },
+      _react2.default.createElement(Vimeo, video),
+      name ? _react2.default.createElement(
+        'h2',
+        { className: 'product-title' },
+        name
+      ) : null,
+      description ? _react2.default.createElement(
+        'p',
+        { className: 'product-description' },
+        description
+      ) : null
+    )
+  );
+}
+ProductFeature.contextTypes = {
+  path: _react.PropTypes.string.isRequired
+};
+
+function ProductCell(_ref4, _ref5) {
+  var isFeatured = _ref4.isFeatured;
+  var hasFeatured = _ref4.hasFeatured;
+  var style = _ref4.style;
+  var item = _ref4.item;
+  var path = _ref5.path;
+
+
+  var forward = function forward() {
+    var id = (0, _helper.urlify)(item.name);
+    var to = (path + '/' + id).replace(/\/\//g, '/');
+
+    _reactRouter.browserHistory.push(to);
+  };
+
+  style.backgroundImage = 'url(' + HOST + '/assets/file/' + item.portrait + ')';
+  style.height = isFeatured ? 0 : style.height;
+
+  var classes = (0, _classnames2.default)('product-cell', {
+    'product-cell-disabled': hasFeatured
+  });
+
+  return _react2.default.createElement('div', { style: style, className: classes, onClick: forward });
+}
+ProductCell.contextTypes = {
   path: _react.PropTypes.string.isRequired
 };
 
@@ -160,8 +188,8 @@ var Showcase = function (_React$Component) {
     value: function render() {
       var _props = this.props;
       var featuredShowcase = _props.featuredShowcase;
-      var featuredVideo = _props.featuredVideo;
-      var other = (0, _objectWithoutProperties3.default)(_props, ['featuredShowcase', 'featuredVideo']);
+      var featuredProduct = _props.featuredProduct;
+      var other = (0, _objectWithoutProperties3.default)(_props, ['featuredShowcase', 'featuredProduct']);
       var _state = this.state;
       var showcases = _state.showcases;
       var products = _state.products;
@@ -176,10 +204,15 @@ var Showcase = function (_React$Component) {
 
       delete other.path;
 
-      return _react2.default.createElement(_Grid2.default, (0, _extends3.default)({ items: items, component: Product, getCellId: function getCellId(item) {
-          return (0, _helper.urlify)(item.name);
-        },
-        className: 'showcase' }, other, { featured: featuredVideo }));
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(ProductFeature, { items: items, featured: featuredProduct }),
+        _react2.default.createElement(_Grid2.default, (0, _extends3.default)({ items: items, component: ProductCell, getCellId: function getCellId(item) {
+            return (0, _helper.urlify)(item.name);
+          },
+          className: 'showcase' }, other, { featured: featuredProduct }))
+      );
     }
   }]);
   return Showcase;

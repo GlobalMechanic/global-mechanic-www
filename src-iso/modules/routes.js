@@ -5,7 +5,7 @@ import { Navigation } from 'components'
 
 export default <Route path='/' component={Navigation}>
     <IndexRoute transition='navigate' component={Home}/>
-    <Route path='/directors(/:director)' transition='navigate' inverse component={Directors} />
+    <Route path='/directors(/:director)(/:video)' transition='navigate' inverse component={Directors} />
     <Route path='/work/:portfolio(/:video)' transition='navigate' inverse component={Work} />
     {/* <Route path='/private/portfolio/:portfolio' inverse component={Work}>
       <Route path='/private/portfolio/:portfolio/:video' inverse component={Video} />

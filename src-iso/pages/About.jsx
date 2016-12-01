@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Page from './Page'
-import { Collection, Grid } from '../components'
+import { Collection } from '../components'
+import { Grid, Layout } from '../components/Grid'
 import { browserHistory } from 'react-router'
 import { urlify } from 'modules/helper'
 import Profile, { getFullName } from '../components/Profile'
@@ -17,9 +18,11 @@ function AboutProfile(props) {
 
 function Staff({featured, documents}) {
 
+  const layout = new Layout(50, true)
+
   return <Grid id='staff-wall' component={AboutProfile} items={documents}
     getCellId={item => urlify(getFullName(item))} featured={featured}
-    sizeFunc={() => Object({ width: 5, height: 4 })} />
+    layout={layout} sizeFunc={() => Object({ width: 5, height: 4 })} />
 
 }
 
