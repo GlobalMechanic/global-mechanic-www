@@ -76,9 +76,9 @@ var Image = exports.Image = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var _props = this.props;
-      var close = _props.close;
-      var url = _props.url;
+      var _props = this.props,
+          close = _props.close,
+          url = _props.url;
 
       return _react2.default.createElement(
         'div',

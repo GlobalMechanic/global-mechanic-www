@@ -54,8 +54,8 @@ function Caret(_ref) {
 }
 
 function Item(_ref2) {
-  var value = _ref2.value;
-  var onSelection = _ref2.onSelection;
+  var value = _ref2.value,
+      onSelection = _ref2.onSelection;
 
   return _react2.default.createElement(
     'div',
@@ -71,9 +71,9 @@ function Item(_ref2) {
 }
 
 function List(_ref3) {
-  var items = _ref3.items;
-  var open = _ref3.open;
-  var onSelection = _ref3.onSelection;
+  var items = _ref3.items,
+      open = _ref3.open,
+      onSelection = _ref3.onSelection;
 
 
   return _react2.default.createElement(
@@ -137,11 +137,11 @@ var Dropdown = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _props = this.props;
-      var className = _props.className;
-      var items = _props.items;
-      var titleOnly = _props.titleOnly;
-      var other = (0, _objectWithoutProperties3.default)(_props, ['className', 'items', 'titleOnly']);
+      var _props = this.props,
+          className = _props.className,
+          items = _props.items,
+          titleOnly = _props.titleOnly,
+          other = (0, _objectWithoutProperties3.default)(_props, ['className', 'items', 'titleOnly']);
       var open = this.state.open;
 
 

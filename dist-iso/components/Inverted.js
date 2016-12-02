@@ -21,10 +21,10 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Inverted(_ref) {
-  var children = _ref.children;
-  var className = _ref.className;
-  var fill = _ref.fill;
-  var other = (0, _objectWithoutProperties3.default)(_ref, ['children', 'className', 'fill']);
+  var children = _ref.children,
+      className = _ref.className,
+      fill = _ref.fill,
+      other = (0, _objectWithoutProperties3.default)(_ref, ['children', 'className', 'fill']);
 
 
   var classes = 'inverse' + (className ? ' ' + className : '');

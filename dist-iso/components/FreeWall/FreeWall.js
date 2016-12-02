@@ -62,10 +62,10 @@ var FreeWall = function (_React$Component) {
   (0, _createClass3.default)(FreeWall, [{
     key: 'reset',
     value: function reset() {
-      var _props = this.props;
-      var animTime = _props.animTime;
-      var selector = _props.selector;
-      var cellSize = _props.cellSize;
+      var _props = this.props,
+          animTime = _props.animTime,
+          selector = _props.selector,
+          cellSize = _props.cellSize;
 
 
       this.freewall.reset({
@@ -111,10 +111,10 @@ var FreeWall = function (_React$Component) {
 
       if (!this.props.children) return null;
 
-      var _props2 = this.props;
-      var id = _props2.id;
-      var className = _props2.className;
-      var children = _props2.children;
+      var _props2 = this.props,
+          id = _props2.id,
+          className = _props2.className,
+          children = _props2.children;
 
 
       return _react2.default.createElement(

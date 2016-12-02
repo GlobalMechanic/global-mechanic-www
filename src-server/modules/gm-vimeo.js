@@ -39,7 +39,7 @@ function valid(timestamp) {
   if (is(timestamp, String))
     timestamp = Date.parse(timestamp)
 
-  const since = new Date() - (timestamp || 0)
+  const since = Date.now() - (timestamp || 0)
 
   return since < SIX_HOURS
 }

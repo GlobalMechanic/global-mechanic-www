@@ -96,10 +96,10 @@ var Footer = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var _props = this.props;
-      var children = _props.children;
-      var className = _props.className;
-      var other = (0, _objectWithoutProperties3.default)(_props, ['children', 'className']);
+      var _props = this.props,
+          children = _props.children,
+          className = _props.className,
+          other = (0, _objectWithoutProperties3.default)(_props, ['children', 'className']);
 
       var suppliedClass = className || '';
       var classes = suppliedClass + (suppliedClass.length > 0 ? ' ' : '') + this.state.classes;

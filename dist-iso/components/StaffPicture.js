@@ -51,9 +51,9 @@ function italicize() {
 }
 
 function StaffPicture(_ref) {
-  var className = _ref.className;
-  var staff = _ref.staff;
-  var other = (0, _objectWithoutProperties3.default)(_ref, ['className', 'staff']);
+  var className = _ref.className,
+      staff = _ref.staff,
+      other = (0, _objectWithoutProperties3.default)(_ref, ['className', 'staff']);
 
 
   var style = {

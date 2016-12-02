@@ -23,13 +23,13 @@ var _dataLoader = require('modules/data-loader');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Page(props) {
-  var className = props.className;
-  var children = props.children;
-  var routes = props.routes;
-  var other = (0, _objectWithoutProperties3.default)(props, ['className', 'children', 'routes']);
-  var _routes = routes[routes.length - 1];
-  var path = _routes.path;
-  var backgroundProps = (0, _objectWithoutProperties3.default)(_routes, ['path']); // eslint-disable-line no-unused-vars
+  var className = props.className,
+      children = props.children,
+      routes = props.routes,
+      other = (0, _objectWithoutProperties3.default)(props, ['className', 'children', 'routes']);
+  var _routes = routes[routes.length - 1],
+      path = _routes.path,
+      backgroundProps = (0, _objectWithoutProperties3.default)(_routes, ['path']); // eslint-disable-line no-unused-vars
 
   setTimeout(function () {
     return _dataLoader.events.emit('background-style', backgroundProps);

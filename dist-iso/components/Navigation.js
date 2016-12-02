@@ -45,9 +45,9 @@ function HomeIcon(_ref) {
 }
 
 function PageLink(_ref2) {
-  var to = _ref2.to;
-  var hidden = _ref2.hidden;
-  var children = _ref2.children;
+  var to = _ref2.to,
+      hidden = _ref2.hidden,
+      children = _ref2.children;
 
 
   var classes = 'nav-link right title ' + (hidden ? 'hidden' : 'clickable');
@@ -62,8 +62,8 @@ function PageLink(_ref2) {
 }
 
 function NavHolder(_ref3) {
-  var children = _ref3.children;
-  var inverse = _ref3.inverse;
+  var children = _ref3.children,
+      inverse = _ref3.inverse;
 
   var classes = inverse ? ' inverse' : '';
 
@@ -75,8 +75,8 @@ function NavHolder(_ref3) {
 }
 
 function Navigation(_ref4) {
-  var children = _ref4.children;
-  var routes = _ref4.routes;
+  var children = _ref4.children,
+      routes = _ref4.routes;
 
   var currRoute = routes ? routes[routes.length - 1] : null;
   var inverse = currRoute && currRoute.inverse;

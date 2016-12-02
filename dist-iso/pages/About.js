@@ -49,10 +49,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var $window = $(window);
 
 function StaffBlock(_ref) {
-  var id = _ref.id;
-  var image = _ref.image;
-  var width = _ref.width;
-  var height = _ref.height;
+  var id = _ref.id,
+      image = _ref.image,
+      width = _ref.width,
+      height = _ref.height;
 
 
   var click = function click() {

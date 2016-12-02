@@ -55,10 +55,10 @@ function navigate(url) {
 }
 
 function ImageBlock(_ref) {
-  var width = _ref.width;
-  var height = _ref.height;
-  var url = _ref.url;
-  var onClick = _ref.onClick;
+  var width = _ref.width,
+      height = _ref.height,
+      url = _ref.url,
+      onClick = _ref.onClick;
 
   return _react2.default.createElement('div', {
     className: 'cell-block clickable bulge',
@@ -71,8 +71,8 @@ function ImageBlock(_ref) {
 }
 
 function VideoBlock(_ref2) {
-  var video = _ref2.video;
-  var urlPrefix = _ref2.urlPrefix;
+  var video = _ref2.video,
+      urlPrefix = _ref2.urlPrefix;
 
 
   urlPrefix = urlPrefix || '/';
@@ -81,8 +81,8 @@ function VideoBlock(_ref2) {
 
   var video_url = urlPrefix + video.id;
 
-  var width = video.width;
-  var height = video.height;
+  var width = video.width,
+      height = video.height;
 
 
   return _react2.default.createElement('div', {
@@ -98,8 +98,8 @@ function VideoBlock(_ref2) {
 }
 
 function PortfolioTitle(_ref3) {
-  var place = _ref3.place;
-  var children = _ref3.children;
+  var place = _ref3.place,
+      children = _ref3.children;
 
   return place ? _react2.default.createElement(
     _TitleText2.default,
@@ -165,14 +165,14 @@ var Portfolio = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var _props = this.props;
-      var id = _props.id;
-      var urlPrefix = _props.urlPrefix;
-      var portfolioImagesHack = _props.portfolioImagesHack;
-      var other = (0, _objectWithoutProperties3.default)(_props, ['id', 'urlPrefix', 'portfolioImagesHack']);
-      var _state = this.state;
-      var videos = _state.videos;
-      var image = _state.image;
+      var _props = this.props,
+          id = _props.id,
+          urlPrefix = _props.urlPrefix,
+          portfolioImagesHack = _props.portfolioImagesHack,
+          other = (0, _objectWithoutProperties3.default)(_props, ['id', 'urlPrefix', 'portfolioImagesHack']);
+      var _state = this.state,
+          videos = _state.videos,
+          image = _state.image;
 
 
       var imageBlocks = [],

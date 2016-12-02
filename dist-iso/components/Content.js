@@ -17,8 +17,8 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Content(_ref) {
-  var children = _ref.children;
-  var other = (0, _objectWithoutProperties3.default)(_ref, ['children']);
+  var children = _ref.children,
+      other = (0, _objectWithoutProperties3.default)(_ref, ['children']);
 
   return _react2.default.createElement(
     'div',

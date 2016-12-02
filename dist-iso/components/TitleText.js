@@ -21,10 +21,10 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function TitleText(_ref) {
-  var children = _ref.children;
-  var className = _ref.className;
-  var mini = _ref.mini;
-  var other = (0, _objectWithoutProperties3.default)(_ref, ['children', 'className', 'mini']);
+  var children = _ref.children,
+      className = _ref.className,
+      mini = _ref.mini,
+      other = (0, _objectWithoutProperties3.default)(_ref, ['children', 'className', 'mini']);
 
 
   var classes = 'title' + (className ? ' ' + className : '');

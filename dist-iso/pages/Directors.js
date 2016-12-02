@@ -33,11 +33,11 @@ var dropdownSelect = function dropdownSelect(e, dir) {
 };
 
 function DirectorBlock(_ref) {
-  var id = _ref.id;
-  var name = _ref.name;
-  var image = _ref.image;
-  var width = _ref.width;
-  var height = _ref.height;
+  var id = _ref.id,
+      name = _ref.name,
+      image = _ref.image,
+      width = _ref.width,
+      height = _ref.height;
 
 
   var click = function click() {

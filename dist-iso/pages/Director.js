@@ -32,8 +32,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function Director(props) {
   var id = props.params.director;
-  var children = props.children;
-  var other = (0, _objectWithoutProperties3.default)(props, ['children']);
+  var children = props.children,
+      other = (0, _objectWithoutProperties3.default)(props, ['children']);
 
   var director = _directors2.default.filter(function (dir) {
     return dir.id === id;
