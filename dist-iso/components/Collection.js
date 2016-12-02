@@ -48,7 +48,7 @@ var Collection = function (_Component) {
   (0, _inherits3.default)(Collection, _Component);
 
   function Collection() {
-    var _Object$getPrototypeO;
+    var _ref;
 
     var _temp, _this, _ret;
 
@@ -58,7 +58,7 @@ var Collection = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Collection)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Collection.__proto__ || (0, _getPrototypeOf2.default)(Collection)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       documents: []
     }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
@@ -68,8 +68,8 @@ var Collection = function (_Component) {
     value: function setDocuments(props) {
       var _this2 = this;
 
-      var service = props.service;
-      var filter = props.filter;
+      var service = props.service,
+          filter = props.filter;
 
 
       var collection = COLLECTIONS[service];
@@ -97,12 +97,12 @@ var Collection = function (_Component) {
     key: 'render',
     value: function render() {
       var documents = this.state.documents;
-      var _props = this.props;
-      var component = _props.component;
-      var filter = _props.filter;
-      var service = _props.service;
-      var children = _props.children;
-      var other = (0, _objectWithoutProperties3.default)(_props, ['component', 'filter', 'service', 'children']); //eslint-disable-line no-unused-vars
+      var _props = this.props,
+          component = _props.component,
+          filter = _props.filter,
+          service = _props.service,
+          children = _props.children,
+          other = (0, _objectWithoutProperties3.default)(_props, ['component', 'filter', 'service', 'children']); //eslint-disable-line no-unused-vars
 
       return (0, _react.createElement)(component, (0, _extends3.default)({ documents: documents }, other), children);
     }

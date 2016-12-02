@@ -21,6 +21,8 @@ export default function () {
         const file = path.join(STORAGE_URL, fn)
         const mimeType = mime.lookup(fn)
 
+        console.log(file)
+
         res.setHeader('Content-Disposition', `inline; filename=${fn}`)
         res.setHeader('Content-Type', mimeType)
         res.setHeader('Cache-Control', `public, max-age=${ONE_YEAR}`)

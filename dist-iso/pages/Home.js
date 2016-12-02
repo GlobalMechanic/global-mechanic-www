@@ -25,8 +25,8 @@ var _Page2 = _interopRequireDefault(_Page);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Home(_ref) {
-  var children = _ref.children;
-  var other = (0, _objectWithoutProperties3.default)(_ref, ['children']);
+  var children = _ref.children,
+      other = (0, _objectWithoutProperties3.default)(_ref, ['children']);
 
 
   return _react2.default.createElement(
@@ -34,7 +34,7 @@ function Home(_ref) {
     (0, _extends3.default)({ id: 'home-page' }, other),
     _react2.default.createElement(
       'h1',
-      { id: 'splash-title' },
+      { id: 'splash-title', className: 'transition-pop' },
       'Global Mechanic'
     ),
     children

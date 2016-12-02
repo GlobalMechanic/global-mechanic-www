@@ -39,12 +39,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Transition = _react.addons ? _react.addons.CSSTransitionGroup : null;
 // import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-function HomeLink() {
+function HomeLink(_ref) {
+  var _private = _ref._private;
+
+
+  var classes = (0, _classnames2.default)('left', 'clickable', { private: _private });
+
   return _react2.default.createElement(
     _reactRouter.Link,
-    { to: '/', onlyActiveOnIndex: true,
-      id: 'home-link', className: 'left clickable',
-      activeClassName: 'active' },
+    { to: '/', onlyActiveOnIndex: true, id: 'home-link',
+      className: classes, activeClassName: 'active' },
     _react2.default.createElement(
       'div',
       { id: 'home-link-mask' },
@@ -58,9 +62,9 @@ function HomeLink() {
   );
 }
 
-function PageLink(_ref) {
-  var to = _ref.to;
-  var children = _ref.children;
+function PageLink(_ref2) {
+  var to = _ref2.to,
+      children = _ref2.children;
 
   return _react2.default.createElement(
     _reactRouter.Link,
@@ -74,11 +78,12 @@ function PageLink(_ref) {
   );
 }
 
-function Links(_ref2) {
-  var inverse = _ref2.inverse;
+function Links(_ref3) {
+  var inverse = _ref3.inverse,
+      _private = _ref3._private;
 
 
-  var classes = (0, _classnames2.default)({ inverse: inverse, padded: true });
+  var classes = (0, _classnames2.default)('padded', { inverse: inverse, private: _private });
 
   return _react2.default.createElement(
     'div',
@@ -102,9 +107,9 @@ function Links(_ref2) {
   );
 }
 
-function Pages(_ref3) {
-  var children = _ref3.children;
-  var other = (0, _objectWithoutProperties3.default)(_ref3, ['children']);
+function Pages(_ref4) {
+  var children = _ref4.children,
+      other = (0, _objectWithoutProperties3.default)(_ref4, ['children']);
 
   return _react2.default.createElement(
     'div',
@@ -113,17 +118,18 @@ function Pages(_ref3) {
   );
 }
 
-function Navigation(_ref4) {
-  var children = _ref4.children;
-  var routes = _ref4.routes;
+function Navigation(_ref5) {
+  var children = _ref5.children,
+      routes = _ref5.routes;
 
 
   var route = routes ? routes[routes.length - 1] : {};
 
   //Navigation should be styled inverse if the current route is
-  var inverse = route.inverse;
-  var dark = route.dark;
-  var transition = route.transition;
+  var inverse = route.inverse,
+      dark = route.dark,
+      transition = route.transition,
+      _private = route._private;
 
 
   var path = route.path || 'home';
@@ -132,12 +138,12 @@ function Navigation(_ref4) {
   return _react2.default.createElement(
     'div',
     null,
-    _react2.default.createElement(Links, { inverse: inverse }),
+    _react2.default.createElement(Links, { inverse: inverse, _private: _private }),
     Transition ? _react2.default.createElement(
       Transition,
       {
         component: Pages,
-        transitionName: transition || 'none',
+        transitionName: transition || 'navigate',
         transitionEnterTimeout: _styles.variables.animationTime.value,
         transitionLeaveTimeout: _styles.variables.animationTime.value },
       (0, _react.cloneElement)(children, { key: key })

@@ -1,51 +1,62 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Page from './Page'
-import { Dropdown, Collection, Showcase } from '../components'
-import { Grid, Layout } from '../components/grid'
-import Profile, { getFullName } from '../components/Profile'
-import { urlify } from 'modules/helper'
+import { Layout } from 'components/Grid'
+import { Dropdown, Showcase, People } from 'components'
+import { people } from 'modules/data'
+import { urlify, getFullName } from 'modules/helper'
+import { variables } from 'styles'
+import { random } from 'modules/math'
 
-function DirectorProfile(props) {
-  return <Profile
-    getImage={item => item.directorData.portrait || item.staffData.portrait}
-    getWriteup={item => item.directorData.essay || item.staffData.essay}
-    path='directors/'
-    {...props}/>
+const DIRECTOR_PATH = '/directors/'
+
+const DirectorLayout = new Layout(60, false)
+
+function DirectorList({ director, directors }) {
+  return <Dropdown title='Directors' items={directors.map(d => getFullName(d))}
+    path={DIRECTOR_PATH} selected={director}/>
 }
 
+export default class Directors extends Component {
 
-function DirectorGrid({featured, documents}) {
+  state = {
+    directors : []
+  }
 
-  const layout = new Layout(50, false)
+  size = () => {
+    return {
+      width: 4 + random(),
+      height: 3 + random()
+    }
+  }
 
-  return <Grid id='staff-wall' className='directors inverse' component={DirectorProfile} items={documents}
-    getCellId={item => urlify(getFullName(item))} featured={featured}
-    layout={layout} />
+  componentDidMount() {
+    people.then(ppl => {
+      const directors = ppl.filter(p => p.directorData && p.directorData.showOnWebsite)
+      setTimeout(() => this.setState({ directors }), variables.animationTime.value)
+    })
+  }
 
-}
+  render () {
 
-function DirectorList({documents, video, director}) {
+    const { children, ...other } = this.props
+    const { directors } = this.state
+    const { director, product } = other.routeParams
 
-  const directorDoc = director ? documents.filter(doc => urlify(getFullName(doc)) === director)[0] : null
-  const showcase = directorDoc ? directorDoc.directorData.showcase : null
+    const directorDoc = director ? directors.filter(doc => urlify(getFullName(doc)) === director)[0] : null
+    const showcaseId = directorDoc ? directorDoc.directorData.showcase : null
 
-  return <div>
-    <Dropdown title='Directors' items={documents.map(doc => getFullName(doc))}
-      path='directors/' selected={director}/>
-    <DirectorGrid featured={director} documents={documents}/>
-    <Showcase id='director-wall' featuredShowcase={showcase} featuredProduct={video} autoBounds={false} path={`/directors/${director}/`}/>
-  </div>
-}
+    return <Page id='directors-page' {...other}>
+      <DirectorList director={director} directors={directors}  />
 
-export default function Directors({children, ...other}) {
+      <div id='director' className='inverse fill transition-slide-down'>
+        <People director path={DIRECTOR_PATH} featured={director} layout={DirectorLayout}
+          size={this.size} />
+        <Showcase path={DIRECTOR_PATH + '/' + director} featuredShowcase={showcaseId}
+        featuredProduct={product} />
+      </div>
 
-  const director = other.routeParams.director
-  const video = other.routeParams.video
+      {children}
+    </Page>
+  }
 
-  return <Page id='directors-page' {...other}>
-    <Collection director={director} video={video} component={DirectorList} service='people'
-      filter={item => item.role === 'director'}/>
-
-    {children}
-  </Page>
 }

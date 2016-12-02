@@ -43,7 +43,8 @@ function getIn(obj, paths) {
 function ensureFile(id) {
 
   //check if the file exists
-  queue.add(() => fs.readdir(fileStorage)
+  queue.add(() => fs
+    .readdir(fileStorage)
     .then(files => {
       const file = files.filter(file => file.includes(id))[0]
       return file === undefined ? fetch(`${gears.host}/files/${id}`) : ALREADY_EXISTS
@@ -53,9 +54,11 @@ function ensureFile(id) {
       if (res === ALREADY_EXISTS)
         return
 
+      if (res.status !== 200)
+        throw new Error(res.body)
+
       const type = res.headers._headers['content-type'][0]
       const ext = type.substr(type.indexOf('/')+1)
-
       const write = fs.createWriteStream(path.join(fileStorage, `${id}.${ext}`))
 
       return new Promise((resolve, reject) => {
@@ -63,8 +66,9 @@ function ensureFile(id) {
         res.body.on('end', resolve)
         res.body.on('error', reject)
       })
-    }))
+    })
     .catch(err => log.error(`Error fetching file ${id}`, err))
+  )
 }
 
 /******************************************************************************/

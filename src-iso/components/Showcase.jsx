@@ -1,12 +1,9 @@
 import React, { PropTypes } from 'react'
-import Grid from './Grid'
-import { browserHistory } from 'react-router'
+import { Grid, Block } from './Grid'
 import { showcases, products } from 'modules/data'
-import { urlify } from 'modules/helper'
+import { urlify, navigate } from 'modules/helper'
 import classNames from 'classnames'
-
-/* global HOST */
-
+import { variables } from 'styles'
 
 function Vimeo({vimeoId}) {
 
@@ -20,7 +17,7 @@ function Vimeo({vimeoId}) {
 
 function ProductFeature({items, featured}, {path}) {
 
-  const back = () => browserHistory.push(path)
+  const back = () => navigate(path)
   const hasFeature = !!featured
 
   const classes = classNames('product-feature', {
@@ -48,25 +45,16 @@ ProductFeature.contextTypes = {
   path: PropTypes.string.isRequired
 }
 
-function ProductCell({ isFeatured, hasFeatured, style, item }, {path}) {
+function ProductBlock({ item, ...other }, { path }) {
 
-  const forward = () => {
-    const id = urlify(item.name)
-    const to = (path + '/' + id).replace(/\/\//g, '/')
+  const imageId = item ? item.portrait : null
 
-    browserHistory.push(to)
-  }
+  const id = urlify(item.name)
+  const onClick = () => navigate(`${path}/${id}`)
 
-  style.backgroundImage = `url(${HOST}/assets/file/${item.portrait})`
-  style.height = isFeatured ? 0 : style.height
-
-  const classes = classNames('product-cell', {
-    'product-cell-disabled': hasFeatured
-  })
-
-  return <div style={style} className={classes} onClick={forward} />
+  return <Block imageId={imageId} onClick={onClick} {...other} />
 }
-ProductCell.contextTypes = {
+ProductBlock.contextTypes = {
   path: PropTypes.string.isRequired
 }
 
@@ -81,9 +69,13 @@ export default class Showcase extends React.Component {
     path: PropTypes.string.isRequired
   }
 
+  loadAfterTransition(service, items) {
+    setTimeout(() => this.setState({ [service]: items }), variables.animationTime.value)
+  }
+
   componentDidMount() {
-    products.then(res => this.setState({products: res}))
-    showcases.then(res => this.setState({showcases: res}))
+    products.then(res => this.loadAfterTransition('products', res))
+    showcases.then(res => this.loadAfterTransition('showcases', res))
   }
 
   getChildContext() {
@@ -95,7 +87,7 @@ export default class Showcase extends React.Component {
 
   render() {
 
-    const { featuredShowcase, featuredProduct, ...other } = this.props
+    const { featuredShowcase, featuredProduct, className, ...other } = this.props
     const { showcases, products } = this.state
 
     const showcase = showcases.filter(show => urlify(show.name) === featuredShowcase || show._id === featuredShowcase)[0]
@@ -103,10 +95,11 @@ export default class Showcase extends React.Component {
 
     delete other.path
 
-    return <div>
+    const classes = classNames('showcase', className)
+
+    return <div className={classes} ref={ref => this.ref = ref}>
       <ProductFeature items={items} featured={featuredProduct} />
-      <Grid items={items} component={ProductCell} getCellId={item => urlify(item.name)}
-        className='showcase' {...other} featured={featuredProduct}/>
+      <Grid items={items} component={ProductBlock} {...other} />
     </div>
   }
 

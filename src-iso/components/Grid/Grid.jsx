@@ -1,8 +1,12 @@
 import React, { PropTypes, Component, createElement } from 'react'
+
 import Layout from './layout'
+import Block from './Block'
+
 import { Vector, random, max, round } from 'modules/math'
-import is from 'is-explicit'
 import classNames from 'classnames'
+
+import is from 'is-explicit'
 
 /******************************************************************************/
 // Exports
@@ -18,17 +22,16 @@ export default class Grid extends Component {
     component: PropTypes.func.isRequired,
     items: PropTypes.arrayOf(Object).isRequired,
     layout: PropTypes.instanceOf(Layout).isRequired,
-    getCellId: PropTypes.func.isRequired,
     sizeFunc: PropTypes.func,
-    autoBounds: PropTypes.bool
+    clip: PropTypes.bool
   }
 
   static defaultProps = {
+    component: Block,
     layout: new Layout(),
-    autoBounds: true,
-    getCellId: (block, i) => i,
+    clip: true,
     sizeFunc: () => {
-      const width = 3 + random() * 5
+      const width = 4 + random() * 5
       const height = width - 1
 
       return { width, height}
@@ -63,13 +66,34 @@ export default class Grid extends Component {
       })
   }
 
+  needsUpdate(items) {
+    const { blocks } = this.state
+
+    let allSmall = true
+
+    blocks.forEach(block => {
+      if (block.coords.dim.x > 0 || block.coords.dim.y > 0)
+        allSmall = false
+    })
+
+    if (allSmall)
+      return true
+
+    const blockItems = blocks.map(block => block.item)
+    for (let i = 0; i < items.length; i++)
+      if (!blockItems.includes(items[i]))
+        return true
+
+    return items.length === 0 || blocks.length === 0
+  }
+
   applyLayout = (props, resize) => {
     props = props || this.props
 
-    const { layout, items, featured } = props
-    const { ref, state } = this
+    const { layout, items } = props
+    const { ref } = this
 
-    const needsUpdate = !featured || state.blocks.length === 0 || resize
+    const needsUpdate = resize || this.needsUpdate(items)
     const blocks = needsUpdate
       ? this.createBlocksFromItems(items)
       : this.state.blocks
@@ -99,21 +123,16 @@ export default class Grid extends Component {
     this.setState({ blocks: output })
   }
 
-
-  createCells() {
+  createBlocks() {
     const { blocks } = this.state
-    return blocks.map(this.createCell)
+    return blocks.map(this.createBlock)
   }
 
-  createCell = (block, i) => {
+  createBlock = (block, i) => {
 
     const { coords, item } = block
-    const { layout, component, getCellId, featured } = this.props
-
+    const { layout, component } = this.props
     const { dimension } = layout
-    const id = getCellId(block.item, i)
-    const isFeatured = featured && id === featured
-    const hasFeatured = is(featured)
 
     const style = {
       left: coords.pos.x * dimension,
@@ -122,7 +141,7 @@ export default class Grid extends Component {
       height: coords.dim.y * dimension
     }
 
-    return createElement(component, { style, item, key: i, isFeatured, hasFeatured })
+    return createElement(component, { style, item, key: i })
   }
 
   componentDidMount() {
@@ -140,21 +159,16 @@ export default class Grid extends Component {
 
   render() {
 
-    const { layout, className, featured, autoBounds, ...other } = this.props
-    const { cells, dimension } = layout
+    const { layout, className, clip, ...other } = this.props
+    const { blocks, dimension } = layout
 
     let style = other.style
-    if (autoBounds && cells && dimension && !featured) {
+    if (clip && blocks && dimension) {
       style = style || {}
-      style.height = cells.max.y * dimension
+      style.height = blocks.max.y * dimension
     }
 
-    if (style)
-      delete style.left
-
-    const classes = classNames('grid', {
-      'grid-featured': is(featured)
-    }, className)
+    const classes = classNames('grid', className)
 
     delete other.component
     delete other.items
@@ -162,11 +176,10 @@ export default class Grid extends Component {
     delete other.getCellId
     delete other.sizeFunc
     delete other.style
-    delete other.featured
     delete other.className
 
     return <div className={classes} style={style} ref={ref => this.ref = ref} {...other}>
-      {this.createCells()}
+      { this.createBlocks() }
     </div>
 
   }

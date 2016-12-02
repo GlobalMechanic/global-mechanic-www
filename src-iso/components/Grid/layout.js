@@ -1,6 +1,6 @@
 import is from 'is-explicit'
 
-import { floor, round, max, Vector } from 'modules/math'
+import { ceil, round, max, Vector } from 'modules/math'
 
 const LAYOUT_LOOP_BREAK = Symbol('layout-loop-break')
 
@@ -24,7 +24,7 @@ export class Coords {
 
 }
 
-class Cells {
+class Blocks {
 
   constructor(limitX = Infinity, limitY = Infinity) {
     this.limits = new Vector(limitX, limitY)
@@ -110,23 +110,22 @@ class Cells {
 
 export default class Layout {
 
-  constructor(dimension = 40, fill = false, autoBounds = true) {
+  constructor(dimension = 40, fill = false) {
     this.dimension = dimension
     this.fill = fill
-    this.autoBounds = autoBounds
   }
 
   apply(blocks) {
-    this.cells = new Cells(this.floorAxis(this.bounds ? this.bounds.width : Infinity))
+    this.blocks = new Blocks(this.ceilAxis(this.bounds ? this.bounds.width : Infinity))
 
     const unplaced = blocks.slice()
 
     //ensure no block is too big
     blocks.forEach(block => {
       const coords = block.coords
-      if (coords.dim.x > this.cells.limits.x) {
+      if (coords.dim.x > this.blocks.limits.x) {
         const oldX = coords.dim.x
-        coords.dim.x = this.cells.limits.x
+        coords.dim.x = this.blocks.limits.x
         coords.dim.y = round(coords.dim.y * (coords.dim.x / oldX))
       }
     })
@@ -138,16 +137,16 @@ export default class Layout {
     if (!this.fill)
       return
 
-    let freeArea = this.cells.getFreeArea()
-    while (freeArea.pos.x > 0 || freeArea.pos.y < this.cells.max.y) {
+    let freeArea = this.blocks.getFreeArea()
+    while (freeArea.pos.x > 0 || freeArea.pos.y < this.blocks.max.y) {
       this.resizeAdjacent(freeArea)
-      freeArea = this.cells.getFreeArea()
+      freeArea = this.blocks.getFreeArea()
     }
 
   }
 
   place(unplaced) {
-    const freeArea = this.cells.getFreeArea()
+    const freeArea = this.blocks.getFreeArea()
 
     const bestBlock = this.pluckAnyFit(unplaced, freeArea)
     if (!bestBlock)
@@ -166,7 +165,7 @@ export default class Layout {
     coords.pos.x = freeArea.pos.x
     coords.pos.y = freeArea.pos.y
 
-    const success = this.cells.tryFill(bestBlock)
+    const success = this.blocks.tryFill(bestBlock)
     if (!success)
       console.warn(bestBlock, ' could not be placed')
 
@@ -176,20 +175,20 @@ export default class Layout {
     let success = false
 
     const upPos = freeArea.pos.sub({x:0, y:1})
-    const upBlock = this.cells.filled.get(upPos.toString())
+    const upBlock = this.blocks.filled.get(upPos.toString())
     if (upBlock) {
       const y = freeArea.dim.y === Infinity ? 1 : freeArea.dim.y
       upBlock.coords.dim.y += y
-      success = this.cells.tryFill(upBlock)
+      success = this.blocks.tryFill(upBlock)
       if (!success)
         upBlock.coords.dim.y -= y
     }
 
     const leftPos = freeArea.pos.sub({x:1, y: 0})
-    const leftBlock = this.cells.filled.get(leftPos.toString())
+    const leftBlock = this.blocks.filled.get(leftPos.toString())
     if (leftBlock && !success) {
       leftBlock.coords.dim.x += freeArea.dim.x
-      success = this.cells.tryFill(leftBlock)
+      success = this.blocks.tryFill(leftBlock)
       if (!success)
         leftBlock.coords.dim.x -= freeArea.dim.x
     }
@@ -218,13 +217,13 @@ export default class Layout {
     return null
   }
 
-  floorAxis = axis => {
+  ceilAxis = axis => {
 
     if (!is(axis, Number))
       return 1
 
     const { dimension } = this
-    return max(floor(axis / dimension), 1)
+    return max(ceil(axis / dimension), 1)
 
   }
 }

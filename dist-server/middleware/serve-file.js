@@ -22,6 +22,8 @@ exports.default = function () {
       var file = _path2.default.join(STORAGE_URL, fn);
       var mimeType = _mime2.default.lookup(fn);
 
+      console.log(file);
+
       res.setHeader('Content-Disposition', 'inline; filename=' + fn);
       res.setHeader('Content-Type', mimeType);
       res.setHeader('Cache-Control', 'public, max-age=' + ONE_YEAR);

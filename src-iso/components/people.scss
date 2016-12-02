@@ -1,0 +1,22 @@
+$profile-time: $animation-time * 1.5;
+$profile-dim: 14rem;
+.profile {
+  transition: max-height $profile-time ease-in-out;
+  overflow-y: scroll;
+  display: flex;
+  max-height: 30rem;
+
+  .profile-image {
+    height: $profile-dim;
+    width: $profile-dim;
+    display: inline-block;
+  }
+
+  .profile-detail {
+    margin-left: $padding;
+  }
+}
+
+.profile.hidden {
+  max-height: 0rem;
+}

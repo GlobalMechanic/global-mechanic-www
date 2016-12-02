@@ -1,12 +1,14 @@
-$links-height: $padding + 2rem;
 $home-link-width: 13.5rem;
 $home-icon-dim: 2rem;
 $nut-time: $animation-time * 1;
 
 #links {
-  height: $links-height;
-  position: relative;
+  position: absolute;
+  left: 0rem;
+  right: 0rem;
   z-index: 500;
+
+  height: $links-height;
 
   #home-link {
 
@@ -16,38 +18,58 @@ $nut-time: $animation-time * 1;
 
     #home-nut {
       position: absolute;
+      top: $padding + 0.1rem;
       transition: width $nut-time, height $nut-time, opacity $nut-time, fill $nut-time;
       width: $home-icon-dim;
       height: $home-icon-dim;
+      z-index: 1000;
     }
 
     #home-link-mask {
 
       #home-link-title {
-        display: inline-block;
-        margin-left: $home-icon-dim;
+        transition: color $animation-time;
+        margin-left: $home-icon-dim + 0.2rem;
       };
 
       display: inline-block;
       width: $home-link-width;
+      height: $home-icon-dim;
     }
 
   }
 
   #home-link.active {
-    // this width needs to be $home-link-width on private pages
-    // width: $home-link-width;
 
     #home-nut {
       @extend %splash;
       position: absolute;
       opacity: 0.5;
+      z-index: 1000;
       fill: $text-color;
     }
   }
 
   .link {
     margin-left: $padding;
+    transition: transform $animation-time;
   }
 
+}
+
+#links.private {
+  overflow-x: hidden;
+
+  #home-link {
+    width: $home-link-width;
+  }
+
+  .link {
+    transform: translate(50vw,0vw);
+    pointer-events: none;
+  }
+}
+
+#pages {
+  overflow-x: hidden;
 }

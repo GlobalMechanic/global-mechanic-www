@@ -1,5 +1,6 @@
 $panim-time: $animation-time * 2;
 $video-width: 40rem;
+$large-video-width: $video-width * 1.5;
 
 .product-cell {
 
@@ -61,10 +62,22 @@ $video-width: 40rem;
     transition: opacity $animation-time, height $panim-time;
     width: $video-width;
 
+    @media screen and (min-width: $large-width) {
+      margin-left: -$large-video-width * 0.5;
+      width: $large-video-width;
+    }
+
     .product-video {
       iframe {
         width: $video-width;
         height: $video-width * (9/16);
+      }
+
+      @media screen and (min-width: $large-width){
+        iframe {
+          width: $large-video-width;
+          height: $large-video-width * (9/16);
+        }
       }
 
       height: 0rem;
@@ -76,6 +89,9 @@ $video-width: 40rem;
     .product-description {
       color: $text-color-inverted;
       width: $video-width - 1rem;
+      @media screen and (min-width: $large-width){
+        width: $large-video-width - 1rem;
+      }
       display: block-inline;
 
       padding: 0.50rem;
@@ -107,21 +123,16 @@ $video-width: 40rem;
 
     .product-video {
       height: $video-width * (9/16);
+      @media screen and (min-width: $large-width){
+        height: $large-video-width * (9/16);
+      }
     }
   }
 
-  .product-detail:hover {
-    .product-description {
-    }
-  }
 }
 
-
-.showcase.grid {
-  background-color: $bg-color-inverted;
-  top: 0rem;
-  left: 0rem;
-  right: 0rem;
-  height: 100vh;
-
-}
+// .showcase {
+//   background-color: $bg-color-inverted;
+//   height: 100vh;
+//   display: block;
+// }

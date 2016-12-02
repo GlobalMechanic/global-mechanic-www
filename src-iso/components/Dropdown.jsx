@@ -1,12 +1,13 @@
 import React, { Component, PropTypes } from 'react'
-import { urlify } from 'modules/helper'
-import { browserHistory } from 'react-router'
+import { urlify, navigate } from 'modules/helper'
 import classNames from 'classnames'
 
 const CARET_POINTS = ['17.3','28.2 1','0 33.5','0']
 
-function Caret() {
-  return <svg className='dropdown-caret' viewBox='0 0 34.3 28.7'>
+function Caret({hidden}) {
+
+  const classes = classNames('dropdown-caret', { hidden })
+  return <svg className={classes} viewBox='0 0 34.3 28.7'>
     <polygon points={CARET_POINTS}/>
   </svg>
 }
@@ -17,7 +18,7 @@ function Title({items, onClick, children}) {
     'clickable': items.length > 0
   })
 
-  const caret = items.length > 0 ? <Caret/> : null
+  const caret = <Caret hidden={items.length === 0}/>
   const click = items.length > 0 ? onClick : null
 
   return <h1 className={classes} onClick={click}>{children}{caret}</h1>
@@ -60,17 +61,27 @@ export default class Dropdown extends Component {
     open: false
   }
 
-  toggleOpen = e => {
-
+  toggle = e => {
+    e.stopPropagation()
     e.preventDefault()
     this.setState({open: !this.state.open})
   }
 
+  close = () => {
+    this.setState({open: false})
+  }
+
   select = value => {
     const { path } = this.props
-    browserHistory.push(`/${path}${value}`)
+    navigate(`/${path}${value}`)
+  }
 
-    this.setState({ open: false})
+  componentDidMount() {
+    addEvent('click', window, this.close)
+  }
+
+  componentWillUnmount() {
+    removeEvent('click', window, this.close)
   }
 
   render() {
@@ -80,9 +91,9 @@ export default class Dropdown extends Component {
       'dropdown-open': this.state.open
     })
 
-    return <div className='dropdown-container'>
+    return <div className='dropdown-container transition-slide-up'>
       <div className={classes}>
-        <Title items={items} onClick={this.toggleOpen}>{title}</Title>
+        <Title items={items} onClick={this.toggle}>{title}</Title>
         <List items={items} selected={selected} select={this.select}/>
       </div>
     </div>

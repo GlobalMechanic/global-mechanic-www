@@ -3,6 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
 exports.getFullName = getFullName;
 exports.default = Profile;
 
@@ -22,65 +27,39 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /* global HOST */
 
-function getFullName(staff) {
-  var name = staff.name;
-  var first = name.first;
-  var last = name.last;
+function getFullName(person) {
+  var name = person.name;
+  var first = name.first,
+      last = name.last;
+
 
   return ((first || '') + ' ' + (last || '')).trim();
 }
 
-var ProfileMainStyle = {
-  top: 0,
-  left: 0
-};
-
 function Profile(_ref) {
-  var isFeatured = _ref.isFeatured;
-  var hasFeatured = _ref.hasFeatured;
-  var style = _ref.style;
-  var item = _ref.item;
-  var path = _ref.path;
-  var getImage = _ref.getImage;
-  var getWriteup = _ref.getWriteup;
+  var style = _ref.style,
+      item = _ref.item,
+      path = _ref.path,
+      imageId = _ref.imageId,
+      className = _ref.className,
+      other = (0, _objectWithoutProperties3.default)(_ref, ['style', 'item', 'path', 'imageId', 'className']);
 
 
   var fullName = getFullName(item);
   var urlFullName = (0, _helper.urlify)(fullName);
 
-  var classes = (0, _classnames2.default)('profile', {
-    'profile-featured': isFeatured,
-    'profile-hidden': hasFeatured && !isFeatured
-  });
-
-  var mainStyle = isFeatured ? ProfileMainStyle : style;
+  var classes = (0, _classnames2.default)('profile', className);
 
   var imageStyle = {
-    width: isFeatured ? null : style.width,
-    height: isFeatured ? null : style.height,
-    backgroundImage: 'url(' + HOST + '/assets/file/' + getImage(item) + ')'
+    backgroundImage: 'url(' + HOST + '/assets/file/' + imageId + ')'
   };
 
   return _react2.default.createElement(
     'div',
-    { className: classes, style: mainStyle },
+    { className: classes, style: style },
     _react2.default.createElement('div', { className: 'profile-image', style: imageStyle, onClick: function onClick() {
         return _reactRouter.browserHistory.push('/' + path + urlFullName);
-      } }),
-    _react2.default.createElement(
-      'div',
-      { className: 'profile-writeup' },
-      _react2.default.createElement(
-        'h1',
-        null,
-        fullName
-      ),
-      _react2.default.createElement(
-        'p',
-        null,
-        getWriteup(item)
-      )
-    )
+      } })
   );
 }
 

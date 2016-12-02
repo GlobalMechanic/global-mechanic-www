@@ -9,10 +9,12 @@ import { variables } from 'styles'
 
 const Transition = addons ? addons.CSSTransitionGroup : null
 
-function HomeLink() {
-  return <Link to='/' onlyActiveOnIndex
-    id='home-link' className='left clickable'
-    activeClassName='active' >
+function HomeLink({_private}) {
+
+  const classes = classNames('left', 'clickable', {private: _private})
+
+  return <Link to='/' onlyActiveOnIndex id='home-link'
+    className={classes} activeClassName='active' >
       <div id='home-link-mask'>
         <Nut id='home-nut'/>
         <h1 id='home-link-title'>Global Mechanic</h1>
@@ -27,12 +29,12 @@ function PageLink({to, children}) {
     </Link>
 }
 
-function Links({inverse}) {
+function Links({inverse, _private}) {
 
-  const classes = classNames({inverse, padded: true})
+  const classes = classNames('padded', { inverse, private: _private })
 
   return <div id='links' className={classes}>
-    <HomeLink/>
+    <HomeLink />
     <PageLink to='/directors'>Directors</PageLink>
     <PageLink to='/work/featured_work'>Work</PageLink>
     <PageLink to='/about'>About</PageLink>
@@ -48,16 +50,16 @@ export default function Navigation({children, routes}) {
   const route = routes ? routes[routes.length - 1] : {}
 
   //Navigation should be styled inverse if the current route is
-  const { inverse, dark, transition } = route
+  const { inverse, dark, transition, _private } = route
 
   const path = route.path || 'home'
   const key = path.match(/(\w+)/)[1]
 
   return <div>
-    <Links inverse={inverse}/>
+    <Links inverse={inverse} _private={_private}/>
     { Transition ? <Transition
       component={Pages}
-      transitionName={transition || 'none'}
+      transitionName={transition || 'navigate'}
       transitionEnterTimeout={variables.animationTime.value}
       transitionLeaveTimeout={variables.animationTime.value}>
       {cloneElement(children, { key })}

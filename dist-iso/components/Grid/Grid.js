@@ -44,15 +44,19 @@ var _layout = require('./layout');
 
 var _layout2 = _interopRequireDefault(_layout);
 
+var _Block = require('./Block');
+
+var _Block2 = _interopRequireDefault(_Block);
+
 var _math = require('modules/math');
-
-var _isExplicit = require('is-explicit');
-
-var _isExplicit2 = _interopRequireDefault(_isExplicit);
 
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
+
+var _isExplicit = require('is-explicit');
+
+var _isExplicit2 = _interopRequireDefault(_isExplicit);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -64,7 +68,7 @@ var Grid = function (_Component) {
   (0, _inherits3.default)(Grid, _Component);
 
   function Grid() {
-    var _Object$getPrototypeO;
+    var _ref;
 
     var _temp, _this, _ret;
 
@@ -74,14 +78,12 @@ var Grid = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Grid)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Grid.__proto__ || (0, _getPrototypeOf2.default)(Grid)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       blocks: []
     }, _this.createNewCoords = function (item) {
-      var _this$props$sizeFunc = _this.props.sizeFunc(item);
-
-      var width = _this$props$sizeFunc.width;
-      var height = _this$props$sizeFunc.height;
-
+      var _this$props$sizeFunc = _this.props.sizeFunc(item),
+          width = _this$props$sizeFunc.width,
+          height = _this$props$sizeFunc.height;
 
       width = (0, _math.max)((0, _math.round)(width), 1);
       height = (0, _math.max)((0, _math.round)(height), 1);
@@ -96,16 +98,14 @@ var Grid = function (_Component) {
     }, _this.applyLayout = function (props, resize) {
       props = props || _this.props;
 
-      var _props = props;
-      var layout = _props.layout;
-      var items = _props.items;
-      var featured = _props.featured;
-      var _this2 = _this;
-      var ref = _this2.ref;
-      var state = _this2.state;
+      var _props = props,
+          layout = _props.layout,
+          items = _props.items;
+      var _this2 = _this,
+          ref = _this2.ref;
 
 
-      var needsUpdate = !featured || state.blocks.length === 0 || resize;
+      var needsUpdate = resize || _this.needsUpdate(items);
       var blocks = needsUpdate ? _this.createBlocksFromItems(items) : _this.state.blocks;
 
       layout.bounds = ref.getBoundingClientRect();
@@ -116,19 +116,14 @@ var Grid = function (_Component) {
       }
     }, _this.resize = function () {
       _this.applyLayout(_this.props, true);
-    }, _this.createCell = function (block, i) {
-      var coords = block.coords;
-      var item = block.item;
-      var _this$props = _this.props;
-      var layout = _this$props.layout;
-      var component = _this$props.component;
-      var getCellId = _this$props.getCellId;
-      var featured = _this$props.featured;
+    }, _this.createBlock = function (block, i) {
+      var coords = block.coords,
+          item = block.item;
+      var _this$props = _this.props,
+          layout = _this$props.layout,
+          component = _this$props.component;
       var dimension = layout.dimension;
 
-      var id = getCellId(block.item, i);
-      var isFeatured = featured && id === featured;
-      var hasFeatured = (0, _isExplicit2.default)(featured);
 
       var style = {
         left: coords.pos.x * dimension,
@@ -137,7 +132,7 @@ var Grid = function (_Component) {
         height: coords.dim.y * dimension
       };
 
-      return (0, _react.createElement)(component, { style: style, item: item, key: i, isFeatured: isFeatured, hasFeatured: hasFeatured });
+      return (0, _react.createElement)(component, { style: style, item: item, key: i });
     }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
 
@@ -146,7 +141,7 @@ var Grid = function (_Component) {
     value: function createBlocksFromItems() {
       var _this3 = this;
 
-      var items = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+      var items = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
       return items.map(function (item) {
         return {
@@ -154,6 +149,27 @@ var Grid = function (_Component) {
           coords: _this3.createNewCoords(item)
         };
       });
+    }
+  }, {
+    key: 'needsUpdate',
+    value: function needsUpdate(items) {
+      var blocks = this.state.blocks;
+
+
+      var allSmall = true;
+
+      blocks.forEach(function (block) {
+        if (block.coords.dim.x > 0 || block.coords.dim.y > 0) allSmall = false;
+      });
+
+      if (allSmall) return true;
+
+      var blockItems = blocks.map(function (block) {
+        return block.item;
+      });
+      for (var i = 0; i < items.length; i++) {
+        if (!blockItems.includes(items[i])) return true;
+      }return items.length === 0 || blocks.length === 0;
     }
   }, {
     key: 'spliceBlocks',
@@ -172,11 +188,11 @@ var Grid = function (_Component) {
       this.setState({ blocks: output });
     }
   }, {
-    key: 'createCells',
-    value: function createCells() {
+    key: 'createBlocks',
+    value: function createBlocks() {
       var blocks = this.state.blocks;
 
-      return blocks.map(this.createCell);
+      return blocks.map(this.createBlock);
     }
   }, {
     key: 'componentDidMount',
@@ -199,27 +215,22 @@ var Grid = function (_Component) {
     value: function render() {
       var _this4 = this;
 
-      var _props2 = this.props;
-      var layout = _props2.layout;
-      var className = _props2.className;
-      var featured = _props2.featured;
-      var autoBounds = _props2.autoBounds;
-      var other = (0, _objectWithoutProperties3.default)(_props2, ['layout', 'className', 'featured', 'autoBounds']);
-      var cells = layout.cells;
-      var dimension = layout.dimension;
+      var _props2 = this.props,
+          layout = _props2.layout,
+          className = _props2.className,
+          clip = _props2.clip,
+          other = (0, _objectWithoutProperties3.default)(_props2, ['layout', 'className', 'clip']);
+      var blocks = layout.blocks,
+          dimension = layout.dimension;
 
 
       var style = other.style;
-      if (autoBounds && cells && dimension && !featured) {
+      if (clip && blocks && dimension) {
         style = style || {};
-        style.height = cells.max.y * dimension;
+        style.height = blocks.max.y * dimension;
       }
 
-      if (style) delete style.left;
-
-      var classes = (0, _classnames2.default)('grid', {
-        'grid-featured': (0, _isExplicit2.default)(featured)
-      }, className);
+      var classes = (0, _classnames2.default)('grid', className);
 
       delete other.component;
       delete other.items;
@@ -227,15 +238,14 @@ var Grid = function (_Component) {
       delete other.getCellId;
       delete other.sizeFunc;
       delete other.style;
-      delete other.featured;
       delete other.className;
 
       return _react2.default.createElement(
         'div',
-        (0, _extends3.default)({ className: classes, style: style, ref: function ref(_ref) {
-            return _this4.ref = _ref;
+        (0, _extends3.default)({ className: classes, style: style, ref: function ref(_ref2) {
+            return _this4.ref = _ref2;
           } }, other),
-        this.createCells()
+        this.createBlocks()
       );
     }
   }]);
@@ -246,18 +256,15 @@ Grid.propTypes = {
   component: _react.PropTypes.func.isRequired,
   items: _react.PropTypes.arrayOf(Object).isRequired,
   layout: _react.PropTypes.instanceOf(_layout2.default).isRequired,
-  getCellId: _react.PropTypes.func.isRequired,
   sizeFunc: _react.PropTypes.func,
-  autoBounds: _react.PropTypes.bool
+  clip: _react.PropTypes.bool
 };
 Grid.defaultProps = {
+  component: _Block2.default,
   layout: new _layout2.default(),
-  autoBounds: true,
-  getCellId: function getCellId(block, i) {
-    return i;
-  },
+  clip: true,
   sizeFunc: function sizeFunc() {
-    var width = 3 + (0, _math.random)() * 5;
+    var width = 4 + (0, _math.random)() * 5;
     var height = width - 1;
 
     return { width: width, height: height };

@@ -4,11 +4,11 @@ import { Home, About, Work, Directors } from 'pages'
 import { Navigation } from 'components'
 
 export default <Route path='/' component={Navigation}>
-    <IndexRoute transition='navigate' component={Home}/>
-    <Route path='/directors(/:director)(/:video)' transition='navigate' inverse component={Directors} />
-    <Route path='/work/:portfolio(/:video)' transition='navigate' inverse component={Work} />
-    {/* <Route path='/private/portfolio/:portfolio' inverse component={Work}>
-      <Route path='/private/portfolio/:portfolio/:video' inverse component={Video} />
-    </Route> */}
-    <Route path='/about(/:staff)' transition='navigate' dark component={About} />
+    <IndexRoute component={Home}/>
+    <Route path='/directors(/:director)(/:product)' inverse component={Directors} />
+
+    <Route path='/work/:showcase(/:product)' inverse component={Work} />
+    <Route path='/private/portfolio/:showcase(/:product)' inverse dark _private component={Work} />
+
+    <Route path='/about(/:person)' dark component={About} />
   </Route>

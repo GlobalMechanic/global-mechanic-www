@@ -33,10 +33,10 @@ var LAYOUT_LOOP_BREAK = (0, _symbol2.default)('layout-loop-break');
 
 var Coords = exports.Coords = function () {
   function Coords() {
-    var x = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
-    var y = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
-    var w = arguments.length <= 2 || arguments[2] === undefined ? 1 : arguments[2];
-    var h = arguments.length <= 3 || arguments[3] === undefined ? 1 : arguments[3];
+    var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    var w = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+    var h = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
     (0, _classCallCheck3.default)(this, Coords);
 
     this.pos = new _math.Vector(x, y);
@@ -61,18 +61,18 @@ var Coords = exports.Coords = function () {
   return Coords;
 }();
 
-var Cells = function () {
-  function Cells() {
-    var limitX = arguments.length <= 0 || arguments[0] === undefined ? Infinity : arguments[0];
-    var limitY = arguments.length <= 1 || arguments[1] === undefined ? Infinity : arguments[1];
-    (0, _classCallCheck3.default)(this, Cells);
+var Blocks = function () {
+  function Blocks() {
+    var limitX = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Infinity;
+    var limitY = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : Infinity;
+    (0, _classCallCheck3.default)(this, Blocks);
 
     this.limits = new _math.Vector(limitX, limitY);
     this.max = _math.Vector.zero;
     this.filled = new _map2.default();
   }
 
-  (0, _createClass3.default)(Cells, [{
+  (0, _createClass3.default)(Blocks, [{
     key: 'tryFill',
     value: function tryFill(block) {
       var _this = this;
@@ -110,9 +110,9 @@ var Cells = function () {
     key: 'getFreeArea',
     value: function getFreeArea() {
       var area = null;
-      var filled = this.filled;
-      var limits = this.limits;
-      var max = this.max;
+      var filled = this.filled,
+          limits = this.limits,
+          max = this.max;
 
       //find start pos
 
@@ -153,21 +153,19 @@ var Cells = function () {
       return area;
     }
   }]);
-  return Cells;
+  return Blocks;
 }();
 
 var Layout = function () {
   function Layout() {
-    var dimension = arguments.length <= 0 || arguments[0] === undefined ? 40 : arguments[0];
-    var fill = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
-    var autoBounds = arguments.length <= 2 || arguments[2] === undefined ? true : arguments[2];
+    var dimension = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 40;
+    var fill = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
     (0, _classCallCheck3.default)(this, Layout);
 
     _initialiseProps.call(this);
 
     this.dimension = dimension;
     this.fill = fill;
-    this.autoBounds = autoBounds;
   }
 
   (0, _createClass3.default)(Layout, [{
@@ -175,16 +173,16 @@ var Layout = function () {
     value: function apply(blocks) {
       var _this2 = this;
 
-      this.cells = new Cells(this.floorAxis(this.bounds ? this.bounds.width : Infinity));
+      this.blocks = new Blocks(this.ceilAxis(this.bounds ? this.bounds.width : Infinity));
 
       var unplaced = blocks.slice();
 
       //ensure no block is too big
       blocks.forEach(function (block) {
         var coords = block.coords;
-        if (coords.dim.x > _this2.cells.limits.x) {
+        if (coords.dim.x > _this2.blocks.limits.x) {
           var oldX = coords.dim.x;
-          coords.dim.x = _this2.cells.limits.x;
+          coords.dim.x = _this2.blocks.limits.x;
           coords.dim.y = (0, _math.round)(coords.dim.y * (coords.dim.x / oldX));
         }
       });
@@ -193,16 +191,16 @@ var Layout = function () {
         this.place(unplaced);
       }if (!this.fill) return;
 
-      var freeArea = this.cells.getFreeArea();
-      while (freeArea.pos.x > 0 || freeArea.pos.y < this.cells.max.y) {
+      var freeArea = this.blocks.getFreeArea();
+      while (freeArea.pos.x > 0 || freeArea.pos.y < this.blocks.max.y) {
         this.resizeAdjacent(freeArea);
-        freeArea = this.cells.getFreeArea();
+        freeArea = this.blocks.getFreeArea();
       }
     }
   }, {
     key: 'place',
     value: function place(unplaced) {
-      var freeArea = this.cells.getFreeArea();
+      var freeArea = this.blocks.getFreeArea();
 
       var bestBlock = this.pluckAnyFit(unplaced, freeArea);
       if (!bestBlock) return this.resizeAdjacent(freeArea);
@@ -219,7 +217,7 @@ var Layout = function () {
       coords.pos.x = freeArea.pos.x;
       coords.pos.y = freeArea.pos.y;
 
-      var success = this.cells.tryFill(bestBlock);
+      var success = this.blocks.tryFill(bestBlock);
       if (!success) console.warn(bestBlock, ' could not be placed');
     }
   }, {
@@ -228,19 +226,19 @@ var Layout = function () {
       var success = false;
 
       var upPos = freeArea.pos.sub({ x: 0, y: 1 });
-      var upBlock = this.cells.filled.get(upPos.toString());
+      var upBlock = this.blocks.filled.get(upPos.toString());
       if (upBlock) {
         var y = freeArea.dim.y === Infinity ? 1 : freeArea.dim.y;
         upBlock.coords.dim.y += y;
-        success = this.cells.tryFill(upBlock);
+        success = this.blocks.tryFill(upBlock);
         if (!success) upBlock.coords.dim.y -= y;
       }
 
       var leftPos = freeArea.pos.sub({ x: 1, y: 0 });
-      var leftBlock = this.cells.filled.get(leftPos.toString());
+      var leftBlock = this.blocks.filled.get(leftPos.toString());
       if (leftBlock && !success) {
         leftBlock.coords.dim.x += freeArea.dim.x;
-        success = this.cells.tryFill(leftBlock);
+        success = this.blocks.tryFill(leftBlock);
         if (!success) leftBlock.coords.dim.x -= freeArea.dim.x;
       }
 
@@ -274,13 +272,13 @@ var Layout = function () {
 var _initialiseProps = function _initialiseProps() {
   var _this3 = this;
 
-  this.floorAxis = function (axis) {
+  this.ceilAxis = function (axis) {
 
     if (!(0, _isExplicit2.default)(axis, Number)) return 1;
 
     var dimension = _this3.dimension;
 
-    return (0, _math.max)((0, _math.floor)(axis / dimension), 1);
+    return (0, _math.max)((0, _math.ceil)(axis / dimension), 1);
   };
 };
 

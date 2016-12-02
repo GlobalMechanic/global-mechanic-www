@@ -1,33 +1,12 @@
 import React, { Component } from 'react'
 import Page from './Page'
-import { Collection } from '../components'
-import { Grid, Layout } from '../components/Grid'
-import { browserHistory } from 'react-router'
-import { urlify } from 'modules/helper'
-import Profile, { getFullName } from '../components/Profile'
 
+import { People } from 'components'
+import { navigate } from 'modules/helper'
 import classNames from 'classnames'
 
-function AboutProfile(props) {
-  return <Profile
-    getImage={item => item.staffData.portrait}
-    getWriteup={item => item.staffData.essay}
-    path='about/'
-    {...props}/>
-}
-
-function Staff({featured, documents}) {
-
-  const layout = new Layout(50, true)
-
-  return <Grid id='staff-wall' component={AboutProfile} items={documents}
-    getCellId={item => urlify(getFullName(item))} featured={featured}
-    layout={layout} sizeFunc={() => Object({ width: 5, height: 4 })} />
-
-}
-
 function Writeup() {
-  return <div id='about-writeup' className='padded'>
+  return <div id='about-writeup' className='padded transition-slide-up'>
 
     <h1>Global Mechanic is a design studio.</h1>
 
@@ -50,8 +29,6 @@ function Writeup() {
     Canada (NFB), our theatre and installation work and, of course, constant experimentation
     for the fun of it.</p>
 
-    <div className='about-writeup-push'/>
-
   </div>
 }
 
@@ -60,18 +37,17 @@ function KeyStaffButton({featured}) {
     clickable: featured
   })
 
-  const click = featured ? () => browserHistory.push('/about') : null
+  const click = featured ? () => navigate('/about') : null
 
-  return <h1 className={classes} onClick={click}>Key Staff</h1>
+  return <h1 id='key-staff-button' className={classes} onClick={click}>Key Staff</h1>
 }
 
-function Block({featured, children}) {
-  return <div id='about-block' className='inverse padded'>
+function StaffBlock({featured}) {
+  return <div id='about-block' className='inverse padded transition-slide-down'>
 
     <KeyStaffButton featured={featured}/>
-    <br/>
 
-    { children ? children : <Collection service='people' featured={featured} component={Staff}/> }
+    <People featured={featured} path='/about' director={false} />
 
     <h2>USA | Liz Laine Reps +1 312 329 1111</h2>
     <h2>Canada | Hestyreps +1 416 482 0411</h2>
@@ -101,7 +77,7 @@ export default class About extends Component {
   }
 
   componentWillReceiveProps() {
-    this.setBounds()
+    // this.setBounds()
   }
 
   setBounds = () => {
@@ -120,8 +96,7 @@ export default class About extends Component {
 
     const { children, ...other } = this.props
     const { height } = this.state
-
-    const { staff } = this.props.params
+    const { person } = this.props.params
 
     const style = height ? {
       minHeight: height
@@ -131,7 +106,7 @@ export default class About extends Component {
 
       <Writeup/>
 
-      <Block featured={staff}>{children}</Block>
+      <StaffBlock featured={person}>{children}</StaffBlock>
 
     </Page>
   }

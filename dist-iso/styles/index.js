@@ -17,6 +17,10 @@ var variables = {
 
 };
 
+variables.linksHeight = {
+  value: variables.padding.value * 2 + 0.8, units: 'rem'
+};
+
 var colors = {
   textColor: '#fff',
   textColorHover: '#aaa',

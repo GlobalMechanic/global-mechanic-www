@@ -4,10 +4,10 @@
   "public": "../dist-client/",
   "gears": {
     "auth": {
-      "email": "studio@globalmechanic.com",
-      "password": "L0bst3r!"
+      "email": "ben@globalmechanic.com",
+      "password": "TryHardMod3!"
     },
-    "host": "http://localhost:4100"
+    "host": "http://gears.local"
   },
   "auth": {
     "idField": "id",

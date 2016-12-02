@@ -4,13 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends2 = require('babel-runtime/helpers/extends');
+var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
 
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
 var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
 
@@ -32,15 +28,19 @@ var _inherits2 = require('babel-runtime/helpers/inherits');
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
 var _Grid = require('./Grid');
-
-var _Grid2 = _interopRequireDefault(_Grid);
-
-var _reactRouter = require('react-router');
 
 var _data = require('modules/data');
 
@@ -50,9 +50,9 @@ var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _styles = require('styles');
 
-/* global HOST */
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Vimeo(_ref) {
   var vimeoId = _ref.vimeoId;
@@ -67,13 +67,13 @@ function Vimeo(_ref) {
 }
 
 function ProductFeature(_ref2, _ref3) {
-  var items = _ref2.items;
-  var featured = _ref2.featured;
+  var items = _ref2.items,
+      featured = _ref2.featured;
   var path = _ref3.path;
 
 
   var back = function back() {
-    return _reactRouter.browserHistory.push(path);
+    return (0, _helper.navigate)(path);
   };
   var hasFeature = !!featured;
 
@@ -114,31 +114,22 @@ ProductFeature.contextTypes = {
   path: _react.PropTypes.string.isRequired
 };
 
-function ProductCell(_ref4, _ref5) {
-  var isFeatured = _ref4.isFeatured;
-  var hasFeatured = _ref4.hasFeatured;
-  var style = _ref4.style;
-  var item = _ref4.item;
+function ProductBlock(_ref4, _ref5) {
   var path = _ref5.path;
+  var item = _ref4.item,
+      other = (0, _objectWithoutProperties3.default)(_ref4, ['item']);
 
 
-  var forward = function forward() {
-    var id = (0, _helper.urlify)(item.name);
-    var to = (path + '/' + id).replace(/\/\//g, '/');
+  var imageId = item ? item.portrait : null;
 
-    _reactRouter.browserHistory.push(to);
+  var id = (0, _helper.urlify)(item.name);
+  var onClick = function onClick() {
+    return (0, _helper.navigate)(path + '/' + id);
   };
 
-  style.backgroundImage = 'url(' + HOST + '/assets/file/' + item.portrait + ')';
-  style.height = isFeatured ? 0 : style.height;
-
-  var classes = (0, _classnames2.default)('product-cell', {
-    'product-cell-disabled': hasFeatured
-  });
-
-  return _react2.default.createElement('div', { style: style, className: classes, onClick: forward });
+  return _react2.default.createElement(_Grid.Block, (0, _extends3.default)({ imageId: imageId, onClick: onClick }, other));
 }
-ProductCell.contextTypes = {
+ProductBlock.contextTypes = {
   path: _react.PropTypes.string.isRequired
 };
 
@@ -146,7 +137,7 @@ var Showcase = function (_React$Component) {
   (0, _inherits3.default)(Showcase, _React$Component);
 
   function Showcase() {
-    var _Object$getPrototypeO;
+    var _ref6;
 
     var _temp, _this, _ret;
 
@@ -156,22 +147,31 @@ var Showcase = function (_React$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Showcase)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref6 = Showcase.__proto__ || (0, _getPrototypeOf2.default)(Showcase)).call.apply(_ref6, [this].concat(args))), _this), _this.state = {
       showcases: [],
       products: []
     }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
 
   (0, _createClass3.default)(Showcase, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
+    key: 'loadAfterTransition',
+    value: function loadAfterTransition(service, items) {
       var _this2 = this;
 
+      setTimeout(function () {
+        return _this2.setState((0, _defineProperty3.default)({}, service, items));
+      }, _styles.variables.animationTime.value);
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this3 = this;
+
       _data.products.then(function (res) {
-        return _this2.setState({ products: res });
+        return _this3.loadAfterTransition('products', res);
       });
       _data.showcases.then(function (res) {
-        return _this2.setState({ showcases: res });
+        return _this3.loadAfterTransition('showcases', res);
       });
     }
   }, {
@@ -186,13 +186,16 @@ var Showcase = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _props = this.props;
-      var featuredShowcase = _props.featuredShowcase;
-      var featuredProduct = _props.featuredProduct;
-      var other = (0, _objectWithoutProperties3.default)(_props, ['featuredShowcase', 'featuredProduct']);
-      var _state = this.state;
-      var showcases = _state.showcases;
-      var products = _state.products;
+      var _this4 = this;
+
+      var _props = this.props,
+          featuredShowcase = _props.featuredShowcase,
+          featuredProduct = _props.featuredProduct,
+          className = _props.className,
+          other = (0, _objectWithoutProperties3.default)(_props, ['featuredShowcase', 'featuredProduct', 'className']);
+      var _state = this.state,
+          showcases = _state.showcases,
+          products = _state.products;
 
 
       var showcase = showcases.filter(function (show) {
@@ -204,14 +207,15 @@ var Showcase = function (_React$Component) {
 
       delete other.path;
 
+      var classes = (0, _classnames2.default)('showcase', className);
+
       return _react2.default.createElement(
         'div',
-        null,
+        { className: classes, ref: function ref(_ref7) {
+            return _this4.ref = _ref7;
+          } },
         _react2.default.createElement(ProductFeature, { items: items, featured: featuredProduct }),
-        _react2.default.createElement(_Grid2.default, (0, _extends3.default)({ items: items, component: ProductCell, getCellId: function getCellId(item) {
-            return (0, _helper.urlify)(item.name);
-          },
-          className: 'showcase' }, other, { featured: featuredProduct }))
+        _react2.default.createElement(_Grid.Grid, (0, _extends3.default)({ items: items, component: ProductBlock }, other))
       );
     }
   }]);

@@ -106,9 +106,10 @@ function ensureFile(id) {
     .then(function (res) {
       if (res === ALREADY_EXISTS) return;
 
+      if (res.status !== 200) throw new Error(res.body);
+
       var type = res.headers._headers['content-type'][0];
       var ext = type.substr(type.indexOf('/') + 1);
-
       var write = _fsPromise2.default.createWriteStream(_path3.default.join(fileStorage, id + '.' + ext));
 
       return new _promise2.default(function (resolve, reject) {
@@ -116,9 +117,9 @@ function ensureFile(id) {
         res.body.on('end', resolve);
         res.body.on('error', reject);
       });
+    }).catch(function (err) {
+      return log.error('Error fetching file ' + id, err);
     });
-  }).catch(function (err) {
-    return log.error('Error fetching file ' + id, err);
   });
 }
 
