@@ -15,7 +15,8 @@ import is from 'is-explicit'
 export default class Grid extends Component {
 
   state = {
-    blocks: []
+    blocks: [],
+    gridHeight: null
   }
 
   static propTypes = {
@@ -38,14 +39,18 @@ export default class Grid extends Component {
     }
   }
 
-  createNewCoords = item => {
+  getCoords = (block, item)=> {
+
+    if (block && block.coords)
+      return block.coords
 
     let { width, height } = this.props.sizeFunc(item)
+    let x = 0, y = 0
 
     width = max(round(width), 1)
     height = max(round(height), 1)
 
-    return new Layout.Coords(0,0,width, height)
+    return new Layout.Coords(x, y, width, height)
 
   }
 
@@ -53,15 +58,18 @@ export default class Grid extends Component {
     if (is(this.layoutTimer))
       clearTimeout(this.layoutTimer)
 
-    this.layoutTimer = setTimeout(() => this.applyLayout(props), 100)
+    this.layoutTimer = setTimeout(() => this.applyLayout(props), 10)
   }
 
   createBlocksFromItems(items = []) {
+
+    const blocks = this.state.blocks
+
     return items
-      .map(item => {
+      .map((item, i)=> {
         return {
           item,
-          coords: this.createNewCoords(item)
+          coords: this.getCoords(blocks[i], item)
         }
       })
   }
@@ -100,17 +108,16 @@ export default class Grid extends Component {
 
     layout.bounds = ref.getBoundingClientRect()
 
-    if (needsUpdate) {
-      layout.apply(blocks)
-      this.spliceBlocks(blocks)
-    }
+    if (needsUpdate)
+      layout.apply(blocks, this.setBlocks)
+      .then(this.spliceBlocks)
   }
 
-  resize = () => {
-    this.applyLayout(this.props, true)
+  setBlocks = (blocks, gridHeight) => {
+    this.setState({blocks, gridHeight})
   }
 
-  spliceBlocks(input) {
+  spliceBlocks = input => {
     let output = this.state.blocks
 
     if (input.length < output.length) {
@@ -121,6 +128,10 @@ export default class Grid extends Component {
       output = input
 
     this.setState({ blocks: output })
+  }
+
+  resize = () => {
+    this.applyLayout(this.props, true)
   }
 
   createBlocks() {
@@ -159,13 +170,15 @@ export default class Grid extends Component {
 
   render() {
 
-    const { layout, className, clip, ...other } = this.props
-    const { blocks, dimension } = layout
+    const { className, clip, ...other } = this.props
+    const { gridHeight } = this.state
+
+    this.gridHeight = is(gridHeight, Number) ? gridHeight : this.gridHeight
 
     let style = other.style
-    if (clip && blocks && dimension) {
+    if (clip) {
       style = style || {}
-      style.height = blocks.max.y * dimension
+      style.height = this.gridHeight
     }
 
     const classes = classNames('grid', className)

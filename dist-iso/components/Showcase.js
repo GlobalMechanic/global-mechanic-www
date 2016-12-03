@@ -61,7 +61,7 @@ function Vimeo(_ref) {
   return _react2.default.createElement(
     'div',
     { className: 'product-video' },
-    vimeoId ? _react2.default.createElement('iframe', { src: '//player.vimeo.com/video/' + vimeoId + '?badge=0&title=0&portrait=0&byline=0&embed=0',
+    vimeoId ? _react2.default.createElement('iframe', { src: '//player.vimeo.com/video/' + vimeoId + '?badge=0&title=0&portrait=0&byline=0&embed=0&autoplay=0',
       frameBorder: false }) : null
   );
 }
@@ -86,7 +86,7 @@ function ProductFeature(_ref2, _ref3) {
   })[0] : null;
 
   var video = item ? item.video : {};
-  var description = (item && item.description ? item.description : '').trim();
+  // const description = (item && item.description ? item.description : '').trim()
   var name = (item && item.name ? item.name : '').trim();
 
   return _react2.default.createElement(
@@ -101,11 +101,6 @@ function ProductFeature(_ref2, _ref3) {
         'h2',
         { className: 'product-title' },
         name
-      ) : null,
-      description ? _react2.default.createElement(
-        'p',
-        { className: 'product-description' },
-        description
       ) : null
     )
   );

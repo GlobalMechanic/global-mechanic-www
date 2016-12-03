@@ -53,7 +53,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Writeup() {
   return _react2.default.createElement(
     'div',
-    { id: 'about-writeup', className: 'padded transition-slide-up' },
+    { id: 'about-writeup', className: 'padded transition-fade' },
     _react2.default.createElement(
       'h1',
       null,
@@ -144,8 +144,8 @@ function StaffBlock(_ref2) {
       null,
       'studio@globalmechanic.com'
     ),
-    _react2.default.createElement('a', { id: 'twitter', href: 'https://www.twitter.com' }),
-    _react2.default.createElement('a', { id: 'facebook', href: 'https://www.facebook.com' })
+    _react2.default.createElement('a', { id: 'twitter', href: 'https://www.twitter.com/globalmechanic' }),
+    _react2.default.createElement('a', { id: 'facebook', href: 'https://www.facebook.com/globalmechanicmedia' })
   );
 }
 
@@ -182,11 +182,6 @@ var About = function (_Component) {
     value: function componentDidMount() {
       addEvent('resize', window, this.setBounds);
       this.setBounds();
-    }
-  }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps() {
-      // this.setBounds()
     }
   }, {
     key: 'render',

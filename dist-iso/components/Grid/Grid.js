@@ -79,22 +79,29 @@ var Grid = function (_Component) {
     }
 
     return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Grid.__proto__ || (0, _getPrototypeOf2.default)(Grid)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      blocks: []
-    }, _this.createNewCoords = function (item) {
+      blocks: [],
+      gridHeight: null
+    }, _this.getCoords = function (block, item) {
+
+      if (block && block.coords) return block.coords;
+
       var _this$props$sizeFunc = _this.props.sizeFunc(item),
           width = _this$props$sizeFunc.width,
           height = _this$props$sizeFunc.height;
 
+      var x = 0,
+          y = 0;
+
       width = (0, _math.max)((0, _math.round)(width), 1);
       height = (0, _math.max)((0, _math.round)(height), 1);
 
-      return new _layout2.default.Coords(0, 0, width, height);
+      return new _layout2.default.Coords(x, y, width, height);
     }, _this.applyLayoutTimeout = function (props) {
       if ((0, _isExplicit2.default)(_this.layoutTimer)) clearTimeout(_this.layoutTimer);
 
       _this.layoutTimer = setTimeout(function () {
         return _this.applyLayout(props);
-      }, 100);
+      }, 10);
     }, _this.applyLayout = function (props, resize) {
       props = props || _this.props;
 
@@ -110,10 +117,22 @@ var Grid = function (_Component) {
 
       layout.bounds = ref.getBoundingClientRect();
 
-      if (needsUpdate) {
-        layout.apply(blocks);
-        _this.spliceBlocks(blocks);
-      }
+      if (needsUpdate) layout.apply(blocks, _this.setBlocks).then(_this.spliceBlocks);
+    }, _this.setBlocks = function (blocks, gridHeight) {
+      _this.setState({ blocks: blocks, gridHeight: gridHeight });
+    }, _this.spliceBlocks = function (input) {
+      var output = _this.state.blocks;
+
+      if (input.length < output.length) {
+        var _output;
+
+        (_output = output).splice.apply(_output, [0, input.length].concat((0, _toConsumableArray3.default)(input)));
+        for (var i = input.length; i < output.length; i++) {
+          output[i].coords.dim = _math.Vector.zero;
+        }
+      } else output = input;
+
+      _this.setState({ blocks: output });
     }, _this.resize = function () {
       _this.applyLayout(_this.props, true);
     }, _this.createBlock = function (block, i) {
@@ -143,10 +162,13 @@ var Grid = function (_Component) {
 
       var items = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
-      return items.map(function (item) {
+
+      var blocks = this.state.blocks;
+
+      return items.map(function (item, i) {
         return {
           item: item,
-          coords: _this3.createNewCoords(item)
+          coords: _this3.getCoords(blocks[i], item)
         };
       });
     }
@@ -170,22 +192,6 @@ var Grid = function (_Component) {
       for (var i = 0; i < items.length; i++) {
         if (!blockItems.includes(items[i])) return true;
       }return items.length === 0 || blocks.length === 0;
-    }
-  }, {
-    key: 'spliceBlocks',
-    value: function spliceBlocks(input) {
-      var output = this.state.blocks;
-
-      if (input.length < output.length) {
-        var _output;
-
-        (_output = output).splice.apply(_output, [0, input.length].concat((0, _toConsumableArray3.default)(input)));
-        for (var i = input.length; i < output.length; i++) {
-          output[i].coords.dim = _math.Vector.zero;
-        }
-      } else output = input;
-
-      this.setState({ blocks: output });
     }
   }, {
     key: 'createBlocks',
@@ -216,18 +222,18 @@ var Grid = function (_Component) {
       var _this4 = this;
 
       var _props2 = this.props,
-          layout = _props2.layout,
           className = _props2.className,
           clip = _props2.clip,
-          other = (0, _objectWithoutProperties3.default)(_props2, ['layout', 'className', 'clip']);
-      var blocks = layout.blocks,
-          dimension = layout.dimension;
+          other = (0, _objectWithoutProperties3.default)(_props2, ['className', 'clip']);
+      var gridHeight = this.state.gridHeight;
 
+
+      this.gridHeight = (0, _isExplicit2.default)(gridHeight, Number) ? gridHeight : this.gridHeight;
 
       var style = other.style;
-      if (clip && blocks && dimension) {
+      if (clip) {
         style = style || {};
-        style.height = blocks.max.y * dimension;
+        style.height = this.gridHeight;
       }
 
       var classes = (0, _classnames2.default)('grid', className);

@@ -5,7 +5,6 @@ $scaled-up: scale(1.2, 1.2);
 
 .dropdown-container {
   background-color: $bg-color-inverted;
-  transition: transform $animation-time;
   padding-top: $links-clearance;
   margin-top: -$padding * 1.25;
   z-index: 100;

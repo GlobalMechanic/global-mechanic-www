@@ -91,7 +91,7 @@ export default class Dropdown extends Component {
       'dropdown-open': this.state.open
     })
 
-    return <div className='dropdown-container transition-slide-up'>
+    return <div className='dropdown-container transition-fade'>
       <div className={classes}>
         <Title items={items} onClick={this.toggle}>{title}</Title>
         <List items={items} selected={selected} select={this.select}/>

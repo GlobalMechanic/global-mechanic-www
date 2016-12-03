@@ -47,7 +47,7 @@ $large-video-width: $video-width * 1.5;
 
   .product-detail {
 
-    position: absolute;
+    position: fixed;
     display: inline-block;
     pointer-events: none;
 

@@ -154,7 +154,7 @@ var Dropdown = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'dropdown-container transition-slide-up' },
+        { className: 'dropdown-container transition-fade' },
         _react2.default.createElement(
           'div',
           { className: classes },

@@ -9,6 +9,7 @@ export class Coords {
   constructor(x=0, y=0, w=1, h=1) {
     this.pos = new Vector(x,y)
     this.dim = new Vector(w,h)
+    this.originalDim = this.dim.copy()
   }
 
   forEach(func) {
@@ -24,7 +25,7 @@ export class Coords {
 
 }
 
-class Blocks {
+class Cells {
 
   constructor(limitX = Infinity, limitY = Infinity) {
     this.limits = new Vector(limitX, limitY)
@@ -110,49 +111,51 @@ class Blocks {
 
 export default class Layout {
 
-  constructor(dimension = 40, fill = false) {
+  constructor(dimension = 40, fill = false, delay = 0) {
     this.dimension = dimension
     this.fill = fill
+    this.delay = delay
   }
 
-  apply(blocks) {
-    this.blocks = new Blocks(this.ceilAxis(this.bounds ? this.bounds.width : Infinity))
+  apply(blocks, onPlace = () => {}) {
 
-    const unplaced = blocks.slice()
+    return new Promise(resolve => {
 
-    //ensure no block is too big
-    blocks.forEach(block => {
-      const coords = block.coords
-      if (coords.dim.x > this.blocks.limits.x) {
-        const oldX = coords.dim.x
-        coords.dim.x = this.blocks.limits.x
-        coords.dim.y = round(coords.dim.y * (coords.dim.x / oldX))
-      }
+      this.applying = true
+      this.cells = new Cells(this.ceilAxis(this.bounds ? this.bounds.width : Infinity))
+      const unplaced = blocks.slice()
+
+      //ensure no block is too big
+      blocks.forEach(block => {
+        const { coords } = block
+        if (coords.dim.x > this.cells.limits.x) {
+          const oldX = coords.dim.x
+          coords.dim.x = this.cells.limits.x
+          coords.dim.y = round(coords.dim.y * (coords.dim.x / oldX))
+        }
+      })
+
+      if (this.delay > 0)
+        return this.placeDelay(unplaced, blocks, resolve, onPlace)
+
+
+      while (unplaced.length > 0)
+        this.place(unplaced, blocks, onPlace)
+
+      this.placeFinish(blocks, onPlace, resolve)
+
     })
 
-    while (unplaced.length > 0)
-      this.place(unplaced)
-
-
-    if (!this.fill)
-      return
-
-    let freeArea = this.blocks.getFreeArea()
-    while (freeArea.pos.x > 0 || freeArea.pos.y < this.blocks.max.y) {
-      this.resizeAdjacent(freeArea)
-      freeArea = this.blocks.getFreeArea()
-    }
-
   }
 
-  place(unplaced) {
-    const freeArea = this.blocks.getFreeArea()
+  place(unplaced, blocks, onPlace) {
+    const freeArea = this.cells.getFreeArea()
 
-    const bestBlock = this.pluckAnyFit(unplaced, freeArea)
-    if (!bestBlock)
+    const block = this.pluckClosestFit(unplaced, freeArea)
+    if (!block)
       return this.resizeAdjacent(freeArea)
 
-    const coords = bestBlock.coords
+    const coords = block.coords
     if (coords.dim.x > freeArea.dim.x) {
       const oldX = coords.dim.x
       coords.dim.x = freeArea.dim.x
@@ -165,30 +168,66 @@ export default class Layout {
     coords.pos.x = freeArea.pos.x
     coords.pos.y = freeArea.pos.y
 
-    const success = this.blocks.tryFill(bestBlock)
+    const success = this.cells.tryFill(block)
     if (!success)
-      console.warn(bestBlock, ' could not be placed')
+      console.warn(block, ' could not be placed')
 
+    onPlace(blocks)
+  }
+
+
+  placeDelay(unplaced, blocks, resolve, onPlace) {
+    const done = unplaced.length === 0
+    if (done)
+      return this.placeFinish(blocks, onPlace, resolve)
+
+
+    if (this.timeout) {
+      clearTimeout(this.timeout)
+      this.timeout = null
+    }
+
+    this.timeout = setTimeout(() => {
+      this.place(unplaced, blocks, onPlace)
+      this.placeNext(unplaced, blocks, resolve, onPlace)
+    }, this.delay)
+
+  }
+
+  placeFinish(blocks, onPlace, resolve) {
+    if (this.fill)
+      this.fillIn()
+
+    onPlace(blocks, this.cells.max.y * this.dimension)
+    return resolve(blocks)
+  }
+
+  fillIn() {
+    let freeArea = this.cells.getFreeArea()
+    while (freeArea.pos.x > 0 || freeArea.pos.y < this.cells.max.y) {
+      this.resizeAdjacent(freeArea)
+      freeArea = this.cells.getFreeArea()
+    }
   }
 
   resizeAdjacent(freeArea) {
     let success = false
 
     const upPos = freeArea.pos.sub({x:0, y:1})
-    const upBlock = this.blocks.filled.get(upPos.toString())
+    const upBlock = this.cells.filled.get(upPos.toString())
     if (upBlock) {
       const y = freeArea.dim.y === Infinity ? 1 : freeArea.dim.y
       upBlock.coords.dim.y += y
-      success = this.blocks.tryFill(upBlock)
+      success = this.cells.tryFill(upBlock)
       if (!success)
         upBlock.coords.dim.y -= y
     }
 
     const leftPos = freeArea.pos.sub({x:1, y: 0})
-    const leftBlock = this.blocks.filled.get(leftPos.toString())
+    const leftBlock = this.cells.filled.get(leftPos.toString())
     if (leftBlock && !success) {
       leftBlock.coords.dim.x += freeArea.dim.x
-      success = this.blocks.tryFill(leftBlock)
+      success = this.cells.tryFill(leftBlock)
       if (!success)
         leftBlock.coords.dim.x -= freeArea.dim.x
     }
@@ -199,19 +238,32 @@ export default class Layout {
     return success
   }
 
-  pluckAnyFit(blocks, freeArea) {
+  pluckClosestFit(blocks, freeArea) {
 
     const onlyX = freeArea.dim.y === Infinity
+    let sqrDist = null, index = 0
 
     for (let i = 0; i < blocks.length; i++) {
       const { coords } = blocks[i]
 
-      const diffX = freeArea.dim.x - coords.dim.x
-      const diffY = onlyX ? 0 : freeArea.dim.y - coords.dim.y
+      const diffX = freeArea.dim.x - coords.originalDim.x
+      const diffY = onlyX ? 0 : freeArea.dim.y - coords.originalDim.y
 
-      //stop immediatly if any match
-      if (diffX >= 0 && diffY >= 0)
-        return blocks.splice(i, 1)[0]
+      //continue if no match
+      if (diffX < 0 || diffY < 0)
+        continue
+
+      const currSqrDist = freeArea.pos.sub(coords.pos).sqrMagnitude
+
+      if (sqrDist == null || currSqrDist < sqrDist) {
+        sqrDist = currSqrDist
+        index = i
+      }
+    }
+
+    if (sqrDist != null) {
+      blocks[index].coords.dim = blocks[index].coords.originalDim.copy()
+      return blocks.splice(index, 1)[0]
     }
 
     return null

@@ -6,7 +6,7 @@ import { navigate } from 'modules/helper'
 import classNames from 'classnames'
 
 function Writeup() {
-  return <div id='about-writeup' className='padded transition-slide-up'>
+  return <div id='about-writeup' className='padded transition-fade'>
 
     <h1>Global Mechanic is a design studio.</h1>
 
@@ -59,8 +59,8 @@ function StaffBlock({featured}) {
     <h4>+1 604 733 7475</h4>
     <h4>studio@globalmechanic.com</h4>
 
-    <a id='twitter' href='https://www.twitter.com'/>
-    <a id='facebook' href='https://www.facebook.com'/>
+    <a id='twitter' href='https://www.twitter.com/globalmechanic'/>
+    <a id='facebook' href='https://www.facebook.com/globalmechanicmedia'/>
 
   </div>
 }
@@ -74,10 +74,6 @@ export default class About extends Component {
   componentDidMount() {
     addEvent('resize', window, this.setBounds)
     this.setBounds()
-  }
-
-  componentWillReceiveProps() {
-    // this.setBounds()
   }
 
   setBounds = () => {

@@ -9,7 +9,7 @@ function Vimeo({vimeoId}) {
 
   return <div className='product-video' >
     { vimeoId
-      ? <iframe src={`//player.vimeo.com/video/${vimeoId}?badge=0&title=0&portrait=0&byline=0&embed=0`}
+      ? <iframe src={`//player.vimeo.com/video/${vimeoId}?badge=0&title=0&portrait=0&byline=0&embed=0&autoplay=0`}
         frameBorder={false}/>
       : null }
   </div>
@@ -29,7 +29,7 @@ function ProductFeature({items, featured}, {path}) {
     : null
 
   const video = item ? item.video : {}
-  const description = (item && item.description ? item.description : '').trim()
+  // const description = (item && item.description ? item.description : '').trim()
   const name = (item && item.name ? item.name : '').trim()
 
   return <div className={classes}>
@@ -37,7 +37,7 @@ function ProductFeature({items, featured}, {path}) {
     <div className='product-detail'>
       <Vimeo {...video}/>
       {name ? <h2 className='product-title'>{name}</h2> : null}
-      {description ? <p className='product-description'>{description}</p> : null }
+      {/* {description ? <p className='product-description'>{description}</p> : null } */}
     </div>
   </div>
 }

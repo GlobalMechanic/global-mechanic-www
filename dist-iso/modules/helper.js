@@ -10,11 +10,13 @@ exports.getFullName = getFullName;
 var _reactRouter = require('react-router');
 
 function navigate(path) {
-  _reactRouter.browserHistory.push(path.replace(/\/\//g, '/'));
+  var sanitized = path.replace(/\/\//g, '/');
+  var encoded = encodeURI(sanitized);
+  _reactRouter.browserHistory.push(encoded);
 }
 
 function urlify(str) {
-  return str.toLowerCase().replace(/\s/g, '_').replace(/\?/g, '');
+  return str.toLowerCase().replace(/\s/g, '_').replace(/\?/g, '_qm');
 }
 
 function getFullName(person) {

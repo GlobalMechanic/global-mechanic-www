@@ -22,6 +22,7 @@ exports.default = _react2.default.createElement(
     _react2.default.createElement(_reactRouter.IndexRoute, { component: _pages.Home }),
     _react2.default.createElement(_reactRouter.Route, { path: '/directors(/:director)(/:product)', inverse: true, component: _pages.Directors }),
     _react2.default.createElement(_reactRouter.Route, { path: '/work/:showcase(/:product)', inverse: true, component: _pages.Work }),
-    _react2.default.createElement(_reactRouter.Route, { path: '/private/portfolio/:showcase(/:product)', inverse: true, dark: true, _private: true, component: _pages.Work }),
+    _react2.default.createElement(_reactRouter.Route, { path: '/private/showcase/:showcase(/:product)', inverse: true, dark: true, _private: true, component: _pages.Work }),
+    _react2.default.createElement(_reactRouter.Redirect, { from: '/private/portfolio/:showcase(/:product)', to: '/private/showcase/:showcase(/:product)' }),
     _react2.default.createElement(_reactRouter.Route, { path: '/about(/:person)', dark: true, component: _pages.About })
 );

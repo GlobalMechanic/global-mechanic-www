@@ -1,14 +1,16 @@
 import { browserHistory } from 'react-router'
 
 export function navigate(path) {
-  browserHistory.push(path.replace(/\/\//g, '/'))
+  const sanitized = path.replace(/\/\//g, '/')
+  const encoded = encodeURI(sanitized)
+  browserHistory.push(encoded)
 }
 
 export function urlify(str) {
   return str
     .toLowerCase()
     .replace(/\s/g, '_')
-    .replace(/\?/g,'')
+    .replace(/\?/g, '_qm')
 }
 
 export function getFullName(person) {
