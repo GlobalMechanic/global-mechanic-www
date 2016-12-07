@@ -1,6 +1,5 @@
-import NeDB from 'nedb'
-import service from 'feathers-nedb'
-import path from 'path'
+import service from 'feathers-mongodb'
+
 import { service as gearsService, sync } from 'modules/gears'
 
 import { disable } from 'feathers-hooks'
@@ -25,13 +24,8 @@ const beforeHooks  = {
 export default function() {
   const app = this
 
-  const db = new NeDB({
-    filename: path.resolve(__dirname, '../../storage/data/products'),
-    autoload: true
-  })
-
   const options = {
-    Model: db
+    Model: app.db.collection('products')
   }
 
   app.use('/assets/products', service(options))
@@ -41,6 +35,6 @@ export default function() {
 
   webProducts.before(beforeHooks)
 
-  sync(products, webProducts, 'portrait')
+  sync(products, webProducts, '640x360', 'portrait')
 
 }

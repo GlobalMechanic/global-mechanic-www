@@ -36,6 +36,9 @@ var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProp
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
+exports.Vimeo = Vimeo;
+exports.VimeoTitle = VimeoTitle;
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -56,20 +59,38 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function Vimeo(_ref) {
   var vimeoId = _ref.vimeoId;
+  var className = _ref.className;
+  var other = (0, _objectWithoutProperties3.default)(_ref, ['vimeoId', 'className']);
 
+
+  var classes = (0, _classnames2.default)(className, 'product-video');
 
   return _react2.default.createElement(
     'div',
-    { className: 'product-video' },
+    (0, _extends3.default)({ className: classes }, other),
     vimeoId ? _react2.default.createElement('iframe', { src: '//player.vimeo.com/video/' + vimeoId + '?badge=0&title=0&portrait=0&byline=0&embed=0&autoplay=0',
       frameBorder: false }) : null
   );
 }
 
-function ProductFeature(_ref2, _ref3) {
-  var items = _ref2.items,
-      featured = _ref2.featured;
-  var path = _ref3.path;
+function VimeoTitle(_ref2) {
+  var name = _ref2.name;
+  var className = _ref2.className;
+
+
+  var classes = (0, _classnames2.default)(className, 'product-title');
+
+  return name ? _react2.default.createElement(
+    'h2',
+    { className: classes },
+    name
+  ) : null;
+}
+
+function ProductFeature(_ref3, _ref4) {
+  var items = _ref3.items;
+  var featured = _ref3.featured;
+  var path = _ref4.path;
 
 
   var back = function back() {
@@ -97,11 +118,7 @@ function ProductFeature(_ref2, _ref3) {
       'div',
       { className: 'product-detail' },
       _react2.default.createElement(Vimeo, video),
-      name ? _react2.default.createElement(
-        'h2',
-        { className: 'product-title' },
-        name
-      ) : null
+      _react2.default.createElement(VimeoTitle, { name: name })
     )
   );
 }
@@ -109,10 +126,10 @@ ProductFeature.contextTypes = {
   path: _react.PropTypes.string.isRequired
 };
 
-function ProductBlock(_ref4, _ref5) {
-  var path = _ref5.path;
-  var item = _ref4.item,
-      other = (0, _objectWithoutProperties3.default)(_ref4, ['item']);
+function ProductBlock(_ref5, _ref6) {
+  var item = _ref5.item;
+  var other = (0, _objectWithoutProperties3.default)(_ref5, ['item']);
+  var path = _ref6.path;
 
 
   var imageId = item ? item.portrait : null;
@@ -132,7 +149,7 @@ var Showcase = function (_React$Component) {
   (0, _inherits3.default)(Showcase, _React$Component);
 
   function Showcase() {
-    var _ref6;
+    var _Object$getPrototypeO;
 
     var _temp, _this, _ret;
 
@@ -142,7 +159,7 @@ var Showcase = function (_React$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref6 = Showcase.__proto__ || (0, _getPrototypeOf2.default)(Showcase)).call.apply(_ref6, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Showcase)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
       showcases: [],
       products: []
     }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
@@ -183,14 +200,14 @@ var Showcase = function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      var _props = this.props,
-          featuredShowcase = _props.featuredShowcase,
-          featuredProduct = _props.featuredProduct,
-          className = _props.className,
-          other = (0, _objectWithoutProperties3.default)(_props, ['featuredShowcase', 'featuredProduct', 'className']);
-      var _state = this.state,
-          showcases = _state.showcases,
-          products = _state.products;
+      var _props = this.props;
+      var featuredShowcase = _props.featuredShowcase;
+      var featuredProduct = _props.featuredProduct;
+      var className = _props.className;
+      var other = (0, _objectWithoutProperties3.default)(_props, ['featuredShowcase', 'featuredProduct', 'className']);
+      var _state = this.state;
+      var showcases = _state.showcases;
+      var products = _state.products;
 
 
       var showcase = showcases.filter(function (show) {

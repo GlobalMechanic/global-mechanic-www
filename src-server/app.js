@@ -14,6 +14,9 @@ import favicon from 'serve-favicon'
 import middleware from 'middleware'
 import services from 'services'
 import gears from 'modules/gears'
+import fstorage from 'modules/file-storage'
+
+import { MongoClient } from 'mongodb'
 
 /******************************************************************************/
 // Config
@@ -23,30 +26,38 @@ const app = feathers()
 const configURL = path.resolve(__dirname, '..')
 const favURL = path.resolve(__dirname, '../favicon.png')
 
-app.configure(configuration(configURL))
-
 const publicURL = app.get('public')
 
-app.use(compress())
-  .options('*', cors())
-  .use(cors())
+app.configure(configuration(configURL))
 
-  .use('/assets', serveStatic(publicURL + '/assets'))
-  .use(bodyParser.json())
-  .use(bodyParser.urlencoded({ extended: true }))
-  .use(favicon(favURL))
+const url = app.get('mongodb')
 
-  .configure(hooks())
-  .configure(rest())
-  .configure(gears)
-  .configure(services)
-  .configure(middleware)
+export default MongoClient
+  .connect(url)
+  .then(db => {
 
+    app.db = db
 
-  .use(fallback('index.html', { publicURL }))
+    return app.use(compress())
+      .options('*', cors())
+      .use(cors())
+
+      .use('/assets', serveStatic(publicURL + '/assets'))
+      .use(bodyParser.json())
+      .use(bodyParser.urlencoded({ extended: true }))
+      .use(favicon(favURL))
+
+      .configure(hooks())
+      .configure(rest())
+      .configure(fstorage)
+      .configure(gears)
+      .configure(services)
+      .configure(middleware)
+
+      .use(fallback('index.html', { publicURL }))
+  })
+  .catch(err => log.error(err))
 
 /******************************************************************************/
 // Exports
 /******************************************************************************/
-
-export default app

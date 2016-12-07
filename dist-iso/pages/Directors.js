@@ -59,8 +59,8 @@ var DIRECTOR_PATH = '/directors/';
 var DirectorLayout = new _Grid.Layout(60, false);
 
 function DirectorList(_ref) {
-  var director = _ref.director,
-      directors = _ref.directors;
+  var director = _ref.director;
+  var directors = _ref.directors;
 
   return _react2.default.createElement(_components.Dropdown, { title: 'Directors', items: directors.map(function (d) {
       return (0, _helper.getFullName)(d);
@@ -72,7 +72,7 @@ var Directors = function (_Component) {
   (0, _inherits3.default)(Directors, _Component);
 
   function Directors() {
-    var _ref2;
+    var _Object$getPrototypeO;
 
     var _temp, _this, _ret;
 
@@ -82,7 +82,7 @@ var Directors = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref2 = Directors.__proto__ || (0, _getPrototypeOf2.default)(Directors)).call.apply(_ref2, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Directors)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
       directors: []
     }, _this.size = function () {
       return {
@@ -109,13 +109,13 @@ var Directors = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _props = this.props,
-          children = _props.children,
-          other = (0, _objectWithoutProperties3.default)(_props, ['children']);
+      var _props = this.props;
+      var children = _props.children;
+      var other = (0, _objectWithoutProperties3.default)(_props, ['children']);
       var directors = this.state.directors;
-      var _other$routeParams = other.routeParams,
-          director = _other$routeParams.director,
-          product = _other$routeParams.product;
+      var _other$routeParams = other.routeParams;
+      var director = _other$routeParams.director;
+      var product = _other$routeParams.product;
 
 
       var directorDoc = director ? directors.filter(function (doc) {
@@ -129,7 +129,7 @@ var Directors = function (_Component) {
         _react2.default.createElement(DirectorList, { director: director, directors: directors }),
         _react2.default.createElement(
           'div',
-          { id: 'director', className: 'inverse fill transition-slide-down' },
+          { id: 'director', className: 'inverse transition-slide-down' },
           _react2.default.createElement(_components.People, { director: true, path: DIRECTOR_PATH, featured: director, layout: DirectorLayout,
             size: this.size }),
           _react2.default.createElement(_components.Showcase, { path: DIRECTOR_PATH + '/' + director, featuredShowcase: showcaseId,

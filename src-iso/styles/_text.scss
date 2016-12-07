@@ -52,7 +52,12 @@ a {
 }
 
 p {
-  font-size: 0.825rem;
+  font-size: 0.9rem;
+
+  @media screen and (max-width: $mini-width){
+    font-size: 13px;
+  }
+
 }
 
 h1,h2,h3,h4,h5,h6 {

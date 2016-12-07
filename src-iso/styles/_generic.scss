@@ -21,9 +21,8 @@
   cursor: default;
 }
 
-.fill.inverse {
-  background-color: $bg-color-inverted;
-  height: 100%;
+.grayscale {
+  filter: grayscale(100%);
 }
 
 $links-clearance: $links-height + $padding * 2;

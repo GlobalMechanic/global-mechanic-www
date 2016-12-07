@@ -16,11 +16,11 @@ var _classnames2 = _interopRequireDefault(_classnames);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Page(_ref) {
-  var className = _ref.className,
-      id = _ref.id,
-      pageRef = _ref.pageRef,
-      style = _ref.style,
-      children = _ref.children;
+  var className = _ref.className;
+  var id = _ref.id;
+  var pageRef = _ref.pageRef;
+  var style = _ref.style;
+  var children = _ref.children;
 
 
   var classes = (0, _classnames2.default)(className, 'page');

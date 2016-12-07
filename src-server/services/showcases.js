@@ -1,6 +1,5 @@
-import NeDB from 'nedb'
-import service from 'feathers-nedb'
-import path from 'path'
+import service from 'feathers-mongodb'
+
 import { service as gearsService, sync } from 'modules/gears'
 import { disable } from 'feathers-hooks'
 
@@ -43,13 +42,8 @@ const afterHooks = {
 export default function() {
   const app = this
 
-  const db = new NeDB({
-    filename: path.resolve(__dirname, '../../storage/data/showcases'),
-    autoload: true
-  })
-
   const options = {
-    Model: db
+    Model: app.db.collection('showcases')
   }
 
   app.use('/assets/showcases', service(options))

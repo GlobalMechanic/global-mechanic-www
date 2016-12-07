@@ -42,7 +42,7 @@ export default class Work extends Component {
     return <Page id='work-page' {...other}>
       <ShowcaseDropdown documents={showcases} selected={showcase} path={mainPath}/>
       <Showcase id='work-wall'  path={path}
-        className='transition-slide-down fill inverse' 
+        className='transition-slide-down inverse' 
         featuredShowcase={showcase}
         featuredProduct={product} />
       {children}

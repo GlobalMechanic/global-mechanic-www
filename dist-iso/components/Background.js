@@ -23,18 +23,31 @@ var poster = isBrowser ? require('../assets/background-poster.jpg') : '';
 var video = isBrowser ? require('../assets/background-video.mp4') : '';
 
 function Background(_ref) {
-  var dark = _ref.dark;
+  var darken = _ref.darken;
+  var inverse = _ref.inverse;
 
 
-  var classes = (0, _classnames2.default)({ dark: dark });
+  var opacity = darken || 0;
+  var blur = opacity * 20;
+
+  var classes = (0, _classnames2.default)({ inverse: inverse });
+
+  var overlayStyle = {
+    backgroundColor: inverse ? null : 'rgba(0,0,0,' + opacity + ')'
+  };
+
+  var bgStyle = {
+    WebkitFilter: opacity > 0 && opacity < 1 && !inverse ? 'blur(' + blur + 'px)' : null
+  };
 
   return _react2.default.createElement(
     'div',
     null,
-    _react2.default.createElement('div', { id: 'video-background-overlay', className: classes }),
+    _react2.default.createElement('div', { id: 'video-background-overlay', className: classes, style: overlayStyle }),
     _react2.default.createElement(
       'video',
-      { id: 'video-background', className: classes, loop: true, autoPlay: true, muted: true, poster: poster },
+      { id: 'video-background', loop: true, autoPlay: true, muted: true, poster: poster,
+        className: classes, style: bgStyle },
       _react2.default.createElement('source', { src: video, type: 'video/mp4' })
     )
   );

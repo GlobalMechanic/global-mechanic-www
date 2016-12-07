@@ -5,14 +5,23 @@ import { urlify, navigate } from 'modules/helper'
 import classNames from 'classnames'
 import { variables } from 'styles'
 
-function Vimeo({vimeoId}) {
+export function Vimeo({vimeoId, className, ...other}) {
 
-  return <div className='product-video' >
+  const classes = classNames(className, 'product-video')
+
+  return <div className={classes} {...other}>
     { vimeoId
       ? <iframe src={`//player.vimeo.com/video/${vimeoId}?badge=0&title=0&portrait=0&byline=0&embed=0&autoplay=0`}
         frameBorder={false}/>
       : null }
   </div>
+}
+
+export function VimeoTitle({name, className}) {
+
+  const classes = classNames(className, 'product-title')
+
+  return name ? <h2 className={classes}>{name}</h2> : null
 }
 
 function ProductFeature({items, featured}, {path}) {
@@ -36,7 +45,7 @@ function ProductFeature({items, featured}, {path}) {
     <div className='product-modal' onClick={back}/>
     <div className='product-detail'>
       <Vimeo {...video}/>
-      {name ? <h2 className='product-title'>{name}</h2> : null}
+      <VimeoTitle name={name}/>
       {/* {description ? <p className='product-description'>{description}</p> : null } */}
     </div>
   </div>

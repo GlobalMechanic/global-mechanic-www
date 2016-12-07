@@ -1,9 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
 require('./globals');
 
 var _app = require('./app');
@@ -16,11 +12,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Server
 /******************************************************************************/
 
-var port = _app2.default.get('port');
-var server = _app2.default.listen(port, '0.0.0.0');
+_app2.default.then(function (a) {
 
-server.on('listening', function () {
-  return log('App enabled. Server listening on port ' + port);
+  var port = a.get('port');
+  var server = a.listen(port, '0.0.0.0');
+  server.on('listening', function () {
+    return log('App enabled. Server listening on port ' + port);
+  });
 });
-
-exports.default = server;

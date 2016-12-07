@@ -48,7 +48,7 @@ export default class Directors extends Component {
     return <Page id='directors-page' {...other}>
       <DirectorList director={director} directors={directors}  />
 
-      <div id='director' className='inverse fill transition-slide-down'>
+      <div id='director' className='inverse transition-slide-down'>
         <People director path={DIRECTOR_PATH} featured={director} layout={DirectorLayout}
           size={this.size} />
         <Showcase path={DIRECTOR_PATH + '/' + director} featuredShowcase={showcaseId}

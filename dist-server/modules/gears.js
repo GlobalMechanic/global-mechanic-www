@@ -4,13 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends2 = require('babel-runtime/helpers/extends');
-
-var _extends3 = _interopRequireDefault(_extends2);
-
 var _promise = require('babel-runtime/core-js/promise');
 
 var _promise2 = _interopRequireDefault(_promise);
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
 
 var _typeof2 = require('babel-runtime/helpers/typeof');
 
@@ -45,13 +45,7 @@ var _socket = require('socket.io-client');
 
 var _socket2 = _interopRequireDefault(_socket);
 
-var _fsPromise = require('fs-promise');
-
-var _fsPromise2 = _interopRequireDefault(_fsPromise);
-
-var _path2 = require('path');
-
-var _path3 = _interopRequireDefault(_path2);
+var _fileStorage = require('modules/file-storage');
 
 var _promiseQueue = require('promise-queue');
 
@@ -66,10 +60,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /******************************************************************************/
 // Data
 /******************************************************************************/
+
+// import path from 'path'
 var ALREADY_EXISTS = (0, _symbol2.default)('already-exists');
 
-var fileStorage = _path3.default.resolve(__dirname, '../../storage/files');
-var queue = new _promiseQueue2.default(1, Infinity);
+var queue = new _promiseQueue2.default(4, Infinity);
 var gears = null;
 
 /******************************************************************************/
@@ -81,42 +76,36 @@ function getIn(obj, paths) {
   var final = paths.length - 1;
 
   for (var i = 0; i < paths.length; i++) {
-    var _path = paths[i];
+    var path = paths[i];
     var atFinal = i === final;
 
-    if (atFinal) return obj[_path];
+    if (atFinal) return obj[path];
 
-    if ((0, _typeof3.default)(obj[_path]) !== 'object') return undefined;
+    if ((0, _typeof3.default)(obj[path]) !== 'object') return undefined;
 
-    obj = obj[_path];
+    obj = obj[path];
   }
 }
 
 function ensureFile(id) {
+  var dim = arguments.length <= 1 || arguments[1] === undefined ? '640x360' : arguments[1];
+
 
   //check if the file exists
   queue.add(function () {
-    return _fsPromise2.default.readdir(fileStorage).then(function (files) {
-      var file = files.filter(function (file) {
-        return file.includes(id);
-      })[0];
-      return file === undefined ? (0, _isomorphicFetch2.default)(gears.host + '/files/' + id) : ALREADY_EXISTS;
+    return (0, _fileStorage.hasFile)(id).then(function (has) {
+      return has ? ALREADY_EXISTS : (0, _isomorphicFetch2.default)(gears.host + '/files/' + id + '?process=' + dim);
     })
     //download it from gears if it doesn't
     .then(function (res) {
-      if (res === ALREADY_EXISTS) return;
+      if (res === ALREADY_EXISTS) return ALREADY_EXISTS;
 
       if (res.status !== 200) throw new Error(res.body);
 
       var type = res.headers._headers['content-type'][0];
       var ext = type.substr(type.indexOf('/') + 1);
-      var write = _fsPromise2.default.createWriteStream(_path3.default.join(fileStorage, id + '.' + ext));
 
-      return new _promise2.default(function (resolve, reject) {
-        res.body.pipe(write);
-        res.body.on('end', resolve);
-        res.body.on('error', reject);
-      });
+      return (0, _fileStorage.writeFile)(id, ext, res.body);
     }).catch(function (err) {
       return log.error('Error fetching file ' + id, err);
     });
@@ -158,15 +147,15 @@ function login() {
   });
 }
 
-function sync(from, to) {
-  for (var _len = arguments.length, filePaths = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
-    filePaths[_key - 2] = arguments[_key];
+function sync(from, to, imageDim) {
+  for (var _len = arguments.length, imagePaths = Array(_len > 3 ? _len - 3 : 0), _key = 3; _key < _len; _key++) {
+    imagePaths[_key - 3] = arguments[_key];
   }
 
   var ensureFiles = function ensureFiles(doc) {
-    filePaths.forEach(function (path) {
+    imagePaths.forEach(function (path) {
       var fileId = getIn(doc, path);
-      if (fileId) ensureFile(fileId);
+      if (fileId) ensureFile(fileId, imageDim);
     });
   };
 

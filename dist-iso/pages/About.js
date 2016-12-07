@@ -50,6 +50,25 @@ var _classnames2 = _interopRequireDefault(_classnames);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function aboutStaffSize(item) {
+  return item.staffData.order <= 2 ? { width: 6, height: 4 } : { width: 4, height: 4 };
+}
+
+function Email(_ref) {
+  var address = _ref.address;
+  var children = _ref.children;
+
+  return _react2.default.createElement(
+    'a',
+    { href: 'mailto:' + address, className: 'clickable' },
+    _react2.default.createElement(
+      'h2',
+      null,
+      children
+    )
+  );
+}
+
 function Writeup() {
   return _react2.default.createElement(
     'div',
@@ -82,8 +101,8 @@ function Writeup() {
   );
 }
 
-function KeyStaffButton(_ref) {
-  var featured = _ref.featured;
+function KeyStaffButton(_ref2) {
+  var featured = _ref2.featured;
 
   var classes = (0, _classnames2.default)({
     clickable: featured
@@ -100,22 +119,22 @@ function KeyStaffButton(_ref) {
   );
 }
 
-function StaffBlock(_ref2) {
-  var featured = _ref2.featured;
+function StaffBlock(_ref3) {
+  var featured = _ref3.featured;
 
   return _react2.default.createElement(
     'div',
     { id: 'about-block', className: 'inverse padded transition-slide-down' },
     _react2.default.createElement(KeyStaffButton, { featured: featured }),
-    _react2.default.createElement(_components.People, { featured: featured, path: '/about', director: false }),
+    _react2.default.createElement(_components.People, { featured: featured, path: '/about', director: false, grayscale: true, size: aboutStaffSize }),
     _react2.default.createElement(
-      'h2',
-      null,
+      Email,
+      { address: 'liz@lizlainereps.com' },
       'USA | Liz Laine Reps +1 312 329 1111'
     ),
     _react2.default.createElement(
-      'h2',
-      null,
+      Email,
+      { address: 'lisa@hestyreps.com' },
       'Canada | Hestyreps +1 416 482 0411'
     ),
     _react2.default.createElement('br', null),
@@ -153,7 +172,7 @@ var About = function (_Component) {
   (0, _inherits3.default)(About, _Component);
 
   function About() {
-    var _ref3;
+    var _Object$getPrototypeO;
 
     var _temp, _this, _ret;
 
@@ -163,7 +182,7 @@ var About = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref3 = About.__proto__ || (0, _getPrototypeOf2.default)(About)).call.apply(_ref3, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(About)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
       height: null
     }, _this.setBounds = function () {
 
@@ -188,9 +207,9 @@ var About = function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var _props = this.props,
-          children = _props.children,
-          other = (0, _objectWithoutProperties3.default)(_props, ['children']);
+      var _props = this.props;
+      var children = _props.children;
+      var other = (0, _objectWithoutProperties3.default)(_props, ['children']);
       var height = this.state.height;
       var person = this.props.params.person;
 

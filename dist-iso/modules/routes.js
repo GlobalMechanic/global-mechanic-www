@@ -16,13 +16,18 @@ var _components = require('components');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var DARK = 0.7;
+
 exports.default = _react2.default.createElement(
     _reactRouter.Route,
     { path: '/', component: _components.Navigation },
     _react2.default.createElement(_reactRouter.IndexRoute, { component: _pages.Home }),
+    _react2.default.createElement(_reactRouter.Route, { path: '/video/:video', darken: 1, component: _pages.Video }),
     _react2.default.createElement(_reactRouter.Route, { path: '/directors(/:director)(/:product)', inverse: true, component: _pages.Directors }),
-    _react2.default.createElement(_reactRouter.Route, { path: '/work/:showcase(/:product)', inverse: true, component: _pages.Work }),
-    _react2.default.createElement(_reactRouter.Route, { path: '/private/showcase/:showcase(/:product)', inverse: true, dark: true, _private: true, component: _pages.Work }),
+    _react2.default.createElement(_reactRouter.Route, { path: '/showcase/:showcase(/:product)', inverse: true, component: _pages.Work }),
+    _react2.default.createElement(_reactRouter.Redirect, { from: '/work/:showcase(/:product)', to: '/showcase/:showcase(/:product)' }),
+    _react2.default.createElement(_reactRouter.Route, { path: '/private/showcase/:showcase(/:product)', inverse: true, darken: DARK, _private: true, component: _pages.Work }),
+    _react2.default.createElement(_reactRouter.Route, { path: '/private/video/:video', inverse: true, _private: true, component: _pages.Video }),
     _react2.default.createElement(_reactRouter.Redirect, { from: '/private/portfolio/:showcase(/:product)', to: '/private/showcase/:showcase(/:product)' }),
-    _react2.default.createElement(_reactRouter.Route, { path: '/about(/:person)', dark: true, component: _pages.About })
+    _react2.default.createElement(_reactRouter.Route, { path: '/about(/:person)', darken: DARK, component: _pages.About })
 );

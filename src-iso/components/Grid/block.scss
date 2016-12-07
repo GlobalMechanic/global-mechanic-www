@@ -19,10 +19,6 @@ $block-time: $animation-time * 2;
     background-repeat: no-repeat;
   }
 
-  .block-image.grayscale {
-    filter: grayscale(100%);
-  }
-
   .block-image.clickable:hover {
     transform: scale(1.25,1.25)
   }

@@ -1,7 +1,7 @@
 $home-link-width: 17.5rem;
-$home-icon-dim: 2.25rem;
+$home-icon-dim: 1.925rem;
 $nut-time: $animation-time * 1;
-$nav-font-size: 1.3rem;
+$nav-font-size: 1.1rem;
 
 #links {
   position: absolute;
@@ -20,7 +20,7 @@ $nav-font-size: 1.3rem;
 
     #home-nut {
       position: absolute;
-      top: $padding + 0.3125rem;
+      top: $padding + 0.245rem;
       transition: width $nut-time, height $nut-time, opacity $nut-time, fill $nut-time;
 
       width: $home-icon-dim;
@@ -33,7 +33,7 @@ $nav-font-size: 1.3rem;
 
       #home-link-title {
         transition: color $animation-time;
-        margin-left: $home-icon-dim + 0.2rem;
+        margin-left: $home-icon-dim + 0.25rem;
         // font-size: $nav-font-size;
       };
 
@@ -57,7 +57,7 @@ $nav-font-size: 1.3rem;
 
   .link {
     margin-left: $padding * 2;
-    transition: transform $animation-time;
+    transition: color $animation-time, transform $animation-time;
   }
 
 }

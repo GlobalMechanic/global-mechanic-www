@@ -36,7 +36,7 @@ function Links({inverse, _private}) {
   return <div id='links' className={classes}>
     <HomeLink />
     <PageLink to='/directors'>Directors</PageLink>
-    <PageLink to='/work/featured_work'>Work</PageLink>
+    <PageLink to='/showcase/featured_work'>Work</PageLink>
     <PageLink to='/about'>About</PageLink>
   </div>
 }
@@ -50,7 +50,7 @@ export default function Navigation({children, routes}) {
   const route = routes ? routes[routes.length - 1] : {}
 
   //Navigation should be styled inverse if the current route is
-  const { inverse, dark, transition, _private } = route
+  const { inverse, darken, transition, _private } = route
 
   const path = route.path || 'home'
   const key = path.match(/(\w+)/)[1]
@@ -64,7 +64,7 @@ export default function Navigation({children, routes}) {
       transitionLeaveTimeout={variables.animationTime.value}>
       {cloneElement(children, { key })}
     </Transition> : children}
-    <Background dark={dark}/>
+    <Background darken={darken} inverse={inverse}/>
   </div>
 
 }

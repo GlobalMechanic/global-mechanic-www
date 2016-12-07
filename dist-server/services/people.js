@@ -7,16 +7,11 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function () {
   var app = this;
 
-  var db = new _nedb2.default({
-    filename: _path2.default.resolve(__dirname, '../../storage/data/people'),
-    autoload: true
-  });
-
   var options = {
-    Model: db
+    Model: app.db.collection('users')
   };
 
-  app.use('/assets/people', (0, _feathersNedb2.default)(options));
+  app.use('/assets/people', (0, _feathersMongodb2.default)(options));
 
   var people = app.service('assets/people');
   var users = (0, _gears.service)('users');
@@ -24,20 +19,12 @@ exports.default = function () {
   people.before(beforeHooks);
   people.after(afterHooks);
 
-  (0, _gears.sync)(users, people, ['staffData', 'portrait'], ['directorData', 'portrait']);
+  (0, _gears.sync)(users, people, '480', ['staffData', 'portrait'], ['directorData', 'portrait']);
 };
 
-var _nedb = require('nedb');
+var _feathersMongodb = require('feathers-mongodb');
 
-var _nedb2 = _interopRequireDefault(_nedb);
-
-var _feathersNedb = require('feathers-nedb');
-
-var _feathersNedb2 = _interopRequireDefault(_feathersNedb);
-
-var _path = require('path');
-
-var _path2 = _interopRequireDefault(_path);
+var _feathersMongodb2 = _interopRequireDefault(_feathersMongodb);
 
 var _gears = require('modules/gears');
 
@@ -52,8 +39,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var disableExternal = (0, _feathersHooks.disable)('external');
 
 function websiteFilter(hook, next) {
-  var result = hook.result,
-      params = hook.params;
+  var result = hook.result;
+  var params = hook.params;
 
   //no filtering on internal calls
 

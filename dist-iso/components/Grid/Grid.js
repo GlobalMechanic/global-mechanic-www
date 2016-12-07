@@ -68,7 +68,7 @@ var Grid = function (_Component) {
   (0, _inherits3.default)(Grid, _Component);
 
   function Grid() {
-    var _ref;
+    var _Object$getPrototypeO;
 
     var _temp, _this, _ret;
 
@@ -78,19 +78,20 @@ var Grid = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Grid.__proto__ || (0, _getPrototypeOf2.default)(Grid)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Grid)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
       blocks: [],
       gridHeight: null
     }, _this.getCoords = function (block, item) {
 
       if (block && block.coords) return block.coords;
 
-      var _this$props$sizeFunc = _this.props.sizeFunc(item),
-          width = _this$props$sizeFunc.width,
-          height = _this$props$sizeFunc.height;
-
       var x = 0,
           y = 0;
+
+      var _this$props$sizeFunc = _this.props.sizeFunc(item);
+
+      var width = _this$props$sizeFunc.width;
+      var height = _this$props$sizeFunc.height;
 
       width = (0, _math.max)((0, _math.round)(width), 1);
       height = (0, _math.max)((0, _math.round)(height), 1);
@@ -105,11 +106,11 @@ var Grid = function (_Component) {
     }, _this.applyLayout = function (props, resize) {
       props = props || _this.props;
 
-      var _props = props,
-          layout = _props.layout,
-          items = _props.items;
-      var _this2 = _this,
-          ref = _this2.ref;
+      var _props = props;
+      var layout = _props.layout;
+      var items = _props.items;
+      var _this2 = _this;
+      var ref = _this2.ref;
 
 
       var needsUpdate = resize || _this.needsUpdate(items);
@@ -136,11 +137,11 @@ var Grid = function (_Component) {
     }, _this.resize = function () {
       _this.applyLayout(_this.props, true);
     }, _this.createBlock = function (block, i) {
-      var coords = block.coords,
-          item = block.item;
-      var _this$props = _this.props,
-          layout = _this$props.layout,
-          component = _this$props.component;
+      var coords = block.coords;
+      var item = block.item;
+      var _this$props = _this.props;
+      var layout = _this$props.layout;
+      var component = _this$props.component;
       var dimension = layout.dimension;
 
 
@@ -160,7 +161,7 @@ var Grid = function (_Component) {
     value: function createBlocksFromItems() {
       var _this3 = this;
 
-      var items = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+      var items = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
 
 
       var blocks = this.state.blocks;
@@ -221,10 +222,10 @@ var Grid = function (_Component) {
     value: function render() {
       var _this4 = this;
 
-      var _props2 = this.props,
-          className = _props2.className,
-          clip = _props2.clip,
-          other = (0, _objectWithoutProperties3.default)(_props2, ['className', 'clip']);
+      var _props2 = this.props;
+      var className = _props2.className;
+      var clip = _props2.clip;
+      var other = (0, _objectWithoutProperties3.default)(_props2, ['className', 'clip']);
       var gridHeight = this.state.gridHeight;
 
 
@@ -248,8 +249,8 @@ var Grid = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        (0, _extends3.default)({ className: classes, style: style, ref: function ref(_ref2) {
-            return _this4.ref = _ref2;
+        (0, _extends3.default)({ className: classes, style: style, ref: function ref(_ref) {
+            return _this4.ref = _ref;
           } }, other),
         this.createBlocks()
       );

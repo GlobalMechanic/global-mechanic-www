@@ -48,7 +48,7 @@ var Block = function (_Component) {
   (0, _inherits3.default)(Block, _Component);
 
   function Block() {
-    var _ref;
+    var _Object$getPrototypeO;
 
     var _temp, _this, _ret;
 
@@ -58,7 +58,7 @@ var Block = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Block.__proto__ || (0, _getPrototypeOf2.default)(Block)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Block)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
       imageLoaded: false
     }, _this.setSrc = function (props) {
       var imageId = props.imageId;
@@ -86,13 +86,13 @@ var Block = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _props = this.props,
-          style = _props.style,
-          imageId = _props.imageId,
-          grayscale = _props.grayscale,
-          className = _props.className,
-          onClick = _props.onClick,
-          other = (0, _objectWithoutProperties3.default)(_props, ['style', 'imageId', 'grayscale', 'className', 'onClick']);
+      var _props = this.props;
+      var style = _props.style;
+      var imageId = _props.imageId;
+      var grayscale = _props.grayscale;
+      var className = _props.className;
+      var onClick = _props.onClick;
+      var other = (0, _objectWithoutProperties3.default)(_props, ['style', 'imageId', 'grayscale', 'className', 'onClick']);
       var imageLoaded = this.state.imageLoaded;
 
 

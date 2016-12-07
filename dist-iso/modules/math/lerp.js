@@ -12,7 +12,7 @@ var _clamp2 = _interopRequireDefault(_clamp);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function lerp(from, to, delta) {
-  var clamped = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+  var clamped = arguments.length <= 3 || arguments[3] === undefined ? true : arguments[3];
 
   delta = clamped ? (0, _clamp2.default)(delta, 0, 1) : delta;
 

@@ -22,7 +22,29 @@
 
 #gear-background {
   @extend %splash;
-
   opacity: 0.5;
+}
 
+#just-clicks-link {
+  position: absolute;
+  pointer-events: auto;
+  right: 1rem;
+  bottom: 1rem;
+  h2 {
+    display: inline-block;
+  }
+}
+
+#just-clicks-button {
+  width: 1rem;
+  height: 1rem;
+  fill: $text-color;
+  transition: fill $animation-time, transform $animation-time;
+}
+
+#just-clicks-link:hover {
+  #just-clicks-button {
+    fill: $text-color-hover;
+    transform: scale(1.5,1.5);
+  }
 }

@@ -40,61 +40,43 @@ var _Page = require('./Page');
 
 var _Page2 = _interopRequireDefault(_Page);
 
-var _components = require('../components');
+var _helper = require('modules/helper');
 
 var _data = require('modules/data');
 
-var _styles = require('styles');
+var _Showcase = require('components/Showcase');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function ShowcaseDropdown(_ref) {
-  var documents = _ref.documents;
-  var selected = _ref.selected;
-  var path = _ref.path;
+var Video = function (_React$Component) {
+  (0, _inherits3.default)(Video, _React$Component);
 
-
-  var title = selected ? selected.replace(/_/g, ' ') : 'Work';
-
-  return _react2.default.createElement(_components.Dropdown, { title: title, items: documents.map(function (doc) {
-      return doc.name;
-    }),
-    path: path, selected: selected });
-}
-
-var Work = function (_Component) {
-  (0, _inherits3.default)(Work, _Component);
-
-  function Work() {
+  function Video() {
     var _Object$getPrototypeO;
 
     var _temp, _this, _ret;
 
-    (0, _classCallCheck3.default)(this, Work);
+    (0, _classCallCheck3.default)(this, Video);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Work)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
-      showcases: []
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Video)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
+      videos: []
     }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
 
-  (0, _createClass3.default)(Work, [{
+  (0, _createClass3.default)(Video, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
       var _this2 = this;
 
-      if (this.props.route._private) return;
-
-      _data.showcases.then(function (res) {
-        var filtered = res.filter(function (show) {
-          return show.website.scope === 'public' && show.products.length > 0;
+      _data.products.then(function (ps) {
+        var videos = ps.filter(function (p) {
+          return p && p.video && p.video.vimeoId;
         });
-        setTimeout(function () {
-          return _this2.setState({ showcases: filtered });
-        }, _styles.variables.animationTime.value);
+        _this2.setState({ videos: videos });
       });
     }
   }, {
@@ -103,30 +85,31 @@ var Work = function (_Component) {
       var _props = this.props;
       var children = _props.children;
       var other = (0, _objectWithoutProperties3.default)(_props, ['children']);
-      var showcases = this.state.showcases;
-      var _other$routeParams = other.routeParams;
-      var showcase = _other$routeParams.showcase;
-      var product = _other$routeParams.product;
-      var _private = other.route._private;
+      var videos = this.state.videos;
+      var video = other.params.video;
 
 
-      var mainPath = _private ? 'private/portfolio/' : 'work/';
+      var videoDoc = videos.filter(function (v) {
+        return (0, _helper.urlify)(v.name) === video || v._id === video;
+      })[0];
 
-      var path = '/' + mainPath + showcase;
+      var vimeoId = videoDoc && videoDoc.video ? videoDoc.video.vimeoId : null;
+      var name = videoDoc ? videoDoc.name : null;
 
       return _react2.default.createElement(
         _Page2.default,
-        (0, _extends3.default)({ id: 'work-page' }, other),
-        _react2.default.createElement(ShowcaseDropdown, { documents: showcases, selected: showcase, path: mainPath }),
-        _react2.default.createElement(_components.Showcase, { id: 'work-wall', path: path,
-          className: 'transition-slide-down inverse',
-          featuredShowcase: showcase,
-          featuredProduct: product }),
+        (0, _extends3.default)({ id: 'video-page' }, other),
+        _react2.default.createElement(
+          'div',
+          { id: 'video', className: 'transition-slide-up' },
+          _react2.default.createElement(_Showcase.Vimeo, { vimeoId: vimeoId }),
+          _react2.default.createElement(_Showcase.VimeoTitle, { name: name })
+        ),
         children
       );
     }
   }]);
-  return Work;
-}(_react.Component);
+  return Video;
+}(_react2.default.Component);
 
-exports.default = Work;
+exports.default = Video;

@@ -4,8 +4,8 @@ import socketio from 'feathers-socketio/client'
 import authentication from 'feathers-authentication/client'
 import io from 'socket.io-client'
 
-import fs from 'fs-promise'
-import path from 'path'
+import { hasFile, writeFile } from 'modules/file-storage'
+// import path from 'path'
 import Queue from 'promise-queue'
 import fetch from 'isomorphic-fetch'
 
@@ -14,8 +14,7 @@ import fetch from 'isomorphic-fetch'
 /******************************************************************************/
 const ALREADY_EXISTS = Symbol('already-exists')
 
-const fileStorage = path.resolve(__dirname, '../../storage/files')
-const queue = new Queue(1, Infinity)
+const queue = new Queue(4, Infinity)
 let gears = null
 
 /******************************************************************************/
@@ -40,35 +39,27 @@ function getIn(obj, paths) {
   }
 }
 
-function ensureFile(id) {
+function ensureFile(id, dim = '640x360') {
 
   //check if the file exists
-  queue.add(() => fs
-    .readdir(fileStorage)
-    .then(files => {
-      const file = files.filter(file => file.includes(id))[0]
-      return file === undefined ? fetch(`${gears.host}/files/${id}`) : ALREADY_EXISTS
-    })
+  queue.add(() => hasFile(id)
+    .then(has => has ? ALREADY_EXISTS : fetch(`${gears.host}/files/${id}?process=${dim}`))
     //download it from gears if it doesn't
     .then(res => {
       if (res === ALREADY_EXISTS)
-        return
+        return ALREADY_EXISTS
 
       if (res.status !== 200)
         throw new Error(res.body)
 
       const type = res.headers._headers['content-type'][0]
       const ext = type.substr(type.indexOf('/')+1)
-      const write = fs.createWriteStream(path.join(fileStorage, `${id}.${ext}`))
 
-      return new Promise((resolve, reject) => {
-        res.body.pipe(write)
-        res.body.on('end', resolve)
-        res.body.on('error', reject)
-      })
+      return writeFile(id, ext, res.body)
     })
-    .catch(err => log.error(`Error fetching file ${id}`, err))
+    .catch(err => log.error(`Error fetching file ${id}`,err))
   )
+
 }
 
 /******************************************************************************/
@@ -105,13 +96,13 @@ export function login() {
     .catch(err => log.error(err))
 }
 
-export function sync(from, to, ...filePaths) {
+export function sync(from, to, imageDim, ...imagePaths) {
 
   const ensureFiles = doc => {
-    filePaths.forEach(path => {
+    imagePaths.forEach(path => {
       const fileId = getIn(doc, path)
       if (fileId)
-        ensureFile(fileId)
+        ensureFile(fileId, imageDim)
     })
   }
 

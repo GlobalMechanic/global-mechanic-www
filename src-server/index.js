@@ -5,9 +5,10 @@ import app from './app'
 // Server
 /******************************************************************************/
 
-const port = app.get('port')
-const server = app.listen(port, '0.0.0.0')
+app.then(a => {
 
-server.on('listening', () => log(`App enabled. Server listening on port ${port}`))
+  const port = a.get('port')
+  const server = a.listen(port, '0.0.0.0')
+  server.on('listening', () => log(`App enabled. Server listening on port ${port}`))
 
-export default server
+})

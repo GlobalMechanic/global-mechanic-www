@@ -10,6 +10,7 @@
     "build-client": "rm -rf ./dist-client && webpack --config ./config/webpack.production.js",
     "build-iso": "rm -rf ./dist-iso && node_modules/.bin/babel ./src-iso --out-dir ./dist-iso",
     "build-server": "rm -rf ./dist-server && node_modules/.bin/babel ./src-server --out-dir ./dist-server",
+    "develop-db": "mongod --dbpath ./storage/data",
     "develop-client": "webpack-dev-server --config ./config/webpack.dev.js",
     "develop-server": "npm run build-server -- --watch & npm run build-iso -- --watch & ./node_modules/.bin/nodemon --watch dist-server  --watch dist-iso ./dist-server ",
     "build": "npm run build-server & npm run build-iso & npm run build-client",
@@ -70,13 +71,14 @@
     "feathers-configuration": "^0.3.3",
     "feathers-errors": "^2.2.0",
     "feathers-hooks": "^1.5.8",
-    "feathers-nedb": "^2.6.0",
+    "feathers-mongodb": "^2.6.0",
     "feathers-rest": "^1.5.0",
     "feathers-socketio": "^1.4.2",
     "fs-promise": "^1.0.0",
     "immutable": "^3.8.1",
     "is-explicit": "^1.1.0",
     "isomorphic-fetch": "^2.2.1",
+    "mongodb": "^2.2.12",
     "nedb": "^1.8.0",
     "normalize.css": "^4.2.0",
     "object-assign": "^4.1.0",
@@ -85,6 +87,7 @@
     "react": "^15.3.2",
     "react-addons-css-transition-group": "^15.3.2",
     "react-dom": "^15.3.2",
-    "react-router": "^2.8.1"
+    "react-router": "^2.8.1",
+    "s3fs": "^2.5.0"
   }
 }

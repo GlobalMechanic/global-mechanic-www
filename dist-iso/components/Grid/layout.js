@@ -37,10 +37,10 @@ var LAYOUT_LOOP_BREAK = (0, _symbol2.default)('layout-loop-break');
 
 var Coords = exports.Coords = function () {
   function Coords() {
-    var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-    var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    var w = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
-    var h = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
+    var x = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+    var y = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
+    var w = arguments.length <= 2 || arguments[2] === undefined ? 1 : arguments[2];
+    var h = arguments.length <= 3 || arguments[3] === undefined ? 1 : arguments[3];
     (0, _classCallCheck3.default)(this, Coords);
 
     this.pos = new _math.Vector(x, y);
@@ -68,8 +68,8 @@ var Coords = exports.Coords = function () {
 
 var Cells = function () {
   function Cells() {
-    var limitX = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Infinity;
-    var limitY = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : Infinity;
+    var limitX = arguments.length <= 0 || arguments[0] === undefined ? Infinity : arguments[0];
+    var limitY = arguments.length <= 1 || arguments[1] === undefined ? Infinity : arguments[1];
     (0, _classCallCheck3.default)(this, Cells);
 
     this.limits = new _math.Vector(limitX, limitY);
@@ -115,9 +115,9 @@ var Cells = function () {
     key: 'getFreeArea',
     value: function getFreeArea() {
       var area = null;
-      var filled = this.filled,
-          limits = this.limits,
-          max = this.max;
+      var filled = this.filled;
+      var limits = this.limits;
+      var max = this.max;
 
       //find start pos
 
@@ -163,9 +163,9 @@ var Cells = function () {
 
 var Layout = function () {
   function Layout() {
-    var dimension = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 40;
-    var fill = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-    var delay = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+    var dimension = arguments.length <= 0 || arguments[0] === undefined ? 40 : arguments[0];
+    var fill = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+    var delay = arguments.length <= 2 || arguments[2] === undefined ? 0 : arguments[2];
     (0, _classCallCheck3.default)(this, Layout);
 
     _initialiseProps.call(this);
@@ -180,7 +180,7 @@ var Layout = function () {
     value: function apply(blocks) {
       var _this2 = this;
 
-      var onPlace = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
+      var onPlace = arguments.length <= 1 || arguments[1] === undefined ? function () {} : arguments[1];
 
 
       return new _promise2.default(function (resolve) {

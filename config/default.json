@@ -1,19 +1,14 @@
 {
-  "host": "192.168.1.247",
+  "host": "192.168.1.32",
   "port": 3030,
   "public": "../dist-client/",
+  "buckateer": null,
+  "mongodb": "mongodb://localhost:27017/global-mechanic-www-develop",
   "gears": {
     "auth": {
       "email": "ben@globalmechanic.com",
       "password": "TryHardMod3!"
     },
-    "host": "http://gears.local"
-  },
-  "auth": {
-    "idField": "id",
-    "token": {
-      "secret": "5xjJW5WW6quxxlTuNT8DkXVkCrZwGSDEXYYYQlWZ+onVCdkdlVJzGpa35vGFxSkxVLZSPCtlsykjezQKfnQrLw=="
-    },
-    "local": {}
+    "host": "http://localhost:4100"
   }
 }

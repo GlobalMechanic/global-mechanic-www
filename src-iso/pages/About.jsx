@@ -5,6 +5,18 @@ import { People } from 'components'
 import { navigate } from 'modules/helper'
 import classNames from 'classnames'
 
+function aboutStaffSize(item) {
+  return item.staffData.order <= 2
+    ? { width: 6, height: 4}
+    : { width: 4, height: 4}
+}
+
+function Email({address, children}) {
+  return <a href={`mailto:${address}`} className='clickable'>
+    <h2>{children}</h2>
+  </a>
+}
+
 function Writeup() {
   return <div id='about-writeup' className='padded transition-fade'>
 
@@ -47,10 +59,10 @@ function StaffBlock({featured}) {
 
     <KeyStaffButton featured={featured}/>
 
-    <People featured={featured} path='/about' director={false} />
+    <People featured={featured} path='/about' director={false} grayscale size={aboutStaffSize}/>
 
-    <h2>USA | Liz Laine Reps +1 312 329 1111</h2>
-    <h2>Canada | Hestyreps +1 416 482 0411</h2>
+    <Email address={'liz@lizlainereps.com'}>USA | Liz Laine Reps +1 312 329 1111</Email>
+    <Email address={'lisa@hestyreps.com'}>Canada | Hestyreps +1 416 482 0411</Email>
     <br/>
 
     <h4>Suite 208 - 1525 West 8th Avenue</h4>

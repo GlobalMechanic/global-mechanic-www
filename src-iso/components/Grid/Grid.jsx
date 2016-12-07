@@ -44,9 +44,9 @@ export default class Grid extends Component {
     if (block && block.coords)
       return block.coords
 
-    let { width, height } = this.props.sizeFunc(item)
-    let x = 0, y = 0
+    const x = 0, y = 0
 
+    let { width, height } = this.props.sizeFunc(item)
     width = max(round(width), 1)
     height = max(round(height), 1)
 

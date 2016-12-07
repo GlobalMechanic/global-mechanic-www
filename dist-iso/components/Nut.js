@@ -27,8 +27,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Points = ['M72.1', '11.7H27.9L5.8', '50l22.1', '38.3h44.2L94.2', '50L72.1', '11.7z M50', '65.6c-8.6', '0-15.6-7-15.6-15.6 c0-8.6', '7-15.6', '15.6-15.6c8.6', '0', '15.6', '7', '15.6', '15.6C65.6', '58.6', '58.6', '65.6', '50', '65.6z'];
 
 function Nut(_ref) {
-  var className = _ref.className,
-      other = (0, _objectWithoutProperties3.default)(_ref, ['className']);
+  var className = _ref.className;
+  var other = (0, _objectWithoutProperties3.default)(_ref, ['className']);
 
 
   var classes = (0, _classnames2.default)('nut', className);
