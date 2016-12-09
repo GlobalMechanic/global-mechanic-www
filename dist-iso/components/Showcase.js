@@ -37,7 +37,7 @@ var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProp
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
 exports.Vimeo = Vimeo;
-exports.VimeoTitle = VimeoTitle;
+exports.ProductTitle = ProductTitle;
 
 var _react = require('react');
 
@@ -57,6 +57,8 @@ var _styles = require('styles');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/* globals HOST */
+
 function Vimeo(_ref) {
   var vimeoId = _ref.vimeoId;
   var className = _ref.className;
@@ -73,13 +75,25 @@ function Vimeo(_ref) {
   );
 }
 
-function VimeoTitle(_ref2) {
-  var name = _ref2.name;
+function Image(_ref2) {
+  var id = _ref2.id;
   var className = _ref2.className;
+
+  var classes = (0, _classnames2.default)(className, 'product-image');
+
+  return _react2.default.createElement(
+    'div',
+    { className: classes },
+    _react2.default.createElement('img', { src: HOST + '/assets/file/' + id })
+  );
+}
+
+function ProductTitle(_ref3) {
+  var name = _ref3.name;
+  var className = _ref3.className;
 
 
   var classes = (0, _classnames2.default)(className, 'product-title');
-
   return name ? _react2.default.createElement(
     'h2',
     { className: classes },
@@ -87,10 +101,10 @@ function VimeoTitle(_ref2) {
   ) : null;
 }
 
-function ProductFeature(_ref3, _ref4) {
-  var items = _ref3.items;
-  var featured = _ref3.featured;
-  var path = _ref4.path;
+function ProductFeature(_ref4, _ref5) {
+  var items = _ref4.items;
+  var featured = _ref4.featured;
+  var path = _ref5.path;
 
 
   var back = function back() {
@@ -103,11 +117,19 @@ function ProductFeature(_ref3, _ref4) {
   });
 
   var item = hasFeature ? items.filter(function (item) {
-    return (0, _helper.urlify)(item.name) === featured;
+    var isVimeo = item.productType === 'vimeo';
+    if (isVimeo && (0, _helper.urlify)(item.name) === featured) return true;
+
+    if (!isVimeo && item.images.includes(featured)) return true;
+
+    return false;
   })[0] : null;
 
   var video = item ? item.video : {};
-  // const description = (item && item.description ? item.description : '').trim()
+  var image = item && item.productType ? item.images.filter(function (id) {
+    return id === featured;
+  })[0] : null;
+
   var name = (item && item.name ? item.name : '').trim();
 
   return _react2.default.createElement(
@@ -117,8 +139,8 @@ function ProductFeature(_ref3, _ref4) {
     _react2.default.createElement(
       'div',
       { className: 'product-detail' },
-      _react2.default.createElement(Vimeo, video),
-      _react2.default.createElement(VimeoTitle, { name: name })
+      image ? _react2.default.createElement(Image, { id: image }) : _react2.default.createElement(Vimeo, video),
+      _react2.default.createElement(ProductTitle, { name: name })
     )
   );
 }
@@ -126,18 +148,19 @@ ProductFeature.contextTypes = {
   path: _react.PropTypes.string.isRequired
 };
 
-function ProductBlock(_ref5, _ref6) {
-  var item = _ref5.item;
-  var other = (0, _objectWithoutProperties3.default)(_ref5, ['item']);
-  var path = _ref6.path;
+function ProductBlock(_ref6, _ref7) {
+  var item = _ref6.item;
+  var other = (0, _objectWithoutProperties3.default)(_ref6, ['item']);
+  var path = _ref7.path;
 
 
-  var imageId = item ? item.portrait : null;
+  var itemIsId = is(item, String);
+  var imageId = item ? itemIsId ? item : item.portrait : null;
 
-  var id = (0, _helper.urlify)(item.name);
-  var onClick = function onClick() {
+  var id = itemIsId ? id : item ? (0, _helper.urlify)(item.name) : null;
+  var onClick = id ? function () {
     return (0, _helper.navigate)(path + '/' + id);
-  };
+  } : null;
 
   return _react2.default.createElement(_Grid.Block, (0, _extends3.default)({ imageId: imageId, onClick: onClick }, other));
 }
@@ -213,9 +236,17 @@ var Showcase = function (_React$Component) {
       var showcase = showcases.filter(function (show) {
         return (0, _helper.urlify)(show.name) === featuredShowcase || show._id === featuredShowcase;
       })[0];
-      var items = showcase ? products.filter(function (product) {
+
+      var allProducts = showcase ? products.filter(function (product) {
         return showcase.products.includes(product._id);
       }) : [];
+
+      var vimeoProducts = allProducts.filter(function (product) {
+        return product.productType === 'vimeo';
+      });
+      var galleryProducts = allProducts.filter(function (product) {
+        return product.productType === 'gallery';
+      });
 
       delete other.path;
 
@@ -223,11 +254,15 @@ var Showcase = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: classes, ref: function ref(_ref7) {
-            return _this4.ref = _ref7;
+        { className: classes, ref: function ref(_ref8) {
+            return _this4.ref = _ref8;
           } },
-        _react2.default.createElement(ProductFeature, { items: items, featured: featuredProduct }),
-        _react2.default.createElement(_Grid.Grid, (0, _extends3.default)({ items: items, component: ProductBlock }, other))
+        _react2.default.createElement(ProductFeature, { items: allProducts, featured: featuredProduct }),
+        _react2.default.createElement(_Grid.Grid, (0, _extends3.default)({ items: vimeoProducts, component: ProductBlock }, other)),
+        galleryProducts.map(function (gallery) {
+          return _react2.default.createElement(_Grid.Grid, (0, _extends3.default)({
+            items: gallery.images, component: ProductBlock }, other));
+        })
       );
     }
   }]);

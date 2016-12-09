@@ -6,8 +6,8 @@
   "mongodb": "mongodb://localhost:27017/global-mechanic-www-develop",
   "gears": {
     "auth": {
-      "email": "ben@globalmechanic.com",
-      "password": "TryHardMod3!"
+      "email": "studio@globalmechanic.com",
+      "password": "L0bst3r!"
     },
     "host": "http://localhost:4100"
   }

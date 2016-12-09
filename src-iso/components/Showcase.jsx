@@ -5,6 +5,8 @@ import { urlify, navigate } from 'modules/helper'
 import classNames from 'classnames'
 import { variables } from 'styles'
 
+/* globals HOST */
+
 export function Vimeo({vimeoId, className, ...other}) {
 
   const classes = classNames(className, 'product-video')
@@ -17,10 +19,17 @@ export function Vimeo({vimeoId, className, ...other}) {
   </div>
 }
 
-export function VimeoTitle({name, className}) {
+function Image({id, className}) {
+  const classes = classNames(className, 'product-image')
+
+  return <div className={classes}>
+    <img src={`${HOST}/assets/file/${id}`} />
+  </div>
+}
+
+export function ProductTitle({name, className}) {
 
   const classes = classNames(className, 'product-title')
-
   return name ? <h2 className={classes}>{name}</h2> : null
 }
 
@@ -34,19 +43,28 @@ function ProductFeature({items, featured}, {path}) {
   })
 
   const item = hasFeature
-    ? items.filter(item => urlify(item.name) === featured)[0]
+    ? items.filter(item => {
+      const isVimeo = item.productType === 'vimeo'
+      if (isVimeo && urlify(item.name) === featured)
+        return true
+
+      if (!isVimeo && item.images.includes(featured))
+        return true
+
+      return false
+    })[0]
     : null
 
   const video = item ? item.video : {}
-  // const description = (item && item.description ? item.description : '').trim()
+  const image = item && item.productType ? item.images.filter(id => id === featured)[0] : null
+
   const name = (item && item.name ? item.name : '').trim()
 
   return <div className={classes}>
     <div className='product-modal' onClick={back}/>
     <div className='product-detail'>
-      <Vimeo {...video}/>
-      <VimeoTitle name={name}/>
-      {/* {description ? <p className='product-description'>{description}</p> : null } */}
+      { image ? <Image id={image}/> : <Vimeo {...video}/>}
+      <ProductTitle name={name}/>
     </div>
   </div>
 }
@@ -56,10 +74,11 @@ ProductFeature.contextTypes = {
 
 function ProductBlock({ item, ...other }, { path }) {
 
-  const imageId = item ? item.portrait : null
+  const itemIsId = is(item, String)
+  const imageId = item ? itemIsId ? item : item.portrait : null
 
-  const id = urlify(item.name)
-  const onClick = () => navigate(`${path}/${id}`)
+  const id = itemIsId ? id : item ? urlify(item.name) : null
+  const onClick = id ? () => navigate(`${path}/${id}`) : null
 
   return <Block imageId={imageId} onClick={onClick} {...other} />
 }
@@ -100,15 +119,25 @@ export default class Showcase extends React.Component {
     const { showcases, products } = this.state
 
     const showcase = showcases.filter(show => urlify(show.name) === featuredShowcase || show._id === featuredShowcase)[0]
-    const items = showcase ? products.filter(product => showcase.products.includes(product._id)) : []
+
+    const allProducts = showcase
+    ? products.filter(product => showcase.products.includes(product._id))
+      : []
+
+    const vimeoProducts = allProducts.filter(product => product.productType === 'vimeo')
+    const galleryProducts = allProducts.filter(product => product.productType === 'gallery')
 
     delete other.path
 
     const classes = classNames('showcase', className)
 
     return <div className={classes} ref={ref => this.ref = ref}>
-      <ProductFeature items={items} featured={featuredProduct} />
-      <Grid items={items} component={ProductBlock} {...other} />
+      <ProductFeature items={allProducts} featured={featuredProduct} />
+      <Grid items={vimeoProducts} component={ProductBlock} {...other} />
+
+      {galleryProducts.map(gallery => <Grid
+        items={gallery.images} component={ProductBlock} {...other} />)
+      }
     </div>
   }
 
