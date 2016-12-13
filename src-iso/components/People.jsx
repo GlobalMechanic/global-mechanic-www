@@ -27,7 +27,7 @@ function PersonProfile({person, className, ...other}, { director }) {
       person[secondary] && person[secondary].portrait ? person[secondary].portrait : null
     : null
 
-  const portrait = portraitId ? `${HOST}/assets/file/${portraitId}` : null
+  const portrait = portraitId ? `${HOST}/assets/file/${portraitId}-thumb` : null
   const classes = classNames('profile', className)
 
   return <div {...other} className={classes}>

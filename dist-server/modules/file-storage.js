@@ -48,10 +48,10 @@ var LOCAL_FILES = _path2.default.resolve(__dirname, '../../storage/files');
 // Helper
 /******************************************************************************/
 
-function getLocalUrl(id) {
+function getLocalUrl(key) {
   return _fsPromise2.default.readdir(LOCAL_FILES).then(function (files) {
     var file = files.filter(function (file) {
-      return file.includes(id);
+      return key === _path2.default.basename(file, _path2.default.extname(file));
     })[0];
     return file ? _path2.default.join(LOCAL_FILES, file) : null;
   });
@@ -79,13 +79,13 @@ function initialize() {
 // API
 /******************************************************************************/
 
-function hasFile(id) {
+function hasFile(key) {
 
-  if (!s3) return getLocalUrl(id).then(function (url) {
+  if (!s3) return getLocalUrl(key).then(function (url) {
     return !!url;
   });
 
-  var params = { Bucket: bucket, Key: id };
+  var params = { Bucket: bucket, Key: key };
 
   return new _promise2.default(function (resolve, reject) {
     s3.headObject(params, function (err) {
@@ -94,11 +94,11 @@ function hasFile(id) {
   });
 }
 
-function writeFile(id, ext, read) {
+function writeFile(key, ext, read) {
 
   if (!s3) {
     var _ret = function () {
-      var write = _fsPromise2.default.createWriteStream(_path2.default.join(LOCAL_FILES, id + '.' + ext));
+      var write = _fsPromise2.default.createWriteStream(_path2.default.join(LOCAL_FILES, key + '.' + ext));
       return {
         v: new _promise2.default(function (resolve, reject) {
           read.pipe(write);
@@ -112,27 +112,27 @@ function writeFile(id, ext, read) {
   }
 
   var upload = new _stream.PassThrough();
-  var params = { Bucket: bucket, Key: id, Body: upload, Metadata: { ext: ext } };
+  var params = { Bucket: bucket, Key: key, Body: upload, Metadata: { ext: ext } };
 
   return new _promise2.default(function (resolve, reject) {
     s3.upload(params, function (err, data) {
       if (err) reject(err);else resolve(data);
     });
-    log('writing file to s3:', id);
+    log('writing file to s3:', key);
     read.pipe(upload);
   });
 }
 
-function readFile(id) {
+function readFile(key) {
 
-  if (!s3) return getLocalUrl(id).then(function (url) {
+  if (!s3) return getLocalUrl(key).then(function (url) {
     return url ? {
       stream: _fsPromise2.default.createReadStream(url),
       ext: _path2.default.extname(url)
     } : null;
   });
 
-  var params = { Bucket: bucket, Key: id };
+  var params = { Bucket: bucket, Key: key };
 
   return new _promise2.default(function (resolve, reject) {
 
@@ -142,7 +142,7 @@ function readFile(id) {
       var ext = data.Metadata.ext;
 
       var stream = s3.getObject(params).createReadStream();
-      log('reading file from s3', id);
+      log('reading file from s3', key);
 
       resolve({ stream: stream, ext: ext });
     });

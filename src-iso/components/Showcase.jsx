@@ -4,6 +4,7 @@ import { showcases, products } from 'modules/data'
 import { urlify, navigate } from 'modules/helper'
 import classNames from 'classnames'
 import { variables } from 'styles'
+import is from 'is-explicit'
 
 /* globals HOST */
 
@@ -22,8 +23,12 @@ export function Vimeo({vimeoId, className, ...other}) {
 function Image({id, className}) {
   const classes = classNames(className, 'product-image')
 
+  const href = `${HOST}/assets/file/${id}`
+
   return <div className={classes}>
-    <img src={`${HOST}/assets/file/${id}`} />
+    <a href={href}>
+      <img src={href} />
+    </a>
   </div>
 }
 
@@ -64,7 +69,7 @@ function ProductFeature({items, featured}, {path}) {
     <div className='product-modal' onClick={back}/>
     <div className='product-detail'>
       { image ? <Image id={image}/> : <Vimeo {...video}/>}
-      <ProductTitle name={name}/>
+      { image ? null : <ProductTitle name={name} /> }
     </div>
   </div>
 }
@@ -77,8 +82,7 @@ function ProductBlock({ item, ...other }, { path }) {
   const itemIsId = is(item, String)
   const imageId = item ? itemIsId ? item : item.portrait : null
 
-  const id = itemIsId ? id : item ? urlify(item.name) : null
-  const onClick = id ? () => navigate(`${path}/${id}`) : null
+  const onClick = imageId ? () => navigate(`${path}/${imageId}`) : null
 
   return <Block imageId={imageId} onClick={onClick} {...other} />
 }
@@ -121,7 +125,7 @@ export default class Showcase extends React.Component {
     const showcase = showcases.filter(show => urlify(show.name) === featuredShowcase || show._id === featuredShowcase)[0]
 
     const allProducts = showcase
-    ? products.filter(product => showcase.products.includes(product._id))
+      ? products.filter(product => showcase.products.includes(product._id))
       : []
 
     const vimeoProducts = allProducts.filter(product => product.productType === 'vimeo')
@@ -134,9 +138,8 @@ export default class Showcase extends React.Component {
     return <div className={classes} ref={ref => this.ref = ref}>
       <ProductFeature items={allProducts} featured={featuredProduct} />
       <Grid items={vimeoProducts} component={ProductBlock} {...other} />
-
-      {galleryProducts.map(gallery => <Grid
-        items={gallery.images} component={ProductBlock} {...other} />)
+      {
+        galleryProducts.map(gallery => <Grid items={gallery.images} component={ProductBlock} {...other} />)
       }
     </div>
   }

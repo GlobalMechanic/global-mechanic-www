@@ -19,7 +19,19 @@ exports.default = function () {
   people.before(beforeHooks);
   people.after(afterHooks);
 
-  (0, _gears.sync)(users, people, '480', ['staffData', 'portrait'], ['directorData', 'portrait']);
+  var staff = {
+    path: ['staffData', 'portrait'],
+    thumb: '480',
+    full: false
+  };
+
+  var director = {
+    path: ['directorData', 'portrait'],
+    thumb: '480',
+    full: false
+  };
+
+  (0, _gears.sync)(users, people, staff, director);
 };
 
 var _feathersMongodb = require('feathers-mongodb');

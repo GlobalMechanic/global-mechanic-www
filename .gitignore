@@ -4,3 +4,8 @@ cache/portfolios.json
 cache/videos.json
 .env
 .DS_Store
+
+
+dist-client
+dist-iso
+dist-server

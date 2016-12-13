@@ -21,7 +21,7 @@ export default class Block extends Component {
 
     this.setState({ imageLoaded: false})
     this.image = new Image()
-    this.image.src = `${HOST}/assets/file/${imageId}`
+    this.image.src = `${HOST}/assets/file/${imageId}-thumb`
     this.image.onload = this.imageLoad
 
   }
@@ -49,7 +49,7 @@ export default class Block extends Component {
     const imageClasses = classNames('block-image', { clickable: onClick, grayscale})
 
     const imageStyle = {
-      backgroundImage: imageLoaded ? `url(${HOST}/assets/file/${imageId})` : null,
+      backgroundImage: imageLoaded ? `url(${HOST}/assets/file/${imageId}-thumb)` : null,
       opacity: imageLoaded ? 1 : 0
     }
 

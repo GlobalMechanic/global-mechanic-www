@@ -3,6 +3,7 @@ import hooks from 'feathers-hooks'
 import socketio from 'feathers-socketio/client'
 import authentication from 'feathers-authentication/client'
 import io from 'socket.io-client'
+import { ObjectId } from 'mongodb'
 
 import { hasFile, writeFile } from 'modules/file-storage'
 // import path from 'path'
@@ -39,11 +40,12 @@ function getIn(obj, paths) {
   }
 }
 
-function ensureFile(id, dim = '640x360') {
+function ensureFile(id, thumb) {
 
+  const pro = thumb ? `?process=${thumb}` : ''
   //check if the file exists
   queue.add(() => hasFile(id)
-    .then(has => has ? ALREADY_EXISTS : fetch(`${gears.host}/files/${id}?process=${dim}`))
+    .then(has => has ? ALREADY_EXISTS : fetch(`${gears.host}/files/${id}${pro}`))
     //download it from gears if it doesn't
     .then(res => {
       if (res === ALREADY_EXISTS)
@@ -54,12 +56,24 @@ function ensureFile(id, dim = '640x360') {
 
       const type = res.headers._headers['content-type'][0]
       const ext = type.substr(type.indexOf('/')+1)
+      const key = thumb ? id + '-thumb' : id
 
-      return writeFile(id, ext, res.body)
+      return writeFile(key, ext, res.body)
     })
     .catch(err => log.error(`Error fetching file ${id}`,err))
   )
 
+}
+
+//So, it turns out, if you supply an id to feathers for mongodb, it wont auto-cast it
+//to a ObjectId. It does cast all other queries to ObjectId, so if you create a bunch
+//of objects with string ids, and then look for them with string ids, you wont find anything.
+
+//I'm not complaining, though. I don't want to use string ids, anyway.
+function castId(doc) {
+  doc._id = ObjectId(doc._id)
+
+  return doc
 }
 
 /******************************************************************************/
@@ -96,13 +110,25 @@ export function login() {
     .catch(err => log.error(err))
 }
 
-export function sync(from, to, imageDim, ...imagePaths) {
+export function sync(from, to, ...downloads) {
 
   const ensureFiles = doc => {
-    imagePaths.forEach(path => {
+
+    downloads.forEach(instruction => {
+
+      const { path, thumb, full } = instruction
       const fileId = getIn(doc, path)
-      if (fileId)
-        ensureFile(fileId, imageDim)
+
+      const fileIds = is(fileId, Array) ? fileId : [fileId]
+
+      fileIds.forEach(fileId => {
+        if (fileId && thumb)
+          ensureFile(fileId, thumb)
+
+        if (fileId && full)
+          ensureFile(fileId)
+      })
+
     })
   }
 
@@ -118,7 +144,9 @@ export function sync(from, to, imageDim, ...imagePaths) {
       .then(() => {
 
         //fill all the local docs with data from gears
-        const promises = docs.map(doc => to.create(doc))
+        const promises = docs.map(doc => to.create(castId(doc))
+            .catch(err => log.error('Error creating item:', err)))
+
         return Promise.all(promises)
       })
 
@@ -127,9 +155,16 @@ export function sync(from, to, imageDim, ...imagePaths) {
     )
   }
 
-  const change = res => to.update(res._id, res).then(ensureFiles)
-  const create = res => to.create(res).then(ensureFiles)
+  const change = res => to.update(res._id, res)
+    .then(ensureFiles)
+    .catch(err => log(err))
+
+  const create = res => to.create(castId(res))
+    .then(ensureFiles)
+    .catch(err => log(err))
+
   const remove = res => to.remove(res._id)
+    .catch(err => log(err))
 
   gears.client.io.on('authenticated', populate)
   from.on('patched', change)

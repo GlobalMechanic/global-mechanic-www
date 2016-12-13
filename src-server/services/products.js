@@ -35,6 +35,18 @@ export default function() {
 
   webProducts.before(beforeHooks)
 
-  sync(products, webProducts, '640x360', 'portrait')
+  const portrait = {
+    path: 'portrait',
+    thumb: '640x360',
+    full: false
+  }
+
+  const images = {
+    path: 'images',
+    thumb: '400',
+    full: true
+  }
+
+  sync(products, webProducts, portrait, images)
 
 }

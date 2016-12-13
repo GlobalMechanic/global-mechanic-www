@@ -17,10 +17,10 @@ const LOCAL_FILES = path.resolve(__dirname, '../../storage/files')
 // Helper
 /******************************************************************************/
 
-function getLocalUrl(id) {
+function getLocalUrl(key) {
   return fs.readdir(LOCAL_FILES)
     .then(files => {
-      const file = files.filter(file => file.includes(id))[0]
+      const file = files.filter(file => key === path.basename(file, path.extname(file)))[0]
       return file ? path.join(LOCAL_FILES, file) : null
     })
 }
@@ -46,13 +46,13 @@ export default function initialize() {
 // API
 /******************************************************************************/
 
-export function hasFile(id) {
+export function hasFile(key) {
 
   if (!s3)
-    return getLocalUrl(id)
+    return getLocalUrl(key)
       .then(url => !!url)
 
-  const params = { Bucket: bucket, Key: id }
+  const params = { Bucket: bucket, Key: key }
 
   return new Promise((resolve, reject) => {
     s3.headObject(params, err => {
@@ -69,10 +69,10 @@ export function hasFile(id) {
 
 }
 
-export function writeFile(id, ext, read) {
+export function writeFile(key, ext, read) {
 
   if (!s3) {
-    const write = fs.createWriteStream(path.join(LOCAL_FILES, `${id}.${ext}`))
+    const write = fs.createWriteStream(path.join(LOCAL_FILES, `${key}.${ext}`))
     return new Promise((resolve, reject) => {
       read.pipe(write)
       read.on('end', resolve)
@@ -81,7 +81,7 @@ export function writeFile(id, ext, read) {
   }
 
   const upload = new PassThrough()
-  const params = { Bucket: bucket, Key: id, Body: upload, Metadata: { ext } }
+  const params = { Bucket: bucket, Key: key, Body: upload, Metadata: { ext } }
 
   return new Promise((resolve, reject) => {
     s3.upload(params, (err, data) => {
@@ -90,21 +90,21 @@ export function writeFile(id, ext, read) {
       else
         resolve(data)
     })
-    log('writing file to s3:',id)
+    log('writing file to s3:',key)
     read.pipe(upload)
   })
 }
 
-export function readFile(id) {
+export function readFile(key) {
 
   if (!s3)
-    return getLocalUrl(id)
+    return getLocalUrl(key)
       .then(url => url ? {
         stream: fs.createReadStream(url),
         ext: path.extname(url)
       } : null)
 
-  const params = { Bucket: bucket, Key: id }
+  const params = { Bucket: bucket, Key: key }
 
   return new Promise((resolve, reject) => {
 
@@ -114,7 +114,7 @@ export function readFile(id) {
 
       const { ext } = data.Metadata
       const stream = s3.getObject(params).createReadStream()
-      log('reading file from s3', id)
+      log('reading file from s3', key)
 
       resolve({ stream, ext })
 

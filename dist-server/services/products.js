@@ -18,7 +18,19 @@ exports.default = function () {
 
   webProducts.before(beforeHooks);
 
-  (0, _gears.sync)(products, webProducts, '640x360', 'portrait');
+  var portrait = {
+    path: 'portrait',
+    thumb: '640x360',
+    full: false
+  };
+
+  var images = {
+    path: 'images',
+    thumb: '400',
+    full: true
+  };
+
+  (0, _gears.sync)(products, webProducts, portrait, images);
 };
 
 var _feathersMongodb = require('feathers-mongodb');

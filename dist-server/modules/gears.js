@@ -45,6 +45,8 @@ var _socket = require('socket.io-client');
 
 var _socket2 = _interopRequireDefault(_socket);
 
+var _mongodb = require('mongodb');
+
 var _fileStorage = require('modules/file-storage');
 
 var _promiseQueue = require('promise-queue');
@@ -87,14 +89,13 @@ function getIn(obj, paths) {
   }
 }
 
-function ensureFile(id) {
-  var dim = arguments.length <= 1 || arguments[1] === undefined ? '640x360' : arguments[1];
+function ensureFile(id, thumb) {
 
-
+  var pro = thumb ? '?process=' + thumb : '';
   //check if the file exists
   queue.add(function () {
     return (0, _fileStorage.hasFile)(id).then(function (has) {
-      return has ? ALREADY_EXISTS : (0, _isomorphicFetch2.default)(gears.host + '/files/' + id + '?process=' + dim);
+      return has ? ALREADY_EXISTS : (0, _isomorphicFetch2.default)(gears.host + '/files/' + id + pro);
     })
     //download it from gears if it doesn't
     .then(function (res) {
@@ -104,12 +105,24 @@ function ensureFile(id) {
 
       var type = res.headers._headers['content-type'][0];
       var ext = type.substr(type.indexOf('/') + 1);
+      var key = thumb ? id + '-thumb' : id;
 
-      return (0, _fileStorage.writeFile)(id, ext, res.body);
+      return (0, _fileStorage.writeFile)(key, ext, res.body);
     }).catch(function (err) {
       return log.error('Error fetching file ' + id, err);
     });
   });
+}
+
+//So, it turns out, if you supply an id to feathers for mongodb, it wont auto-cast it
+//to a ObjectId. It does cast all other queries to ObjectId, so if you create a bunch
+//of objects with string ids, and then look for them with string ids, you wont find anything.
+
+//I'm not complaining, though. I don't want to use string ids, anyway.
+function castId(doc) {
+  doc._id = (0, _mongodb.ObjectId)(doc._id);
+
+  return doc;
 }
 
 /******************************************************************************/
@@ -147,15 +160,27 @@ function login() {
   });
 }
 
-function sync(from, to, imageDim) {
-  for (var _len = arguments.length, imagePaths = Array(_len > 3 ? _len - 3 : 0), _key = 3; _key < _len; _key++) {
-    imagePaths[_key - 3] = arguments[_key];
+function sync(from, to) {
+  for (var _len = arguments.length, downloads = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    downloads[_key - 2] = arguments[_key];
   }
 
   var ensureFiles = function ensureFiles(doc) {
-    imagePaths.forEach(function (path) {
+
+    downloads.forEach(function (instruction) {
+      var path = instruction.path;
+      var thumb = instruction.thumb;
+      var full = instruction.full;
+
       var fileId = getIn(doc, path);
-      if (fileId) ensureFile(fileId, imageDim);
+
+      var fileIds = is(fileId, Array) ? fileId : [fileId];
+
+      fileIds.forEach(function (fileId) {
+        if (fileId && thumb) ensureFile(fileId, thumb);
+
+        if (fileId && full) ensureFile(fileId);
+      });
     });
   };
 
@@ -171,8 +196,11 @@ function sync(from, to, imageDim) {
 
         //fill all the local docs with data from gears
         var promises = docs.map(function (doc) {
-          return to.create(doc);
+          return to.create(castId(doc)).catch(function (err) {
+            return log.error('Error creating item:', err);
+          });
         });
+
         return _promise2.default.all(promises);
       })
 
@@ -184,13 +212,21 @@ function sync(from, to, imageDim) {
   };
 
   var change = function change(res) {
-    return to.update(res._id, res).then(ensureFiles);
+    return to.update(res._id, res).then(ensureFiles).catch(function (err) {
+      return log(err);
+    });
   };
+
   var create = function create(res) {
-    return to.create(res).then(ensureFiles);
+    return to.create(castId(res)).then(ensureFiles).catch(function (err) {
+      return log(err);
+    });
   };
+
   var remove = function remove(res) {
-    return to.remove(res._id);
+    return to.remove(res._id).catch(function (err) {
+      return log(err);
+    });
   };
 
   gears.client.io.on('authenticated', populate);

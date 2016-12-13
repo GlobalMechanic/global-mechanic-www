@@ -131,6 +131,15 @@ $large-video-width: $video-width * 1.5;
 
 }
 
+.product-image {
+  background-color: transparent;
+  overflow-y: scroll;
+  max-height: 80vh;
+  img {
+    width: 100%;
+  }
+}
+
 // .showcase {
 //   background-color: $bg-color-inverted;
 //   height: 100vh;

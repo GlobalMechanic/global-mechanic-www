@@ -16,8 +16,10 @@ exports.default = function () {
       var ext = _ref.ext;
 
 
-      var fn = id + '.' + ext;
+      var fn = id + ext;
       var mimeType = _mime2.default.lookup(fn);
+
+      log('serving ' + fn);
 
       res.setHeader('Content-Disposition', 'inline; filename=' + fn);
       res.setHeader('Content-Type', mimeType);
@@ -31,10 +33,6 @@ exports.default = function () {
 };
 
 var _fileStorage = require('modules/file-storage');
-
-var _path = require('path');
-
-var _path2 = _interopRequireDefault(_path);
 
 var _mime = require('mime');
 

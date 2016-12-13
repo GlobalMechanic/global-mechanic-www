@@ -77,7 +77,7 @@ function PersonProfile(_ref, _ref2) {
 
   var portraitId = person ? person[primary] && person[primary].portrait ? person[primary].portrait : person[secondary] && person[secondary].portrait ? person[secondary].portrait : null : null;
 
-  var portrait = portraitId ? HOST + '/assets/file/' + portraitId : null;
+  var portrait = portraitId ? HOST + '/assets/file/' + portraitId + '-thumb' : null;
   var classes = (0, _classnames2.default)('profile', className);
 
   return _react2.default.createElement(

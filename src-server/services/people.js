@@ -56,6 +56,18 @@ export default function() {
   people.before(beforeHooks)
   people.after(afterHooks)
 
-  sync(users, people, '480', ['staffData', 'portrait'], ['directorData', 'portrait'])
+  const staff = {
+    path: ['staffData', 'portrait'],
+    thumb: '480',
+    full: false
+  }
+
+  const director = {
+    path: ['directorData', 'portrait'],
+    thumb: '480',
+    full: false
+  }
+
+  sync(users, people, staff, director)
 
 }

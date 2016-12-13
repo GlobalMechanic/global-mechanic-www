@@ -1,5 +1,4 @@
 import { readFile } from 'modules/file-storage'
-import path from 'path'
 import mime from 'mime'
 
 export const ONE_YEAR = 31557600
@@ -13,8 +12,10 @@ export default function () {
     return readFile(id)
       .then(({stream, ext}) => {
 
-        const fn = id+'.'+ext
+        const fn = id + ext
         const mimeType = mime.lookup(fn)
+
+        log(`serving ${fn}`)
 
         res.setHeader('Content-Disposition', `inline; filename=${fn}`)
         res.setHeader('Content-Type', mimeType)

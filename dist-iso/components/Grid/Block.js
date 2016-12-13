@@ -66,7 +66,7 @@ var Block = function (_Component) {
 
       _this.setState({ imageLoaded: false });
       _this.image = new Image();
-      _this.image.src = HOST + '/assets/file/' + imageId;
+      _this.image.src = HOST + '/assets/file/' + imageId + '-thumb';
       _this.image.onload = _this.imageLoad;
     }, _this.imageLoad = function () {
       _this.setState({ imageLoaded: true });
@@ -100,7 +100,7 @@ var Block = function (_Component) {
       var imageClasses = (0, _classnames2.default)('block-image', { clickable: onClick, grayscale: grayscale });
 
       var imageStyle = {
-        backgroundImage: imageLoaded ? 'url(' + HOST + '/assets/file/' + imageId + ')' : null,
+        backgroundImage: imageLoaded ? 'url(' + HOST + '/assets/file/' + imageId + '-thumb)' : null,
         opacity: imageLoaded ? 1 : 0
       };
 

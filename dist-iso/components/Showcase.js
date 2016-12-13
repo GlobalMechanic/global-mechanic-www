@@ -55,6 +55,10 @@ var _classnames2 = _interopRequireDefault(_classnames);
 
 var _styles = require('styles');
 
+var _isExplicit = require('is-explicit');
+
+var _isExplicit2 = _interopRequireDefault(_isExplicit);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* globals HOST */
@@ -81,10 +85,16 @@ function Image(_ref2) {
 
   var classes = (0, _classnames2.default)(className, 'product-image');
 
+  var href = HOST + '/assets/file/' + id;
+
   return _react2.default.createElement(
     'div',
     { className: classes },
-    _react2.default.createElement('img', { src: HOST + '/assets/file/' + id })
+    _react2.default.createElement(
+      'a',
+      { href: href },
+      _react2.default.createElement('img', { src: href })
+    )
   );
 }
 
@@ -140,7 +150,7 @@ function ProductFeature(_ref4, _ref5) {
       'div',
       { className: 'product-detail' },
       image ? _react2.default.createElement(Image, { id: image }) : _react2.default.createElement(Vimeo, video),
-      _react2.default.createElement(ProductTitle, { name: name })
+      image ? null : _react2.default.createElement(ProductTitle, { name: name })
     )
   );
 }
@@ -154,12 +164,11 @@ function ProductBlock(_ref6, _ref7) {
   var path = _ref7.path;
 
 
-  var itemIsId = is(item, String);
+  var itemIsId = (0, _isExplicit2.default)(item, String);
   var imageId = item ? itemIsId ? item : item.portrait : null;
 
-  var id = itemIsId ? id : item ? (0, _helper.urlify)(item.name) : null;
-  var onClick = id ? function () {
-    return (0, _helper.navigate)(path + '/' + id);
+  var onClick = imageId ? function () {
+    return (0, _helper.navigate)(path + '/' + imageId);
   } : null;
 
   return _react2.default.createElement(_Grid.Block, (0, _extends3.default)({ imageId: imageId, onClick: onClick }, other));
@@ -260,8 +269,7 @@ var Showcase = function (_React$Component) {
         _react2.default.createElement(ProductFeature, { items: allProducts, featured: featuredProduct }),
         _react2.default.createElement(_Grid.Grid, (0, _extends3.default)({ items: vimeoProducts, component: ProductBlock }, other)),
         galleryProducts.map(function (gallery) {
-          return _react2.default.createElement(_Grid.Grid, (0, _extends3.default)({
-            items: gallery.images, component: ProductBlock }, other));
+          return _react2.default.createElement(_Grid.Grid, (0, _extends3.default)({ items: gallery.images, component: ProductBlock }, other));
         })
       );
     }
