@@ -26,9 +26,8 @@ const app = feathers()
 const configURL = path.resolve(__dirname, '..')
 const favURL = path.resolve(__dirname, '../favicon.png')
 
-const publicURL = app.get('public')
-
 app.configure(configuration(configURL))
+const publicURL = app.get('public')
 
 const url = app.get('mongodb')
 
