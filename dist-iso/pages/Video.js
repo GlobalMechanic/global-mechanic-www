@@ -103,7 +103,7 @@ var Video = function (_React$Component) {
           'div',
           { id: 'video', className: 'transition-slide-up' },
           _react2.default.createElement(_Showcase.Vimeo, { vimeoId: vimeoId }),
-          _react2.default.createElement(_Showcase.VimeoTitle, { name: name })
+          _react2.default.createElement(_Showcase.ProductTitle, { name: name })
         ),
         children
       );
