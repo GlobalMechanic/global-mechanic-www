@@ -1,6 +1,6 @@
 {
   "host": "www.globalmechanic.com",
-  "port": 80,
+  "port": "PORT",
   "public": "../dist-client/",
   "bucketeer": {
     "name": "BUCKETEER_BUCKET_NAME",
