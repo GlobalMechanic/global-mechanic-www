@@ -3,3 +3,7 @@ util/thumbnails
 util/fixed-thumbnails
 .env
 .DS_Store
+storage
+dist-client
+dist-iso
+dist-server
