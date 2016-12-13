@@ -8,15 +8,17 @@ exports.ONE_YEAR = undefined;
 exports.default = function () {
 
   return function (req, res, next) {
-    var id = req.params.id;
+    var key = req.params.key;
 
 
-    return (0, _fileStorage.readFile)(id).then(function (_ref) {
+    log(key);
+
+    return (0, _fileStorage.readFile)(key).then(function (_ref) {
       var stream = _ref.stream;
       var ext = _ref.ext;
 
 
-      var fn = id + ext;
+      var fn = key + '.' + ext;
       var mimeType = _mime2.default.lookup(fn);
 
       log('serving ' + fn);

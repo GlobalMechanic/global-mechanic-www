@@ -43,8 +43,10 @@ function getIn(obj, paths) {
 function ensureFile(id, thumb) {
 
   const pro = thumb ? `?process=${thumb}` : ''
+  const key = thumb ? id + '-thumb' : id
+
   //check if the file exists
-  queue.add(() => hasFile(id)
+  queue.add(() => hasFile(key)
     .then(has => has ? ALREADY_EXISTS : fetch(`${gears.host}/files/${id}${pro}`))
     //download it from gears if it doesn't
     .then(res => {
@@ -56,7 +58,6 @@ function ensureFile(id, thumb) {
 
       const type = res.headers._headers['content-type'][0]
       const ext = type.substr(type.indexOf('/')+1)
-      const key = thumb ? id + '-thumb' : id
 
       return writeFile(key, ext, res.body)
     })
@@ -104,7 +105,7 @@ export function service(name) {
 }
 
 export function login() {
-
+  log('logging into gears...')
   return gears.client
     .authenticate({type: 'local', ...gears.auth})
     .catch(err => log.error(err))
@@ -118,7 +119,6 @@ export function sync(from, to, ...downloads) {
 
       const { path, thumb, full } = instruction
       const fileId = getIn(doc, path)
-
       const fileIds = is(fileId, Array) ? fileId : [fileId]
 
       fileIds.forEach(fileId => {
@@ -128,7 +128,6 @@ export function sync(from, to, ...downloads) {
         if (fileId && full)
           ensureFile(fileId)
       })
-
     })
   }
 
@@ -145,7 +144,8 @@ export function sync(from, to, ...downloads) {
 
         //fill all the local docs with data from gears
         const promises = docs.map(doc => to.create(castId(doc))
-            .catch(err => log.error('Error creating item:', err)))
+          .catch(err => log.error('Error creating item:', err))
+        )
 
         return Promise.all(promises)
       })
@@ -153,6 +153,8 @@ export function sync(from, to, ...downloads) {
       //download any files associated with the docs created
       .then(docs => docs.forEach(ensureFiles))
     )
+    .catch(err => log.error('Error populating service', err))
+
   }
 
   const change = res => to.update(res._id, res)

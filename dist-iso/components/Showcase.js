@@ -127,16 +127,15 @@ function ProductFeature(_ref4, _ref5) {
   });
 
   var item = hasFeature ? items.filter(function (item) {
-    var isVimeo = item.productType === 'vimeo';
-    if (isVimeo && (0, _helper.urlify)(item.name) === featured) return true;
+    if (item.productType === 'vimeo' && (item._id === featured || (0, _helper.urlify)(item.name) === featured)) return true;
 
-    if (!isVimeo && item.images.includes(featured)) return true;
+    if (item.productType === 'gallery' && item.images.includes(featured)) return true;
 
     return false;
   })[0] : null;
 
   var video = item ? item.video : {};
-  var image = item && item.productType ? item.images.filter(function (id) {
+  var image = item && item.productType === 'gallery' ? item.images.filter(function (id) {
     return id === featured;
   })[0] : null;
 
@@ -167,8 +166,10 @@ function ProductBlock(_ref6, _ref7) {
   var itemIsId = (0, _isExplicit2.default)(item, String);
   var imageId = item ? itemIsId ? item : item.portrait : null;
 
+  var target = itemIsId ? imageId : (0, _helper.urlify)(item.name);
+
   var onClick = imageId ? function () {
-    return (0, _helper.navigate)(path + '/' + imageId);
+    return (0, _helper.navigate)(path + '/' + target);
   } : null;
 
   return _react2.default.createElement(_Grid.Block, (0, _extends3.default)({ imageId: imageId, onClick: onClick }, other));
@@ -251,7 +252,7 @@ var Showcase = function (_React$Component) {
       }) : [];
 
       var vimeoProducts = allProducts.filter(function (product) {
-        return product.productType === 'vimeo';
+        return product.productType !== 'gallery';
       });
       var galleryProducts = allProducts.filter(function (product) {
         return product.productType === 'gallery';
@@ -269,7 +270,16 @@ var Showcase = function (_React$Component) {
         _react2.default.createElement(ProductFeature, { items: allProducts, featured: featuredProduct }),
         _react2.default.createElement(_Grid.Grid, (0, _extends3.default)({ items: vimeoProducts, component: ProductBlock }, other)),
         galleryProducts.map(function (gallery) {
-          return _react2.default.createElement(_Grid.Grid, (0, _extends3.default)({ items: gallery.images, component: ProductBlock }, other));
+          return _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'h1',
+              { className: 'padded' },
+              gallery.name
+            ),
+            _react2.default.createElement(_Grid.Grid, (0, _extends3.default)({ items: gallery.images, component: ProductBlock }, other))
+          );
         })
       );
     }

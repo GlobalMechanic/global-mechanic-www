@@ -92,9 +92,11 @@ function getIn(obj, paths) {
 function ensureFile(id, thumb) {
 
   var pro = thumb ? '?process=' + thumb : '';
+  var key = thumb ? id + '-thumb' : id;
+
   //check if the file exists
   queue.add(function () {
-    return (0, _fileStorage.hasFile)(id).then(function (has) {
+    return (0, _fileStorage.hasFile)(key).then(function (has) {
       return has ? ALREADY_EXISTS : (0, _isomorphicFetch2.default)(gears.host + '/files/' + id + pro);
     })
     //download it from gears if it doesn't
@@ -105,7 +107,6 @@ function ensureFile(id, thumb) {
 
       var type = res.headers._headers['content-type'][0];
       var ext = type.substr(type.indexOf('/') + 1);
-      var key = thumb ? id + '-thumb' : id;
 
       return (0, _fileStorage.writeFile)(key, ext, res.body);
     }).catch(function (err) {
@@ -154,7 +155,7 @@ function service(name) {
 }
 
 function login() {
-
+  log('logging into gears...');
   return gears.client.authenticate((0, _extends3.default)({ type: 'local' }, gears.auth)).catch(function (err) {
     return log.error(err);
   });
@@ -173,7 +174,6 @@ function sync(from, to) {
       var full = instruction.full;
 
       var fileId = getIn(doc, path);
-
       var fileIds = is(fileId, Array) ? fileId : [fileId];
 
       fileIds.forEach(function (fileId) {
@@ -208,6 +208,8 @@ function sync(from, to) {
       .then(function (docs) {
         return docs.forEach(ensureFiles);
       });
+    }).catch(function (err) {
+      return log.error('Error populating service', err);
     });
   };
 

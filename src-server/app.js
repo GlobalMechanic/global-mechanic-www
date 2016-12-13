@@ -27,8 +27,8 @@ const configURL = path.resolve(__dirname, '..')
 const favURL = path.resolve(__dirname, '../favicon.png')
 
 app.configure(configuration(configURL))
-const publicURL = app.get('public')
 
+const publicURL = app.get('public')
 const url = app.get('mongodb')
 
 export default MongoClient

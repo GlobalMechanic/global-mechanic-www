@@ -49,11 +49,10 @@ function ProductFeature({items, featured}, {path}) {
 
   const item = hasFeature
     ? items.filter(item => {
-      const isVimeo = item.productType === 'vimeo'
-      if (isVimeo && urlify(item.name) === featured)
+      if (item.productType === 'vimeo' && (item._id === featured || urlify(item.name) === featured))
         return true
 
-      if (!isVimeo && item.images.includes(featured))
+      if (item.productType === 'gallery' && item.images.includes(featured))
         return true
 
       return false
@@ -61,7 +60,7 @@ function ProductFeature({items, featured}, {path}) {
     : null
 
   const video = item ? item.video : {}
-  const image = item && item.productType ? item.images.filter(id => id === featured)[0] : null
+  const image = item && item.productType === 'gallery' ? item.images.filter(id => id === featured)[0] : null
 
   const name = (item && item.name ? item.name : '').trim()
 
@@ -82,7 +81,9 @@ function ProductBlock({ item, ...other }, { path }) {
   const itemIsId = is(item, String)
   const imageId = item ? itemIsId ? item : item.portrait : null
 
-  const onClick = imageId ? () => navigate(`${path}/${imageId}`) : null
+  const target = itemIsId ? imageId : urlify(item.name)
+
+  const onClick = imageId ? () => navigate(`${path}/${target}`) : null
 
   return <Block imageId={imageId} onClick={onClick} {...other} />
 }
@@ -128,7 +129,7 @@ export default class Showcase extends React.Component {
       ? products.filter(product => showcase.products.includes(product._id))
       : []
 
-    const vimeoProducts = allProducts.filter(product => product.productType === 'vimeo')
+    const vimeoProducts = allProducts.filter(product => product.productType !== 'gallery')
     const galleryProducts = allProducts.filter(product => product.productType === 'gallery')
 
     delete other.path
@@ -139,7 +140,10 @@ export default class Showcase extends React.Component {
       <ProductFeature items={allProducts} featured={featuredProduct} />
       <Grid items={vimeoProducts} component={ProductBlock} {...other} />
       {
-        galleryProducts.map(gallery => <Grid items={gallery.images} component={ProductBlock} {...other} />)
+        galleryProducts.map(gallery => <div>
+          <h1 className='padded'>{gallery.name}</h1>
+          <Grid items={gallery.images} component={ProductBlock} {...other} />
+        </div>)
       }
     </div>
   }

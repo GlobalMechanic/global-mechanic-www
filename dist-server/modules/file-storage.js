@@ -92,13 +92,14 @@ function hasFile(key) {
       if (err && (err.code === 'NoSuchKey' || err.code === 'NotFound')) return resolve(false);else if (err) return reject(err);else resolve(true);
     });
   });
+  // .catch(err => log.error('Error checking file from s3', err))
 }
 
 function writeFile(key, ext, read) {
 
   if (!s3) {
     var _ret = function () {
-      var write = _fsPromise2.default.createWriteStream(_path2.default.join(LOCAL_FILES, key + '.' + ext));
+      var write = _fsPromise2.default.createWriteStream(_path2.default.join(LOCAL_FILES, '' + key + ext));
       return {
         v: new _promise2.default(function (resolve, reject) {
           read.pipe(write);
@@ -121,6 +122,7 @@ function writeFile(key, ext, read) {
     log('writing file to s3:', key);
     read.pipe(upload);
   });
+  // .catch(err => log.error('Error writing file from s3', err))
 }
 
 function readFile(key) {
@@ -147,4 +149,5 @@ function readFile(key) {
       resolve({ stream: stream, ext: ext });
     });
   });
+  // .catch(err => log.error('Error reading file from s3', err))
 }

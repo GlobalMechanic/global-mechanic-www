@@ -66,13 +66,14 @@ export function hasFile(key) {
         resolve(true)
     })
   })
+  // .catch(err => log.error('Error checking file from s3', err))
 
 }
 
 export function writeFile(key, ext, read) {
 
   if (!s3) {
-    const write = fs.createWriteStream(path.join(LOCAL_FILES, `${key}.${ext}`))
+    const write = fs.createWriteStream(path.join(LOCAL_FILES, `${key}${ext}`))
     return new Promise((resolve, reject) => {
       read.pipe(write)
       read.on('end', resolve)
@@ -93,6 +94,8 @@ export function writeFile(key, ext, read) {
     log('writing file to s3:',key)
     read.pipe(upload)
   })
+  // .catch(err => log.error('Error writing file from s3', err))
+
 }
 
 export function readFile(key) {
@@ -120,5 +123,6 @@ export function readFile(key) {
 
     })
   })
+  // .catch(err => log.error('Error reading file from s3', err))
 
 }

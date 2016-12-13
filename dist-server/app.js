@@ -73,8 +73,8 @@ var configURL = _path2.default.resolve(__dirname, '..');
 var favURL = _path2.default.resolve(__dirname, '../favicon.png');
 
 app.configure((0, _feathersConfiguration2.default)(configURL));
-var publicURL = app.get('public');
 
+var publicURL = app.get('public');
 var url = app.get('mongodb');
 
 exports.default = _mongodb.MongoClient.connect(url).then(function (db) {

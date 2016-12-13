@@ -7,12 +7,14 @@ export default function () {
 
   return function(req, res, next) {
 
-    const { id } = req.params
+    const { key } = req.params
 
-    return readFile(id)
-      .then(({stream, ext}) => {
+    log(key)
 
-        const fn = id + ext
+    return readFile(key)
+      .then(({ stream, ext }) => {
+
+        const fn = key + '.' + ext
         const mimeType = mime.lookup(fn)
 
         log(`serving ${fn}`)
