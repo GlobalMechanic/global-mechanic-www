@@ -11,14 +11,12 @@ exports.default = function () {
     var key = req.params.key;
 
 
-    log(key);
-
     return (0, _fileStorage.readFile)(key).then(function (_ref) {
       var stream = _ref.stream;
       var ext = _ref.ext;
 
 
-      var fn = key + '.' + ext;
+      var fn = key + ext;
       var mimeType = _mime2.default.lookup(fn);
 
       log('serving ' + fn);

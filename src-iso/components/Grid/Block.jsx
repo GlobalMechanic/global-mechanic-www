@@ -27,6 +27,9 @@ export default class Block extends Component {
   }
 
   imageLoad = () => {
+    const { onImageLoad } = this.props
+    if (onImageLoad)
+      onImageLoad(this.image)
     this.setState({imageLoaded: true})
   }
 
@@ -41,7 +44,7 @@ export default class Block extends Component {
 
   render() {
 
-    const { style, imageId, grayscale, className, onClick, ...other } = this.props
+    const { style, imageId, grayscale, className, onClick, children, ...other } = this.props
 
     const { imageLoaded } = this.state
 
@@ -53,8 +56,10 @@ export default class Block extends Component {
       opacity: imageLoaded ? 1 : 0
     }
 
+    delete other.onImageLoad
+
     return <div className={blockClasses} style={style} {...other}>
-      <div style={imageStyle} className={imageClasses} onClick={onClick}/>
+      <div style={imageStyle} className={imageClasses} onClick={onClick}>{children}</div>
     </div>
 
   }

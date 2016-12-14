@@ -106,7 +106,7 @@ function ensureFile(id, thumb) {
       if (res.status !== 200) throw new Error(res.body);
 
       var type = res.headers._headers['content-type'][0];
-      var ext = type.substr(type.indexOf('/') + 1);
+      var ext = '.' + type.substr(type.indexOf('/') + 1);
 
       return (0, _fileStorage.writeFile)(key, ext, res.body);
     }).catch(function (err) {

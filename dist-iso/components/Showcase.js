@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
 var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
 
@@ -59,6 +59,22 @@ var _isExplicit = require('is-explicit');
 
 var _isExplicit2 = _interopRequireDefault(_isExplicit);
 
+var _isomorphicFetch = require('isomorphic-fetch');
+
+var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
+
+var _gif = require('assets/gif.svg');
+
+var _gif2 = _interopRequireDefault(_gif);
+
+var _image = require('assets/image.svg');
+
+var _image2 = _interopRequireDefault(_image);
+
+var _video = require('assets/video.svg');
+
+var _video2 = _interopRequireDefault(_video);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* globals HOST */
@@ -81,6 +97,7 @@ function Vimeo(_ref) {
 
 function Image(_ref2) {
   var id = _ref2.id;
+  var back = _ref2.back;
   var className = _ref2.className;
 
   var classes = (0, _classnames2.default)(className, 'product-image');
@@ -89,7 +106,7 @@ function Image(_ref2) {
 
   return _react2.default.createElement(
     'div',
-    { className: classes },
+    { className: classes, onClick: back },
     _react2.default.createElement(
       'a',
       { href: href },
@@ -122,10 +139,6 @@ function ProductFeature(_ref4, _ref5) {
   };
   var hasFeature = !!featured;
 
-  var classes = (0, _classnames2.default)('product-feature', {
-    'product-feature-show': hasFeature
-  });
-
   var item = hasFeature ? items.filter(function (item) {
     if (item.productType === 'vimeo' && (item._id === featured || (0, _helper.urlify)(item.name) === featured)) return true;
 
@@ -134,12 +147,18 @@ function ProductFeature(_ref4, _ref5) {
     return false;
   })[0] : null;
 
-  var video = item ? item.video : {};
+  var video = item ? item.video : null;
   var image = item && item.productType === 'gallery' ? item.images.filter(function (id) {
     return id === featured;
   })[0] : null;
 
   var name = (item && item.name ? item.name : '').trim();
+
+  var classes = (0, _classnames2.default)('product-feature', {
+    'product-feature-show': hasFeature,
+    'product-feature-video': video,
+    'product-feature-image': image
+  });
 
   return _react2.default.createElement(
     'div',
@@ -148,7 +167,7 @@ function ProductFeature(_ref4, _ref5) {
     _react2.default.createElement(
       'div',
       { className: 'product-detail' },
-      image ? _react2.default.createElement(Image, { id: image }) : _react2.default.createElement(Vimeo, video),
+      image ? _react2.default.createElement(Image, { id: image, back: back }) : _react2.default.createElement(Vimeo, video),
       image ? null : _react2.default.createElement(ProductTitle, { name: name })
     )
   );
@@ -157,130 +176,186 @@ ProductFeature.contextTypes = {
   path: _react.PropTypes.string.isRequired
 };
 
-function ProductBlock(_ref6, _ref7) {
-  var item = _ref6.item;
-  var other = (0, _objectWithoutProperties3.default)(_ref6, ['item']);
-  var path = _ref7.path;
+function ProductBlockIcon(_ref6) {
+  var type = _ref6.type;
 
 
-  var itemIsId = (0, _isExplicit2.default)(item, String);
-  var imageId = item ? itemIsId ? item : item.portrait : null;
+  var src = type === 'gif' ? _gif2.default : type === 'video' ? _video2.default : _image2.default;
 
-  var target = itemIsId ? imageId : (0, _helper.urlify)(item.name);
+  var style = {
+    backgroundImage: 'url(' + src + ')'
+  };
 
-  var onClick = imageId ? function () {
-    return (0, _helper.navigate)(path + '/' + target);
-  } : null;
-
-  return _react2.default.createElement(_Grid.Block, (0, _extends3.default)({ imageId: imageId, onClick: onClick }, other));
+  return type ? _react2.default.createElement('div', { style: style, className: 'product-block-icon' }) : null;
 }
-ProductBlock.contextTypes = {
-  path: _react.PropTypes.string.isRequired
-};
 
-var Showcase = function (_React$Component) {
-  (0, _inherits3.default)(Showcase, _React$Component);
+var ProductBlock = function (_React$Component) {
+  (0, _inherits3.default)(ProductBlock, _React$Component);
 
-  function Showcase() {
+  function ProductBlock() {
     var _Object$getPrototypeO;
 
     var _temp, _this, _ret;
 
-    (0, _classCallCheck3.default)(this, Showcase);
+    (0, _classCallCheck3.default)(this, ProductBlock);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Showcase)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
-      showcases: [],
-      products: []
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(ProductBlock)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
+      type: false
+    }, _this.setIconType = function (image) {
+      var item = _this.props.item;
+
+      var itemIsImage = (0, _isExplicit2.default)(item, String);
+
+      if (itemIsImage) (0, _isomorphicFetch2.default)(image.src.replace('-thumb', '')).then(function (res) {
+        var mime = res.headers.get('content-type');
+        var iconType = mime.replace('image/', '');
+        _this.setState({ iconType: iconType });
+      });else _this.setState({ iconType: 'video' });
     }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
 
-  (0, _createClass3.default)(Showcase, [{
-    key: 'loadAfterTransition',
-    value: function loadAfterTransition(service, items) {
-      var _this2 = this;
+  (0, _createClass3.default)(ProductBlock, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props;
+      var item = _props.item;
+      var other = (0, _objectWithoutProperties3.default)(_props, ['item']);
+      var _context = this.context;
+      var path = _context.path;
+      var showIcons = _context.showIcons;
 
-      setTimeout(function () {
-        return _this2.setState((0, _defineProperty3.default)({}, service, items));
-      }, _styles.variables.animationTime.value);
+      //bc
+
+      var itemIsImage = (0, _isExplicit2.default)(item, String);
+      var imageId = item ? itemIsImage ? item : item.portrait : null;
+      var pathSuffix = itemIsImage ? imageId : (0, _helper.urlify)(item.name);
+
+      var onClick = imageId ? function () {
+        return (0, _helper.navigate)(path + '/' + pathSuffix);
+      } : null;
+
+      return _react2.default.createElement(
+        _Grid.Block,
+        (0, _extends3.default)({ imageId: imageId, onClick: onClick }, other, { onImageLoad: showIcons ? this.setIconType : null }),
+        showIcons ? _react2.default.createElement(ProductBlockIcon, { type: this.state.iconType }) : null
+      );
     }
-  }, {
+  }]);
+  return ProductBlock;
+}(_react2.default.Component);
+
+ProductBlock.contextTypes = {
+  path: _react.PropTypes.string.isRequired,
+  showIcons: _react.PropTypes.bool
+};
+
+var Showcase = function (_React$Component2) {
+  (0, _inherits3.default)(Showcase, _React$Component2);
+
+  function Showcase() {
+    var _Object$getPrototypeO2;
+
+    var _temp2, _this2, _ret2;
+
+    (0, _classCallCheck3.default)(this, Showcase);
+
+    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
+    }
+
+    return _ret2 = (_temp2 = (_this2 = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO2 = (0, _getPrototypeOf2.default)(Showcase)).call.apply(_Object$getPrototypeO2, [this].concat(args))), _this2), _this2.state = {
+      products: [],
+      items: []
+    }, _this2.setProducts = function (props) {
+      var _ref7 = props || _this2.props;
+
+      var featuredShowcase = _ref7.featuredShowcase;
+
+
+      _data.showcases.then(function (shows) {
+        var showcase = shows.filter(function (show) {
+          return (0, _helper.urlify)(show.name) === featuredShowcase || show._id === featuredShowcase;
+        })[0];
+
+        if (!showcase) return null;
+
+        _data.products.then(function (prods) {
+
+          var showIcons = false;
+          var products = prods.filter(function (prod) {
+            return showcase.products.includes(prod._id);
+          });
+          var items = [];
+
+          products.forEach(function (product) {
+            if (product.productType === 'vimeo') items.push(product);else {
+              showIcons = true;
+              items.push.apply(items, (0, _toConsumableArray3.default)(product.images));
+            }
+          });
+
+          _this2.setState({
+            products: products,
+            items: items,
+            showIcons: showIcons
+          });
+        });
+      });
+    }, _temp2), (0, _possibleConstructorReturn3.default)(_this2, _ret2);
+  }
+
+  (0, _createClass3.default)(Showcase, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      var _this3 = this;
-
-      _data.products.then(function (res) {
-        return _this3.loadAfterTransition('products', res);
-      });
-      _data.showcases.then(function (res) {
-        return _this3.loadAfterTransition('showcases', res);
-      });
+      setTimeout(this.setProducts, _styles.variables.animationTime.value);
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(next) {
+      this.setProducts(next);
     }
   }, {
     key: 'getChildContext',
     value: function getChildContext() {
       var path = this.props.path;
+      var showIcons = this.state.showIcons;
 
       return {
-        path: path
+        path: path,
+        showIcons: showIcons
       };
     }
   }, {
     key: 'render',
     value: function render() {
-      var _this4 = this;
+      var _this3 = this;
 
-      var _props = this.props;
-      var featuredShowcase = _props.featuredShowcase;
-      var featuredProduct = _props.featuredProduct;
-      var className = _props.className;
-      var other = (0, _objectWithoutProperties3.default)(_props, ['featuredShowcase', 'featuredProduct', 'className']);
+      var _props2 = this.props;
+      var featuredProduct = _props2.featuredProduct;
+      var className = _props2.className;
+      var other = (0, _objectWithoutProperties3.default)(_props2, ['featuredProduct', 'className']);
       var _state = this.state;
-      var showcases = _state.showcases;
       var products = _state.products;
+      var items = _state.items;
 
-
-      var showcase = showcases.filter(function (show) {
-        return (0, _helper.urlify)(show.name) === featuredShowcase || show._id === featuredShowcase;
-      })[0];
-
-      var allProducts = showcase ? products.filter(function (product) {
-        return showcase.products.includes(product._id);
-      }) : [];
-
-      var vimeoProducts = allProducts.filter(function (product) {
-        return product.productType !== 'gallery';
-      });
-      var galleryProducts = allProducts.filter(function (product) {
-        return product.productType === 'gallery';
-      });
 
       delete other.path;
+      delete other.featuredShowcase;
+      delete other.onImageLoad;
 
       var classes = (0, _classnames2.default)('showcase', className);
 
       return _react2.default.createElement(
         'div',
         { className: classes, ref: function ref(_ref8) {
-            return _this4.ref = _ref8;
+            return _this3.ref = _ref8;
           } },
-        _react2.default.createElement(ProductFeature, { items: allProducts, featured: featuredProduct }),
-        _react2.default.createElement(_Grid.Grid, (0, _extends3.default)({ items: vimeoProducts, component: ProductBlock }, other)),
-        galleryProducts.map(function (gallery) {
-          return _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'h1',
-              { className: 'padded' },
-              gallery.name
-            ),
-            _react2.default.createElement(_Grid.Grid, (0, _extends3.default)({ items: gallery.images, component: ProductBlock }, other))
-          );
-        })
+        _react2.default.createElement(ProductFeature, { items: products, featured: featuredProduct }),
+        _react2.default.createElement(_Grid.Grid, (0, _extends3.default)({ items: items, component: ProductBlock }, other))
       );
     }
   }]);
@@ -288,6 +363,7 @@ var Showcase = function (_React$Component) {
 }(_react2.default.Component);
 
 Showcase.childContextTypes = {
-  path: _react.PropTypes.string.isRequired
+  path: _react.PropTypes.string.isRequired,
+  showIcons: _react.PropTypes.bool
 };
 exports.default = Showcase;

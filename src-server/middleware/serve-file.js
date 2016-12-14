@@ -9,12 +9,10 @@ export default function () {
 
     const { key } = req.params
 
-    log(key)
-
     return readFile(key)
       .then(({ stream, ext }) => {
 
-        const fn = key + '.' + ext
+        const fn = key + ext
         const mimeType = mime.lookup(fn)
 
         log(`serving ${fn}`)

@@ -40,9 +40,12 @@ export default class Work extends Component {
     const path = `/${mainPath}${showcase}`
 
     return <Page id='work-page' {...other}>
-      <ShowcaseDropdown documents={showcases} selected={showcase} path={mainPath}/>
+      <ShowcaseDropdown
+        documents={showcases}
+        selected={showcase}
+        path={mainPath}/>
       <Showcase id='work-wall'  path={path}
-        className='transition-slide-down inverse' 
+        className='transition-slide-down inverse'
         featuredShowcase={showcase}
         featuredProduct={product} />
       {children}

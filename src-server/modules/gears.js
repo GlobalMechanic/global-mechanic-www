@@ -57,7 +57,7 @@ function ensureFile(id, thumb) {
         throw new Error(res.body)
 
       const type = res.headers._headers['content-type'][0]
-      const ext = type.substr(type.indexOf('/')+1)
+      const ext = '.' + type.substr(type.indexOf('/')+1)
 
       return writeFile(key, ext, res.body)
     })

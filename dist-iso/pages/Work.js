@@ -117,7 +117,10 @@ var Work = function (_Component) {
       return _react2.default.createElement(
         _Page2.default,
         (0, _extends3.default)({ id: 'work-page' }, other),
-        _react2.default.createElement(ShowcaseDropdown, { documents: showcases, selected: showcase, path: mainPath }),
+        _react2.default.createElement(ShowcaseDropdown, {
+          documents: showcases,
+          selected: showcase,
+          path: mainPath }),
         _react2.default.createElement(_components.Showcase, { id: 'work-wall', path: path,
           className: 'transition-slide-down inverse',
           featuredShowcase: showcase,

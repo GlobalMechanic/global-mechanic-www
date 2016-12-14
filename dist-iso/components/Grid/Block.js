@@ -69,6 +69,9 @@ var Block = function (_Component) {
       _this.image.src = HOST + '/assets/file/' + imageId + '-thumb';
       _this.image.onload = _this.imageLoad;
     }, _this.imageLoad = function () {
+      var onImageLoad = _this.props.onImageLoad;
+
+      if (onImageLoad) onImageLoad(_this.image);
       _this.setState({ imageLoaded: true });
     }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
@@ -92,7 +95,8 @@ var Block = function (_Component) {
       var grayscale = _props.grayscale;
       var className = _props.className;
       var onClick = _props.onClick;
-      var other = (0, _objectWithoutProperties3.default)(_props, ['style', 'imageId', 'grayscale', 'className', 'onClick']);
+      var children = _props.children;
+      var other = (0, _objectWithoutProperties3.default)(_props, ['style', 'imageId', 'grayscale', 'className', 'onClick', 'children']);
       var imageLoaded = this.state.imageLoaded;
 
 
@@ -104,10 +108,16 @@ var Block = function (_Component) {
         opacity: imageLoaded ? 1 : 0
       };
 
+      delete other.onImageLoad;
+
       return _react2.default.createElement(
         'div',
         (0, _extends3.default)({ className: blockClasses, style: style }, other),
-        _react2.default.createElement('div', { style: imageStyle, className: imageClasses, onClick: onClick })
+        _react2.default.createElement(
+          'div',
+          { style: imageStyle, className: imageClasses, onClick: onClick },
+          children
+        )
       );
     }
   }]);
