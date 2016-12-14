@@ -63,18 +63,6 @@ var _isomorphicFetch = require('isomorphic-fetch');
 
 var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 
-var _gif = require('assets/gif.svg');
-
-var _gif2 = _interopRequireDefault(_gif);
-
-var _image = require('assets/image.svg');
-
-var _image2 = _interopRequireDefault(_image);
-
-var _video = require('assets/video.svg');
-
-var _video2 = _interopRequireDefault(_video);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* globals HOST */
@@ -179,14 +167,7 @@ ProductFeature.contextTypes = {
 function ProductBlockIcon(_ref6) {
   var type = _ref6.type;
 
-
-  var src = type === 'gif' ? _gif2.default : type === 'video' ? _video2.default : _image2.default;
-
-  var style = {
-    backgroundImage: 'url(' + src + ')'
-  };
-
-  return type ? _react2.default.createElement('div', { style: style, className: 'product-block-icon' }) : null;
+  return type ? _react2.default.createElement('div', { className: 'product-block-icon ' + type }) : null;
 }
 
 var ProductBlock = function (_React$Component) {

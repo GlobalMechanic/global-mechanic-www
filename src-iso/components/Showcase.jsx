@@ -7,9 +7,6 @@ import { variables } from 'styles'
 import is from 'is-explicit'
 import fetch from 'isomorphic-fetch'
 
-import gif from 'assets/gif.svg'
-import image from 'assets/image.svg'
-import video from 'assets/video.svg'
 /* globals HOST */
 
 export function Vimeo({vimeoId, className, ...other}) {
@@ -83,17 +80,7 @@ ProductFeature.contextTypes = {
 }
 
 function ProductBlockIcon({type}) {
-
-  const src = type === 'gif' ? gif
-    : type === 'video' ? video
-    : image
-
-  const style = {
-    backgroundImage: `url(${src})`
-  }
-
-
-  return type ? <div style={style} className='product-block-icon'/> : null
+  return type ? <div className={'product-block-icon ' + type}/> : null
 }
 
 class ProductBlock extends React.Component {

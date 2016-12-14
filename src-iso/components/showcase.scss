@@ -162,6 +162,22 @@ $large-video-width: $video-width * 1.5;
   transition: opacity $animation-time;
 }
 
+.product-block-icon.png {
+  background-image: url(../assets/image.svg)
+}
+
+.product-block-icon.jpeg {
+  background-image: url(../assets/image.svg)
+}
+
+.product-block-icon.video {
+  background-image: url(../assets/video.svg)
+}
+
+.product-block-icon.gif {
+  background-image: url(../assets/gif.svg)
+}
+
 .block-image:hover {
   .product-block-icon {
     opacity: 0;
