@@ -12,7 +12,9 @@ export default function () {
     return readFile(key)
       .then(({ stream, ext }) => {
 
-        const fn = key + ext
+        const dot = ext.includes('.') ? '' : '.'
+
+        const fn = key + dot + ext
         const mimeType = mime.lookup(fn)
 
         log(`serving ${fn}`)

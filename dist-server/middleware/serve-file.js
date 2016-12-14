@@ -16,7 +16,9 @@ exports.default = function () {
       var ext = _ref.ext;
 
 
-      var fn = key + ext;
+      var dot = ext.includes('.') ? '' : '.';
+
+      var fn = key + dot + ext;
       var mimeType = _mime2.default.lookup(fn);
 
       log('serving ' + fn);
