@@ -28,7 +28,7 @@ exports.default = _react2.default.createElement(
     _react2.default.createElement(_reactRouter.Redirect, { from: '/work/:showcase(/:product)', to: '/showcase/:showcase(/:product)' }),
     _react2.default.createElement(_reactRouter.Route, { path: '/private/showcase/:showcase(/:product)', inverse: true, darken: DARK, _private: true, component: _pages.Work }),
     _react2.default.createElement(_reactRouter.Route, { path: '/private/video/:video', inverse: true, _private: true, component: _pages.Video }),
-    _react2.default.createElement(_reactRouter.Redirect, { from: '/private/portfolio/:showcase(/:product)', to: '/private/showcase/:showcase(/:product)' }),
     _react2.default.createElement(_reactRouter.Redirect, { from: '/private/portfolio/602114', to: '/private/showcase/dream_life_of_cities' }),
+    _react2.default.createElement(_reactRouter.Redirect, { from: '/private/portfolio/:showcase(/:product)', to: '/private/showcase/:showcase(/:product)' }),
     _react2.default.createElement(_reactRouter.Route, { path: '/about(/:person)', darken: DARK, component: _pages.About })
 );
