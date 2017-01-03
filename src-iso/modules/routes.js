@@ -17,5 +17,8 @@ export default <Route path='/' component={Navigation}>
     <Route path='/private/video/:video' inverse _private component={Video}/>
     <Redirect from='/private/portfolio/:showcase(/:product)' to='/private/showcase/:showcase(/:product)'/>
 
+    {/* Temporary single redirect until we have configurable urls. Right now urls are derived from names. */}
+    <Redirect from='/private/portfolio/602114' to='/private/showcase/dream_life_of_cities'/>
+
     <Route path='/about(/:person)' darken={DARK} component={About} />
   </Route>
