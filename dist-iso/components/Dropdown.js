@@ -147,17 +147,22 @@ var Dropdown = function (_Component) {
       var title = _props.title;
       var items = _props.items;
       var selected = _props.selected;
+      var inverse = _props.inverse;
 
-      var classes = (0, _classnames2.default)('dropdown', {
+      var dropdownClasses = (0, _classnames2.default)('dropdown', {
         'dropdown-open': this.state.open
+      });
+
+      var containerClasses = (0, _classnames2.default)('dropdown-container', 'transition-fade', {
+        'inverse': inverse
       });
 
       return _react2.default.createElement(
         'div',
-        { className: 'dropdown-container transition-fade' },
+        { className: containerClasses },
         _react2.default.createElement(
           'div',
-          { className: classes },
+          { className: dropdownClasses },
           _react2.default.createElement(
             Title,
             { items: items, onClick: this.toggle },
@@ -177,6 +182,7 @@ Dropdown.propTypes = {
   path: _react.PropTypes.string
 };
 Dropdown.defaultProps = {
-  items: []
+  items: [],
+  inverse: false
 };
 exports.default = Dropdown;

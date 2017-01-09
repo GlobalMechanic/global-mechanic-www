@@ -19,7 +19,14 @@ exports.default = function () {
   webShowcases.before(beforeHooks);
   webShowcases.after(afterHooks);
 
-  (0, _gears.sync)(showcases, webShowcases);
+  var files = {
+    path: 'files',
+    thumb: '360',
+    full: true,
+    meta: true
+  };
+
+  (0, _gears.sync)(showcases, webShowcases, files);
 };
 
 var _feathersMongodb = require('feathers-mongodb');
@@ -37,7 +44,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /******************************************************************************/
 
 var disableExternal = (0, _feathersHooks.disable)('external');
-var SCOPES = ['private', 'public'];
+var SCOPES = ['private', 'public', 'work-in-progress'];
 
 function websiteFilter(hook, next) {
   var result = hook.result;

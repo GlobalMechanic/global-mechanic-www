@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Grid, Block } from './Grid'
+import Image from './Image'
 import { showcases, products } from 'modules/data'
 import { urlify, navigate } from 'modules/helper'
 import classNames from 'classnames'
@@ -15,13 +16,152 @@ export function Vimeo({vimeoId, className, ...other}) {
 
   return <div className={classes} {...other}>
     { vimeoId
-      ? <iframe src={`//player.vimeo.com/video/${vimeoId}?badge=0&title=0&portrait=0&byline=0&embed=0&autoplay=0`}
-        frameBorder={false}/>
+      ? <iframe
+          src={`//player.vimeo.com/video/${vimeoId}?badge=0&title=0&portrait=0&byline=0&embed=0&autoplay=0`}
+          frameBorder={false}
+        />
       : null }
   </div>
 }
 
-function Image({id, back, className}) {
+function Essay({className, children}) {
+
+  if (!is(children, String))
+    return null
+
+  return <div className={className}>{
+    children.split('\n').map(paragraph => <p>{paragraph}</p>)
+  }</div>
+}
+
+class Media extends React.Component {
+
+  state = {
+    controls: false
+  }
+
+  showControls = () => this.setState({controls: true})
+
+  hideControls = () => this.setState({controls: false})
+
+  render() {
+
+    const { poster, src, type } = this.props
+    const { controls } = this.state
+
+    return <video className='wip-icon-container'
+      controls={controls}
+      onMouseEnter={this.showControls}
+      onMouseLeave={this.hideControls}
+      style={{
+        backgroundImage: `url(${poster})`,
+        backgroundSize: '45%', //not sure why 48
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+      }}>
+      <source src={src} type={type}/>
+    </video>
+  }
+}
+
+class File extends React.Component {
+
+  state = {
+    description: null,
+    name: null,
+    ext: null,
+    mime: null,
+    size: null
+  }
+
+  getMetaData(props) {
+
+    const { file } = props
+
+    if (this.state.size && file === this.props.file)
+      return
+
+    const url = `${HOST}/assets/file/${file}-meta`
+    fetch(url)
+
+    .then(res => {
+      const type = res.headers.get('content-type')
+      if (type && type.includes('application/json'))
+        return res.json()
+      else
+        throw new Error('No JSON in response')
+    })
+
+    .then(data => {
+      const json = JSON.parse(data)
+      this.setState({ ...json })
+    })
+
+    .catch(err => console.error(err))
+  }
+
+  componentDidMount() {
+    this.getMetaData(this.props)
+  }
+
+  componentWillReceiveProps(props) {
+    this.getMetaData(props)
+  }
+
+  render() {
+
+    const { file } = this.props
+    const { name, description, mime, ext } = this.state
+
+    const url = `${HOST}/assets/file/${file}`
+    const thumb = url + '-thumb'
+    const download = url + '?download=' + name + ext
+
+    const icon = do {
+
+      const isVideo = mime && mime.includes('video')
+      const isAudio = mime && mime.includes('audio')
+      const isImage = mime && mime.includes('image')
+
+      if (isVideo || isAudio)
+        <Media poster={isAudio ? thumb : null} src={url} type={mime}/>
+      else
+        <a className='wip-icon-container' href={isImage ? url : download} target={isImage ? '_blank' : null}>
+          <Image className={isImage ? 'wip-image' : 'wip-icon'} imageId={file} style={{
+            backgroundSize: isImage ? 'contain' : '80%',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+          }}/>
+        </a>
+    }
+
+    return <div className='wip-file'>
+      {icon}
+
+      <div className='wip-meta'>
+        <span className='wip-title'>
+          <h2 className='wip-name'>{name}</h2>
+          <h4 className='wip-ext'>{ext}</h4>
+          <a href={download} className='wip-download'/>
+        </span>
+        <Essay className='wip-description'>{description}</Essay>
+      </div>
+    </div>
+  }
+
+}
+
+function FileList({files}) {
+  return files
+
+  ? <div className='padded'> {
+    files.map(file => <File file={file}/>)
+  } </div>
+
+  : null
+}
+
+function LinkImage({id, back, className}) {
   const classes = classNames(className, 'product-image')
 
   const href = `${HOST}/assets/file/${id}`
@@ -46,6 +186,7 @@ function ProductFeature({items, featured}, {path}) {
 
   const item = hasFeature
     ? items.filter(item => {
+
       if (item.productType === 'vimeo' && (item._id === featured || urlify(item.name) === featured))
         return true
 
@@ -70,7 +211,7 @@ function ProductFeature({items, featured}, {path}) {
   return <div className={classes}>
     <div className='product-modal' onClick={back}/>
     <div className='product-detail'>
-      { image ? <Image id={image} back={back}/> : <Vimeo {...video}/>}
+      { image ? <LinkImage id={image} back={back}/> : <Vimeo {...video}/>}
       { image ? null : <ProductTitle name={name} /> }
     </div>
   </div>
@@ -130,6 +271,8 @@ ProductBlock.contextTypes = {
 export default class Showcase extends React.Component {
 
   state = {
+    showcase: null,
+    files: null,
     products: [],
     items: []
   }
@@ -149,27 +292,44 @@ export default class Showcase extends React.Component {
       if (!showcase)
         return null
 
-      products.then(prods => {
+      const scope = showcase.website.scope
 
-        let showIcons = false
-        const products = prods.filter(prod => showcase.products.includes(prod._id))
-        const items = []
+      if (scope === 'work-in-progress') {
 
-        products.forEach(product => {
-          if (product.productType === 'vimeo')
-            items.push(product)
-          else {
-            showIcons = true
-            items.push(...product.images)
-          }
-        })
+        const files = showcase.files
 
         this.setState({
+          showcase,
           products,
-          items,
-          showIcons
+          files
         })
-      })
+
+      } else {
+
+        products.then(prods => {
+
+          let showIcons = false
+          const products = prods.filter(prod => showcase.products && showcase.products.includes(prod._id))
+          const items = []
+
+          products.forEach(product => {
+            if (product.productType === 'vimeo')
+              items.push(product)
+            else {
+              showIcons = true
+              items.push(...product.images)
+            }
+          })
+
+          this.setState({
+            showcase,
+            products,
+            items,
+            showIcons
+          })
+
+        })
+      }
     })
   }
 
@@ -193,7 +353,7 @@ export default class Showcase extends React.Component {
   render() {
 
     const { featuredProduct, className, ...other } = this.props
-    const { products, items } = this.state
+    const { products, items, showcase, files } = this.state
 
     delete other.path
     delete other.featuredShowcase
@@ -201,9 +361,18 @@ export default class Showcase extends React.Component {
 
     const classes = classNames('showcase', className)
 
+    const essay = showcase && showcase.website && showcase.website.scope !== 'public'
+      ? <Essay className='padded'>{showcase.website.essay}</Essay>
+      : null
+
     return <div className={classes} ref={ref => this.ref = ref}>
+
+      {essay}
+
+      <FileList files={files}/>
       <ProductFeature items={products} featured={featuredProduct} />
       <Grid items={items} component={ProductBlock} {...other} />
+
     </div>
   }
 

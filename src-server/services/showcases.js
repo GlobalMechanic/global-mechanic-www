@@ -8,7 +8,7 @@ import { disable } from 'feathers-hooks'
 /******************************************************************************/
 
 const disableExternal = disable('external')
-const SCOPES = ['private', 'public']
+const SCOPES = ['private', 'public', 'work-in-progress']
 
 function websiteFilter(hook, next) {
 
@@ -54,6 +54,13 @@ export default function() {
   webShowcases.before(beforeHooks)
   webShowcases.after(afterHooks)
 
-  sync(showcases, webShowcases)
+  const files = {
+    path: 'files',
+    thumb: '360',
+    full: true,
+    meta: true
+  }
+
+  sync(showcases, webShowcases, files)
 
 }

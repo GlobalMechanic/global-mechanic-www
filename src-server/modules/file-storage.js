@@ -91,7 +91,7 @@ export function writeFile(key, ext, read) {
       else
         resolve(data)
     })
-    log('writing file to s3:',key)
+    log('writing file to s3:', key)
     read.pipe(upload)
   })
   // .catch(err => log.error('Error writing file from s3', err))

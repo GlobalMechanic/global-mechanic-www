@@ -54,7 +54,8 @@ export default class Dropdown extends Component {
   }
 
   static defaultProps = {
-    items: []
+    items: [],
+    inverse: false
   }
 
   state = {
@@ -86,13 +87,17 @@ export default class Dropdown extends Component {
 
   render() {
 
-    const { title, items, selected } = this.props
-    const classes = classNames('dropdown', {
+    const { title, items, selected, inverse } = this.props
+    const dropdownClasses = classNames('dropdown', {
       'dropdown-open': this.state.open
     })
 
-    return <div className='dropdown-container transition-fade'>
-      <div className={classes}>
+    const containerClasses = classNames('dropdown-container', 'transition-fade', {
+      'inverse': inverse
+    })
+
+    return <div className={containerClasses}>
+      <div className={dropdownClasses}>
         <Title items={items} onClick={this.toggle}>{title}</Title>
         <List items={items} selected={selected} select={this.select}/>
       </div>

@@ -7,8 +7,8 @@
   "gears": {
     "auth": {
       "email": "studio@globalmechanic.com",
-      "password": "@lcatr4Z"
+      "password": "L0bst3r!"
     },
-    "host": "http://gears.globalmechanic.com"
+    "host": "http://localhost:4100"
   }
 }

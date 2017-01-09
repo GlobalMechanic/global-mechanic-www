@@ -61,11 +61,12 @@ var DirectorLayout = new _Grid.Layout(60, false);
 function DirectorList(_ref) {
   var director = _ref.director;
   var directors = _ref.directors;
+  var inverse = _ref.inverse;
 
   return _react2.default.createElement(_components.Dropdown, { title: 'Directors', items: directors.map(function (d) {
       return (0, _helper.getFullName)(d);
     }),
-    path: DIRECTOR_PATH, selected: director });
+    path: DIRECTOR_PATH, selected: director, inverse: inverse });
 }
 
 var Directors = function (_Component) {
@@ -118,6 +119,8 @@ var Directors = function (_Component) {
       var product = _other$routeParams.product;
 
 
+      var inverse = !!other.route.inverse;
+
       var directorDoc = director ? directors.filter(function (doc) {
         return (0, _helper.urlify)((0, _helper.getFullName)(doc)) === director;
       })[0] : null;
@@ -126,7 +129,7 @@ var Directors = function (_Component) {
       return _react2.default.createElement(
         _Page2.default,
         (0, _extends3.default)({ id: 'directors-page' }, other),
-        _react2.default.createElement(DirectorList, { director: director, directors: directors }),
+        _react2.default.createElement(DirectorList, { director: director, directors: directors, inverse: inverse }),
         _react2.default.createElement(
           'div',
           { id: 'director', className: 'inverse transition-slide-down' },

@@ -11,9 +11,9 @@ const DIRECTOR_PATH = '/directors/'
 
 const DirectorLayout = new Layout(60, false)
 
-function DirectorList({ director, directors }) {
+function DirectorList({ director, directors, inverse }) {
   return <Dropdown title='Directors' items={directors.map(d => getFullName(d))}
-    path={DIRECTOR_PATH} selected={director}/>
+    path={DIRECTOR_PATH} selected={director} inverse={inverse}/>
 }
 
 export default class Directors extends Component {
@@ -42,11 +42,13 @@ export default class Directors extends Component {
     const { directors } = this.state
     const { director, product } = other.routeParams
 
+    const inverse = !!other.route.inverse
+
     const directorDoc = director ? directors.filter(doc => urlify(getFullName(doc)) === director)[0] : null
     const showcaseId = directorDoc ? directorDoc.directorData.showcase : null
 
     return <Page id='directors-page' {...other}>
-      <DirectorList director={director} directors={directors}  />
+      <DirectorList director={director} directors={directors} inverse={inverse} />
 
       <div id='director' className='inverse transition-slide-down'>
         <People director path={DIRECTOR_PATH} featured={director} layout={DirectorLayout}

@@ -9,6 +9,8 @@ import { hasFile, writeFile } from 'modules/file-storage'
 // import path from 'path'
 import Queue from 'promise-queue'
 import fetch from 'isomorphic-fetch'
+import { Readable } from 'stream'
+import esc from 'jsesc'
 
 /******************************************************************************/
 // Data
@@ -40,16 +42,17 @@ function getIn(obj, paths) {
   }
 }
 
-function ensureFile(id, thumb) {
+function ensureFile({fileId, thumb, meta}) {
 
-  const pro = thumb ? `?process=${thumb}` : ''
-  const key = thumb ? id + '-thumb' : id
+  const query = thumb ? `?process=${thumb}` : meta ? '?meta=true' : ''
+  const key = thumb ? fileId + '-thumb' : meta ? fileId + '-meta' : fileId
 
   //check if the file exists
   queue.add(() => hasFile(key)
-    .then(has => has ? ALREADY_EXISTS : fetch(`${gears.host}/files/${id}${pro}`))
+    .then(has => has ? ALREADY_EXISTS : fetch(`${gears.host}/files/${fileId}${query}`))
     //download it from gears if it doesn't
     .then(res => {
+
       if (res === ALREADY_EXISTS)
         return ALREADY_EXISTS
 
@@ -57,11 +60,14 @@ function ensureFile(id, thumb) {
         throw new Error(res.body)
 
       const type = res.headers._headers['content-type'][0]
-      const ext = '.' + type.substr(type.indexOf('/')+1)
+      const ext = '.' + type
+        .substr(type.indexOf('/')+1)
+        .replace('; charset=utf-8','')
+        .replace('+xml','') //ew
 
       return writeFile(key, ext, res.body)
     })
-    .catch(err => log.error(`Error fetching file ${id}`,err))
+    .catch(err => log.error(`Error fetching file ${fileId}`,err))
   )
 
 }
@@ -88,15 +94,42 @@ export default function initialize() {
 
   const socket = io(gears.host)
 
+  //Setup client app
   gears.client = feathers()
     .configure(hooks())
     .configure(socketio(socket))
     .configure(authentication())
 
+  //Setup connection management
   gears.client.io.on('reconnect', login)
   gears.client.io.on('disconnect', ()=> log('disconnected from gears'))
   gears.client.io.on('authenticated', () => log('logged in to gears'))
 
+  const files = gears.client.service('files')
+
+  //Update metadata if we're tracking a file that has it
+  files.on('patched', ({ _id, name, description, ext, mime, size }) => {
+
+    const metaKey = _id + '-meta'
+
+    hasFile(metaKey)
+    .then(has => {
+      if (!has)
+        return
+
+      //Rather than ping gears again for metadata we already have, we'll rebi
+      const data = JSON.stringify({ name, description, ext, mime, size })
+      const escaped = esc(data, { quotes: 'double' })
+      const stream = new Readable
+
+      stream.push(`"${escaped}"`)
+      stream.push(null)
+
+      return writeFile(metaKey, '.json', stream)
+    })
+  })
+
+  //begin the connection process
   login()
 }
 
@@ -117,16 +150,19 @@ export function sync(from, to, ...downloads) {
 
     downloads.forEach(instruction => {
 
-      const { path, thumb, full } = instruction
+      const { path, thumb, full, meta } = instruction
       const fileId = getIn(doc, path)
       const fileIds = is(fileId, Array) ? fileId : [fileId]
 
       fileIds.forEach(fileId => {
         if (fileId && thumb)
-          ensureFile(fileId, thumb)
+          ensureFile({fileId, thumb})
+
+        if (fileId && meta)
+          ensureFile({fileId, meta})
 
         if (fileId && full)
-          ensureFile(fileId)
+          ensureFile({fileId})
       })
     })
   }
@@ -169,6 +205,7 @@ export function sync(from, to, ...downloads) {
     .catch(err => log(err))
 
   gears.client.io.on('authenticated', populate)
+
   from.on('patched', change)
   from.on('updated', change)
   from.on('created', create)
