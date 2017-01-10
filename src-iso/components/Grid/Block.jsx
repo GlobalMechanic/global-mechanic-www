@@ -9,7 +9,7 @@ export default function Block({ style, imageId, grayscale, className, onClick, c
   const imageClasses = classNames('block-image', { clickable: onClick, grayscale})
 
   return <div className={blockClasses} style={style} {...other}>
-    <Image className={imageClasses} imageId={imageId} onImageLoad={onImageLoad}>{children}</Image>
+    <Image className={imageClasses} imageId={imageId} onClick={onClick} onImageLoad={onImageLoad}>{children}</Image>
   </div>
 
 }

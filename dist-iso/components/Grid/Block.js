@@ -47,7 +47,7 @@ function Block(_ref) {
     (0, _extends3.default)({ className: blockClasses, style: style }, other),
     _react2.default.createElement(
       _Image2.default,
-      { className: imageClasses, imageId: imageId, onImageLoad: onImageLoad },
+      { className: imageClasses, imageId: imageId, onClick: onClick, onImageLoad: onImageLoad },
       children
     )
   );
