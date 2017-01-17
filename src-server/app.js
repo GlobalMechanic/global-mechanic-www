@@ -24,7 +24,7 @@ import { MongoClient } from 'mongodb'
 const app = feathers()
 const configURL = path.resolve(__dirname, '..')
 const favURL = path.resolve(__dirname, '../favicon.png')
-const assetsURL = app.join(publicURL, 'assets')
+const assetsURL = path.join(publicURL, 'assets')
 
 app.configure(configuration(configURL))
 

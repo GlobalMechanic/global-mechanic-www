@@ -71,7 +71,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var app = (0, _feathers2.default)();
 var configURL = _path2.default.resolve(__dirname, '..');
 var favURL = _path2.default.resolve(__dirname, '../favicon.png');
-var assetsURL = app.join(publicURL, 'assets');
+var assetsURL = _path2.default.join(publicURL, 'assets');
 
 app.configure((0, _feathersConfiguration2.default)(configURL));
 
