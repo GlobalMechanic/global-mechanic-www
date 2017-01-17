@@ -71,11 +71,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var app = (0, _feathers2.default)();
 var configURL = _path2.default.resolve(__dirname, '..');
 var favURL = _path2.default.resolve(__dirname, '../favicon.png');
-var assetsURL = _path2.default.join(publicURL, 'assets');
 
 app.configure((0, _feathersConfiguration2.default)(configURL));
 
 var publicURL = app.get('public');
+var assetsURL = _path2.default.join(publicURL, 'assets');
+
 var url = app.get('mongodb');
 
 exports.default = _mongodb.MongoClient.connect(url).then(function (db) {
