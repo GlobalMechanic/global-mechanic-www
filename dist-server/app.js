@@ -71,6 +71,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var app = (0, _feathers2.default)();
 var configURL = _path2.default.resolve(__dirname, '..');
 var favURL = _path2.default.resolve(__dirname, '../favicon.png');
+var assetsURL = app.join(publicURL, 'assets');
 
 app.configure((0, _feathersConfiguration2.default)(configURL));
 
@@ -81,7 +82,7 @@ exports.default = _mongodb.MongoClient.connect(url).then(function (db) {
 
   app.db = db;
 
-  return app.use((0, _compression2.default)()).options('*', (0, _cors2.default)()).use((0, _cors2.default)()).use('/assets', (0, _feathers.static)(publicURL + '/assets')).use(_bodyParser2.default.json()).use(_bodyParser2.default.urlencoded({ extended: true })).use((0, _serveFavicon2.default)(favURL)).configure((0, _feathersHooks2.default)()).configure((0, _feathersRest2.default)()).configure(_fileStorage2.default).configure(_gears2.default).configure(_services2.default).configure(_middleware2.default).use((0, _expressHistoryApiFallback2.default)('index.html', { publicURL: publicURL }));
+  return app.use((0, _compression2.default)()).options('*', (0, _cors2.default)()).use((0, _cors2.default)()).use('/assets', (0, _feathers.static)(assetsURL)).use(_bodyParser2.default.json()).use(_bodyParser2.default.urlencoded({ extended: true })).use((0, _serveFavicon2.default)(favURL)).configure((0, _feathersHooks2.default)()).configure((0, _feathersRest2.default)()).configure(_fileStorage2.default).configure(_gears2.default).configure(_services2.default).configure(_middleware2.default).use((0, _expressHistoryApiFallback2.default)('index.html', { publicURL: publicURL }));
 }).catch(function (err) {
   return log.error(err);
 });

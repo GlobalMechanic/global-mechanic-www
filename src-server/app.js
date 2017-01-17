@@ -1,4 +1,4 @@
-import feathers from 'feathers'
+import feathers, { static as serveStatic } from 'feathers'
 import configuration from 'feathers-configuration'
 import hooks from 'feathers-hooks'
 import rest from 'feathers-rest'
@@ -7,7 +7,6 @@ import path from 'path'
 import cors from 'cors'
 import compress from 'compression'
 import bodyParser from 'body-parser'
-import { static as serveStatic } from 'feathers'
 import fallback from 'express-history-api-fallback'
 import favicon from 'serve-favicon'
 
@@ -25,6 +24,7 @@ import { MongoClient } from 'mongodb'
 const app = feathers()
 const configURL = path.resolve(__dirname, '..')
 const favURL = path.resolve(__dirname, '../favicon.png')
+const assetsURL = app.join(publicURL, 'assets')
 
 app.configure(configuration(configURL))
 
@@ -41,7 +41,7 @@ export default MongoClient
       .options('*', cors())
       .use(cors())
 
-      .use('/assets', serveStatic(publicURL + '/assets'))
+      .use('/assets', serveStatic(assetsURL))
       .use(bodyParser.json())
       .use(bodyParser.urlencoded({ extended: true }))
       .use(favicon(favURL))
