@@ -148,6 +148,7 @@ var Media = function (_React$Component) {
           controls: controls,
           onMouseEnter: this.showControls,
           onMouseLeave: this.hideControls,
+          preload: true,
           style: {
             backgroundImage: 'url(' + poster + ')',
             backgroundSize: '45%', //not sure why 48
