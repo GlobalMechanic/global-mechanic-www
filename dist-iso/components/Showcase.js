@@ -91,6 +91,7 @@ function Vimeo(_ref) {
 
 function Essay(_ref2) {
   var className = _ref2.className;
+  var style = _ref2.style;
   var children = _ref2.children;
 
 
@@ -98,7 +99,7 @@ function Essay(_ref2) {
 
   return _react2.default.createElement(
     'div',
-    { className: className },
+    { className: className, style: style },
     children.split('\n').map(function (paragraph) {
       return _react2.default.createElement(
         'p',
@@ -563,9 +564,11 @@ var Showcase = function (_React$Component4) {
 
       var classes = (0, _classnames2.default)('showcase', className);
 
-      var essay = showcase && showcase.website && showcase.website.scope !== 'public' ? _react2.default.createElement(
+      var portrait = showcase && showcase.portrait && showcase.website && showcase.website.showPortrait ? _react2.default.createElement(_Image2.default, { className: 'showcase-portrait', imageId: showcase.portrait }) : null;
+
+      var essay = showcase && showcase.website && showcase.website.essay && showcase.website.showEssay ? _react2.default.createElement(
         Essay,
-        { className: 'padded' },
+        { className: (0, _classnames2.default)('showcase-essay', { 'showcase-essay-right': portrait }) },
         showcase.website.essay
       ) : null;
 
@@ -574,7 +577,12 @@ var Showcase = function (_React$Component4) {
         { className: classes, ref: function ref(_ref10) {
             return _this6.ref = _ref10;
           } },
-        essay,
+        _react2.default.createElement(
+          'div',
+          { className: 'showcase-detail' },
+          portrait,
+          essay
+        ),
         _react2.default.createElement(FileList, { files: files }),
         _react2.default.createElement(ProductFeature, { items: products, featured: featuredProduct }),
         _react2.default.createElement(_Grid.Grid, (0, _extends3.default)({ items: items, component: ProductBlock }, other))

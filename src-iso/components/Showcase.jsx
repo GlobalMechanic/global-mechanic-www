@@ -24,12 +24,12 @@ export function Vimeo({vimeoId, className, ...other}) {
   </div>
 }
 
-function Essay({className, children}) {
+function Essay({className, style, children}) {
 
   if (!is(children, String))
     return null
 
-  return <div className={className}>{
+  return <div className={className} style={style}>{
     children.split('\n').map(paragraph => <p>{paragraph}</p>)
   }</div>
 }
@@ -362,13 +362,21 @@ export default class Showcase extends React.Component {
 
     const classes = classNames('showcase', className)
 
-    const essay = showcase && showcase.website && showcase.website.scope !== 'public'
-      ? <Essay className='padded'>{showcase.website.essay}</Essay>
+    const portrait = showcase && showcase.portrait && showcase.website && showcase.website.showPortrait
+      ? <Image className='showcase-portrait' imageId={showcase.portrait} />
+      : null
+
+
+    const essay = showcase && showcase.website && showcase.website.essay && showcase.website.showEssay
+      ? <Essay className={classNames('showcase-essay', { 'showcase-essay-right' : portrait })}>{showcase.website.essay}</Essay>
       : null
 
     return <div className={classes} ref={ref => this.ref = ref}>
 
-      {essay}
+      <div className='showcase-detail'>
+        {portrait}
+        {essay}
+      </div>
 
       <FileList files={files}/>
       <ProductFeature items={products} featured={featuredProduct} />

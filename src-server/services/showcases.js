@@ -61,6 +61,12 @@ export default function() {
     meta: true
   }
 
-  sync(showcases, webShowcases, files)
+  const portrait = {
+    path: 'portrait',
+    thumb: '640x360',
+    full: false
+  }
+
+  sync(showcases, webShowcases, portrait, files)
 
 }

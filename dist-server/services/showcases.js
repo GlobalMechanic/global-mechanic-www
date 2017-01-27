@@ -26,7 +26,13 @@ exports.default = function () {
     meta: true
   };
 
-  (0, _gears.sync)(showcases, webShowcases, files);
+  var portrait = {
+    path: 'portrait',
+    thumb: '640x360',
+    full: false
+  };
+
+  (0, _gears.sync)(showcases, webShowcases, portrait, files);
 };
 
 var _feathersMongodb = require('feathers-mongodb');
