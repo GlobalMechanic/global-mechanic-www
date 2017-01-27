@@ -63,7 +63,7 @@ export default function() {
 
   const portrait = {
     path: 'portrait',
-    thumb: '640x360',
+    thumb: '640',
     full: false
   }
 
