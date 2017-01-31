@@ -101,9 +101,6 @@ function Essay(_ref2) {
 
   if (!(0, _isExplicit2.default)(children, String)) return null;
 
-  // return <div className={className} style={style}>{
-  //   children.split('\n').map(paragraph => <p>{paragraph}</p>)
-  // }</div>
   return _react2.default.createElement(_reactMarkdown2.default, { className: className, style: style, source: children });
 }
 

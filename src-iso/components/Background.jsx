@@ -26,7 +26,7 @@ export default function Background({ darken, inverse }) {
   return <div>
     <div id='video-background-overlay' className={classes} style={overlayStyle}/>
     <video id='video-background' loop autoPlay muted poster={poster}
-      className={classes}  style={bgStyle} >
+      className={classes} style={bgStyle} >
       <source src={video} type='video/mp4' />
     </video>
   </div>

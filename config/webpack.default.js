@@ -20,10 +20,6 @@ module.exports = {
         loader: 'file'
       },
       {
-        test: /\.(ttf|eot|ico|png|gif|mp4|jpg)$/,
-        loader: 'file'
-      },
-      {
         test: /\.json$/,
         loader: 'json'
       },

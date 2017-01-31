@@ -30,9 +30,6 @@ function Essay({className, style, children}) {
   if (!is(children, String))
     return null
 
-  // return <div className={className} style={style}>{
-  //   children.split('\n').map(paragraph => <p>{paragraph}</p>)
-  // }</div>
   return <Markdown className={className} style={style} source={children}/>
 }
 
