@@ -46,6 +46,10 @@ var _helper = require('modules/helper');
 
 var _data = require('modules/data');
 
+var _reactMarkdown = require('react-markdown');
+
+var _reactMarkdown2 = _interopRequireDefault(_reactMarkdown);
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
@@ -92,11 +96,7 @@ function PersonProfile(_ref, _ref2) {
         null,
         name
       ),
-      _react2.default.createElement(
-        'p',
-        null,
-        essay
-      )
+      _react2.default.createElement(_reactMarkdown2.default, { source: essay })
     )
   );
 }

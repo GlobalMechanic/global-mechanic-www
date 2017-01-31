@@ -67,6 +67,10 @@ var _isomorphicFetch = require('isomorphic-fetch');
 
 var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 
+var _reactMarkdown = require('react-markdown');
+
+var _reactMarkdown2 = _interopRequireDefault(_reactMarkdown);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* globals HOST */
@@ -97,17 +101,10 @@ function Essay(_ref2) {
 
   if (!(0, _isExplicit2.default)(children, String)) return null;
 
-  return _react2.default.createElement(
-    'div',
-    { className: className, style: style },
-    children.split('\n').map(function (paragraph) {
-      return _react2.default.createElement(
-        'p',
-        null,
-        paragraph
-      );
-    })
-  );
+  // return <div className={className} style={style}>{
+  //   children.split('\n').map(paragraph => <p>{paragraph}</p>)
+  // }</div>
+  return _react2.default.createElement(_reactMarkdown2.default, { className: className, style: style, source: children });
 }
 
 var Media = function (_React$Component) {
@@ -479,7 +476,7 @@ var Showcase = function (_React$Component4) {
           return (0, _helper.urlify)(show.name) === featuredShowcase || show._id === featuredShowcase;
         })[0];
 
-        if (!showcase) return null;
+        if (!showcase) return _this5.setState({ showcase: showcase, products: [], files: null, items: [] });
 
         var scope = showcase.website.scope;
 

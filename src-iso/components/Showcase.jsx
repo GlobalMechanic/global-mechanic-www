@@ -7,6 +7,7 @@ import classNames from 'classnames'
 import { variables } from 'styles'
 import is from 'is-explicit'
 import fetch from 'isomorphic-fetch'
+import Markdown from 'react-markdown'
 
 /* globals HOST */
 
@@ -29,9 +30,10 @@ function Essay({className, style, children}) {
   if (!is(children, String))
     return null
 
-  return <div className={className} style={style}>{
-    children.split('\n').map(paragraph => <p>{paragraph}</p>)
-  }</div>
+  // return <div className={className} style={style}>{
+  //   children.split('\n').map(paragraph => <p>{paragraph}</p>)
+  // }</div>
+  return <Markdown className={className} style={style} source={children}/>
 }
 
 class Media extends React.Component {
@@ -291,7 +293,7 @@ export default class Showcase extends React.Component {
       const showcase = shows.filter(show => urlify(show.name) === featuredShowcase || show._id === featuredShowcase)[0]
 
       if (!showcase)
-        return null
+        return this.setState({ showcase, products: [], files: null, items: [] })
 
       const scope = showcase.website.scope
 

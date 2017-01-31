@@ -3,6 +3,7 @@ import React, { PropTypes, Component } from 'react'
 import { Grid, Layout, Block } from 'components/Grid'
 import { urlify, getFullName, navigate } from 'modules/helper'
 import { people } from 'modules/data'
+import Markdown from 'react-markdown'
 
 import classNames from 'classnames'
 
@@ -34,7 +35,7 @@ function PersonProfile({person, className, ...other}, { director }) {
     <img className='profile-image grayscale' src={portrait} />
     <div className='profile-detail'>
       <h1>{name}</h1>
-      <p>{essay}</p>
+      <Markdown source={essay} />
     </div>
 
   </div>

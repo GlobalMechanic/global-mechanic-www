@@ -5,6 +5,11 @@ $large-video-width: $video-width * 1.5;
 .showcase-detail {
   @extend .padded;
 
+  p {
+    -webkit-margin-before: 0rem;
+    -webkit-margin-after: 1rem;
+  }
+
   display: flex;
   flex-direction: row;
 
@@ -19,7 +24,6 @@ $large-video-width: $video-width * 1.5;
 
   .showcase-essay.showcase-essay-right {
     margin-left: 1rem;
-    margin-top: -1rem;
   }
 
 }
