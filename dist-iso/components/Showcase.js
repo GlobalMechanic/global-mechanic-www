@@ -571,12 +571,12 @@ var Showcase = function (_React$Component4) {
         { className: classes, ref: function ref(_ref10) {
             return _this6.ref = _ref10;
           } },
-        _react2.default.createElement(
+        portrait || essay ? _react2.default.createElement(
           'div',
           { className: 'showcase-detail' },
           portrait,
           essay
-        ),
+        ) : null,
         _react2.default.createElement(FileList, { files: files }),
         _react2.default.createElement(ProductFeature, { items: products, featured: featuredProduct }),
         _react2.default.createElement(_Grid.Grid, (0, _extends3.default)({ items: items, component: ProductBlock }, other))

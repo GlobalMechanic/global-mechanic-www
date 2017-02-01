@@ -372,10 +372,10 @@ export default class Showcase extends React.Component {
 
     return <div className={classes} ref={ref => this.ref = ref}>
 
-      <div className='showcase-detail'>
+      { portrait || essay ? <div className='showcase-detail'>
         {portrait}
         {essay}
-      </div>
+      </div> : null }
 
       <FileList files={files}/>
       <ProductFeature items={products} featured={featuredProduct} />
