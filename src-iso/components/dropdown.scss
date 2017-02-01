@@ -64,10 +64,9 @@ $scaled-up: scale(1.2, 1.2);
 
     position: absolute;
     list-style-type: none;
-    -webkit-margin-before: 0em;
-    -webkit-margin-after: 0em;
-    -webkit-padding-start: 0em;
-    padding-bottom: $padding;
+    margin: 0em;
+    padding: 0em 0em $padding 0em;
+
 
     li {
       height: 0rem;

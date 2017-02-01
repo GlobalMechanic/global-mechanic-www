@@ -63,7 +63,6 @@ p {
 h1,h2,h3,h4,h5,h6 {
   font-family: $title-font;
   letter-spacing: 0em;
-  -webkit-margin-before: 0em;
-  -webkit-margin-after: 0em;
+  margin: 0em;
   font-weight: lighter;
 }

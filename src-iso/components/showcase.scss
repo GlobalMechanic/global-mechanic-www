@@ -6,8 +6,7 @@ $large-video-width: $video-width * 1.5;
   @extend .padded;
 
   p {
-    -webkit-margin-before: 0rem;
-    -webkit-margin-after: 1rem;
+    margin: 0rem 0rem 1rem 0rem;
   }
 
   display: flex;
@@ -48,7 +47,7 @@ $large-video-width: $video-width * 1.5;
   }
 
   video::-webkit-media-controls-panel {
-      width: calc(100% + 30px); /* Adjust as needed */
+    width: calc(100% + 30px); /* Adjust as needed */
   }
 
   .wip-icon-container {
@@ -199,8 +198,7 @@ $large-video-width: $video-width * 1.5;
       display: block-inline;
 
       padding: 0rem 0.5rem 0.5rem 0.55rem;
-      -webkit-margin-before: 0rem;
-      -webkit-margin-after: 0rem;
+      margin: 0rem;
       transition: top $panim-time;
     }
 
