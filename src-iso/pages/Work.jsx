@@ -3,12 +3,13 @@ import Page from './Page'
 import { Dropdown, Showcase } from '../components'
 import { showcases } from 'modules/data'
 import { variables } from 'styles'
+import classNames from 'classnames'
 
-function ShowcaseDropdown({documents, selected, path}) {
+function ShowcaseDropdown({documents, inverse, selected, path}) {
 
   const title = selected ? selected.replace(/_/g, ' ') : 'Work'
 
-  return <Dropdown title={title} items={documents.map(doc => doc.name)}
+  return <Dropdown title={title} inverse={inverse} items={documents.map(doc => doc.name)}
    path={path} selected={selected}/>
 }
 
@@ -35,14 +36,22 @@ export default class Work extends Component {
     const { showcase, product } = other.routeParams
     const { _private } = other.route
 
+    const inverse = !!other.route.inverse
+
     const mainPath = _private ? 'private/portfolio/' : 'work/'
 
     const path = `/${mainPath}${showcase}`
 
+    const showcaseClasses = classNames('transition-slide-down', { inverse })
+
     return <Page id='work-page' {...other}>
-      <ShowcaseDropdown documents={showcases} selected={showcase} path={mainPath}/>
-      <Showcase id='work-wall'  path={path}
-        className='transition-slide-down inverse' 
+      <ShowcaseDropdown
+        inverse={inverse}
+        documents={showcases}
+        selected={showcase}
+        path={mainPath}/>
+      <Showcase id='work-wall' path={path}
+        className={showcaseClasses}
         featuredShowcase={showcase}
         featuredProduct={product} />
       {children}

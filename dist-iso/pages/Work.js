@@ -46,17 +46,22 @@ var _data = require('modules/data');
 
 var _styles = require('styles');
 
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function ShowcaseDropdown(_ref) {
   var documents = _ref.documents;
+  var inverse = _ref.inverse;
   var selected = _ref.selected;
   var path = _ref.path;
 
 
   var title = selected ? selected.replace(/_/g, ' ') : 'Work';
 
-  return _react2.default.createElement(_components.Dropdown, { title: title, items: documents.map(function (doc) {
+  return _react2.default.createElement(_components.Dropdown, { title: title, inverse: inverse, items: documents.map(function (doc) {
       return doc.name;
     }),
     path: path, selected: selected });
@@ -110,16 +115,24 @@ var Work = function (_Component) {
       var _private = other.route._private;
 
 
+      var inverse = !!other.route.inverse;
+
       var mainPath = _private ? 'private/portfolio/' : 'work/';
 
       var path = '/' + mainPath + showcase;
 
+      var showcaseClasses = (0, _classnames2.default)('transition-slide-down', { inverse: inverse });
+
       return _react2.default.createElement(
         _Page2.default,
         (0, _extends3.default)({ id: 'work-page' }, other),
-        _react2.default.createElement(ShowcaseDropdown, { documents: showcases, selected: showcase, path: mainPath }),
+        _react2.default.createElement(ShowcaseDropdown, {
+          inverse: inverse,
+          documents: showcases,
+          selected: showcase,
+          path: mainPath }),
         _react2.default.createElement(_components.Showcase, { id: 'work-wall', path: path,
-          className: 'transition-slide-down inverse',
+          className: showcaseClasses,
           featuredShowcase: showcase,
           featuredProduct: product }),
         children

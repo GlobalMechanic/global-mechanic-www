@@ -4,10 +4,15 @@ $nav-time: $animation-time * 1;
 $scaled-up: scale(1.2, 1.2);
 
 .dropdown-container {
-  background-color: $bg-color-inverted;
   padding-top: $links-clearance;
   margin-top: -$padding * 1.25;
   z-index: 100;
+  color: $text-color;
+}
+
+.dropdown-container.inverse {
+  background-color: $bg-color-inverted;
+  color: $text-color-inverted;
 }
 
 .dropdown-caret {
@@ -42,7 +47,6 @@ $scaled-up: scale(1.2, 1.2);
 }
 
 .dropdown {
-  @extend .inverse;
   position: relative;
   z-index: 1000;
 
@@ -60,10 +64,9 @@ $scaled-up: scale(1.2, 1.2);
 
     position: absolute;
     list-style-type: none;
-    -webkit-margin-before: 0em;
-    -webkit-margin-after: 0em;
-    -webkit-padding-start: 0em;
-    padding-bottom: $padding;
+    margin: 0em;
+    padding: 0em 0em $padding 0em;
+
 
     li {
       height: 0rem;

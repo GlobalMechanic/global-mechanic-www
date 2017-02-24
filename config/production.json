@@ -1,12 +1,12 @@
 {
   "host": "www.globalmechanic.com",
-  "port": 80,
+  "port": "PORT",
   "public": "../dist-client/",
   "bucketeer": {
     "name": "BUCKETEER_BUCKET_NAME",
     "accessKeyId": "BUCKETEER_AWS_ACCESS_KEY_ID",
     "secretAccessKey": "BUCKETEER_AWS_SECRET_ACCESS_KEY",
-    "region": "BUCKETERR_AWS_REGION"
+    "region": "BUCKETEER_REGION"
   },
   "mongodb": "MONGODB_URI",
   "gears": {

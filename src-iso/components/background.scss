@@ -1,7 +1,5 @@
 //disables play button for mobile
-video::-webkit-media-controls-start-playback-button {
-  display: none;
-}
+
 
 #video-background-overlay {
   position: fixed;
@@ -25,7 +23,12 @@ video::-webkit-media-controls-start-playback-button {
   background-color: $bg-color-inverted;
 }
 
+// #video-background::-webkit-media-controls-start-playback-button {
+//   display: none;
+// }
+
 #video-background {
+
   position: fixed;
 
   top: 50%;

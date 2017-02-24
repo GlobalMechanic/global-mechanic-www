@@ -36,80 +36,83 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Page = require('./Page');
-
-var _Page2 = _interopRequireDefault(_Page);
-
-var _helper = require('modules/helper');
-
-var _data = require('modules/data');
-
-var _Showcase = require('components/Showcase');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Video = function (_React$Component) {
-  (0, _inherits3.default)(Video, _React$Component);
+/* global HOST */
 
-  function Video() {
+var Image = function (_Component) {
+  (0, _inherits3.default)(Image, _Component);
+
+  function Image() {
     var _Object$getPrototypeO;
 
     var _temp, _this, _ret;
 
-    (0, _classCallCheck3.default)(this, Video);
+    (0, _classCallCheck3.default)(this, Image);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Video)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
-      videos: []
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Image)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
+      imageLoaded: false
+    }, _this.setSrc = function (props) {
+      var imageId = props.imageId;
+
+
+      if (!imageId) return;
+
+      _this.setState({ imageLoaded: false });
+      _this.image = new window.Image();
+      _this.image.src = HOST + '/assets/file/' + imageId + '-thumb';
+      _this.image.onload = _this.imageLoad;
+    }, _this.imageLoad = function () {
+      var onImageLoad = _this.props.onImageLoad;
+
+      if (onImageLoad) onImageLoad(_this.image);
+      _this.setState({ imageLoaded: true });
     }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
 
-  (0, _createClass3.default)(Video, [{
+  (0, _createClass3.default)(Image, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      var _this2 = this;
-
-      _data.products.then(function (ps) {
-        var videos = ps.filter(function (p) {
-          return p && p.video && p.video.vimeoId;
-        });
-        _this2.setState({ videos: videos });
-      });
+      this.setSrc(this.props);
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(props) {
+      if (props.imageId !== this.props.imageId) this.setSrc(this.props);
     }
   }, {
     key: 'render',
     value: function render() {
       var _props = this.props;
+      var style = _props.style;
+      var imageId = _props.imageId;
       var children = _props.children;
-      var other = (0, _objectWithoutProperties3.default)(_props, ['children']);
-      var videos = this.state.videos;
-      var video = other.params.video;
+      var other = (0, _objectWithoutProperties3.default)(_props, ['style', 'imageId', 'children']);
+      var imageLoaded = this.state.imageLoaded;
 
 
-      var videoDoc = videos.filter(function (v) {
-        return (0, _helper.urlify)(v.name) === video || v._id === video;
-      })[0];
+      var imageStyle = (0, _extends3.default)({
+        backgroundImage: imageLoaded ? 'url(' + HOST + '/assets/file/' + imageId + '-thumb)' : null,
+        opacity: imageLoaded ? 1 : 0
+      }, style || {});
 
-      var vimeoId = videoDoc && videoDoc.video ? videoDoc.video.vimeoId : null;
-      var name = videoDoc ? videoDoc.name : null;
+      delete other.onImageLoad;
 
       return _react2.default.createElement(
-        _Page2.default,
-        (0, _extends3.default)({ id: 'video-page' }, other),
-        _react2.default.createElement(
-          'div',
-          { id: 'video', className: 'transition-slide-up' },
-          _react2.default.createElement(_Showcase.Vimeo, { vimeoId: vimeoId }),
-          _react2.default.createElement(_Showcase.ProductTitle, { name: name })
-        ),
+        'div',
+        (0, _extends3.default)({ style: imageStyle }, other),
         children
       );
     }
   }]);
-  return Video;
-}(_react2.default.Component);
+  return Image;
+}(_react.Component);
 
-exports.default = Video;
+Image.propTypes = {
+  imageId: _react.PropTypes.string
+};
+exports.default = Image;

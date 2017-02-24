@@ -63,7 +63,7 @@ $nav-font-size: 1.1rem;
 }
 
 #links.private {
-  overflow-x: hidden;
+  overflow: hidden;
 
   #home-link {
     width: $home-link-width;

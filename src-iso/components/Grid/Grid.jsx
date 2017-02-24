@@ -35,7 +35,7 @@ export default class Grid extends Component {
       const width = 4 + random() * 5
       const height = width - 1
 
-      return { width, height}
+      return { width, height }
     }
   }
 
