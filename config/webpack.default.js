@@ -6,35 +6,36 @@ module.exports = {
     path.resolve(__dirname, '../src-client/index.jsx')
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.s?css$/,
-        loaders: ['style', 'css', 'resolve-url', 'sass']
+        loaders: ['style-loader', 'css-loader', 'resolve-url-loader', 'sass-loader']
       },
       {
         test: /\.(woff2?|svg)$/,
-        loader: 'url?limit=10000'
+        loader: 'url-loader?limit=10000'
       },
       {
         test: /\.(ttf|eot|ico|png|gif|mp4|jpg)$/,
-        loader: 'file'
+        loader: 'file-loader'
       },
       {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'json-loader'
       },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: ['babel']
+        loader: 'babel-loader'
       }
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
-    root: [
+    extensions: ['.js', '.jsx', '.json'],
+    modules: [
       path.resolve(__dirname, '../src-iso'),
-      path.resolve(__dirname, '../src-client')
+      path.resolve(__dirname, '../src-client'),
+      'node_modules'
     ]
   },
   output : {
