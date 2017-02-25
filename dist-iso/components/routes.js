@@ -57,7 +57,7 @@ var Dummy = function Dummy(props) {
     _react2.default.createElement(
       'h1',
       null,
-      props.match.path
+      props.match.path.replace('/', '')
     )
   );
 };
@@ -67,7 +67,7 @@ var DropDummy = function DropDummy(_ref) {
   return _react2.default.createElement(
     'div',
     null,
-    _react2.default.createElement(_globalMechanicComponents.LinkDropdown, { title: match.path, links: ['yo', 'sup'] })
+    _react2.default.createElement(_globalMechanicComponents.LinkDropdown, { title: match.path.replace('/', ''), links: ['yo', 'sup'] })
   );
 };
 

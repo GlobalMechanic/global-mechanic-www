@@ -10,13 +10,13 @@ import Background from './Background'
 
 const Dummy = props =>
   <div>
-    <h1>{props.match.path}</h1>
+    <h1>{props.match.path.replace('/','')}</h1>
     {/* {console.log(props)} */}
   </div>
 
 const DropDummy = ({match}) =>
   <div>
-    <LinkDropdown title={match.path} links={['yo', 'sup']} />
+    <LinkDropdown title={match.path.replace('/','')} links={['yo', 'sup']} />
     {/* {console.log(props)} */}
   </div>
 
