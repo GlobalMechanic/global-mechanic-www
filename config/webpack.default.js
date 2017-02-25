@@ -36,7 +36,10 @@ module.exports = {
       path.resolve(__dirname, '../src-iso'),
       path.resolve(__dirname, '../src-client'),
       'node_modules'
-    ]
+    ],
+    alias: {
+      'global-mechanic-components': path.resolve(__dirname, '../../global-mechanic-components')
+    }
   },
   output : {
     path: path.resolve(__dirname, '../dist-client/'),
