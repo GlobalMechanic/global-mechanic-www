@@ -28,7 +28,7 @@ var Vector = function () {
   (0, _createClass3.default)(Vector, null, [{
     key: 'lerp',
     value: function lerp(from, to) {
-      var delta = arguments.length <= 2 || arguments[2] === undefined ? 0 : arguments[2];
+      var delta = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
 
       var x = (0, _lerp3.default)(from.x, to.x, delta);
       var y = (0, _lerp3.default)(from.y, to.y, delta);
@@ -69,8 +69,8 @@ var Vector = function () {
   }]);
 
   function Vector() {
-    var x = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
-    var y = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
+    var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
     (0, _classCallCheck3.default)(this, Vector);
 
     this.x = x;
@@ -80,7 +80,7 @@ var Vector = function () {
   (0, _createClass3.default)(Vector, [{
     key: 'iadd',
     value: function iadd() {
-      var vec = arguments.length <= 0 || arguments[0] === undefined ? Vector.zero : arguments[0];
+      var vec = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Vector.zero;
 
       this.x += vec.x;
       this.y += vec.y;
@@ -89,14 +89,14 @@ var Vector = function () {
   }, {
     key: 'add',
     value: function add() {
-      var vec = arguments.length <= 0 || arguments[0] === undefined ? Vector.zero : arguments[0];
+      var vec = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Vector.zero;
 
       return new Vector(this.x + vec.x, this.y + vec.y);
     }
   }, {
     key: 'isub',
     value: function isub() {
-      var vec = arguments.length <= 0 || arguments[0] === undefined ? Vector.zero : arguments[0];
+      var vec = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Vector.zero;
 
       this.x -= vec.x;
       this.y -= vec.y;
@@ -105,14 +105,14 @@ var Vector = function () {
   }, {
     key: 'sub',
     value: function sub() {
-      var vec = arguments.length <= 0 || arguments[0] === undefined ? Vector.zero : arguments[0];
+      var vec = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Vector.zero;
 
       return new Vector(this.x - vec.x, this.y - vec.y);
     }
   }, {
     key: 'imult',
     value: function imult() {
-      var factor = arguments.length <= 0 || arguments[0] === undefined ? 1 : arguments[0];
+      var factor = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
 
       this.x *= factor;
       this.y *= factor;
@@ -121,14 +121,14 @@ var Vector = function () {
   }, {
     key: 'mult',
     value: function mult() {
-      var factor = arguments.length <= 0 || arguments[0] === undefined ? 1 : arguments[0];
+      var factor = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
 
       return new Vector(this.x * factor, this.y * factor);
     }
   }, {
     key: 'idiv',
     value: function idiv() {
-      var factor = arguments.length <= 0 || arguments[0] === undefined ? 1 : arguments[0];
+      var factor = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
 
       this.x /= factor;
       this.y /= factor;
@@ -137,15 +137,15 @@ var Vector = function () {
   }, {
     key: 'div',
     value: function div() {
-      var factor = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+      var factor = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
       return new Vector(this.x / factor, this.y / factor);
     }
   }, {
     key: 'ilerp',
     value: function ilerp() {
-      var to = arguments.length <= 0 || arguments[0] === undefined ? Vector.zero : arguments[0];
-      var delta = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
+      var to = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Vector.zero;
+      var delta = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
       this.x = (0, _lerp3.default)(this.x, to.x, delta);
       this.y = (0, _lerp3.default)(this.y, to.y, delta);
@@ -154,16 +154,16 @@ var Vector = function () {
   }, {
     key: 'lerp',
     value: function lerp() {
-      var to = arguments.length <= 0 || arguments[0] === undefined ? Vector.zero : arguments[0];
-      var delta = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
+      var to = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Vector.zero;
+      var delta = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
       return Vector.lerp(this, to, delta);
     }
   }, {
     key: 'iclamp',
     value: function iclamp() {
-      var low = arguments.length <= 0 || arguments[0] === undefined ? Vector.zero : arguments[0];
-      var hi = arguments.length <= 1 || arguments[1] === undefined ? Vector.zero : arguments[1];
+      var low = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Vector.zero;
+      var hi = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : Vector.zero;
 
       this.x = (0, _clamp3.default)(this.x, low.x, hi.x);
       this.y = (0, _clamp3.default)(this.y, low.y, hi.y);
@@ -172,8 +172,8 @@ var Vector = function () {
   }, {
     key: 'clamp',
     value: function clamp() {
-      var low = arguments.length <= 0 || arguments[0] === undefined ? Vector.zero : arguments[0];
-      var hi = arguments.length <= 1 || arguments[1] === undefined ? Vector.zero : arguments[1];
+      var low = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Vector.zero;
+      var hi = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : Vector.zero;
 
       return Vector.clamp(this, low, hi);
     }
@@ -195,7 +195,7 @@ var Vector = function () {
   }, {
     key: 'perpendicular',
     value: function perpendicular() {
-      var h = arguments.length <= 0 || arguments[0] === undefined ? 1 : arguments[0];
+      var h = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
 
       return new Vector(-this.y, this.x).idiv(this.magnitude).imult(h);
     }

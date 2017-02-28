@@ -44,7 +44,7 @@ var Image = function (_Component) {
   (0, _inherits3.default)(Image, _Component);
 
   function Image() {
-    var _Object$getPrototypeO;
+    var _ref;
 
     var _temp, _this, _ret;
 
@@ -54,7 +54,7 @@ var Image = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Image)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Image.__proto__ || (0, _getPrototypeOf2.default)(Image)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       imageLoaded: false
     }, _this.setSrc = function (props) {
       var imageId = props.imageId;
@@ -87,11 +87,11 @@ var Image = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _props = this.props;
-      var style = _props.style;
-      var imageId = _props.imageId;
-      var children = _props.children;
-      var other = (0, _objectWithoutProperties3.default)(_props, ['style', 'imageId', 'children']);
+      var _props = this.props,
+          style = _props.style,
+          imageId = _props.imageId,
+          children = _props.children,
+          other = (0, _objectWithoutProperties3.default)(_props, ['style', 'imageId', 'children']);
       var imageLoaded = this.state.imageLoaded;
 
 

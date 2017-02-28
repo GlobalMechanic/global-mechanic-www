@@ -24,7 +24,7 @@ function Writeup() {
 
     <h1>We experiment, we create, we make beautiful things.</h1>
 
-    <p>Founded in 2000 by Bruce Alcock, Global Mechanic has produced hundred of
+    <p>Founded in 2000 by Bruce Alcock, Global Mechanic has produced hundreds of
     hours of award winning content for films, commercials, television series, digital
     media and art projects. Oscar and Emmy nominated, we're well decorated in festival
     and ad circuits worldwide.</p>

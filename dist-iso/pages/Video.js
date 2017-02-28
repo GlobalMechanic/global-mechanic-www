@@ -52,7 +52,7 @@ var Video = function (_React$Component) {
   (0, _inherits3.default)(Video, _React$Component);
 
   function Video() {
-    var _Object$getPrototypeO;
+    var _ref;
 
     var _temp, _this, _ret;
 
@@ -62,7 +62,7 @@ var Video = function (_React$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Video)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Video.__proto__ || (0, _getPrototypeOf2.default)(Video)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       videos: []
     }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
@@ -82,9 +82,9 @@ var Video = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _props = this.props;
-      var children = _props.children;
-      var other = (0, _objectWithoutProperties3.default)(_props, ['children']);
+      var _props = this.props,
+          children = _props.children,
+          other = (0, _objectWithoutProperties3.default)(_props, ['children']);
       var videos = this.state.videos;
       var video = other.params.video;
 

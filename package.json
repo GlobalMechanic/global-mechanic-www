@@ -13,9 +13,8 @@
     "develop-db": "mongod --dbpath ./storage/data",
     "develop-client": "webpack-dev-server --config ./config/webpack.dev.js",
     "develop-server": "npm run build-server -- --watch & npm run build-iso -- --watch & ./node_modules/.bin/nodemon --watch dist-server  --watch dist-iso ./dist-server ",
-    "develop-server:live": "NODE_ENV=production-test; npm run build-server -- --watch & npm run build-iso -- --watch & ./node_modules/.bin/nodemon --watch dist-server  --watch dist-iso ./dist-server ",
     "build": "npm run build-server && npm run build-iso && npm run build-client",
-    "start": "node ./dist-server"
+    "start": "NODE_ENV=production-test node ./dist-server"
   },
   "repository": {
     "type": "git",

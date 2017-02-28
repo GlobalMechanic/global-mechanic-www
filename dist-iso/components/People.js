@@ -62,18 +62,15 @@ var DirectorFirst = ['directorData', 'staffData'];
 var StaffFirst = DirectorFirst.slice().reverse();
 
 function PersonProfile(_ref, _ref2) {
-  var person = _ref.person;
-  var className = _ref.className;
-  var other = (0, _objectWithoutProperties3.default)(_ref, ['person', 'className']);
   var director = _ref2.director;
+  var person = _ref.person,
+      className = _ref.className,
+      other = (0, _objectWithoutProperties3.default)(_ref, ['person', 'className']);
 
-  var _ref3 = director ? DirectorFirst : StaffFirst;
-
-  var _ref4 = (0, _slicedToArray3.default)(_ref3, 2);
-
-  var primary = _ref4[0];
-  var secondary = _ref4[1];
-
+  var _ref3 = director ? DirectorFirst : StaffFirst,
+      _ref4 = (0, _slicedToArray3.default)(_ref3, 2),
+      primary = _ref4[0],
+      secondary = _ref4[1];
 
   var name = person ? (0, _helper.getFullName)(person) : null;
 
@@ -105,18 +102,15 @@ PersonProfile.contextTypes = {
 };
 
 function PersonBlock(_ref5, _ref6) {
-  var item = _ref5.item;
-  var other = (0, _objectWithoutProperties3.default)(_ref5, ['item']);
-  var director = _ref6.director;
-  var path = _ref6.path;
+  var director = _ref6.director,
+      path = _ref6.path;
+  var item = _ref5.item,
+      other = (0, _objectWithoutProperties3.default)(_ref5, ['item']);
 
-  var _ref7 = director ? DirectorFirst : StaffFirst;
-
-  var _ref8 = (0, _slicedToArray3.default)(_ref7, 2);
-
-  var primary = _ref8[0];
-  var secondary = _ref8[1];
-
+  var _ref7 = director ? DirectorFirst : StaffFirst,
+      _ref8 = (0, _slicedToArray3.default)(_ref7, 2),
+      primary = _ref8[0],
+      secondary = _ref8[1];
 
   var portraitId = item ? item[primary] && item[primary].portrait ? item[primary].portrait : item[secondary] && item[secondary].portrait ? item[secondary].portrait : null : null;
 
@@ -137,7 +131,7 @@ var People = function (_Component) {
   (0, _inherits3.default)(People, _Component);
 
   function People() {
-    var _Object$getPrototypeO;
+    var _ref9;
 
     var _temp, _this, _ret;
 
@@ -147,7 +141,7 @@ var People = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(People)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref9 = People.__proto__ || (0, _getPrototypeOf2.default)(People)).call.apply(_ref9, [this].concat(args))), _this), _this.state = {
       people: [],
       featuredPerson: null
     }, _this.size = function () {
@@ -158,9 +152,9 @@ var People = function (_Component) {
   (0, _createClass3.default)(People, [{
     key: 'getChildContext',
     value: function getChildContext() {
-      var _props = this.props;
-      var path = _props.path;
-      var director = _props.director;
+      var _props = this.props,
+          path = _props.path,
+          director = _props.director;
 
 
       return {
@@ -170,8 +164,8 @@ var People = function (_Component) {
     }
   }, {
     key: 'setFeaturedPerson',
-    value: function setFeaturedPerson(_ref9) {
-      var featured = _ref9.featured;
+    value: function setFeaturedPerson(_ref10) {
+      var featured = _ref10.featured;
       var people = this.state.people;
 
       var featuredPerson = featured ? people.filter(function (p) {
@@ -205,13 +199,13 @@ var People = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _state = this.state;
-      var people = _state.people;
-      var featuredPerson = _state.featuredPerson;
-      var _props2 = this.props;
-      var featured = _props2.featured;
-      var size = _props2.size;
-      var layout = _props2.layout;
+      var _state = this.state,
+          people = _state.people,
+          featuredPerson = _state.featuredPerson;
+      var _props2 = this.props,
+          featured = _props2.featured,
+          size = _props2.size,
+          layout = _props2.layout;
 
 
       this.layout = this.layout || layout || new _Grid.Layout(50, true);

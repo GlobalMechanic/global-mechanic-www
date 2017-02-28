@@ -76,9 +76,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /* globals HOST */
 
 function Vimeo(_ref) {
-  var vimeoId = _ref.vimeoId;
-  var className = _ref.className;
-  var other = (0, _objectWithoutProperties3.default)(_ref, ['vimeoId', 'className']);
+  var vimeoId = _ref.vimeoId,
+      className = _ref.className,
+      other = (0, _objectWithoutProperties3.default)(_ref, ['vimeoId', 'className']);
 
 
   var classes = (0, _classnames2.default)(className, 'product-video');
@@ -94,9 +94,9 @@ function Vimeo(_ref) {
 }
 
 function Essay(_ref2) {
-  var className = _ref2.className;
-  var style = _ref2.style;
-  var children = _ref2.children;
+  var className = _ref2.className,
+      style = _ref2.style,
+      children = _ref2.children;
 
 
   if (!(0, _isExplicit2.default)(children, String)) return null;
@@ -108,7 +108,7 @@ var Media = function (_React$Component) {
   (0, _inherits3.default)(Media, _React$Component);
 
   function Media() {
-    var _Object$getPrototypeO;
+    var _ref3;
 
     var _temp, _this, _ret;
 
@@ -118,7 +118,7 @@ var Media = function (_React$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Media)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref3 = Media.__proto__ || (0, _getPrototypeOf2.default)(Media)).call.apply(_ref3, [this].concat(args))), _this), _this.state = {
       controls: false
     }, _this.showControls = function () {
       return _this.setState({ controls: true });
@@ -130,10 +130,10 @@ var Media = function (_React$Component) {
   (0, _createClass3.default)(Media, [{
     key: 'render',
     value: function render() {
-      var _props = this.props;
-      var poster = _props.poster;
-      var src = _props.src;
-      var type = _props.type;
+      var _props = this.props,
+          poster = _props.poster,
+          src = _props.src,
+          type = _props.type;
       var controls = this.state.controls;
 
 
@@ -161,7 +161,7 @@ var File = function (_React$Component2) {
   (0, _inherits3.default)(File, _React$Component2);
 
   function File() {
-    var _Object$getPrototypeO2;
+    var _ref4;
 
     var _temp2, _this2, _ret2;
 
@@ -171,7 +171,7 @@ var File = function (_React$Component2) {
       args[_key2] = arguments[_key2];
     }
 
-    return _ret2 = (_temp2 = (_this2 = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO2 = (0, _getPrototypeOf2.default)(File)).call.apply(_Object$getPrototypeO2, [this].concat(args))), _this2), _this2.state = {
+    return _ret2 = (_temp2 = (_this2 = (0, _possibleConstructorReturn3.default)(this, (_ref4 = File.__proto__ || (0, _getPrototypeOf2.default)(File)).call.apply(_ref4, [this].concat(args))), _this2), _this2.state = {
       description: null,
       name: null,
       ext: null,
@@ -215,11 +215,11 @@ var File = function (_React$Component2) {
     key: 'render',
     value: function render() {
       var file = this.props.file;
-      var _state = this.state;
-      var name = _state.name;
-      var description = _state.description;
-      var mime = _state.mime;
-      var ext = _state.ext;
+      var _state = this.state,
+          name = _state.name,
+          description = _state.description,
+          mime = _state.mime,
+          ext = _state.ext;
 
 
       var url = HOST + '/assets/file/' + file;
@@ -277,8 +277,8 @@ var File = function (_React$Component2) {
   return File;
 }(_react2.default.Component);
 
-function FileList(_ref3) {
-  var files = _ref3.files;
+function FileList(_ref5) {
+  var files = _ref5.files;
 
   return files ? _react2.default.createElement(
     'div',
@@ -291,10 +291,10 @@ function FileList(_ref3) {
   ) : null;
 }
 
-function LinkImage(_ref4) {
-  var id = _ref4.id;
-  var back = _ref4.back;
-  var className = _ref4.className;
+function LinkImage(_ref6) {
+  var id = _ref6.id,
+      back = _ref6.back,
+      className = _ref6.className;
 
   var classes = (0, _classnames2.default)(className, 'product-image');
 
@@ -311,9 +311,9 @@ function LinkImage(_ref4) {
   );
 }
 
-function ProductTitle(_ref5) {
-  var name = _ref5.name;
-  var className = _ref5.className;
+function ProductTitle(_ref7) {
+  var name = _ref7.name,
+      className = _ref7.className;
 
 
   var classes = (0, _classnames2.default)(className, 'product-title');
@@ -324,10 +324,10 @@ function ProductTitle(_ref5) {
   ) : null;
 }
 
-function ProductFeature(_ref6, _ref7) {
-  var items = _ref6.items;
-  var featured = _ref6.featured;
-  var path = _ref7.path;
+function ProductFeature(_ref8, _ref9) {
+  var items = _ref8.items,
+      featured = _ref8.featured;
+  var path = _ref9.path;
 
 
   var back = function back() {
@@ -373,8 +373,8 @@ ProductFeature.contextTypes = {
   path: _react.PropTypes.string.isRequired
 };
 
-function ProductBlockIcon(_ref8) {
-  var type = _ref8.type;
+function ProductBlockIcon(_ref10) {
+  var type = _ref10.type;
 
   return type ? _react2.default.createElement('div', { className: 'product-block-icon ' + type }) : null;
 }
@@ -383,7 +383,7 @@ var ProductBlock = function (_React$Component3) {
   (0, _inherits3.default)(ProductBlock, _React$Component3);
 
   function ProductBlock() {
-    var _Object$getPrototypeO3;
+    var _ref11;
 
     var _temp3, _this4, _ret3;
 
@@ -393,7 +393,7 @@ var ProductBlock = function (_React$Component3) {
       args[_key3] = arguments[_key3];
     }
 
-    return _ret3 = (_temp3 = (_this4 = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO3 = (0, _getPrototypeOf2.default)(ProductBlock)).call.apply(_Object$getPrototypeO3, [this].concat(args))), _this4), _this4.state = {
+    return _ret3 = (_temp3 = (_this4 = (0, _possibleConstructorReturn3.default)(this, (_ref11 = ProductBlock.__proto__ || (0, _getPrototypeOf2.default)(ProductBlock)).call.apply(_ref11, [this].concat(args))), _this4), _this4.state = {
       type: false
     }, _this4.setIconType = function (image) {
       var item = _this4.props.item;
@@ -411,12 +411,12 @@ var ProductBlock = function (_React$Component3) {
   (0, _createClass3.default)(ProductBlock, [{
     key: 'render',
     value: function render() {
-      var _props2 = this.props;
-      var item = _props2.item;
-      var other = (0, _objectWithoutProperties3.default)(_props2, ['item']);
-      var _context = this.context;
-      var path = _context.path;
-      var showIcons = _context.showIcons;
+      var _props2 = this.props,
+          item = _props2.item,
+          other = (0, _objectWithoutProperties3.default)(_props2, ['item']);
+      var _context = this.context,
+          path = _context.path,
+          showIcons = _context.showIcons;
 
       //bc
 
@@ -447,7 +447,7 @@ var Showcase = function (_React$Component4) {
   (0, _inherits3.default)(Showcase, _React$Component4);
 
   function Showcase() {
-    var _Object$getPrototypeO4;
+    var _ref12;
 
     var _temp4, _this5, _ret4;
 
@@ -457,16 +457,14 @@ var Showcase = function (_React$Component4) {
       args[_key4] = arguments[_key4];
     }
 
-    return _ret4 = (_temp4 = (_this5 = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO4 = (0, _getPrototypeOf2.default)(Showcase)).call.apply(_Object$getPrototypeO4, [this].concat(args))), _this5), _this5.state = {
+    return _ret4 = (_temp4 = (_this5 = (0, _possibleConstructorReturn3.default)(this, (_ref12 = Showcase.__proto__ || (0, _getPrototypeOf2.default)(Showcase)).call.apply(_ref12, [this].concat(args))), _this5), _this5.state = {
       showcase: null,
       files: null,
       products: [],
       items: []
     }, _this5.setProducts = function (props) {
-      var _ref9 = props || _this5.props;
-
-      var featuredShowcase = _ref9.featuredShowcase;
-
+      var _ref13 = props || _this5.props,
+          featuredShowcase = _ref13.featuredShowcase;
 
       _data.showcases.then(function (shows) {
         var showcase = shows.filter(function (show) {
@@ -541,15 +539,15 @@ var Showcase = function (_React$Component4) {
     value: function render() {
       var _this6 = this;
 
-      var _props3 = this.props;
-      var featuredProduct = _props3.featuredProduct;
-      var className = _props3.className;
-      var other = (0, _objectWithoutProperties3.default)(_props3, ['featuredProduct', 'className']);
-      var _state2 = this.state;
-      var products = _state2.products;
-      var items = _state2.items;
-      var showcase = _state2.showcase;
-      var files = _state2.files;
+      var _props3 = this.props,
+          featuredProduct = _props3.featuredProduct,
+          className = _props3.className,
+          other = (0, _objectWithoutProperties3.default)(_props3, ['featuredProduct', 'className']);
+      var _state2 = this.state,
+          products = _state2.products,
+          items = _state2.items,
+          showcase = _state2.showcase,
+          files = _state2.files;
 
 
       delete other.path;
@@ -568,8 +566,8 @@ var Showcase = function (_React$Component4) {
 
       return _react2.default.createElement(
         'div',
-        { className: classes, ref: function ref(_ref10) {
-            return _this6.ref = _ref10;
+        { className: classes, ref: function ref(_ref14) {
+            return _this6.ref = _ref14;
           } },
         portrait || essay ? _react2.default.createElement(
           'div',

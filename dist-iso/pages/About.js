@@ -55,8 +55,8 @@ function aboutStaffSize(item) {
 }
 
 function Email(_ref) {
-  var address = _ref.address;
-  var children = _ref.children;
+  var address = _ref.address,
+      children = _ref.children;
 
   return _react2.default.createElement(
     'a',
@@ -86,7 +86,7 @@ function Writeup() {
     _react2.default.createElement(
       'p',
       null,
-      'Founded in 2000 by Bruce Alcock, Global Mechanic has produced hundred of hours of award winning content for films, commercials, television series, digital media and art projects. Oscar and Emmy nominated, we\'re well decorated in festival and ad circuits worldwide.'
+      'Founded in 2000 by Bruce Alcock, Global Mechanic has produced hundreds of hours of award winning content for films, commercials, television series, digital media and art projects. Oscar and Emmy nominated, we\'re well decorated in festival and ad circuits worldwide.'
     ),
     _react2.default.createElement(
       'p',
@@ -172,7 +172,7 @@ var About = function (_Component) {
   (0, _inherits3.default)(About, _Component);
 
   function About() {
-    var _Object$getPrototypeO;
+    var _ref4;
 
     var _temp, _this, _ret;
 
@@ -182,7 +182,7 @@ var About = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(About)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref4 = About.__proto__ || (0, _getPrototypeOf2.default)(About)).call.apply(_ref4, [this].concat(args))), _this), _this.state = {
       height: null
     }, _this.setBounds = function () {
 
@@ -207,9 +207,9 @@ var About = function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var _props = this.props;
-      var children = _props.children;
-      var other = (0, _objectWithoutProperties3.default)(_props, ['children']);
+      var _props = this.props,
+          children = _props.children,
+          other = (0, _objectWithoutProperties3.default)(_props, ['children']);
       var height = this.state.height;
       var person = this.props.params.person;
 

@@ -49,6 +49,14 @@ export default class Directors extends Component {
 
     return <Page id='directors-page' {...other}>
       <DirectorList director={director} directors={directors} inverse={inverse} />
+      <div className={'padded' + (inverse ? ' inverse' : '')}>
+        <span>Our directors are multi-disciplinary artists. Whether collaborating or working
+          independently, they’re inspired by our flexible and innovative creative environment.
+          Their deep knowledge of old-school methods informs today’s tech and visual
+          needs, with often unexpected and always fabulous results. Oscar and Emmy
+          nominees, Harvard and RISD academics, internationally recognized filmmakers,
+          and just great people, they’re a shared treasure of expertise.</span>
+      </div>
 
       <div id='director' className='inverse transition-slide-down'>
         <People director path={DIRECTOR_PATH} featured={director} layout={DirectorLayout}

@@ -54,8 +54,8 @@ function JustClicks() {
 }
 
 function Home(_ref) {
-  var children = _ref.children;
-  var other = (0, _objectWithoutProperties3.default)(_ref, ['children']);
+  var children = _ref.children,
+      other = (0, _objectWithoutProperties3.default)(_ref, ['children']);
 
 
   return _react2.default.createElement(

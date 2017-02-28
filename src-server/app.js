@@ -25,6 +25,8 @@ const app = feathers()
 const configURL = path.resolve(__dirname, '..')
 const favURL = path.resolve(__dirname, '../favicon.png')
 
+log(process.env.NODE_ENV || 'no environment specified')
+
 app.configure(configuration(configURL))
 
 const publicURL = app.get('public')

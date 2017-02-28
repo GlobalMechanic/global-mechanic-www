@@ -72,6 +72,8 @@ var app = (0, _feathers2.default)();
 var configURL = _path2.default.resolve(__dirname, '..');
 var favURL = _path2.default.resolve(__dirname, '../favicon.png');
 
+log(process.env.NODE_ENV || 'no environment specified');
+
 app.configure((0, _feathersConfiguration2.default)(configURL));
 
 var publicURL = app.get('public');

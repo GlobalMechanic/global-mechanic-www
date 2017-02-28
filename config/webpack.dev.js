@@ -8,6 +8,8 @@ const feathersConfig = require('./default.json')
 const port = 3000
 const host = '0.0.0.0'
 
+console.log(process.env.NODE_ENV)
+
 config.entry.unshift(`webpack-dev-server/client?http://${host}:${port}`)
 
 config.devServer = {

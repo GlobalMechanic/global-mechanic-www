@@ -59,9 +59,9 @@ var DIRECTOR_PATH = '/directors/';
 var DirectorLayout = new _Grid.Layout(60, false);
 
 function DirectorList(_ref) {
-  var director = _ref.director;
-  var directors = _ref.directors;
-  var inverse = _ref.inverse;
+  var director = _ref.director,
+      directors = _ref.directors,
+      inverse = _ref.inverse;
 
   return _react2.default.createElement(_components.Dropdown, { title: 'Directors', items: directors.map(function (d) {
       return (0, _helper.getFullName)(d);
@@ -73,7 +73,7 @@ var Directors = function (_Component) {
   (0, _inherits3.default)(Directors, _Component);
 
   function Directors() {
-    var _Object$getPrototypeO;
+    var _ref2;
 
     var _temp, _this, _ret;
 
@@ -83,7 +83,7 @@ var Directors = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Directors)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref2 = Directors.__proto__ || (0, _getPrototypeOf2.default)(Directors)).call.apply(_ref2, [this].concat(args))), _this), _this.state = {
       directors: []
     }, _this.size = function () {
       return {
@@ -110,13 +110,13 @@ var Directors = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _props = this.props;
-      var children = _props.children;
-      var other = (0, _objectWithoutProperties3.default)(_props, ['children']);
+      var _props = this.props,
+          children = _props.children,
+          other = (0, _objectWithoutProperties3.default)(_props, ['children']);
       var directors = this.state.directors;
-      var _other$routeParams = other.routeParams;
-      var director = _other$routeParams.director;
-      var product = _other$routeParams.product;
+      var _other$routeParams = other.routeParams,
+          director = _other$routeParams.director,
+          product = _other$routeParams.product;
 
 
       var inverse = !!other.route.inverse;
@@ -130,6 +130,15 @@ var Directors = function (_Component) {
         _Page2.default,
         (0, _extends3.default)({ id: 'directors-page' }, other),
         _react2.default.createElement(DirectorList, { director: director, directors: directors, inverse: inverse }),
+        _react2.default.createElement(
+          'div',
+          { className: 'padded' + (inverse ? ' inverse' : '') },
+          _react2.default.createElement(
+            'span',
+            null,
+            'Our directors are multi-disciplinary artists. Whether collaborating or working independently, they\u2019re inspired by our flexible and innovative creative environment. Their deep knowledge of old-school methods informs today\u2019s tech and visual needs, with often unexpected and always fabulous results. Oscar and Emmy nominees, Harvard and RISD academics, internationally recognized filmmakers, and just great people, they\u2019re a shared treasure of expertise.'
+          )
+        ),
         _react2.default.createElement(
           'div',
           { id: 'director', className: 'inverse transition-slide-down' },
