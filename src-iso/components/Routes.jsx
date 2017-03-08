@@ -9,16 +9,11 @@ import Background from './Background'
 /******************************************************************************/
 
 const Dummy = props =>
-  <div>
-    <h1>{props.match.path.replace('/','')}</h1>
-    {/* {console.log(props)} */}
-  </div>
+  <h1>{props.match.path.replace('/','')}</h1>
+
 
 const DropDummy = ({match}) =>
-  <div>
-    <LinkDropdown title={match.path.replace('/','')} links={['yo', 'sup']} />
-    {/* {console.log(props)} */}
-  </div>
+  <LinkDropdown title={match.path.replace('/','')} links={[]} />
 
 /******************************************************************************/
 // Helper
