@@ -1,5 +1,5 @@
 import React from 'React'
-import { Base, IS_MOBILE } from 'global-mechanic-components'
+import { Block, IS_MOBILE } from 'global-mechanic-components'
 
 /******************************************************************************/
 // Data
@@ -28,21 +28,21 @@ const props = IS_MOBILE
 /******************************************************************************/
 
 const Overlay = ({children}) =>
-  <Base id='video-background-overlay' >
+  <Block id='video-background-overlay' >
     {children}
-  </Base>
+  </Block>
 
 const Picture = () =>
-  <Base id='video-background' component={component} {...props} />
+  <Block id='video-background' component={component} {...props} />
 
 /******************************************************************************/
 // Exports
 /******************************************************************************/
 
 const Background = () =>
-  <Base id='background'>
+  <Block id='background'>
     <Overlay />
     <Picture />
-  </Base>
+  </Block>
 
 export default Background

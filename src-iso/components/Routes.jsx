@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Route } from 'react-router-dom'
-import { Link, Row, Icons, Base, LinkDropdown } from 'global-mechanic-components'
+import { Link, Row, Icons, Block, LinkDropdown } from 'global-mechanic-components'
 import Background from './Background'
 
 /******************************************************************************/
@@ -37,7 +37,7 @@ const Navigation = ({ private: priv, disabled }) =>
   </Row>
 
 const Pages = props =>
-  <Base classes='navigation-pages' {...props}/>
+  <Block classes='navigation-pages' {...props}/>
 
 const PageRoute = ({ exact, strict, path, ...other })=>
   <Route exact={exact} path={path} strict={strict}
@@ -95,7 +95,7 @@ export default class Routes extends React.Component {
 
     const { disableNav } = this.props
 
-    return <Base id='website' classes={{light: !dark, dark }} >
+    return <Block id='website' classes={{light: !dark, dark }} >
 
       <Navigation private={priv} disabled={disableNav} />
 
@@ -108,7 +108,7 @@ export default class Routes extends React.Component {
 
       <Background/>
 
-    </Base>
+    </Block>
 
   }
 
