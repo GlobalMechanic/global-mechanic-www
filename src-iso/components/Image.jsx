@@ -24,6 +24,8 @@ export default class Image extends Component {
     if (!imageId)
       return
 
+
+
     this.setState({ imageLoaded: false})
     this.image = new window.Image()
     this.image.src = `${HOST}/assets/file/${imageId}${ thumb ? '-thumb' : ''}`
@@ -54,7 +56,7 @@ export default class Image extends Component {
     const { imageLoaded } = this.state
 
     const imageStyle = {
-      backgroundImage: imageLoaded ? `url(${HOST}/assets/file/${imageId}${ thumb ? '-thumb' : ''}` : null,
+      backgroundImage: imageLoaded ? `url(${HOST}/assets/file/${imageId}${ thumb ? '-thumb' : ''})` : null,
       opacity: imageLoaded ? 1 : 0,
       ...(style || {})
     }

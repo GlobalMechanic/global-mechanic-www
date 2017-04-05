@@ -98,7 +98,7 @@ var Image = function (_Component) {
 
 
       var imageStyle = (0, _extends3.default)({
-        backgroundImage: imageLoaded ? 'url(' + HOST + '/assets/file/' + imageId + (thumb ? '-thumb' : '') : null,
+        backgroundImage: imageLoaded ? 'url(' + HOST + '/assets/file/' + imageId + (thumb ? '-thumb' : '') + ')' : null,
         opacity: imageLoaded ? 1 : 0
       }, style || {});
 
