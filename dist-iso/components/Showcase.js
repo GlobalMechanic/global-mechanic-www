@@ -235,10 +235,10 @@ var File = function (_React$Component2) {
         if (isVideo || isAudio) return _react2.default.createElement(Media, { poster: isAudio ? thumb : null, src: url, type: mime });else return _react2.default.createElement(
             'a',
             { className: 'wip-icon-container', href: isImage ? url : download, target: isImage ? '_blank' : null },
-            _react2.default.createElement(_Image2.default, { className: isImage ? 'wip-image' : 'wip-icon', imageId: file, style: {
+            _react2.default.createElement(_Image2.default, { className: isImage ? 'wip-image' : 'wip-icon', thumb: false, imageId: file, style: {
                 backgroundSize: isImage ? 'contain' : '80%',
                 backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'center'
+                backgroundPosition: 'center bottom'
               } })
           );
       }();

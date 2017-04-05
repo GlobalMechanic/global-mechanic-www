@@ -21,6 +21,10 @@ var _slicedToArray2 = require('babel-runtime/helpers/slicedToArray');
 
 var _slicedToArray3 = _interopRequireDefault(_slicedToArray2);
 
+var _typeof2 = require('babel-runtime/helpers/typeof');
+
+var _typeof3 = _interopRequireDefault(_typeof2);
+
 var _promise = require('babel-runtime/core-js/promise');
 
 var _promise2 = _interopRequireDefault(_promise);
@@ -187,12 +191,18 @@ function hasFile(key) {
 function writeFile(key, ext, read) {
 
   if (!s3) {
-    var write = _fsPromise2.default.createWriteStream(_path2.default.join(LOCAL_FILES, '' + key + ext));
-    return new _promise2.default(function (resolve, reject) {
-      read.pipe(write);
-      read.on('end', resolve);
-      read.on('error', reject);
-    });
+    var _ret = function () {
+      var write = _fsPromise2.default.createWriteStream(_path2.default.join(LOCAL_FILES, '' + key + ext));
+      return {
+        v: new _promise2.default(function (resolve, reject) {
+          read.pipe(write);
+          read.on('end', resolve);
+          read.on('error', reject);
+        })
+      };
+    }();
+
+    if ((typeof _ret === 'undefined' ? 'undefined' : (0, _typeof3.default)(_ret)) === "object") return _ret.v;
   }
 
   var upload = new _stream.PassThrough();

@@ -57,14 +57,15 @@ var Image = function (_Component) {
     return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Image.__proto__ || (0, _getPrototypeOf2.default)(Image)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       imageLoaded: false
     }, _this.setSrc = function (props) {
-      var imageId = props.imageId;
+      var imageId = props.imageId,
+          thumb = props.thumb;
 
 
       if (!imageId) return;
 
       _this.setState({ imageLoaded: false });
       _this.image = new window.Image();
-      _this.image.src = HOST + '/assets/file/' + imageId + '-thumb';
+      _this.image.src = HOST + '/assets/file/' + imageId + (thumb ? '-thumb' : '');
       _this.image.onload = _this.imageLoad;
     }, _this.imageLoad = function () {
       var onImageLoad = _this.props.onImageLoad;
@@ -90,13 +91,14 @@ var Image = function (_Component) {
       var _props = this.props,
           style = _props.style,
           imageId = _props.imageId,
+          thumb = _props.thumb,
           children = _props.children,
-          other = (0, _objectWithoutProperties3.default)(_props, ['style', 'imageId', 'children']);
+          other = (0, _objectWithoutProperties3.default)(_props, ['style', 'imageId', 'thumb', 'children']);
       var imageLoaded = this.state.imageLoaded;
 
 
       var imageStyle = (0, _extends3.default)({
-        backgroundImage: imageLoaded ? 'url(' + HOST + '/assets/file/' + imageId + '-thumb)' : null,
+        backgroundImage: imageLoaded ? 'url(' + HOST + '/assets/file/' + imageId + (thumb ? '-thumb' : '') : null,
         opacity: imageLoaded ? 1 : 0
       }, style || {});
 
@@ -113,6 +115,10 @@ var Image = function (_Component) {
 }(_react.Component);
 
 Image.propTypes = {
-  imageId: _react.PropTypes.string
+  imageId: _react.PropTypes.string,
+  thumb: _react.PropTypes.bool
+};
+Image.defaultProps = {
+  thumb: true
 };
 exports.default = Image;

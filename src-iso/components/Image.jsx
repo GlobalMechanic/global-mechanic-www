@@ -5,7 +5,12 @@ import React, { Component, PropTypes } from 'react'
 export default class Image extends Component {
 
   static propTypes = {
-    imageId: PropTypes.string
+    imageId: PropTypes.string,
+    thumb: PropTypes.bool
+  }
+
+  static defaultProps = {
+    thumb: true
   }
 
   state = {
@@ -14,14 +19,14 @@ export default class Image extends Component {
 
   setSrc = props => {
 
-    const { imageId } = props
+    const { imageId, thumb } = props
 
     if (!imageId)
       return
 
     this.setState({ imageLoaded: false})
     this.image = new window.Image()
-    this.image.src = `${HOST}/assets/file/${imageId}-thumb`
+    this.image.src = `${HOST}/assets/file/${imageId}${ thumb ? '-thumb' : ''}`
     this.image.onload = this.imageLoad
 
   }
@@ -44,12 +49,12 @@ export default class Image extends Component {
 
   render() {
 
-    const { style, imageId, children, ...other } = this.props
+    const { style, imageId, thumb, children, ...other } = this.props
 
     const { imageLoaded } = this.state
 
     const imageStyle = {
-      backgroundImage: imageLoaded ? `url(${HOST}/assets/file/${imageId}-thumb)` : null,
+      backgroundImage: imageLoaded ? `url(${HOST}/assets/file/${imageId}${ thumb ? '-thumb' : ''}` : null,
       opacity: imageLoaded ? 1 : 0,
       ...(style || {})
     }
