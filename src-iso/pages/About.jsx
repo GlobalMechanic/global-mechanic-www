@@ -65,11 +65,7 @@ function StaffBlock({featured}) {
     <Email address={'lisa@hestyreps.com'}>Canada | Hestyreps +1 416 482 0411</Email>
     <br/>
 
-    <h4>Suite 208 - 1525 West 8th Avenue</h4>
-    <h4>Vancouver BC</h4>
-    <h4>Canada V6J 1T5</h4>
-    <h4>+1 604 733 7475</h4>
-    <h4>studio@globalmechanic.com</h4>
+    <Email address={'tina@globalmechanic.com'}>tina@globalmechanic.com</Email>
 
     <a id='twitter' href='https://www.twitter.com/globalmechanic'/>
     <a id='facebook' href='https://www.facebook.com/globalmechanicmedia'/>
