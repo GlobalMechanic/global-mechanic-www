@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { createElement, Component } from 'react'
 import Page from './Page'
 
 import { People } from 'components'
@@ -11,9 +11,9 @@ function aboutStaffSize(item) {
     : { width: 4, height: 4}
 }
 
-function Email({address, children}) {
+function Email({address, children, small = false}) {
   return <a href={`mailto:${address}`} className='clickable'>
-    <h2>{children}</h2>
+    { small ? <h4>{children}</h4> : <h2>{children}</h2> }
   </a>
 }
 
@@ -65,7 +65,7 @@ function StaffBlock({featured}) {
     <Email address={'lisa@hestyreps.com'}>Canada | Hestyreps +1 416 482 0411</Email>
     <br/>
 
-    <Email address={'tina@globalmechanic.com'}>tina@globalmechanic.com</Email>
+    <Email address={'tina@globalmechanic.com'} small>tina@globalmechanic.com</Email>
 
     <a id='twitter' href='https://www.twitter.com/globalmechanic'/>
     <a id='facebook' href='https://www.facebook.com/globalmechanicmedia'/>
