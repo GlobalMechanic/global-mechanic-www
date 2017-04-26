@@ -100,9 +100,9 @@ function getIn(obj, paths) {
 }
 
 function ensureFile(_ref) {
-  var fileId = _ref.fileId,
-      thumb = _ref.thumb,
-      meta = _ref.meta;
+  var fileId = _ref.fileId;
+  var thumb = _ref.thumb;
+  var meta = _ref.meta;
 
 
   var query = thumb ? '?process=' + thumb : meta ? '?meta=true' : '';
@@ -168,12 +168,12 @@ function initialize() {
 
   //Update metadata if we're tracking a file that has it
   files.on('patched', function (_ref2) {
-    var _id = _ref2._id,
-        name = _ref2.name,
-        description = _ref2.description,
-        ext = _ref2.ext,
-        mime = _ref2.mime,
-        size = _ref2.size;
+    var _id = _ref2._id;
+    var name = _ref2.name;
+    var description = _ref2.description;
+    var ext = _ref2.ext;
+    var mime = _ref2.mime;
+    var size = _ref2.size;
 
 
     var metaKey = _id + '-meta';
@@ -216,10 +216,10 @@ function sync(from, to) {
   var ensureFiles = function ensureFiles(doc) {
 
     downloads.forEach(function (instruction) {
-      var path = instruction.path,
-          thumb = instruction.thumb,
-          full = instruction.full,
-          meta = instruction.meta;
+      var path = instruction.path;
+      var thumb = instruction.thumb;
+      var full = instruction.full;
+      var meta = instruction.meta;
 
       var fileId = getIn(doc, path);
       var fileIds = is(fileId, Array) ? fileId : [fileId];

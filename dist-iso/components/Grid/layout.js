@@ -115,9 +115,9 @@ var Cells = function () {
     key: 'getFreeArea',
     value: function getFreeArea() {
       var area = null;
-      var filled = this.filled,
-          limits = this.limits,
-          max = this.max;
+      var filled = this.filled;
+      var limits = this.limits;
+      var max = this.max;
 
       //find start pos
 

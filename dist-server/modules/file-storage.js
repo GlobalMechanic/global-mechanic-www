@@ -160,8 +160,8 @@ function initialize() {
   var bucketeer = app.get('bucketeer');
 
   if (bucketeer) {
-    var name = bucketeer.name,
-        other = (0, _objectWithoutProperties3.default)(bucketeer, ['name']);
+    var name = bucketeer.name;
+    var other = (0, _objectWithoutProperties3.default)(bucketeer, ['name']);
 
     bucket = name;
     s3 = new _awsSdk.S3(other);
@@ -222,10 +222,13 @@ function parseRange(str, size) {
   var _ref = is(str, String) //eslint-disable-line prefer-const
   ? str.replace(/bytes=/, '').split('-').map(function (word) {
     return parseInt(word, 10);
-  }) : [],
-      _ref2 = (0, _slicedToArray3.default)(_ref, 2),
-      start = _ref2[0],
-      end = _ref2[1];
+  }) : [];
+
+  var _ref2 = (0, _slicedToArray3.default)(_ref, 2);
+
+  var start = _ref2[0];
+  var end = _ref2[1];
+
 
   if (!isFinite(start)) return {};
 

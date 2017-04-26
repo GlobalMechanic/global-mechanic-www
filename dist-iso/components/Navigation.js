@@ -63,8 +63,8 @@ function HomeLink(_ref) {
 }
 
 function PageLink(_ref2) {
-  var to = _ref2.to,
-      children = _ref2.children;
+  var to = _ref2.to;
+  var children = _ref2.children;
 
   return _react2.default.createElement(
     _reactRouter.Link,
@@ -79,8 +79,8 @@ function PageLink(_ref2) {
 }
 
 function Links(_ref3) {
-  var inverse = _ref3.inverse,
-      _private = _ref3._private;
+  var inverse = _ref3.inverse;
+  var _private = _ref3._private;
 
 
   var classes = (0, _classnames2.default)('padded', { inverse: inverse, private: _private });
@@ -108,8 +108,8 @@ function Links(_ref3) {
 }
 
 function Pages(_ref4) {
-  var children = _ref4.children,
-      other = (0, _objectWithoutProperties3.default)(_ref4, ['children']);
+  var children = _ref4.children;
+  var other = (0, _objectWithoutProperties3.default)(_ref4, ['children']);
 
   return _react2.default.createElement(
     'div',
@@ -119,17 +119,17 @@ function Pages(_ref4) {
 }
 
 function Navigation(_ref5) {
-  var children = _ref5.children,
-      routes = _ref5.routes;
+  var children = _ref5.children;
+  var routes = _ref5.routes;
 
 
   var route = routes ? routes[routes.length - 1] : {};
 
   //Navigation should be styled inverse if the current route is
-  var inverse = route.inverse,
-      darken = route.darken,
-      transition = route.transition,
-      _private = route._private;
+  var inverse = route.inverse;
+  var darken = route.darken;
+  var transition = route.transition;
+  var _private = route._private;
 
 
   var path = route.path || 'home';

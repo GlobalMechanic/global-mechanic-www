@@ -53,10 +53,10 @@ var _classnames2 = _interopRequireDefault(_classnames);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function ShowcaseDropdown(_ref) {
-  var documents = _ref.documents,
-      inverse = _ref.inverse,
-      selected = _ref.selected,
-      path = _ref.path;
+  var documents = _ref.documents;
+  var inverse = _ref.inverse;
+  var selected = _ref.selected;
+  var path = _ref.path;
 
 
   var title = selected ? selected.replace(/_/g, ' ') : 'Work';
@@ -105,13 +105,13 @@ var Work = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _props = this.props,
-          children = _props.children,
-          other = (0, _objectWithoutProperties3.default)(_props, ['children']);
+      var _props = this.props;
+      var children = _props.children;
+      var other = (0, _objectWithoutProperties3.default)(_props, ['children']);
       var showcases = this.state.showcases;
-      var _other$routeParams = other.routeParams,
-          showcase = _other$routeParams.showcase,
-          product = _other$routeParams.product;
+      var _other$routeParams = other.routeParams;
+      var showcase = _other$routeParams.showcase;
+      var product = _other$routeParams.product;
       var _private = other.route._private;
 
 

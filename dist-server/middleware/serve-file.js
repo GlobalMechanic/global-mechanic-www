@@ -29,7 +29,11 @@ exports.default = function () {
 
             case 4:
               result = _context.sent;
-              stream = result.stream, ext = result.ext, start = result.start, end = result.end, size = result.size;
+              stream = result.stream;
+              ext = result.ext;
+              start = result.start;
+              end = result.end;
+              size = result.size;
 
 
               if (ext === '.json') {
@@ -75,7 +79,7 @@ exports.default = function () {
                 stream.pipe(res);
               }
 
-            case 7:
+            case 11:
             case 'end':
               return _context.stop();
           }

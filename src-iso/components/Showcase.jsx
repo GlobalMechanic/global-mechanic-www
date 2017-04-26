@@ -140,9 +140,10 @@ class File extends React.Component {
 
       <div className='wip-meta'>
         <span className='wip-title'>
+          <a href={download} className='wip-download'/>
+
           <h2 className='wip-name'>{name}</h2>
           <h4 className='wip-ext'>{ext}</h4>
-          <a href={download} className='wip-download'/>
         </span>
         <Essay className='wip-description'>{description}</Essay>
       </div>

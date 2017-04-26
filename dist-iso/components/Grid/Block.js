@@ -29,14 +29,14 @@ var _Image2 = _interopRequireDefault(_Image);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Block(_ref) {
-  var style = _ref.style,
-      imageId = _ref.imageId,
-      grayscale = _ref.grayscale,
-      className = _ref.className,
-      onClick = _ref.onClick,
-      children = _ref.children,
-      onImageLoad = _ref.onImageLoad,
-      other = (0, _objectWithoutProperties3.default)(_ref, ['style', 'imageId', 'grayscale', 'className', 'onClick', 'children', 'onImageLoad']);
+  var style = _ref.style;
+  var imageId = _ref.imageId;
+  var grayscale = _ref.grayscale;
+  var className = _ref.className;
+  var onClick = _ref.onClick;
+  var children = _ref.children;
+  var onImageLoad = _ref.onImageLoad;
+  var other = (0, _objectWithoutProperties3.default)(_ref, ['style', 'imageId', 'grayscale', 'className', 'onClick', 'children', 'onImageLoad']);
 
 
   var blockClasses = (0, _classnames2.default)('block', className);

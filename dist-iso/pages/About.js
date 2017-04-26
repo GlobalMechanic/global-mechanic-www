@@ -55,13 +55,19 @@ function aboutStaffSize(item) {
 }
 
 function Email(_ref) {
-  var address = _ref.address,
-      children = _ref.children;
+  var address = _ref.address;
+  var children = _ref.children;
+  var _ref$small = _ref.small;
+  var small = _ref$small === undefined ? false : _ref$small;
 
   return _react2.default.createElement(
     'a',
     { href: 'mailto:' + address, className: 'clickable' },
-    _react2.default.createElement(
+    small ? _react2.default.createElement(
+      'h4',
+      null,
+      children
+    ) : _react2.default.createElement(
       'h2',
       null,
       children
@@ -139,29 +145,9 @@ function StaffBlock(_ref3) {
     ),
     _react2.default.createElement('br', null),
     _react2.default.createElement(
-      'h4',
-      null,
-      'Suite 208 - 1525 West 8th Avenue'
-    ),
-    _react2.default.createElement(
-      'h4',
-      null,
-      'Vancouver BC'
-    ),
-    _react2.default.createElement(
-      'h4',
-      null,
-      'Canada V6J 1T5'
-    ),
-    _react2.default.createElement(
-      'h4',
-      null,
-      '+1 604 733 7475'
-    ),
-    _react2.default.createElement(
-      'h4',
-      null,
-      'studio@globalmechanic.com'
+      Email,
+      { address: 'tina@globalmechanic.com', small: true },
+      'tina@globalmechanic.com'
     ),
     _react2.default.createElement('a', { id: 'twitter', href: 'https://www.twitter.com/globalmechanic' }),
     _react2.default.createElement('a', { id: 'facebook', href: 'https://www.facebook.com/globalmechanicmedia' })
@@ -207,9 +193,9 @@ var About = function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var _props = this.props,
-          children = _props.children,
-          other = (0, _objectWithoutProperties3.default)(_props, ['children']);
+      var _props = this.props;
+      var children = _props.children;
+      var other = (0, _objectWithoutProperties3.default)(_props, ['children']);
       var height = this.state.height;
       var person = this.props.params.person;
 
