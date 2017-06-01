@@ -38,7 +38,7 @@ module.exports = {
       'node_modules'
     ],
     alias: {
-      'global-mechanic-components': path.resolve(__dirname, '../../global-mechanic-components')
+      'global-mechanic-gears': path.resolve(__dirname, '../../global-mechanic-gears')
     }
   },
   output : {

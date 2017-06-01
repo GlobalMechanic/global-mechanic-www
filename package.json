@@ -60,12 +60,10 @@
   },
   "dependencies": {
     "app-module-path": "^2.2.0",
-    "aws-sdk": "^2.24.0",
     "body-parser": "^1.17.1",
     "classnames": "^2.2.5",
     "compression": "^1.6.2",
     "cors": "^2.8.1",
-    "dotenv": "^4.0.0",
     "express-history-api-fallback": "^2.1.0",
     "feathers": "^2.1.1",
     "feathers-authentication": "^0.7.12",
@@ -76,13 +74,9 @@
     "feathers-rest": "^1.7.1",
     "feathers-socketio": "^1.5.2",
     "fs-promise": "^2.0.0",
-    "immutable": "^3.8.1",
     "is-explicit": "^1.1.0",
     "isomorphic-fetch": "^2.2.1",
     "jsesc": "^2.4.0",
-    "mongodb": "^2.2.24",
-    "nedb": "^1.8.0",
-    "normalize.css": "^5.0.0",
     "object-assign": "^4.1.1",
     "promise-polyfill": "^6.0.2",
     "promise-queue": "^2.2.3",
@@ -92,7 +86,6 @@
     "react-markdown": "^2.4.5",
     "react-router": "^4.0.0-beta.7",
     "react-router-dom": "^4.0.0-beta.7",
-    "s3fs": "^2.5.0",
     "serve-favicon": "^2.4.1"
   }
 }
