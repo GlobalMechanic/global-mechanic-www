@@ -51,9 +51,9 @@ function Caret(_ref) {
 }
 
 function Title(_ref2) {
-  var items = _ref2.items;
-  var onClick = _ref2.onClick;
-  var children = _ref2.children;
+  var items = _ref2.items,
+      onClick = _ref2.onClick,
+      children = _ref2.children;
 
 
   var classes = (0, _classnames2.default)({
@@ -72,9 +72,9 @@ function Title(_ref2) {
 }
 
 function List(_ref3) {
-  var items = _ref3.items;
-  var selected = _ref3.selected;
-  var select = _ref3.select;
+  var items = _ref3.items,
+      selected = _ref3.selected,
+      select = _ref3.select;
 
 
   if (items.length === 0) return null;
@@ -143,11 +143,11 @@ var Dropdown = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _props = this.props;
-      var title = _props.title;
-      var items = _props.items;
-      var selected = _props.selected;
-      var inverse = _props.inverse;
+      var _props = this.props,
+          title = _props.title,
+          items = _props.items,
+          selected = _props.selected,
+          inverse = _props.inverse;
 
       var dropdownClasses = (0, _classnames2.default)('dropdown', {
         'dropdown-open': this.state.open

@@ -57,8 +57,8 @@ var Image = function (_Component) {
     return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Image.__proto__ || (0, _getPrototypeOf2.default)(Image)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       imageLoaded: false
     }, _this.setSrc = function (props) {
-      var imageId = props.imageId;
-      var thumb = props.thumb;
+      var imageId = props.imageId,
+          thumb = props.thumb;
 
 
       if (!imageId) return;
@@ -88,12 +88,12 @@ var Image = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _props = this.props;
-      var style = _props.style;
-      var imageId = _props.imageId;
-      var thumb = _props.thumb;
-      var children = _props.children;
-      var other = (0, _objectWithoutProperties3.default)(_props, ['style', 'imageId', 'thumb', 'children']);
+      var _props = this.props,
+          style = _props.style,
+          imageId = _props.imageId,
+          thumb = _props.thumb,
+          children = _props.children,
+          other = (0, _objectWithoutProperties3.default)(_props, ['style', 'imageId', 'thumb', 'children']);
       var imageLoaded = this.state.imageLoaded;
 
 

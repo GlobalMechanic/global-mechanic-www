@@ -21,10 +21,6 @@ var _slicedToArray2 = require('babel-runtime/helpers/slicedToArray');
 
 var _slicedToArray3 = _interopRequireDefault(_slicedToArray2);
 
-var _typeof2 = require('babel-runtime/helpers/typeof');
-
-var _typeof3 = _interopRequireDefault(_typeof2);
-
 var _promise = require('babel-runtime/core-js/promise');
 
 var _promise2 = _interopRequireDefault(_promise);
@@ -160,8 +156,8 @@ function initialize() {
   var bucketeer = app.get('bucketeer');
 
   if (bucketeer) {
-    var name = bucketeer.name;
-    var other = (0, _objectWithoutProperties3.default)(bucketeer, ['name']);
+    var name = bucketeer.name,
+        other = (0, _objectWithoutProperties3.default)(bucketeer, ['name']);
 
     bucket = name;
     s3 = new _awsSdk.S3(other);
@@ -191,18 +187,12 @@ function hasFile(key) {
 function writeFile(key, ext, read) {
 
   if (!s3) {
-    var _ret = function () {
-      var write = _fsPromise2.default.createWriteStream(_path2.default.join(LOCAL_FILES, '' + key + ext));
-      return {
-        v: new _promise2.default(function (resolve, reject) {
-          read.pipe(write);
-          read.on('end', resolve);
-          read.on('error', reject);
-        })
-      };
-    }();
-
-    if ((typeof _ret === 'undefined' ? 'undefined' : (0, _typeof3.default)(_ret)) === "object") return _ret.v;
+    var write = _fsPromise2.default.createWriteStream(_path2.default.join(LOCAL_FILES, '' + key + ext));
+    return new _promise2.default(function (resolve, reject) {
+      read.pipe(write);
+      read.on('end', resolve);
+      read.on('error', reject);
+    });
   }
 
   var upload = new _stream.PassThrough();
@@ -222,13 +212,10 @@ function parseRange(str, size) {
   var _ref = is(str, String) //eslint-disable-line prefer-const
   ? str.replace(/bytes=/, '').split('-').map(function (word) {
     return parseInt(word, 10);
-  }) : [];
-
-  var _ref2 = (0, _slicedToArray3.default)(_ref, 2);
-
-  var start = _ref2[0];
-  var end = _ref2[1];
-
+  }) : [],
+      _ref2 = (0, _slicedToArray3.default)(_ref, 2),
+      start = _ref2[0],
+      end = _ref2[1];
 
   if (!isFinite(start)) return {};
 

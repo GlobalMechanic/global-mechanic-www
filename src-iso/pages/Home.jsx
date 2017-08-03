@@ -1,6 +1,7 @@
 import React from 'react'
 import Page from './Page'
 import { Link } from 'react-router'
+import { SocialMedia } from '../components'
 
 const PLAY_PTS = ['472.8','273 0','546 0','0']
 
@@ -28,6 +29,8 @@ export default function Home({children, ...other}) {
     <JustClicks/>
 
     {children}
+
+    <SocialMedia className='splash-social-media'/>
 
   </Page>
 }

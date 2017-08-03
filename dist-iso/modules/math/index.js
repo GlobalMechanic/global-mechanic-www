@@ -19,32 +19,32 @@ var _vector2 = _interopRequireDefault(_vector);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var abs = Math.abs;
-var acos = Math.acos;
-var asin = Math.asin;
-var atan = Math.atan;
-var atan2 = Math.atan2;
-var ceil = Math.ceil;
-var cos = Math.cos;
-var exp = Math.exp;
-var floor = Math.floor;
-var log = Math.log;
-var max = Math.max;
-var min = Math.min;
-var pow = Math.pow;
-var random = Math.random;
-var round = Math.round;
-var sin = Math.sin;
-var sqrt = Math.sqrt;
-var tan = Math.tan;
-var E = Math.E;
-var LN2 = Math.LN2;
-var LN10 = Math.LN10;
-var LOG2E = Math.LOG2E;
-var LOG10E = Math.LOG10E;
-var PI = Math.PI;
-var SQRT1_2 = Math.SQRT1_2;
-var SQRT2 = Math.SQRT2;
+var abs = Math.abs,
+    acos = Math.acos,
+    asin = Math.asin,
+    atan = Math.atan,
+    atan2 = Math.atan2,
+    ceil = Math.ceil,
+    cos = Math.cos,
+    exp = Math.exp,
+    floor = Math.floor,
+    log = Math.log,
+    max = Math.max,
+    min = Math.min,
+    pow = Math.pow,
+    random = Math.random,
+    round = Math.round,
+    sin = Math.sin,
+    sqrt = Math.sqrt,
+    tan = Math.tan,
+    E = Math.E,
+    LN2 = Math.LN2,
+    LN10 = Math.LN10,
+    LOG2E = Math.LOG2E,
+    LOG10E = Math.LOG10E,
+    PI = Math.PI,
+    SQRT1_2 = Math.SQRT1_2,
+    SQRT2 = Math.SQRT2;
 
 /******************************************************************************/
 // Exports

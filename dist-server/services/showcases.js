@@ -53,8 +53,8 @@ var disableExternal = (0, _feathersHooks.disable)('external');
 var SCOPES = ['private', 'public', 'work-in-progress'];
 
 function websiteFilter(hook, next) {
-  var result = hook.result;
-  var params = hook.params;
+  var result = hook.result,
+      params = hook.params;
 
   //no filtering on internal calls
 
@@ -77,8 +77,9 @@ var beforeHooks = {
 
 var afterHooks = {
   find: websiteFilter
-};
 
-/******************************************************************************/
-// Initialize
-/******************************************************************************/
+  /******************************************************************************/
+  // Initialize
+  /******************************************************************************/
+
+};

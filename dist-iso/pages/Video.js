@@ -82,9 +82,9 @@ var Video = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _props = this.props;
-      var children = _props.children;
-      var other = (0, _objectWithoutProperties3.default)(_props, ['children']);
+      var _props = this.props,
+          children = _props.children,
+          other = (0, _objectWithoutProperties3.default)(_props, ['children']);
       var videos = this.state.videos;
       var video = other.params.video;
 

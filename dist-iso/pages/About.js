@@ -48,6 +48,8 @@ var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
+var _components2 = require('../components');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function aboutStaffSize(item) {
@@ -55,10 +57,10 @@ function aboutStaffSize(item) {
 }
 
 function Email(_ref) {
-  var address = _ref.address;
-  var children = _ref.children;
-  var _ref$small = _ref.small;
-  var small = _ref$small === undefined ? false : _ref$small;
+  var address = _ref.address,
+      children = _ref.children,
+      _ref$small = _ref.small,
+      small = _ref$small === undefined ? false : _ref$small;
 
   return _react2.default.createElement(
     'a',
@@ -149,8 +151,7 @@ function StaffBlock(_ref3) {
       { address: 'tina@globalmechanic.com', small: true },
       'tina@globalmechanic.com'
     ),
-    _react2.default.createElement('a', { id: 'twitter', href: 'https://www.twitter.com/globalmechanic' }),
-    _react2.default.createElement('a', { id: 'facebook', href: 'https://www.facebook.com/globalmechanicmedia' })
+    _react2.default.createElement(_components2.SocialMedia, null)
   );
 }
 
@@ -193,9 +194,9 @@ var About = function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var _props = this.props;
-      var children = _props.children;
-      var other = (0, _objectWithoutProperties3.default)(_props, ['children']);
+      var _props = this.props,
+          children = _props.children,
+          other = (0, _objectWithoutProperties3.default)(_props, ['children']);
       var height = this.state.height;
       var person = this.props.params.person;
 

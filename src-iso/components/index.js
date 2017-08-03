@@ -6,5 +6,6 @@ import Grid from './Grid'
 import Image from './Image'
 import People from './People'
 import Showcase from './Showcase'
+import SocialMedia from './SocialMedia'
 
-export { Navigation, Background, Nut, Grid, People, Dropdown, Showcase, Image }
+export { Navigation, Background, Nut, Grid, People, Dropdown, Showcase, Image, SocialMedia }

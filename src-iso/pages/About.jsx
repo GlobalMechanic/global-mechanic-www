@@ -1,9 +1,10 @@
-import React, { createElement, Component } from 'react'
+import React, { Component } from 'react'
 import Page from './Page'
 
 import { People } from 'components'
 import { navigate } from 'modules/helper'
 import classNames from 'classnames'
+import { SocialMedia } from '../components'
 
 function aboutStaffSize(item) {
   return item.staffData.order <= 2
@@ -67,8 +68,7 @@ function StaffBlock({featured}) {
 
     <Email address={'tina@globalmechanic.com'} small>tina@globalmechanic.com</Email>
 
-    <a id='twitter' href='https://www.twitter.com/globalmechanic'/>
-    <a id='facebook' href='https://www.facebook.com/globalmechanicmedia'/>
+    <SocialMedia/>
 
   </div>
 }

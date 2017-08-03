@@ -59,9 +59,9 @@ var DIRECTOR_PATH = '/directors/';
 var DirectorLayout = new _Grid.Layout(60, false);
 
 function DirectorList(_ref) {
-  var director = _ref.director;
-  var directors = _ref.directors;
-  var inverse = _ref.inverse;
+  var director = _ref.director,
+      directors = _ref.directors,
+      inverse = _ref.inverse;
 
   return _react2.default.createElement(_components.Dropdown, { title: 'Directors', items: directors.map(function (d) {
       return (0, _helper.getFullName)(d);
@@ -110,13 +110,13 @@ var Directors = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _props = this.props;
-      var children = _props.children;
-      var other = (0, _objectWithoutProperties3.default)(_props, ['children']);
+      var _props = this.props,
+          children = _props.children,
+          other = (0, _objectWithoutProperties3.default)(_props, ['children']);
       var directors = this.state.directors;
-      var _other$routeParams = other.routeParams;
-      var director = _other$routeParams.director;
-      var product = _other$routeParams.product;
+      var _other$routeParams = other.routeParams,
+          director = _other$routeParams.director,
+          product = _other$routeParams.product;
 
 
       var inverse = !!other.route.inverse;

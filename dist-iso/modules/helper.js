@@ -21,8 +21,8 @@ function urlify(str) {
 
 function getFullName(person) {
   var name = person.name;
-  var first = name.first;
-  var last = name.last;
+  var first = name.first,
+      last = name.last;
 
 
   return ((first || '') + ' ' + (last || '')).trim();

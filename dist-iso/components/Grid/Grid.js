@@ -88,10 +88,9 @@ var Grid = function (_Component) {
       var x = 0,
           y = 0;
 
-      var _this$props$sizeFunc = _this.props.sizeFunc(item);
-
-      var width = _this$props$sizeFunc.width;
-      var height = _this$props$sizeFunc.height;
+      var _this$props$sizeFunc = _this.props.sizeFunc(item),
+          width = _this$props$sizeFunc.width,
+          height = _this$props$sizeFunc.height;
 
       width = (0, _math.max)((0, _math.round)(width), 1);
       height = (0, _math.max)((0, _math.round)(height), 1);
@@ -106,11 +105,11 @@ var Grid = function (_Component) {
     }, _this.applyLayout = function (props, resize) {
       props = props || _this.props;
 
-      var _props = props;
-      var layout = _props.layout;
-      var items = _props.items;
-      var _this2 = _this;
-      var ref = _this2.ref;
+      var _props = props,
+          layout = _props.layout,
+          items = _props.items;
+      var _this2 = _this,
+          ref = _this2.ref;
 
 
       var needsUpdate = resize || _this.needsUpdate(items);
@@ -137,11 +136,11 @@ var Grid = function (_Component) {
     }, _this.resize = function () {
       _this.applyLayout(_this.props, true);
     }, _this.createBlock = function (block, i) {
-      var coords = block.coords;
-      var item = block.item;
-      var _this$props = _this.props;
-      var layout = _this$props.layout;
-      var component = _this$props.component;
+      var coords = block.coords,
+          item = block.item;
+      var _this$props = _this.props,
+          layout = _this$props.layout,
+          component = _this$props.component;
       var dimension = layout.dimension;
 
 
@@ -222,10 +221,10 @@ var Grid = function (_Component) {
     value: function render() {
       var _this4 = this;
 
-      var _props2 = this.props;
-      var className = _props2.className;
-      var clip = _props2.clip;
-      var other = (0, _objectWithoutProperties3.default)(_props2, ['className', 'clip']);
+      var _props2 = this.props,
+          className = _props2.className,
+          clip = _props2.clip,
+          other = (0, _objectWithoutProperties3.default)(_props2, ['className', 'clip']);
       var gridHeight = this.state.gridHeight;
 
 

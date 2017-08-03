@@ -76,9 +76,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /* globals HOST */
 
 function Vimeo(_ref) {
-  var vimeoId = _ref.vimeoId;
-  var className = _ref.className;
-  var other = (0, _objectWithoutProperties3.default)(_ref, ['vimeoId', 'className']);
+  var vimeoId = _ref.vimeoId,
+      className = _ref.className,
+      other = (0, _objectWithoutProperties3.default)(_ref, ['vimeoId', 'className']);
 
 
   var classes = (0, _classnames2.default)(className, 'product-video');
@@ -94,9 +94,9 @@ function Vimeo(_ref) {
 }
 
 function Essay(_ref2) {
-  var className = _ref2.className;
-  var style = _ref2.style;
-  var children = _ref2.children;
+  var className = _ref2.className,
+      style = _ref2.style,
+      children = _ref2.children;
 
 
   if (!(0, _isExplicit2.default)(children, String)) return null;
@@ -130,10 +130,10 @@ var Media = function (_React$Component) {
   (0, _createClass3.default)(Media, [{
     key: 'render',
     value: function render() {
-      var _props = this.props;
-      var poster = _props.poster;
-      var src = _props.src;
-      var type = _props.type;
+      var _props = this.props,
+          poster = _props.poster,
+          src = _props.src,
+          type = _props.type;
       var controls = this.state.controls;
 
 
@@ -215,11 +215,11 @@ var File = function (_React$Component2) {
     key: 'render',
     value: function render() {
       var file = this.props.file;
-      var _state = this.state;
-      var name = _state.name;
-      var description = _state.description;
-      var mime = _state.mime;
-      var ext = _state.ext;
+      var _state = this.state,
+          name = _state.name,
+          description = _state.description,
+          mime = _state.mime,
+          ext = _state.ext;
 
 
       var url = HOST + '/assets/file/' + file;
@@ -292,9 +292,9 @@ function FileList(_ref5) {
 }
 
 function LinkImage(_ref6) {
-  var id = _ref6.id;
-  var back = _ref6.back;
-  var className = _ref6.className;
+  var id = _ref6.id,
+      back = _ref6.back,
+      className = _ref6.className;
 
   var classes = (0, _classnames2.default)(className, 'product-image');
 
@@ -312,8 +312,8 @@ function LinkImage(_ref6) {
 }
 
 function ProductTitle(_ref7) {
-  var name = _ref7.name;
-  var className = _ref7.className;
+  var name = _ref7.name,
+      className = _ref7.className;
 
 
   var classes = (0, _classnames2.default)(className, 'product-title');
@@ -325,8 +325,8 @@ function ProductTitle(_ref7) {
 }
 
 function ProductFeature(_ref8, _ref9) {
-  var items = _ref8.items;
-  var featured = _ref8.featured;
+  var items = _ref8.items,
+      featured = _ref8.featured;
   var path = _ref9.path;
 
 
@@ -411,12 +411,12 @@ var ProductBlock = function (_React$Component3) {
   (0, _createClass3.default)(ProductBlock, [{
     key: 'render',
     value: function render() {
-      var _props2 = this.props;
-      var item = _props2.item;
-      var other = (0, _objectWithoutProperties3.default)(_props2, ['item']);
-      var _context = this.context;
-      var path = _context.path;
-      var showIcons = _context.showIcons;
+      var _props2 = this.props,
+          item = _props2.item,
+          other = (0, _objectWithoutProperties3.default)(_props2, ['item']);
+      var _context = this.context,
+          path = _context.path,
+          showIcons = _context.showIcons;
 
       //bc
 
@@ -463,10 +463,8 @@ var Showcase = function (_React$Component4) {
       products: [],
       items: []
     }, _this5.setProducts = function (props) {
-      var _ref13 = props || _this5.props;
-
-      var featuredShowcase = _ref13.featuredShowcase;
-
+      var _ref13 = props || _this5.props,
+          featuredShowcase = _ref13.featuredShowcase;
 
       _data.showcases.then(function (shows) {
         var showcase = shows.filter(function (show) {
@@ -541,15 +539,15 @@ var Showcase = function (_React$Component4) {
     value: function render() {
       var _this6 = this;
 
-      var _props3 = this.props;
-      var featuredProduct = _props3.featuredProduct;
-      var className = _props3.className;
-      var other = (0, _objectWithoutProperties3.default)(_props3, ['featuredProduct', 'className']);
-      var _state2 = this.state;
-      var products = _state2.products;
-      var items = _state2.items;
-      var showcase = _state2.showcase;
-      var files = _state2.files;
+      var _props3 = this.props,
+          featuredProduct = _props3.featuredProduct,
+          className = _props3.className,
+          other = (0, _objectWithoutProperties3.default)(_props3, ['featuredProduct', 'className']);
+      var _state2 = this.state,
+          products = _state2.products,
+          items = _state2.items,
+          showcase = _state2.showcase,
+          files = _state2.files;
 
 
       delete other.path;

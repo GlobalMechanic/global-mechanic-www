@@ -24,6 +24,8 @@ var _Page2 = _interopRequireDefault(_Page);
 
 var _reactRouter = require('react-router');
 
+var _components = require('../components');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var PLAY_PTS = ['472.8', '273 0', '546 0', '0'];
@@ -54,8 +56,8 @@ function JustClicks() {
 }
 
 function Home(_ref) {
-  var children = _ref.children;
-  var other = (0, _objectWithoutProperties3.default)(_ref, ['children']);
+  var children = _ref.children,
+      other = (0, _objectWithoutProperties3.default)(_ref, ['children']);
 
 
   return _react2.default.createElement(
@@ -67,6 +69,7 @@ function Home(_ref) {
       'Global Mechanic'
     ),
     _react2.default.createElement(JustClicks, null),
-    children
+    children,
+    _react2.default.createElement(_components.SocialMedia, { className: 'splash-social-media' })
   );
 }

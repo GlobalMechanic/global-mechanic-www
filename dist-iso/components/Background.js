@@ -40,8 +40,8 @@ var isMobile = function () {
 }();
 
 function Background(_ref) {
-  var darken = _ref.darken;
-  var inverse = _ref.inverse;
+  var darken = _ref.darken,
+      inverse = _ref.inverse;
 
 
   var opacity = darken || 0;

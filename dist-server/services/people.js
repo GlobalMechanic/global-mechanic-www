@@ -51,8 +51,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var disableExternal = (0, _feathersHooks.disable)('external');
 
 function websiteFilter(hook, next) {
-  var result = hook.result;
-  var params = hook.params;
+  var result = hook.result,
+      params = hook.params;
 
   //no filtering on internal calls
 
@@ -75,8 +75,9 @@ var beforeHooks = {
 
 var afterHooks = {
   find: websiteFilter
-};
 
-/******************************************************************************/
-// Initialize
-/******************************************************************************/
+  /******************************************************************************/
+  // Initialize
+  /******************************************************************************/
+
+};
