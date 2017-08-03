@@ -1,3 +1,4 @@
+import React from 'react'
 const Instagram = () =>
   <a href='https://www.instagram.com/globalmechanic'>
     <svg version='1.1' x='0px' y='0px'
