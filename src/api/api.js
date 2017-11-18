@@ -22,7 +22,7 @@ import {
 /******************************************************************************/
 
 const CONFIG_URL = path.join(process.cwd(), 'config')
-const SERVE_URL = ''
+const SERVE_URL = path.resolve(__dirname, '../public')
 const FAVICON_URL = ''
 
 const DEFAULT_FLAGS = Object.freeze({
@@ -100,7 +100,7 @@ class Api {
     .use(bodyParser.json())
     .use(bodyParser.urlencoded({ extended: true }))
     .use(favicon(FAVICON_URL))
-    .use('/assets', serveStatic(SERVE_URL))
+    .use('/public', serveStatic(SERVE_URL))
 
   listener = null
 
