@@ -1,56 +1,71 @@
+const webpack = require('webpack')
 const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+
+const noopPath = path.resolve(__dirname, '../../global-mechanic-gears/src/modules/noop.js')
+const gearsPath = path.resolve(__dirname, '../../global-mechanic-gears/src/ui')
+const gearsModulesPath = path.resolve(__dirname, '../../global-mechanic-gears/src/modules')
 
 module.exports = {
+
   entry: [
-    path.resolve(__dirname, '../src-client/index.jsx')
+    path.resolve(__dirname, '../src/webpack/index.js')
   ],
+
   module: {
     rules: [
-      {
-        test: /\.s?css$/,
-        loaders: ['style-loader', 'css-loader', 'resolve-url-loader', 'sass-loader']
-      },
-      {
-        test: /\.(woff2?|svg)$/,
-        loader: 'url-loader?limit=10000'
-      },
-      {
-        test: /\.(ttf|eot|ico|png|gif|mp4|jpg)$/,
-        loader: 'file-loader'
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
-      },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.json$/,
+        exclude: /node_modules/,
+        loader: 'json-loader'
+      },
+      {
+        test: /\.s?css$/,
+        use: [
+          'style-loader',
+          { loader: 'css-loader', query: { importLoaders: 1 } },
+          'resolve-url-loader',
+          'sass-loader'
+        ]
+      },
+      {
+        test: /\.(woff2?|svg)(\?.+)?$/,
+        use: [ 'url-loader?limit=10000' ]
+      },
+      {
+        test: /\.(ttf|eot|ico|png|gif|mp4|jpg|svg)(\?.+)?$/,
+        loader: 'file-loader'
       }
     ]
   },
+
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: [ '.js', '.jsx', '.json' ],
     modules: [
-      path.resolve(__dirname, '../src-iso'),
-      path.resolve(__dirname, '../src-client'),
-      'node_modules'
+      'node_modules',
+      path.resolve(__dirname, '../src')
     ],
-    alias: {
-      'global-mechanic-gears': path.resolve(__dirname, '../../global-mechanic-gears')
+    alias : {
+      'path': noopPath,
+      'open': noopPath,
+      'fs-extra': noopPath,
+      'fs': noopPath,
+      'tls': noopPath,
+      'net': noopPath,
+      'module': noopPath,
+
+      'modules': gearsModulesPath,
+      'ui': gearsPath,
+      'global-mechanic-gears': gearsPath
     }
   },
-  output : {
-    path: path.resolve(__dirname, '../dist-client/'),
-    publicPath: '/assets/',
-    filename: 'bundle.js'
-  },
-  externals: {
-    'react': 'React',
-    'react-dom': 'ReactDOM'
-  },
-  plugins: [
-    new ExtractTextPlugin('styles.css')
-  ]
+
+  output: {
+    filename: 'global-mechanic-www.js',
+    path: path.join(__dirname, '../dist/public')
+  }
 }

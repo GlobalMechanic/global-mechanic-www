@@ -1,4 +1,16 @@
+
 {
-  "presets": ["latest", "stage-0", "react"],
-  "plugins": ["transform-runtime"]
+  "presets": [
+    ["env", {
+      "targets": {
+        "node": "current"
+      }
+    }],
+    "stage-0",
+    "react"
+  ],
+  "plugins": [
+    "transform-decorators-legacy",
+    "styled-components"
+  ]
 }
