@@ -12,7 +12,7 @@ import Website from 'global-mechanic-gears/components/website'
 const App = ({ stores, history, children }) =>
   <StoreProvider {...stores} >
     <Router history={history}>
-      <Website />
+      <Website navPrefix='/' name='Global Mechanic'/>
     </Router>
   </StoreProvider>
 

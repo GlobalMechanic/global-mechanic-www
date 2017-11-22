@@ -22,9 +22,19 @@ const history = syncHistoryWithStore(browserHistory, stores.routing)
 // Execute
 /******************************************************************************/
 
-addEventListener(window, 'load', () => {
+addEventListener(window, 'load', async () => {
 
   const mainTag = document.getElementById('global-mechanic')
+
+  // TODO
+  // This is temporary. This needs to work with rest, not socket.io
+  // and it needs to connect to the www server, not gears directly.
+  await stores.network.connectToServer()
+  await stores.network.login({
+    strategy: 'local',
+    email: 'studio@globalmechanic.com',
+    password: 'L0bst3r!'
+  })
 
   render(<App history={history} stores={stores} />, mainTag)
 
