@@ -5,7 +5,7 @@ const HtmlPlugin = require('html-webpack-plugin')
 const { DefinePlugin } = require('webpack')
 const feathersConfig = require('./default.json')
 
-const port = 3000
+const port = 3500
 const host = '0.0.0.0'
 
 config.entry.unshift(`webpack-dev-server/client?http://${host}:${port}`)

@@ -232,15 +232,15 @@ var File = function (_React$Component2) {
         var isAudio = mime && mime.includes('audio');
         var isImage = mime && mime.includes('image');
 
-        if (isVideo || isAudio) return _react2.default.createElement(Media, { poster: isAudio ? thumb : null, src: url, type: mime });else return _react2.default.createElement(
+        if (isVideo || isAudio) return _react2.default.createElement(Media, { poster: isAudio ? thumb : null, src: url, type: mime });else if (isImage) return _react2.default.createElement(
             'a',
             { className: 'wip-icon-container', href: isImage ? url : download, target: isImage ? '_blank' : null },
-            _react2.default.createElement(_Image2.default, { className: isImage ? 'wip-image' : 'wip-icon', thumb: false, imageId: file, style: {
-                backgroundSize: isImage ? 'contain' : '80%',
+            _react2.default.createElement(_Image2.default, { className: 'wip-image', thumb: false, imageId: file, style: {
+                backgroundSize: 'contain',
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center bottom'
               } })
-          );
+          );else return null;
       }();
 
       return _react2.default.createElement(

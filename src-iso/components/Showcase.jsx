@@ -125,19 +125,19 @@ class File extends React.Component {
 
       if (isVideo || isAudio)
         <Media poster={isAudio ? thumb : null} src={url} type={mime}/>
-      else
+      else if (isImage)
         <a className='wip-icon-container' href={isImage ? url : download} target={isImage ? '_blank' : null}>
-          <Image className={isImage ? 'wip-image' : 'wip-icon'} thumb={false} imageId={file} style={{
-            backgroundSize: isImage ? 'contain' : '80%',
+          <Image className='wip-image' thumb={false} imageId={file} style={{
+            backgroundSize: 'contain',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center bottom',
           }}/>
         </a>
+      else null
     }
 
     return <div className='wip-file'>
       {icon}
-
       <div className='wip-meta'>
         <span className='wip-title'>
           <a href={download} className='wip-download'/>
