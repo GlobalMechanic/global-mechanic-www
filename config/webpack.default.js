@@ -2,7 +2,8 @@ const webpack = require('webpack')
 const path = require('path')
 
 const noopPath = path.resolve(__dirname, '../../global-mechanic-gears/src/modules/noop.js')
-const gearsPath = path.resolve(__dirname, '../../global-mechanic-gears/src/ui')
+const gearsUiPath = path.resolve(__dirname, '../../global-mechanic-gears/src/ui')
+const gearsApiPath = path.resolve(__dirname, '../../global-mechanic-gears/src/api')
 const gearsModulesPath = path.resolve(__dirname, '../../global-mechanic-gears/src/modules')
 
 module.exports = {
@@ -59,8 +60,9 @@ module.exports = {
       'module': noopPath,
 
       'modules': gearsModulesPath,
-      'ui': gearsPath,
-      'global-mechanic-gears': gearsPath
+      'ui': gearsUiPath,
+      'api': gearsApiPath,
+      'global-mechanic-gears': gearsUiPath
     }
   },
 

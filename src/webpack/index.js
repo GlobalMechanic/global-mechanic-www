@@ -2,7 +2,7 @@ import 'global-mechanic-gears/global'
 
 import React from 'react'
 import { render } from 'react-dom'
-import App from './components/app'
+import Www from './components/www'
 
 import Stores from 'global-mechanic-gears/store'
 import { createBrowserHistory } from 'history'
@@ -30,12 +30,12 @@ addEventListener(window, 'load', async () => {
   // This is temporary. This needs to work with rest, not socket.io
   // and it needs to connect to the www server, not gears directly.
   await stores.network.connectToServer()
-  await stores.network.login({
+  await stores.network.client.authenticate({
     strategy: 'local',
     email: 'studio@globalmechanic.com',
     password: 'L0bst3r!'
   })
 
-  render(<App history={history} stores={stores} />, mainTag)
+  render(<Www history={history} stores={stores} />, mainTag)
 
 })

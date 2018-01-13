@@ -9,14 +9,16 @@ import Website from 'global-mechanic-gears/components/website'
 // Component
 /******************************************************************************/
 
-const App = ({ stores, history, children }) =>
+const Www = ({ stores, history, children }) =>
   <StoreProvider {...stores} >
     <Router history={history}>
-      <Website navPrefix='/' name='Global Mechanic'/>
+      <Website navPrefix='/' >
+        { children }
+      </Website>
     </Router>
   </StoreProvider>
 
-App.propTypes = {
+Www.propTypes = {
   history: object.isRequired,
   stores: object.isRequired
 }
@@ -25,4 +27,4 @@ App.propTypes = {
 // Exports
 /******************************************************************************/
 
-export default App
+export default Www
