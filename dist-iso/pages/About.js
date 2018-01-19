@@ -138,12 +138,7 @@ function StaffBlock(_ref3) {
     _react2.default.createElement(
       Email,
       { address: 'liz@lizlainereps.com' },
-      'USA | Liz Laine Reps +1 312 329 1111'
-    ),
-    _react2.default.createElement(
-      Email,
-      { address: 'lisa@hestyreps.com' },
-      'Canada | Hestyreps +1 416 482 0411'
+      'Liz Laine Reps +1 312 329 1111'
     ),
     _react2.default.createElement('br', null),
     _react2.default.createElement(

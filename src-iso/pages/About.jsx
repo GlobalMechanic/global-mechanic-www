@@ -62,8 +62,7 @@ function StaffBlock({featured}) {
 
     <People featured={featured} path='/about' director={false} grayscale size={aboutStaffSize}/>
 
-    <Email address={'liz@lizlainereps.com'}>USA | Liz Laine Reps +1 312 329 1111</Email>
-    <Email address={'lisa@hestyreps.com'}>Canada | Hestyreps +1 416 482 0411</Email>
+    <Email address={'liz@lizlainereps.com'}>Liz Laine Reps +1 312 329 1111</Email>
     <br/>
 
     <Email address={'tina@globalmechanic.com'} small>tina@globalmechanic.com</Email>
