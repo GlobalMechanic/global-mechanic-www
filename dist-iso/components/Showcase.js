@@ -88,7 +88,7 @@ function Vimeo(_ref) {
     (0, _extends3.default)({ className: classes }, other),
     vimeoId ? _react2.default.createElement('iframe', {
       src: '//player.vimeo.com/video/' + vimeoId + '?badge=0&title=0&portrait=0&byline=0&embed=0&autoplay=0',
-      frameBorder: false
+      frameBorder: false, allowfullscreen: true, mozallowfullscreen: true, webkitallowfullscreen: true
     }) : null
   );
 }

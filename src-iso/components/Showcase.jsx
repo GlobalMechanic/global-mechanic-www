@@ -19,7 +19,7 @@ export function Vimeo({vimeoId, className, ...other}) {
     { vimeoId
       ? <iframe
           src={`//player.vimeo.com/video/${vimeoId}?badge=0&title=0&portrait=0&byline=0&embed=0&autoplay=0`}
-          frameBorder={false}
+          frameBorder={false} allowfullscreen mozallowfullscreen webkitallowfullscreen
         />
       : null }
   </div>
