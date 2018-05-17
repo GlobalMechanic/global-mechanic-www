@@ -73,6 +73,18 @@ var _reactMarkdown2 = _interopRequireDefault(_reactMarkdown);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/******************************************************************************/
+// Helpers
+/******************************************************************************/
+
+var randomly = function randomly() {
+  return Math.random() > 0.5 ? 1 : -1;
+};
+
+/******************************************************************************/
+// The Rest of this is a hot mess. Jesus christ I used to be disorganized.
+/******************************************************************************/
+
 /* globals HOST */
 
 function Vimeo(_ref) {
@@ -499,6 +511,8 @@ var Showcase = function (_React$Component4) {
                 items.push.apply(items, (0, _toConsumableArray3.default)(product.images));
               }
             });
+
+            items.sort(randomly);
 
             _this5.setState({
               showcase: showcase,

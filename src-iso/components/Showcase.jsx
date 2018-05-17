@@ -9,6 +9,18 @@ import is from 'is-explicit'
 import fetch from 'isomorphic-fetch'
 import Markdown from 'react-markdown'
 
+/******************************************************************************/
+// Helpers
+/******************************************************************************/
+
+const randomly = () => Math.random() > 0.5
+  ? 1
+  : -1
+
+/******************************************************************************/
+// The Rest of this is a hot mess. Jesus christ I used to be disorganized.
+/******************************************************************************/
+
 /* globals HOST */
 
 export function Vimeo({vimeoId, className, ...other}) {
@@ -320,6 +332,8 @@ export default class Showcase extends React.Component {
               items.push(...product.images)
             }
           })
+
+          items.sort(randomly)
 
           this.setState({
             showcase,
