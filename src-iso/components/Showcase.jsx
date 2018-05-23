@@ -136,6 +136,7 @@ class File extends React.Component {
 
       if (isVideo || isAudio)
         <Media poster={isAudio ? thumb : null} src={url} type={mime}/>
+
       else if (isImage)
         <a className='wip-icon-container' href={isImage ? url : download} target={isImage ? '_blank' : null}>
           <Image className='wip-image' thumb={false} imageId={file} style={{
@@ -144,6 +145,7 @@ class File extends React.Component {
             backgroundPosition: 'center bottom',
           }}/>
         </a>
+
       else null
     }
 
@@ -375,7 +377,10 @@ export default class Showcase extends React.Component {
 
     const classes = classNames('showcase', className)
 
-    const portrait = showcase && showcase.portrait && showcase.website && showcase.website.showPortrait
+    const portrait = showcase &&
+      showcase.portrait &&
+      showcase.website &&
+      showcase.website.showPortrait
       ? <Image className='showcase-portrait' imageId={showcase.portrait} />
       : null
 

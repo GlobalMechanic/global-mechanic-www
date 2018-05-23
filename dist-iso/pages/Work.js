@@ -52,6 +52,10 @@ var _classnames2 = _interopRequireDefault(_classnames);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/******************************************************************************/
+// Sort By Priority
+/******************************************************************************/
+
 function ShowcaseDropdown(_ref) {
   var documents = _ref.documents,
       inverse = _ref.inverse,
@@ -66,6 +70,13 @@ function ShowcaseDropdown(_ref) {
     }),
     path: path, selected: selected });
 }
+
+var byPriority = function byPriority(a, b) {
+  var ap = a.website.priority || 0;
+  var bp = b.website.priority || 0;
+
+  return ap > bp ? 1 : ap < bp ? -1 : 0;
+};
 
 var Work = function (_Component) {
   (0, _inherits3.default)(Work, _Component);
@@ -97,6 +108,9 @@ var Work = function (_Component) {
         var filtered = res.filter(function (show) {
           return show.website.scope === 'public' && show.products.length > 0;
         });
+
+        filtered.sort(byPriority);
+
         setTimeout(function () {
           return _this2.setState({ showcases: filtered });
         }, _styles.variables.animationTime.value);
