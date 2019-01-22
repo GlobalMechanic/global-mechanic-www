@@ -36,7 +36,7 @@ export function Vimeo({vimeoId, className, ...other}) {
   </div>
 }
 
-function Essay({className, style, children}) {
+function Essay({ className, style, children }) {
 
   if (!is(children, String))
     return null
@@ -59,6 +59,8 @@ class Media extends React.Component {
     const { poster, src, type } = this.props
     const { controls } = this.state
 
+    const isAudio = type && type.includes('audio')
+
     return <video className='wip-icon-container'
       controls={controls}
       onMouseEnter={this.showControls}
@@ -66,9 +68,10 @@ class Media extends React.Component {
       preload
       style={{
         backgroundImage: `url(${poster})`,
-        backgroundSize: '45%', //not sure why 48
+        backgroundSize: isAudio ? '2em' : '45%', //not sure why 45
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
+        backgroundPosition: isAudio ? 'left' : 'center',
+        height: isAudio ? '2em' : null
       }}>
       <source src={src} type={type}/>
     </video>

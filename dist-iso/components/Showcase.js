@@ -148,6 +148,8 @@ var Media = function (_React$Component) {
       var controls = this.state.controls;
 
 
+      var isAudio = type && type.includes('audio');
+
       return _react2.default.createElement(
         'video',
         { className: 'wip-icon-container',
@@ -157,9 +159,10 @@ var Media = function (_React$Component) {
           preload: true,
           style: {
             backgroundImage: 'url(' + poster + ')',
-            backgroundSize: '45%', //not sure why 48
+            backgroundSize: isAudio ? '2em' : '45%', //not sure why 45
             backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center'
+            backgroundPosition: isAudio ? 'left' : 'center',
+            height: isAudio ? '2em' : null
           } },
         _react2.default.createElement('source', { src: src, type: type })
       );
