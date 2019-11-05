@@ -45,9 +45,16 @@ const Facebook = () =>
 const LinkdIn = () =>
   <a href='https://www.linkedin.com/company/global-mechanic'>
     <svg viewBox='0 0 1000 1000'>
-      <rect className='social-media-fg' width='1000' height='1000' />
-      <rect className='social-media-bg' x='42.85' y='43.72' width='16.46' height='52.95' />
-      <path className='social-media-bg' d='M51.08,17.4a9.54,9.54,0,1,1-9.54,9.53,9.53,9.53,0,0,1,9.54-9.53' /><path d='M69.63,43.72H85.42V51h.22c2.2-4.16,7.57-8.55,15.57-8.55,16.66,0,19.73,11,19.73,25.22V96.67H104.5V70.92c0-6.15-.12-14-8.55-14s-9.87,6.69-9.87,13.59v26.2H69.63Z' />
+      <rect className='social-media-bg' width='1000' height='1000' />
+      <rect className='social-media-fg' x='146.8' y='373.4' width='151.4' height='487.1'/>
+      <path className='social-media-fg' 
+        d='M222.5,131.3c48.5,0,87.8,39.3,87.8,87.8c0,48.5-39.3,87.8-87.8,87.8s-87.8-39.3-87.8-87.8c0,0,0-0.1,0-0.1
+          C134.8,170.6,174,131.3,222.5,131.3C222.5,131.3,222.5,131.3,222.5,131.3'
+      />
+      <path className='social-media-fg' 
+        d='M393.2,373.4h145.3v67h2c20.2-38.3,69.6-78.7,143.2-78.7c153.3,0,181.5,101.2,181.5,232v266.8H714V623.7
+          c0-56.6-1.1-128.8-78.7-128.8s-90.8,61.5-90.8,125v241H393.2V373.4z'
+        />
     </svg>
   </a>
 
