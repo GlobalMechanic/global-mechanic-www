@@ -46,7 +46,8 @@ const LinkdIn = () =>
   <a href='https://www.linkedin.com/company/global-mechanic'>
     <svg viewBox='0 0 1000 1000'>
       <rect className='social-media-fg' width='1000' height='1000' />
-      <path className='social-media-bg' d='M0,0V1000H531.32l-2-380.55H405.89V463.39H529.32V375.84c0-135.26,76.54-224.94,188.32-224.94,53.54,0,95.28.44,127,.23V285.5l-91.55,0c-60.79,0-72.57,31.19-72.57,77v100.9L845,463l-32.4,156.45-123.61,1-.5,379.55H1000V0Z' />
+      <rect className='social-media-bg' x='42.85' y='43.72' width='16.46' height='52.95' />
+      <path className='social-media-bg' d='M51.08,17.4a9.54,9.54,0,1,1-9.54,9.53,9.53,9.53,0,0,1,9.54-9.53' /><path d='M69.63,43.72H85.42V51h.22c2.2-4.16,7.57-8.55,15.57-8.55,16.66,0,19.73,11,19.73,25.22V96.67H104.5V70.92c0-6.15-.12-14-8.55-14s-9.87,6.69-9.87,13.59v26.2H69.63Z' />
     </svg>
   </a>
 
