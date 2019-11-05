@@ -16,6 +16,9 @@
     "build": "npm run build-server && npm run build-iso && npm run build-client && cp src-iso/assets/gm-2017-signature.png dist-client/assets/gm-2017-signature.png",
     "start": "node ./dist-server"
   },
+  "engines": {
+    "node": "6.17.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GlobalMechanic/global-mechanic-www.git"
