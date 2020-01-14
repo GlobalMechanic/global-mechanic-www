@@ -5,7 +5,12 @@ import { createGlobalStyle } from 'styled-components'
 /***************************************************************/
 
 const GlobalStyle = createGlobalStyle`
- 
+
+    html {
+        background-color: ${p => p.theme.colors.bg};
+        color: ${p => p.theme.colors.main};
+    }
+
 `
 
 /***************************************************************/

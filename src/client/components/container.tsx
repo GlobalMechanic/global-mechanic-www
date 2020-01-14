@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import styled from 'styled-components'
+import styled, { ThemeProvider, DefaultTheme } from 'styled-components'
 import GlobalStyle from './global-style'
 
 /***************************************************************/
@@ -7,11 +7,13 @@ import GlobalStyle from './global-style'
 /***************************************************************/
 
 const ContainerDiv = styled.div`
-    color: pink;
 
-    h1 {
-        margin: 0;
-    }
+    width: 100%;
+    height: 100%;
+
+     h1 {
+         margin: 0;
+     }
 `
 
 /***************************************************************/
@@ -19,15 +21,20 @@ const ContainerDiv = styled.div`
 /***************************************************************/
 
 interface ContainerProps {
-    title: string
+    theme: DefaultTheme
 }
 
-const Container = (props: ContainerProps): ReactElement => <>
-    <GlobalStyle />
-    <ContainerDiv >
-        <h1>{props.title}</h1>
-    </ContainerDiv>
-</>
+const Container = (props: ContainerProps): ReactElement =>
+
+    <ThemeProvider theme={props.theme}>
+        
+        <GlobalStyle />
+        
+        <ContainerDiv >
+            <h1>Global Mechanic</h1>
+        </ContainerDiv>
+
+    </ThemeProvider>
 
 /***************************************************************/
 // Exports
