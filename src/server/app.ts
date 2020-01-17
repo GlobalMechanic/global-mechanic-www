@@ -13,6 +13,10 @@ import favicon from 'serve-favicon'
 import fallback from 'express-history-api-fallback'
 
 import fileStorage from './modules/file-storage'
+import gears from './modules/gears'
+import middleware from './middleware'
+import services from './services'
+
 import { MongoClient } from 'mongodb'
 
 import { WebsiteApplication } from './types'
@@ -21,12 +25,13 @@ import { WebsiteApplication } from './types'
 // Execute
 /***************************************************************/
 
-async function createApp (): Promise<WebsiteApplication> {
+async function createApp(): Promise<WebsiteApplication> {
+
+    const CONFIG_URL = path.resolve(__dirname, '../../')
 
     const app = feathers() as WebsiteApplication
+    app.configure(configuration(CONFIG_URL))
 
-    app.configure(configuration())
-    
     const PUBLIC_URL = app.get('public') as string
     const MONGODB_URL = app.get('mongodb')
     const FAV_URL = path.resolve(__dirname, '../../favicon.png')
@@ -44,9 +49,9 @@ async function createApp (): Promise<WebsiteApplication> {
         .configure(hooks())
         .configure(rest())
         .configure(fileStorage)
-        // .configure(gears)
-        // .configure(services)
-        // .configure(middleware)
+        .configure(gears)
+        .configure(services)
+        .configure(middleware)
 
         .use(fallback('index.html', { root: PUBLIC_URL }))
 

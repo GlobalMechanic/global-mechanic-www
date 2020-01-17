@@ -1,4 +1,9 @@
-import feathers from 'feathers-client'
+import feathers from 'feathers/client'
+import socketio from 'feathers-socketio/client'
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore no types
+import authentication from 'feathers-authentication/client'
 import hooks from 'feathers-hooks'
 
 import io from 'socket.io-client'
@@ -11,7 +16,15 @@ import fetch from 'isomorphic-fetch'
 import { Readable } from 'stream'
 import esc from 'jsesc'
 
-import { WebsiteApplication, GearsOptions, GearsClient } from '../types'
+import {
+    WebsiteApplication,
+    GearsOptions,
+    GearsClient,
+    GearsService,
+    GearsDocument,
+    DownloadInstruction
+} from '../types'
+
 import { ReadStream } from 'fs-extra'
 
 /***************************************************************/
@@ -27,66 +40,66 @@ const queue = new Queue(4, Infinity)
 // Helper
 /***************************************************************/
 
-function getIn(obj: { [key: string]: object }, paths: string | string[]): unknown {
+function getIn(obj: { [key: string]: object | number | boolean | string }, paths: string | string[]): unknown {
 
-  paths = Array.isArray(paths) ? paths : [paths]
+    paths = Array.isArray(paths) ? paths : [paths]
 
-  const final = paths.length - 1
+    const final = paths.length - 1
 
-  for (let i = 0; i < paths.length; i++) {
-    const path = paths[i]
-    const atFinal = i === final
+    for (let i = 0; i < paths.length; i++) {
+        const path = paths[i]
+        const atFinal = i === final
 
-    if (atFinal)
-      return obj[path]
+        if (atFinal)
+            return obj[path]
 
-    if (typeof obj[path] !== 'object')
-      return undefined
+        if (typeof obj[path] !== 'object')
+            return undefined
 
-    obj = obj[path] as { [key: string]: object }
-  }
+        obj = obj[path] as { [key: string]: object }
+    }
 }
 
 function ensureFile(data: { fileId: string, thumb?: string, meta?: boolean }): void {
 
-  const { fileId, thumb, meta } = data
+    const { fileId, thumb, meta } = data
 
-  const query = thumb 
-    ? `?process=${thumb}` 
-    : meta 
-      ? '?meta=true' 
-      : ''
+    const query = thumb
+        ? `?process=${thumb}`
+        : meta
+            ? '?meta=true'
+            : ''
 
-  const key = thumb 
-    ? fileId + '-thumb' 
-    : meta 
-      ? fileId + '-meta' 
-      : fileId
+    const key = thumb
+        ? fileId + '-thumb'
+        : meta
+            ? fileId + '-meta'
+            : fileId
 
-  //check if the file exists
-  queue.add(async () =>  {
+    //check if the file exists
+    queue.add(async () => {
 
-    if (!gearsOptions)
-      throw new Error('Gears Options not resolved.')
-    
-    const has = await hasFile(key)
-    if (has)
-      return 
-    
-    const res = await fetch(`${gearsOptions.host}/files/${fileId}${query}`)
-    if (res.status !== 200)
-      throw new Error(res.statusText)
+        if (!gearsOptions)
+            throw new Error('Gears Options not resolved.')
 
-    const contentType = res.headers.get('Content-Type') as string
+        const has = await hasFile(key)
+        if (has)
+            return
 
-    const ext = '.' + contentType
-      .substr(contentType.indexOf('/') + 1)
-      .replace('; charset=utf-8', '')
-      .replace('+xml', '') // ew
+        const res = await fetch(`${gearsOptions.host}/files/${fileId}${query}`)
+        if (res.status !== 200)
+            throw new Error(res.statusText)
 
-    return writeFile(key, ext, res.body as unknown as ReadStream) // ew
+        const contentType = res.headers.get('Content-Type') as string
 
-  })
+        const ext = '.' + contentType
+            .substr(contentType.indexOf('/') + 1)
+            .replace('; charset=utf-8', '')
+            .replace('+xml', '') // ew
+
+        return writeFile(key, ext, res.body as unknown as ReadStream) // ew
+
+    })
 }
 
 // So, it turns out, if you supply an id to feathers for mongodb, it wont auto-cast it
@@ -106,112 +119,112 @@ function castId(doc: { _id: string | ObjectId }): { _id: ObjectId } {
 // Interface
 /***************************************************************/
 
-function service(name: string): object | null {
-  return gearsClient 
-    ? gearsClient.service(name) || null
-    : null
+function service(name: string): GearsService | null {
+    return gearsClient
+        ? gearsClient.service(name) || null
+        : null
 }
 
 async function login(): Promise<void> {
 
-  if (!gearsClient || !gearsOptions)
-    throw new Error('Gears not resolved')
+    if (!gearsClient || !gearsOptions)
+        throw new Error('Gears not resolved')
 
-  console.log('logging into gears...')
+    console.log('logging into gears...')
 
-  await gearsClient.authenticate({ 
-    type: 'local', 
-    ...gearsOptions.auth 
-  })
+    await gearsClient.authenticate({
+        type: 'local',
+        ...gearsOptions.auth
+    })
 
-}
-
-interface DownloadInstruction {
-  path: string
-  thumb: string
-  full: boolean
-  meta: boolean
-}
-
-interface FeathersService {
-    find(options: {}): Promise<object[]>
-    remove(options: object | null): Promise<object>
-    create(options: {}): void
 }
 
 function sync(
-  from: FeathersService, 
-  to: FeathersService, 
-  ...downloads: DownloadInstruction[]
+    from: GearsService,
+    to: GearsService,
+    ...downloads: DownloadInstruction[]
 ): void {
 
-  const ensureFiles = (doc: { [key: string]: object }): void => {
+    const ensureFiles = (doc: GearsDocument | void): void => {
 
-    downloads.forEach(instruction => {
+        if (!doc)
+            return
 
-      const { path, thumb, full, meta } = instruction
-      const fileId = getIn(doc, path) as string | string[]
-      const fileIds = Array.isArray(fileId) 
-        ? fileId 
-        : [fileId]
+        downloads.forEach(instruction => {
 
-      fileIds.forEach(fileId => {
-        if (fileId && thumb)
-          ensureFile({ fileId, thumb })
+            const { path, thumb, full, meta } = instruction
+            const fileId = getIn(doc, path) as string | string[]
+            const fileIds = Array.isArray(fileId)
+                ? fileId
+                : [fileId]
 
-        if (fileId && meta)
-          ensureFile({ fileId, meta })
+            fileIds.forEach(fileId => {
+                if (fileId && thumb)
+                    ensureFile({ fileId, thumb })
 
-        if (fileId && full)
-          ensureFile({ fileId })
-      })
-    })
-    
-  }
+                if (fileId && meta)
+                    ensureFile({ fileId, meta })
 
-  const populate = () => {
-    from
+                if (fileId && full)
+                    ensureFile({ fileId })
+            })
 
-    //find all the docs from gears
-    .find({})
-    .then(docs => to
+        })
 
-      //remove all the local docs
-      .remove(null)
-      .then(() => {
+    }
 
-        //fill all the local docs with data from gears
-        const promises = docs.map(doc => to.create(castId(doc))
-          .catch(err => log.error('Error creating item:', err))
-        )
+    const populate = (): void => {
+        from
 
-        return Promise.all(promises)
-      })
+            //find all the docs from gears
+            .find({})
+            .then(docs => to
 
-      //download any files associated with the docs created
-      .then(docs => docs.forEach(ensureFiles))
-    )
-    .catch(err => log.error('Error populating service', err))
+                //remove all the local docs
+                .remove(null)
+                .then(() => {
 
-  }
+                    //fill all the local docs with data from gears
+                    const promises = docs
+                        .map(doc => to.create(castId(doc))
+                            .catch(err => console.error('Error creating item:', err))
+                        )
 
-  const change = res => to.update(res._id, res)
-    .then(ensureFiles)
-    .catch(err => log(err))
+                    return Promise.all(promises)
+                })
 
-  const create = res => to.create(castId(res))
-    .then(ensureFiles)
-    .catch(err => log(err))
+                //download any files associated with the docs created
+                .then(docs => {
+                    for (const doc of docs)
+                        if (doc)
+                            ensureFiles(doc)
+                })
+            )
+            .catch(err => console.error('Error populating service', err))
 
-  const remove = res => to.remove(res._id)
-    .catch(err => log(err))
+    }
 
-  gearsClient.io.on('authenticated', populate)
+    const change = (res: GearsDocument): Promise<unknown> =>
+        to.update(res._id, res)
+            .then(ensureFiles)
+            .catch((err: Error) => console.error(err))
 
-  from.on('patched', change)
-  from.on('updated', change)
-  from.on('created', create)
-  from.on('removed', remove)
+    const create = (res: GearsDocument): Promise<unknown> =>
+        to.create(castId(res))
+            .then(ensureFiles)
+            .catch((err: Error) => console.error(err))
+
+    const remove = (res: GearsDocument): Promise<unknown> =>
+        to.remove(res._id)
+            .catch((err: Error) => console.error(err))
+
+    if (gearsClient)
+        gearsClient.io.on('authenticated', populate)
+
+    from.on('patched', change)
+    from.on('updated', change)
+    from.on('created', create)
+    from.on('removed', remove)
 
 }
 
@@ -222,48 +235,51 @@ function sync(
 
 function initialize(this: WebsiteApplication): void {
 
-  const app = this
-  gearsOptions = app.get('gears') as GearsOptions
+    const app = this
+    gearsOptions = app.get('gears') as GearsOptions
 
-  const socket = io(gearsOptions.host)
+    const socket = io(gearsOptions.host)
 
-  //Setup client app
-  gearsClient = feathers()
-    .configure(hooks())
-    .configure(feathers.socketio(socket))
-    .configure(feathers.authentication())
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore no client typedef
+    gearsClient = feathers()
+        .configure(hooks())
+        .configure(socketio(socket))
+        .configure(authentication()) as unknown as GearsClient
 
-  //Setup connection management
-  gearsClient.io.on('reconnect', login)
-  gearsClient.io.on('disconnect', ()=> log('disconnected from gears'))
-  gearsClient.io.on('authenticated', () => log('logged in to gears'))
+    //Setup connection management
+    gearsClient.io.on('reconnect', login)
+    gearsClient.io.on('disconnect', () => console.log('disconnected from gears'))
+    gearsClient.io.on('authenticated', () => console.log('logged in to gears'))
 
-  const files = gearsClient.service('files')
+    const files = gearsClient.service('files')
 
-  //Update metadata if we're tracking a file that has it
-  files.on('patched', ({ _id, name, description, ext, mime, size }) => {
+    //Update metadata if we're tracking a file that has it
+    files.on('patched', (doc: GearsDocument) => {
 
-    const metaKey = _id + '-meta'
+        const { _id, name, description, ext, mime, size } = doc
 
-    hasFile(metaKey)
-    .then(has => {
-      if (!has)
-        return
+        const metaKey = _id + '-meta'
 
-      //Rather than ping gears again for metadata we already have, we'll rebi
-      const data = JSON.stringify({ name, description, ext, mime, size })
-      const escaped = esc(data, { quotes: 'double' })
-      const stream = new Readable
+        hasFile(metaKey)
+            .then(has => {
+                if (!has)
+                    return
 
-      stream.push(`"${escaped}"`)
-      stream.push(null)
+                //Rather than ping gears again for metadata we already have, we'll rebi
+                const data = JSON.stringify({ name, description, ext, mime, size })
+                const escaped = esc(data, { quotes: 'double' })
+                const stream = new Readable
 
-      return writeFile(metaKey, '.json', stream)
+                stream.push(`"${escaped}"`)
+                stream.push(null)
+
+                return writeFile(metaKey, '.json', stream as unknown as ReadStream)
+            })
     })
-  })
 
-  //begin the connection process
-  login()
+    //begin the connection process
+    login()
 }
 
 
@@ -271,8 +287,8 @@ function initialize(this: WebsiteApplication): void {
 // Exports
 /***************************************************************/
 
-export default initialize 
+export default initialize
 
 export {
-  service, login, sync
+    service, login, sync
 }

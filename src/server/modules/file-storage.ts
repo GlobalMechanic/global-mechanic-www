@@ -12,7 +12,7 @@ import { PassThrough } from 'stream'
 // Constants
 /***************************************************************/
 
-const LOCAL_FILES = path.resolve(__dirname, '../../db/files')
+const LOCAL_FILES = path.resolve(__dirname, '../../../db/files')
 
 /***************************************************************/
 // Module State
@@ -25,7 +25,7 @@ let bucket: string | null = null
 // Setup
 /***************************************************************/
 
-function initialize (this: WebsiteApplication): void {
+function initialize(this: WebsiteApplication): void {
 
     const app = this
 
@@ -35,9 +35,7 @@ function initialize (this: WebsiteApplication): void {
 
         bucket = name
         s3 = new S3(config)
-
     }
-
 }
 
 /***************************************************************/
@@ -63,7 +61,7 @@ function parseRange(str: string, size: number): { start: number, end: number } {
         end = size - 1
 
     return {
-        start, 
+        start,
         end
     }
 }
@@ -73,8 +71,8 @@ async function getLocalUrl(key: string): Promise<string | null> {
     const files = await fs.readdir(LOCAL_FILES)
 
     const file = files.find(file => key === path.basename(file, path.extname(file)))
-    return file 
-        ? path.join(LOCAL_FILES, file) 
+    return file
+        ? path.join(LOCAL_FILES, file)
         : null
 }
 
@@ -85,12 +83,12 @@ async function getLocalUrl(key: string): Promise<string | null> {
 
 function hasFile(key: string): Promise<boolean> {
 
-    return s3 
+    return s3
         ? new Promise(resolve => {
 
-            const params = { 
-                Bucket: bucket as string, 
-                Key: key 
+            const params = {
+                Bucket: bucket as string,
+                Key: key
             };
 
             // eslint-disable-next-line no-extra-parens
@@ -105,7 +103,7 @@ function hasFile(key: string): Promise<boolean> {
             })
         })
 
-    : getLocalUrl(key).then(url => !!url)
+        : getLocalUrl(key).then(url => !!url)
 
 }
 
@@ -127,11 +125,11 @@ function writeFile(key: string, ext: string, read: ReadStream): Promise<void> {
 
         const upload = new PassThrough()
 
-        const params = { 
-            Bucket: bucket as string, 
-            Key: key, 
-            Body: upload, 
-            Metadata: { ext } 
+        const params = {
+            Bucket: bucket as string,
+            Key: key,
+            Body: upload,
+            Metadata: { ext }
         };
 
         // eslint-disable-next-line no-extra-parens
@@ -141,7 +139,7 @@ function writeFile(key: string, ext: string, read: ReadStream): Promise<void> {
             else
                 resolve()
         })
-            
+
         console.log('writing file to s3:', key)
 
         read.pipe(upload)
@@ -170,15 +168,15 @@ async function readFile(key: string, rangestr: string): Promise<null | FileData>
 
     return new Promise(resolve => {
 
-        const params = { 
+        const params = {
             Bucket: bucket as string,
             Range: '',
-            Key: key 
+            Key: key
         };
 
         // eslint-disable-next-line no-extra-parens
         (s3 as S3).headObject(params, (err: Error, data: S3.HeadObjectOutput) => {
-            
+
             if (err) {
                 console.error('Error reading file from s3', err)
                 resolve()
@@ -192,9 +190,9 @@ async function readFile(key: string, rangestr: string): Promise<null | FileData>
             const ext = data.Metadata && data.Metadata.ext
 
             const stream = // eslint-disable-next-line no-extra-parens
-            (s3 as S3)
-                .getObject(params)
-                .createReadStream()
+                (s3 as S3)
+                    .getObject(params)
+                    .createReadStream()
 
             console.log('reading file from s3', key)
 

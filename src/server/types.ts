@@ -1,6 +1,7 @@
 import feathers from 'feathers'
 import { Db as MongoDB } from 'mongodb'
 import { Stream } from 'stream'
+import { ObjectId } from 'mongodb'
 
 /***************************************************************/
 // Types
@@ -25,20 +26,45 @@ interface GearsOptions {
     host: string
 }
 
+interface DownloadInstruction {
+    thumb: string
+    path: string
+    full: boolean
+    meta: boolean
+}
+
+interface GearsService {
+
+    find(options: {}): Promise<GearsDocument[]>
+
+    create(options: {}): Promise<GearsDocument>
+
+    remove(id: ObjectId | string | null, options?: object | null): Promise<GearsDocument>
+
+    update(id: ObjectId | string, options?: {}): Promise<GearsDocument>
+
+    on(event: string, callback: Function): void
+
+}
+
 interface GearsClient {
-    
+
     io: SocketIOClient.Socket
 
-    service (name: string): object
+    service(name: string): GearsService
 
-    authenticate (options: {
+    authenticate(options: {
         type: string
         email: string
         password: string
     }): Promise<void>
 
 }
-  
+
+interface GearsDocument {
+    _id: string | ObjectId
+    [key: string]: object | string | boolean | number
+}
 
 interface FileData {
     stream: Stream
@@ -55,7 +81,12 @@ interface FileData {
 export {
     WebsiteApplication,
     BucketeerOptions,
+
     GearsOptions,
     GearsClient,
+    GearsService,
+    GearsDocument,
+
+    DownloadInstruction,
     FileData
 }
