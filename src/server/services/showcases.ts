@@ -60,9 +60,9 @@ export default function (this: WebsiteApplication): void {
         Model: app.db.collection('showcases')
     }
 
-    app.use('/assets/showcases', service(options))
+    app.use('/showcases', service(options))
 
-    const webShowcases = app.service('assets/showcases')
+    const webShowcases = app.service('showcases')
     const showcases = gearsService('showcases')
 
     webShowcases.before(beforeHooks)

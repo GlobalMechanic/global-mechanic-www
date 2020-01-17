@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore no typedef
 import service from 'feathers-mongodb'
 
 import { service as gearsService, sync } from '../modules/gears'
@@ -34,9 +36,9 @@ export default function (this: WebsiteApplication): void {
         Model: app.db.collection('products')
     }
 
-    app.use('/assets/products', service(options))
+    app.use('/products', service(options))
 
-    const webProducts = app.service('assets/products')
+    const webProducts = app.service('products')
     const products = gearsService('products')
 
     webProducts.before(beforeHooks)

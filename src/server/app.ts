@@ -41,7 +41,6 @@ async function createApp(): Promise<WebsiteApplication> {
     app.use(compress())
         .use(cors())
 
-        .use('/', serveStatic(PUBLIC_URL))
         .use(bodyParser.json())
         .use(bodyParser.urlencoded({ extended: true }))
         .use(favicon(FAV_URL))
@@ -53,6 +52,7 @@ async function createApp(): Promise<WebsiteApplication> {
         .configure(services)
         .configure(middleware)
 
+        .use('/', serveStatic(PUBLIC_URL))
         .use(fallback('index.html', { root: PUBLIC_URL }))
 
     return app

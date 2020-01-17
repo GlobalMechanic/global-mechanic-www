@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore no typedef
 import service from 'feathers-mongodb'
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -63,9 +65,9 @@ export default function (this: WebsiteApplication): void {
         Model: app.db.collection('users')
     }
 
-    app.use('/assets/people', service(options))
+    app.use('/people', service(options))
 
-    const people = app.service('assets/people')
+    const people = app.service('people')
     const users = gearsService('users')
 
     people.before(beforeHooks)

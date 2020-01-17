@@ -1,20 +1,24 @@
-import React, { ReactElement } from 'react'
-import styled, { ThemeProvider, DefaultTheme } from 'styled-components'
+import React, { ReactElement, useContext } from 'react'
+import { ThemeProvider, DefaultTheme } from 'styled-components'
 import GlobalStyle from './global-style'
+import DataProvider, { DataContext } from './data-provider'
 
 /***************************************************************/
-// Container Div
+// Temp
 /***************************************************************/
 
-const ContainerDiv = styled.div`
+const TempRenderData = (): ReactElement => {
 
-    width: 100%;
-    height: 100%;
+    const { people, showcases, products } = useContext(DataContext)
 
-     h1 {
-         margin: 0;
-     }
-`
+    return <div>
+        <h1>GLOBAL MECHANIC DATA</h1>
+        <p>Products: <b>{products.length}</b></p>
+        <p>Showcases: <b>{showcases.length}</b></p>
+        <p>People: <b>{people.length}</b></p>
+    </div >
+
+}
 
 /***************************************************************/
 // Container
@@ -25,16 +29,12 @@ interface ContainerProps {
 }
 
 const Container = (props: ContainerProps): ReactElement =>
-
-    <ThemeProvider theme={props.theme}>
-        
-        <GlobalStyle />
-        
-        <ContainerDiv >
-            <h1>Global Mechanic</h1>
-        </ContainerDiv>
-
-    </ThemeProvider>
+    <DataProvider>
+        <ThemeProvider theme={props.theme}>
+            <GlobalStyle />
+            <TempRenderData />
+        </ThemeProvider>
+    </DataProvider>
 
 /***************************************************************/
 // Exports
