@@ -1,4 +1,6 @@
 import feathers, { static as serveStatic } from 'feathers'
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore no types
 import configuration from 'feathers-configuration'
 import hooks from 'feathers-hooks'
 import rest from 'feathers-rest'
@@ -9,7 +11,7 @@ import compress from 'compression'
 import bodyParser from 'body-parser'
 import favicon from 'serve-favicon'
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
+// @ts-ignore no types
 import fallback from 'express-history-api-fallback'
 
 import fileStorage from './modules/file-storage'
