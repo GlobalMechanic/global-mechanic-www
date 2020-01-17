@@ -1,0 +1,22 @@
+{
+  "port": "PORT",
+  
+  "public": "../public/",
+
+  "mongodb": "MONGODB_URI",
+
+  "bucketeer": {
+    "name": "BUCKETEER_BUCKET_NAME",
+    "accessKeyId": "BUCKETEER_AWS_ACCESS_KEY_ID",
+    "secretAccessKey": "BUCKETEER_AWS_SECRET_ACCESS_KEY",
+    "region": "BUCKETEER_REGION"
+  },
+
+  "gears": {
+    "auth": {
+      "email": "GEARS_EMAIL",
+      "password": "GEARS_PASS"
+    },
+    "host": "GEARS_HOST"
+  }
+}

@@ -42,7 +42,8 @@ module.exports = {
             }
         }],
         '@typescript-eslint/await-thenable': 'error',
-        '@typescript-eslint/explicit-function-return-type': ['error', { allowExpressions: true }]
+        '@typescript-eslint/explicit-function-return-type': ['error', { allowExpressions: true }],
+        '@typescript-eslint/no-this-alias': 'off'
     }
 
 }

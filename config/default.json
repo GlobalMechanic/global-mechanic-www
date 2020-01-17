@@ -1,0 +1,11 @@
+{
+  "port": 5000,
+
+  "public": "../public/",
+
+  "mongodb": "mongodb://localhost:4999/global-mechanic-www-develop",
+  
+  "buckateer": null,
+  
+  "gears": null
+}
