@@ -33,13 +33,17 @@ export default function (app: WebsiteApplication): void {
     const publicURL = app.get('public')
     const indexHtmlURL = path.join(publicURL, 'index.html')
 
-    template = fs.readFileSync(indexHtmlURL, 'utf-8').split('<main/>')
+    try {
+        template = fs.readFileSync(indexHtmlURL, 'utf-8').split('<main/>')
+        console.error(
+            'server side rendering not yet setup',
+            renderTemplate.name,
+            'is not yet used'
+        )
 
-    console.error(
-        'server side rendering not yet setup',
-        renderTemplate.name,
-        'is not yet used'
-    )
+    } catch (err) {
+        console.error(err)
+    }
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore

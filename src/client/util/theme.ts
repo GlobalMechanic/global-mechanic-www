@@ -9,10 +9,9 @@ declare module 'styled-components' {
 
         colors: {
             bg: string
-            main: string
-            accent: string
+            fg: string
         }
-        
+
     }
 }
 
@@ -20,18 +19,30 @@ declare module 'styled-components' {
 // Main
 /***************************************************************/
 
-const BaseTheme: DefaultTheme = {
+const LightTheme: DefaultTheme = {
 
     colors: {
         bg: 'white',
-        main: 'black',
-        accent: 'pink'
+        fg: 'black'
     }
 
+}
+
+const DarkTheme = {
+
+    ...LightTheme,
+
+    colors: {
+        bg: LightTheme.colors.fg,
+        fg: LightTheme.colors.bg
+    }
 }
 
 /***************************************************************/
 // Exports
 /***************************************************************/
 
-export default BaseTheme
+export {
+    LightTheme,
+    DarkTheme
+}

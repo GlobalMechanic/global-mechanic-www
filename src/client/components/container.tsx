@@ -1,7 +1,7 @@
 import React, { ReactElement, useContext } from 'react'
 import { ThemeProvider, DefaultTheme } from 'styled-components'
 import GlobalStyle from './global-style'
-import DataProvider, { DataContext } from './data-provider'
+import PageDataProvider, { PageDataContext } from '../util/page-data'
 
 /***************************************************************/
 // Temp
@@ -9,13 +9,11 @@ import DataProvider, { DataContext } from './data-provider'
 
 const TempRenderData = (): ReactElement => {
 
-    const { people, showcases, products } = useContext(DataContext)
+    const pages = useContext(PageDataContext)
 
     return <div>
-        <h1>GLOBAL MECHANIC DATA</h1>
-        <p>Products: <b>{products.length}</b></p>
-        <p>Showcases: <b>{showcases.length}</b></p>
-        <p>People: <b>{people.length}</b></p>
+        <h1>GLOBAL MECHANIC</h1>
+        <p>Pages: <b>{pages.length}</b></p>
     </div >
 
 }
@@ -29,12 +27,12 @@ interface ContainerProps {
 }
 
 const Container = (props: ContainerProps): ReactElement =>
-    <DataProvider>
+    <PageDataProvider>
         <ThemeProvider theme={props.theme}>
             <GlobalStyle />
             <TempRenderData />
         </ThemeProvider>
-    </DataProvider>
+    </PageDataProvider>
 
 /***************************************************************/
 // Exports

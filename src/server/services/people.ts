@@ -22,21 +22,40 @@ function websiteFilter(hook: Hook, next: Function): void {
     // @ts-ignore result and params dont exist on hook??
     const { result, params } = hook
 
-    //no filtering on internal calls
+    // no filtering on internal calls
     if (!params.provider)
         return next()
 
-    //only send people intended to be on the website
-
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore result and params dont exist on hook??
-    hook.result = result.filter((person: any) => // eslint-disable-line @typescript-eslint/no-explicit-any
+    hook.result = result
 
-        person.staffData &&
-        person.staffData.showOnWebsite ||
-        person.directorData &&
-        person.directorData.showOnWebsite
-    )
+        // only show if the person is supposed to be on the website
+        .filter((person: any) => // eslint-disable-line @typescript-eslint/no-explicit-any
+            person.staffData &&
+            person.staffData.showOnWebsite ||
+            person.directorData &&
+            person.directorData.showOnWebsite
+        )
+
+        // stripped to necessary fields
+        .map((person: any) => {// eslint-disable-line @typescript-eslint/no-explicit-any
+
+            const { _id, name, role, staffData, directorData } = person
+
+            const { essay = '', portrait = null, showcase = null } = directorData.showOnWebsite
+                ? directorData
+                : staffData
+
+            return {
+                _id,
+                name,
+                role,
+                essay,
+                portrait,
+                showcase
+            }
+        })
 
     next(null, hook)
 }
@@ -57,6 +76,7 @@ const afterHooks = {
 /******************************************************************************/
 
 export default function (this: WebsiteApplication): void {
+
     const app = this
     if (!app.db)
         return

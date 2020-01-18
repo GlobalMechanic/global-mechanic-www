@@ -15,7 +15,6 @@ import { WebsiteApplication } from '../types'
 /******************************************************************************/
 
 const disableExternal = disable('external')
-const SCOPES = ['private', 'public', 'work-in-progress']
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore disable not included in feathers-hooks typedef
@@ -27,11 +26,33 @@ function websiteFilter(hook, next): void {
     if (!params.provider)
         return next()
 
-    //only send showcases with public or private scopes
-
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore disable not included in feathers-hooks typedef
-    hook.result = result.filter(showcase => showcase.website && SCOPES.includes(showcase.website.scope))
+    hook.result = result.filter(showcase =>
+        showcase.website // only ship showcases with website data
+    )
+        // Filter to client-friendly values
+        .map((showcase: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
+
+            const {
+                _id,
+                name,
+                products,
+                files,
+                website,
+                portrait = null
+            } = showcase
+
+            return {
+                name,
+                _id,
+                products: products || [],
+                files: files || [],
+                portrait,
+                essay: website.essay || '',
+                scope: website.scope || 'unpublished'
+            }
+        })
 
     next(null, hook)
 }

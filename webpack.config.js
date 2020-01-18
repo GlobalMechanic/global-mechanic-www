@@ -8,10 +8,18 @@ const styledComponentsTransformer = require('typescript-plugin-styled-components
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 /***************************************************************/
+// Constants
+/***************************************************************/
+
+const PORT = 5500
+
+/***************************************************************/
 // Config
 /***************************************************************/
 
 module.exports = {
+
+    mode: process.env.NODE_ENV || 'development',
 
     entry: path.resolve(__dirname, 'src', 'client', 'index.tsx'),
 
@@ -28,38 +36,38 @@ module.exports = {
                 exclude: /node_modules/,
                 options: {
                     getCustomTransformers: () => ({
-                        before: [ styledComponentsTransformer ]
+                        before: [styledComponentsTransformer]
                     })
                 }
             },
 
             {
                 test: /\.css$/,
-                loader: [ MiniCssExtractPlugin.loader, 'css-loader']
+                loader: [MiniCssExtractPlugin.loader, 'css-loader']
             }
         ]
     },
 
     devServer: {
         contentBase: path.resolve(__dirname, 'public'),
-        port: 5500
+        port: PORT
     },
 
     plugins: [
         new CleanWebpackPlugin(),
-        new EnvironmentPlugin({
-            NODE_ENV: 'development',
-            DEBUG: true
-        }),
         new MiniCssExtractPlugin(),
         new HtmlWebpackPlugin({
             title: 'Global Mechanic',
             template: path.resolve(__dirname, 'src', 'client', 'index.html')
+        }),
+        new EnvironmentPlugin({
+            NODE_ENV: 'development',
+            DEBUG: true
         })
     ],
 
     resolve: {
-        extensions: [ '.tsx', '.ts', '.js' ],
+        extensions: ['.tsx', '.ts', '.js'],
     },
 
 }

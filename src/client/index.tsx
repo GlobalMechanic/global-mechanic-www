@@ -9,11 +9,11 @@ void async function () {
     const React = await import('react')
     const { render } = await import('react-dom')
     const { Container } = await import('./components')
-    const { default: BaseTheme } = await import('./util/theme')
+    const { LightTheme } = await import('./util/theme')
 
     render(
-        <Container theme={BaseTheme}/>,
+        <Container theme={LightTheme} />,
         document.getElementById('global-mechanic-www')
     )
-    
+
 }()

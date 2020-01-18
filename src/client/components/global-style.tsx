@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
 
     html {
         background-color: ${p => p.theme.colors.bg};
-        color: ${p => p.theme.colors.main};
+        color: ${p => p.theme.colors.fg};
     }
 
 `
