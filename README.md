@@ -15,6 +15,7 @@ As of this writing in the *refactor-2020* branch, the goal is to update the clie
 # Getting Started
 
 - `npm i` 
+- `npm audit fix` 
 - create a **development.json** configuration file in the *./config* directory. Details about the **development.json** file are listed [below](#Development.JSON).
 - start 3 terminal processes, one for each:
     - `npm run db:dev` Starts a MongoDB process for the website to use. `mongod` does not need to be installed on your system, the version the website uses is obsolete and has been included in this repo.
@@ -37,7 +38,7 @@ As of this writing in the *refactor-2020* branch, the goal is to update the clie
 }
 ```
 
-Contact ben@globalmechanic.com to retreive auth credentials.
+Contact `ben@globalmechanic.com` to retreive auth credentials.
 
 # `./src/client` folder
 

@@ -1,14 +1,28 @@
 import {
-    Page,
-    Content,
-    ContentPage,
-    TextContent,
-    VimeoContent,
-    MenuPage
+    PageData,
+    ContentData,
+    ContentPageData,
+    TextContentData,
+    VimeoContentData,
+    MenuPageData
 } from './types'
+import urlify from '../../util/urlify'
 
 /***************************************************************/
-// Types
+// Convert Service Data To Pages
+/***************************************************************/
+
+// This file exists to convert the data of the gears-api to something
+// sensible for the website to construct it's pages with. 
+//
+// Eventually the gears-api will be updated to export data in the
+// same manner as this method, rendering it obsolete.
+//
+// This page is quick, dirty and hacky. Unless you're Ben you probably
+// don't need to touch it.
+
+/***************************************************************/
+// Old Gears API Record Types
 /***************************************************************/
 
 type RecordID = string
@@ -96,6 +110,12 @@ let lastPageID = 0
 
 const newPageId = (): number => ++lastPageID
 
+/**
+ * Returns the first item in an array that passes the supplied predicate test, removing
+ * that object from the array.
+ * @param array 
+ * @param predicate 
+ */
 function pluck<T>(array: T[], predicate: (t: T) => boolean): T | undefined {
     for (let i = 0; i < array.length; i++) {
         const item = array[i]
@@ -111,7 +131,7 @@ function pluck<T>(array: T[], predicate: (t: T) => boolean): T | undefined {
 /**
  * Looks for the string #2020RebrandTags in a given essay string,
  * removes it and text following it, parsing the data into tags. 
- * Returns the hacky tags and the sanitized essay string.
+ * Returns the hacky pragma tags and the sanitized essay string.
  * @param rawEssay 
  */
 function pluckPragmaTagsFromRawEssay(rawEssay: string): {
@@ -142,9 +162,6 @@ function pluckPragmaTagsFromRawEssay(rawEssay: string): {
             }, {})
         : {}
 
-    if (tags && Object.keys(tags).length > 0)
-        console.log({ essay, tags })
-
     return {
         essay,
         tags: tags && Object.keys(tags).length > 0 ? tags : null
@@ -152,10 +169,10 @@ function pluckPragmaTagsFromRawEssay(rawEssay: string): {
 
 }
 
-function createSplashPage(serviceData: ServiceData): ContentPage {
+function createSplashPage(serviceData: ServiceData): ContentPageData {
 
     const justClicks = serviceData.products.find(product => product.name.includes('Just'))
-    const backgroundVideo: VimeoContent | null = justClicks &&
+    const backgroundVideo: VimeoContentData | null = justClicks &&
         justClicks.video
         ? {
             type: 'vimeo',
@@ -164,12 +181,12 @@ function createSplashPage(serviceData: ServiceData): ContentPage {
         }
         : null
 
-    const helloText: TextContent = {
+    const helloText: TextContentData = {
         type: 'text',
         text: 'Hello'
     }
 
-    const contents: Content[] = []
+    const contents: ContentData[] = []
 
     if (backgroundVideo)
         contents.push(backgroundVideo)
@@ -179,6 +196,7 @@ function createSplashPage(serviceData: ServiceData): ContentPage {
     return {
         _id: newPageId(),
         name: 'Splash',
+        path: '', // cuz home page
         type: 'content',
         contents,
         theme: 'light',
@@ -187,7 +205,7 @@ function createSplashPage(serviceData: ServiceData): ContentPage {
 
 }
 
-function createAboutUsPage(serviceData: ServiceData): ContentPage {
+function createAboutUsPage(serviceData: ServiceData): ContentPageData {
 
     const NAME = 'About Us'
 
@@ -195,7 +213,7 @@ function createAboutUsPage(serviceData: ServiceData): ContentPage {
 
     const aboutUsPage = pluck(showcases, showcase => showcase.name === NAME)
 
-    const writeUp: TextContent | undefined = aboutUsPage && {
+    const writeUp: TextContentData | undefined = aboutUsPage && {
         type: 'text',
         text: aboutUsPage.essay,
     }
@@ -203,6 +221,7 @@ function createAboutUsPage(serviceData: ServiceData): ContentPage {
     return {
         _id: newPageId(),
         name: NAME,
+        path: urlify(NAME),
         type: 'content',
 
         contents: writeUp ? [writeUp] : [],
@@ -212,14 +231,15 @@ function createAboutUsPage(serviceData: ServiceData): ContentPage {
     }
 }
 
-function createMainContentPages(privatePages: Page[]): MenuPage[] {
+function createMainContentPages(privatePages: PageData[]): MenuPageData[] {
 
-    const mainPages: MenuPage[] = []
+    const mainPages: MenuPageData[] = []
 
     for (const mainContentPageName of HARD_CODED_MAIN_MENU_PAGE_NAMES) {
         mainPages.push({
             _id: newPageId(),
             name: mainContentPageName,
+            path: urlify(mainContentPageName),
             type: 'menu',
 
             pages: privatePages
@@ -236,10 +256,11 @@ function createMainContentPages(privatePages: Page[]): MenuPage[] {
     return mainPages
 }
 
-function createMainMenuPage(mainPages: Page[]): MenuPage {
+function createMainMenuPage(mainPages: PageData[]): MenuPageData {
     return {
         _id: newPageId(),
         name: 'Main Menu',
+        path: 'main',
         type: 'menu',
 
         pages: mainPages.map(page => page._id),
@@ -249,15 +270,16 @@ function createMainMenuPage(mainPages: Page[]): MenuPage {
     }
 }
 
-function createGenericPages(serviceData: ServiceData): Page[] {
+function createGenericPages(serviceData: ServiceData): PageData[] {
 
-    const pages: Page[] = []
+    const pages: PageData[] = []
 
     for (const { name, portrait, scope, essay: rawEssay, files, products } of serviceData.showcases) {
 
-        const page: ContentPage = {
+        const page: ContentPageData = {
             _id: newPageId(),
             name,
+            path: urlify(name),
             type: 'content',
             contents: [],
             portrait,
@@ -272,7 +294,7 @@ function createGenericPages(serviceData: ServiceData): Page[] {
             page[$$temp] = tags
 
         if (essay) {
-            const essayContent: TextContent = {
+            const essayContent: TextContentData = {
                 type: 'text',
                 text: essay
             }
@@ -282,7 +304,7 @@ function createGenericPages(serviceData: ServiceData): Page[] {
         for (const productId of products) {
             const product = serviceData.products.find(p => p._id === productId)
             if (product && product.video) {
-                const vimeoContent: VimeoContent = {
+                const vimeoContent: VimeoContentData = {
                     type: 'vimeo',
                     name: product.name,
                     vimeoId: product.video.vimeoId
@@ -291,7 +313,7 @@ function createGenericPages(serviceData: ServiceData): Page[] {
             }
 
             if (product && product.essay) {
-                const textContent: TextContent = {
+                const textContent: TextContentData = {
                     type: 'text',
                     text: product.essay
                 }
@@ -305,13 +327,22 @@ function createGenericPages(serviceData: ServiceData): Page[] {
     return pages
 }
 
+function removeTempSymbolFromPages(pages: PageData[]): void {
+
+    for (const page of pages)
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore $$mainMenuPage is a temp symbol
+        delete page[$$temp]
+
+}
+
 /***************************************************************/
 // Main
 /***************************************************************/
 
 function convertServiceDataToPages(
     serviceData: ServiceData
-): Page[] {
+): PageData[] {
 
     const splashPage = createSplashPage(serviceData)
     const aboutPage = createAboutUsPage(serviceData)
@@ -330,6 +361,8 @@ function convertServiceDataToPages(
         ...publicPages,
         ...privatePages
     ]
+
+    removeTempSymbolFromPages(pages)
 
     return pages
 }

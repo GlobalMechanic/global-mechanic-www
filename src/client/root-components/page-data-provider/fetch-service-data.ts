@@ -7,7 +7,7 @@ import { ServiceData } from './convert-service-data-to-pages'
 // Constants
 /***************************************************************/
 
-// TODO find a better way to resolve the server in dev mode
+// TODO: better way to resolve the server in dev mode
 const HOST = process.env.NODE_ENV === 'development'
     ? origin.replace(':5500', ':5000')
     : origin

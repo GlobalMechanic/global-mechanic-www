@@ -1,11 +1,7 @@
-import Page from './page'
-import PageNotFound from './page-not-found'
+import Website from './website'
 
 /***************************************************************/
 // Exports
 /***************************************************************/
 
-export {
-    Page,
-    PageNotFound
-}
+export default Website

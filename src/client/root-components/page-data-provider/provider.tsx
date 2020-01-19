@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState, createContext } from 'react'
 import fetchServiceData from './fetch-service-data'
 import convertServiceDataToPages from './convert-service-data-to-pages'
 
-import { Page } from './types'
+import { PageData } from './types'
 
 /***************************************************************/
 // Types
@@ -16,7 +16,7 @@ interface PageDataProviderProps {
 // Data
 /***************************************************************/
 
-const PageDataContext = createContext<Page[]>([])
+const PageDataContext = createContext<PageData[]>([])
 
 /***************************************************************/
 // Component
@@ -24,7 +24,7 @@ const PageDataContext = createContext<Page[]>([])
 
 const PageDataProvider = (props: PageDataProviderProps): ReactElement => {
 
-    const [pages, setPages] = useState([] as Page[])
+    const [pages, setPages] = useState([] as PageData[])
 
     useEffect(() => {
         fetchServiceData()
