@@ -42,7 +42,9 @@ export default function (app: WebsiteApplication): void {
         )
 
     } catch (err) {
-        console.error(err)
+        console.error(
+            'could not create index.html template:', err.message
+        ) // TODO: server should terminate
     }
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore

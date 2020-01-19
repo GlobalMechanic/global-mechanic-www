@@ -135,6 +135,8 @@ async function login(): Promise<void> {
     await gearsClient.authenticate({
         type: 'local',
         ...gearsOptions.auth
+    }).catch(err => {
+        console.error('could not login to gears:', err.message)
     })
 
 }
