@@ -6,7 +6,9 @@ import {
     VimeoContentData,
     MenuPageData
 } from './types'
+
 import urlify from '../../util/urlify'
+import pluck from '../../util/pluck'
 
 /***************************************************************/
 // Convert Service Data To Pages
@@ -18,8 +20,8 @@ import urlify from '../../util/urlify'
 // Eventually the gears-api will be updated to export data in the
 // same manner as this method, rendering it obsolete.
 //
-// This page is quick, dirty and hacky. Unless you're Ben you probably
-// don't need to touch it.
+// This page is quick, dirty and hacky. 
+// Unless you're Ben you probably don't need to touch it.
 
 /***************************************************************/
 // Old Gears API Record Types
@@ -109,24 +111,6 @@ let lastPageID = 0
 /***************************************************************/
 
 const newPageId = (): number => ++lastPageID
-
-/**
- * Returns the first item in an array that passes the supplied predicate test, removing
- * that object from the array.
- * @param array 
- * @param predicate 
- */
-function pluck<T>(array: T[], predicate: (t: T) => boolean): T | undefined {
-    for (let i = 0; i < array.length; i++) {
-        const item = array[i]
-        if (predicate(item)) {
-            array.splice(i, 1)
-            return item
-        }
-    }
-
-    return undefined
-}
 
 /**
  * Looks for the string #2020RebrandTags in a given essay string,
@@ -327,12 +311,27 @@ function createGenericPages(serviceData: ServiceData): PageData[] {
     return pages
 }
 
-function removeTempSymbolFromPages(pages: PageData[]): void {
+function removeSymbolsFromPages(pages: PageData[]): PageData[] {
+    return pages.map(page => ({ ...page }))
+}
 
-    for (const page of pages)
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore $$mainMenuPage is a temp symbol
-        delete page[$$temp]
+function removePagesWithDuplicatePaths(pages: PageData[]): PageData[] {
+
+    const pathTable: { [path: string]: true } = {}
+
+    const output: PageData[] = []
+
+    for (const page of pages) {
+
+        if (!pathTable[page.path]) {
+            pathTable[page.path] = true
+            output.push(page)
+        } else
+            console.warn(`multiple pages with path "/${page.path}" found`)
+
+    }
+
+    return output
 
 }
 
@@ -354,7 +353,7 @@ function convertServiceDataToPages(
         ...publicPages
     ])
 
-    const pages = [
+    let pages = [
         splashPage,
         mainMenuPage,
         aboutPage,
@@ -362,7 +361,9 @@ function convertServiceDataToPages(
         ...privatePages
     ]
 
-    removeTempSymbolFromPages(pages)
+    pages = removePagesWithDuplicatePaths(pages)
+
+    pages = removeSymbolsFromPages(pages)
 
     return pages
 }

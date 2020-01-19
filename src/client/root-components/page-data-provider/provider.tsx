@@ -27,7 +27,7 @@ const PageDataProvider = (props: PageDataProviderProps): ReactElement => {
     const [pages, setPages] = useState([] as PageData[])
 
     useEffect(() => {
-        fetchServiceData()
+        Promise.resolve(fetchServiceData())
             .then(serviceData => convertServiceDataToPages(serviceData))
             .then(pages => setPages(pages))
     }, [])

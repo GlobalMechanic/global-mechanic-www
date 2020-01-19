@@ -19,6 +19,7 @@ interface VimeoContentData extends ContentData {
 
 interface FileContentData extends ContentData {
     file: FileID
+    type: 'video' | 'image' | 'downloadable'
     name: string
 }
 

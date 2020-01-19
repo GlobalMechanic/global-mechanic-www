@@ -1,11 +1,15 @@
-import Page from './page'
-import PageNotFound from './page-not-found'
+import SplashPage from './splash-page'
+import ContentPage from './content-page'
+import MenuPage from './menu-page'
+import MissingPage from './missing-page'
 
 /***************************************************************/
 // Exports
 /***************************************************************/
 
 export {
-    Page,
-    PageNotFound
+    SplashPage,
+    ContentPage,
+    MenuPage,
+    MissingPage
 }

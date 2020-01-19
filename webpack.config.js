@@ -13,6 +13,17 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const PORT = 5500
 
+const mode = process.env.NODE_ENV || 'development'
+
+const ENV = mode === 'development'
+    ? {
+        NODE_ENV: 'development',
+        DEV_SERVER_PORT: require('./config/default.json').port
+    }
+    : {
+        NODE_ENV: 'production',
+    }
+
 /***************************************************************/
 // Config
 /***************************************************************/
@@ -60,10 +71,7 @@ module.exports = {
             title: 'Global Mechanic',
             template: path.resolve(__dirname, 'src', 'client', 'index.html')
         }),
-        new EnvironmentPlugin({
-            NODE_ENV: 'development',
-            DEBUG: true
-        })
+        new EnvironmentPlugin(ENV)
     ],
 
     resolve: {

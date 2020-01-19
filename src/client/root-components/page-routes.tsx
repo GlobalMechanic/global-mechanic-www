@@ -1,7 +1,9 @@
 import React, { ReactElement, useContext } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import { PageDataContext } from './page-data-provider'
-import { Page, PageNotFound } from '../components'
+import { PageDataContext, ContentPageData, MenuPageData } from './page-data-provider'
+import { ContentPage, MenuPage, SplashPage, MissingPage } from '../components'
+
+import pluck from '../util/pluck'
 
 /***************************************************************/
 // Main
@@ -9,17 +11,32 @@ import { Page, PageNotFound } from '../components'
 
 const Router = (): ReactElement => {
 
-    const pages = useContext(PageDataContext)
+    const pages = useContext(PageDataContext) as (MenuPageData | ContentPageData)[]
+
+    const splashPage = pluck(pages, page => page.path === '') as ContentPageData | undefined
 
     return <Switch>
+
+        {splashPage
+            ? <Route>
+                <SplashPage page={splashPage} />
+            </Route>
+            : 'Loading'
+        }
+
         {pages.map(page =>
             <Route key={page.path} path={page.path}>
-                <Page page={page} />
-            </Route>)
-        }
+                {page.type === 'content'
+                    ? <ContentPage page={page} />
+                    : <MenuPage page={page} pages={pages} />
+                }
+            </Route>
+        )}
+
         <Route>
-            <PageNotFound />
+            <MissingPage />
         </Route>
+
     </Switch>
 
 }

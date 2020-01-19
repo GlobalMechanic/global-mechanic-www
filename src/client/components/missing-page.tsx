@@ -5,7 +5,7 @@ import styled from 'styled-components'
 // Helper Components
 /***************************************************************/
 
-const PageNotFoundStyle = styled.div`
+const MissingPageStyle = styled.div`
     h2 { color: red; }
 `
 
@@ -13,15 +13,15 @@ const PageNotFoundStyle = styled.div`
 // Main
 /***************************************************************/
 
-const Page = (): ReactElement => {
+const MissingPage = (): ReactElement => {
 
-    return <PageNotFoundStyle>
+    return <MissingPageStyle>
         <h2>Page Not Found!</h2>
-    </PageNotFoundStyle>
+    </MissingPageStyle>
 }
 
 /***************************************************************/
 // Exports
 /***************************************************************/
 
-export default Page
+export default MissingPage
