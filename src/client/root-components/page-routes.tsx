@@ -18,14 +18,14 @@ const Router = (): ReactElement => {
     return <Switch>
 
         {splashPage
-            ? <Route>
+            ? <Route path='/' exact>
                 <SplashPage page={splashPage} />
             </Route>
             : 'Loading'
         }
 
         {pages.map(page =>
-            <Route key={page.path} path={page.path}>
+            <Route key={page.path} path={'/' + page.path}>
                 {page.type === 'content'
                     ? <ContentPage page={page} />
                     : <MenuPage page={page} pages={pages} />

@@ -19,20 +19,7 @@ interface VimeoContentData extends ContentData {
 
 interface FileContentData extends ContentData {
     file: FileID
-    type: 'video' | 'image' | 'downloadable'
-    name: string
-}
-
-interface VideoContentData extends FileContentData {
-    type: 'video'
-}
-
-interface ImageContentData extends FileContentData {
-    type: 'image'
-}
-
-interface DownloadableContentData extends FileContentData {
-    type: 'downloadable'
+    type: 'file'
 }
 
 interface PageData {
@@ -66,10 +53,9 @@ export {
 
     ContentData,
     TextContentData,
-    ImageContentData,
-    VideoContentData,
     VimeoContentData,
-    DownloadableContentData,
+
+    FileContentData,
 
     PageData,
     ContentPageData,

@@ -43,4 +43,3 @@ Contact `ben@globalmechanic.com` to retreive auth credentials.
 # `./src/client` folder
 
 The client folder is the main focus for the `rebrand-2020` branch. While the entire repo has been upgraded to use [TypeScript](https://www.typescriptlang.org/), only the client folder restarted-from-scratch, and consists of mostly boiler plate.
-

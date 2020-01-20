@@ -9,6 +9,7 @@ import { ContentPageData } from '../root-components/page-data-provider'
 interface ContentPageProps extends PageProps {
     page: ContentPageData
 }
+
 /***************************************************************/
 // Main
 /***************************************************************/
@@ -18,7 +19,9 @@ const ContentPage = (props: ContentPageProps): ReactElement => {
     const { page } = props
 
     return <Page page={page} >
-        {/** render page.contents here */}
+        {
+            /** render page.contents here */
+        }
     </Page>
 }
 

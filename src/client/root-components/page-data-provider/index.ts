@@ -1,15 +1,15 @@
 import PageDataProvider, { PageDataContext } from './provider'
 import {
+
     ContentData,
     TextContentData,
-    ImageContentData,
-    VideoContentData,
     VimeoContentData,
-    DownloadableContentData,
+    FileContentData,
 
     PageData,
     ContentPageData,
     MenuPageData
+
 } from './types'
 
 /***************************************************************/
@@ -23,10 +23,8 @@ export {
 
     ContentData,
     TextContentData,
-    ImageContentData,
-    VideoContentData,
+    FileContentData,
     VimeoContentData,
-    DownloadableContentData,
 
     PageData,
     ContentPageData,

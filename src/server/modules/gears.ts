@@ -98,7 +98,6 @@ function ensureFile(data: { fileId: string, thumb?: string, meta?: boolean }): v
             .replace('+xml', '') // ew
 
         return writeFile(key, ext, res.body as unknown as ReadStream) // ew
-
     })
 }
 
@@ -229,7 +228,6 @@ function sync(
     from.on('removed', remove)
 
 }
-
 
 /******************************************************************************/
 // Setup
