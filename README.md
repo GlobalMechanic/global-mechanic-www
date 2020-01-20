@@ -84,5 +84,12 @@ where as a content page should display each content object in a full width conta
 
 ### Content Object 
 
-``` TODO: Complete this ```
+``` TODO: Describe me ```
 
+### File Preview and Metadata
+
+``` TODO: Describe me ```
+
+### Server Side Rendering
+
+``` TODO: Complete and Describe me ```
