@@ -19,6 +19,7 @@ import {
 export default PageDataProvider
 
 export {
+    PageDataProvider,
     PageDataContext,
 
     ContentData,

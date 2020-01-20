@@ -43,3 +43,46 @@ Contact `ben@globalmechanic.com` to retreive auth credentials.
 # `./src/client` folder
 
 The client folder is the main focus for the `rebrand-2020` branch. While the entire repo has been upgraded to use [TypeScript](https://www.typescriptlang.org/), only the client folder restarted-from-scratch, and consists of mostly boiler plate.
+
+## Page Data Provider
+
+The only folder where alterations should be avoided is the `src/client/root-components/page-data-provider` folder.
+
+It exposes React Context `PageDataProvider` and `PageDataContext` components for retreiving data elsewhere in the application, as well as a number of type interfaces. 
+
+It contains logic for formatting the old `Gears` api data into a format suits the rebrand's design goals. 
+
+### Page Object
+
+The data provided by the `PageDataProvider` comes as a list of page
+objects. A page can be one of two types.
+
+A content page:
+```js
+{
+    type: 'content',
+    contents: [/* ...content objects */],
+    // ...other page propeties
+}
+// see the ContentPageData interface in: 
+// src/client/root-components/page-data-provider/types.ts
+```
+
+Or a menu page:
+```js
+{
+    type: 'menu',
+    pages: [/* ...page _ids */],
+    // ...other page propeties
+}
+// see the MenuPageData interface in: 
+// src/client/root-components/page-data-provider/types.ts
+```
+
+A menu page should simply create a list of links that points toward other pages,
+where as a content page should display each content object in a full width container.
+
+### Content Object 
+
+``` TODO: Complete this ```
+
