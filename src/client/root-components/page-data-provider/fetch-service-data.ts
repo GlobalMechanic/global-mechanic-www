@@ -2,16 +2,11 @@ import feathers from 'feathers/client'
 import rest from 'feathers-rest/client'
 import fetch from 'isomorphic-fetch'
 import { ServiceData } from './convert-service-data-to-pages'
+import { HOST, IS_DEV } from '../../util/host'
 
 /***************************************************************/
 // Constants
 /***************************************************************/
-
-const IS_DEV = process.env.NODE_ENV === 'development'
-
-const HOST = IS_DEV
-    ? origin.replace(/:\d+$/, ':' + process.env.DEV_SERVER_PORT)
-    : origin
 
 const fetchServiceData = IS_DEV
     ? async function fetchServiceDataFromDevelopmentServer(): Promise<ServiceData> {

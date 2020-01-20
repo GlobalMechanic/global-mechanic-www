@@ -16,7 +16,7 @@ const PageStyled = styled.div`
 
 interface PageProps {
     page: PageData
-    children?: ReactElement | ReactElement[]
+    children?: ReactElement | null | (ReactElement | null)[]
 }
 
 
