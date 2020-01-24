@@ -19,7 +19,9 @@ const ContentPage = (props: ContentPageProps): ReactElement => {
     const { page } = props
 
     return <Page page={page} >
-        {/** render page.contents here */}
+        {
+            /** render page.contents here */
+        }
     </Page>
 }
 

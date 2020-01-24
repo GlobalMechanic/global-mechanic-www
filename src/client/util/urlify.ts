@@ -32,6 +32,8 @@ function urlify(input: string): string {
         .replace(/ /g, '-')
         .replace(/--/g, '-')
         .replace(/--/g, '-') // twice, to handle cases where there an odd number of dashes in a row
+        .replace(/^(-|_)/, '') // no dash or underscore at beginning
+        .replace(/(-|_)$/, '') // no dash or underscore at end
         .trim()
 }
 

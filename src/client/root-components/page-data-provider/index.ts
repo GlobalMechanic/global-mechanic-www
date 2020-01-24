@@ -13,6 +13,7 @@ import {
     PageData,
     ContentPageData,
     MenuPageData
+
 } from './types'
 
 /***************************************************************/
@@ -22,6 +23,7 @@ import {
 export default PageDataProvider
 
 export {
+    PageDataProvider,
     PageDataContext,
 
     ContentData,

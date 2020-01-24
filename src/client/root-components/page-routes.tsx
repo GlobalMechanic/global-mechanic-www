@@ -11,21 +11,27 @@ import pluck from '../util/pluck'
 
 const Router = (): ReactElement => {
 
-    const pages = useContext(PageDataContext) as (MenuPageData | ContentPageData)[]
+    const pages = [
+        ...useContext(PageDataContext)
+        // ^ shallow copy so as not to alter the array stored in context
+    ] as (MenuPageData | ContentPageData)[]
 
-    const splashPage = pluck(pages, page => page.path === '') as ContentPageData | undefined
+    const splashPage = pluck(
+        pages,
+        page => page.path === ''
+    ) as ContentPageData | undefined
 
     return <Switch>
 
         {splashPage
-            ? <Route>
+            ? <Route path='/' exact>
                 <SplashPage page={splashPage} />
             </Route>
             : 'Loading'
         }
 
         {pages.map(page =>
-            <Route key={page.path} path={page.path}>
+            <Route key={page.path} path={'/' + page.path}>
                 {page.type === 'content'
                     ? <ContentPage page={page} />
                     : <MenuPage page={page} pages={pages} />

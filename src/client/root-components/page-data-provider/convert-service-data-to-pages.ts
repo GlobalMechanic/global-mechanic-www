@@ -2,8 +2,11 @@ import {
     PageData,
     ContentData,
     ContentPageData,
+
     TextContentData,
     VimeoContentData,
+
+    FileContentData,
     MenuPageData
 } from './types'
 
@@ -112,6 +115,21 @@ let lastPageID = 0
 
 const newPageId = (): number => ++lastPageID
 
+const castTagValue = (value: string): number | boolean | string => {
+
+    if (value === 'true')
+        return true
+
+    if (value === 'false')
+        return false
+
+    const number = parseFloat(value)
+    if (Number.isNaN(number))
+        return value
+
+    return number
+}
+
 /**
  * Looks for the string #2020RebrandTags in a given essay string,
  * removes it and text following it, parsing the data into tags. 
@@ -131,15 +149,12 @@ function pluckPragmaTagsFromRawEssay(rawEssay: string): {
             .filter(t => t.trim())
             .reduce((hash: HackyRebrandTags, tag) => {
 
-                const [key, value] = tag.split('=').map(keyOrValue => keyOrValue.trim())
+                const [key, value] = tag
+                    .split('=')
+                    .map(keyOrValue => keyOrValue.trim())
+
                 if (hash)
-                    hash[key] = value === 'true'
-                        ? true
-                        : value === 'false'
-                            ? false
-                            : isNaN(parseFloat(value))
-                                ? value
-                                : parseFloat(value)
+                    hash[key] = castTagValue(value)
 
                 return hash
 
@@ -148,7 +163,9 @@ function pluckPragmaTagsFromRawEssay(rawEssay: string): {
 
     return {
         essay,
-        tags: tags && Object.keys(tags).length > 0 ? tags : null
+        tags: tags && Object.keys(tags).length > 0
+            ? tags
+            : null
     }
 
 }
@@ -305,6 +322,15 @@ function createGenericPages(serviceData: ServiceData): PageData[] {
             }
         }
 
+        for (const fileId of files) {
+            const file: FileContentData = {
+                type: 'file',
+                file: fileId
+            }
+            page.contents.push(file)
+            // TODO get file writeup
+        }
+
         pages.push(page)
     }
 
@@ -328,7 +354,6 @@ function removePagesWithDuplicatePaths(pages: PageData[]): PageData[] {
             output.push(page)
         } else
             console.warn(`multiple pages with path "/${page.path}" found`)
-
     }
 
     return output
