@@ -1,7 +1,7 @@
 import React, { ReactElement, useContext } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { PageDataContext, ContentPageData, MenuPageData } from './page-data-provider'
-import { ContentPage, MenuPage, SplashPage, MissingPage } from '../components'
+import { ContentPage, MenuPage, SplashPage, MissingPage } from '../components/pages'
 
 import pluck from '../util/pluck'
 

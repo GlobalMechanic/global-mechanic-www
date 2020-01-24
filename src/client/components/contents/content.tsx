@@ -1,12 +1,12 @@
 import React, { ReactElement } from 'react'
 import styled from 'styled-components'
-import { PageData } from '../root-components/page-data-provider'
+import { ContentData } from '../../root-components/page-data-provider'
 
 /***************************************************************/
 // Supporting
 /***************************************************************/
 
-const PageStyled = styled.div`
+const ContentStyled = styled.div`
 
 `
 
@@ -14,9 +14,9 @@ const PageStyled = styled.div`
 // Props
 /***************************************************************/
 
-interface PageProps {
-    page: PageData
-    children?: ReactElement | null | (ReactElement | null)[]
+interface ContentProps {
+    content: ContentData
+    children?: ReactElement | string | null | (ReactElement | string | null)[]
 }
 
 
@@ -24,14 +24,18 @@ interface PageProps {
 // Main
 /***************************************************************/
 
-const Page = (props: PageProps): ReactElement => {
+const Content = (props: ContentProps): ReactElement => {
 
-    const { page, children } = props
+    const { content, children } = props
 
-    return <PageStyled>
-        <h1>{page.name}</h1>
+    return <ContentStyled>
+
+        <em>{content.type}</em>
+        <br />
+
         {children}
-    </PageStyled>
+
+    </ContentStyled>
 }
 
 
@@ -39,8 +43,8 @@ const Page = (props: PageProps): ReactElement => {
 // Exports
 /***************************************************************/
 
-export default Page
+export default Content
 
 export {
-    PageProps
+    ContentProps
 }

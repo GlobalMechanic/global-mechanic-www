@@ -66,9 +66,11 @@ export {
 
     ContentData,
     TextContentData,
+    VimeoContentData,
+
+    FileContentData,
     ImageContentData,
     VideoContentData,
-    VimeoContentData,
     DownloadableContentData,
 
     PageData,

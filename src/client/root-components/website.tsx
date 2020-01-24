@@ -22,7 +22,7 @@ const Website = (props: WebsiteProps): ReactElement =>
             <GlobalStyle />
 
             <PageContainer>
-                <TopBar >Global Mechanic</TopBar>
+                <TopBar />
                 <PageRoutes />
             </PageContainer>
 

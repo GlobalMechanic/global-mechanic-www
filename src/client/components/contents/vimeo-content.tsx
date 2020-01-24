@@ -1,33 +1,34 @@
 import React, { ReactElement } from 'react'
-import Page, { PageProps } from './page'
-import { ContentPageData } from '../root-components/page-data-provider'
+import Content, { ContentProps } from './content'
+import { VimeoContentData } from '../../root-components/page-data-provider'
 
 /***************************************************************/
 // Props
 /***************************************************************/
 
-interface ContentPageProps extends PageProps {
-    page: ContentPageData
+interface VimeoContentProps extends ContentProps {
+    content: VimeoContentData
 }
+
 /***************************************************************/
 // Main
 /***************************************************************/
 
-const ContentPage = (props: ContentPageProps): ReactElement => {
+const VimeoContent = (props: VimeoContentProps): ReactElement => {
 
-    const { page } = props
+    const { content } = props
 
-    return <Page page={page} >
-        {/** render page.contents here */}
-    </Page>
+    return <Content content={content}>
+        {content.vimeoId.toString()}
+    </Content>
 }
 
 /***************************************************************/
 // Exports
 /***************************************************************/
 
-export default ContentPage
+export default VimeoContent
 
 export {
-    ContentPageProps
+    VimeoContentProps
 }
