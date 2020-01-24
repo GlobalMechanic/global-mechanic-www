@@ -25,7 +25,7 @@ const Router = (): ReactElement => {
 
         {splashPage
             ? <Route path='/' exact>
-                <SplashPage page={splashPage} />
+                <SplashPage page={splashPage} title='' />
             </Route>
             : 'Loading'
         }

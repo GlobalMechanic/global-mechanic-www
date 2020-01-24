@@ -5,7 +5,10 @@ import HOST from './host'
 /***************************************************************/
 
 interface FileMetaData {
+    name: string
     ext: string
+    mime: string
+    size: number
 }
 
 /***************************************************************/
@@ -15,13 +18,18 @@ interface FileMetaData {
 // TODO MOVE ME
 async function fetchFileMetaData(fileId: string): Promise<FileMetaData | null> {
 
-    const URL = `${HOST}/file/${fileId}?meta=true`
+    const URL = `${HOST}/file/${fileId}-meta`
 
     try {
 
         const resp = await fetch(URL)
 
-        const json = await resp.json()
+        let json = await resp.json()
+
+        // HACK 
+        // needs to be parsed twice, for some reason. 
+        // Something is in src/server/middleware/file-serve.ts 
+        json = JSON.parse(json)
 
         return json as FileMetaData
 

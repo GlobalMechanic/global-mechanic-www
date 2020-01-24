@@ -9,13 +9,22 @@ import { Request, Response } from 'express'
 
 export const ONE_YEAR = 31557600
 
+
+/***************************************************************/
+// Helper
+/***************************************************************/
+
+function isFiniteNumber(input: unknown | number): input is number {
+    return typeof input === 'number' && !Number.isNaN(input) && isFinite(input)
+}
+
 /***************************************************************/
 // Main
 /***************************************************************/
 
 export default function () {
 
-    return async function (req: Request, res: Response) {
+    return async function (req: Request, res: Response, next: Function) {
 
         const { key } = req.params
         const { download } = req.query
@@ -24,7 +33,7 @@ export default function () {
 
         const result = await readFile(key, range || '')
         if (!result)
-            throw new Error('no file with key: ' + key)
+            return next(new Error('no file with key: ' + key))
 
         const { stream, ext, start, end, size } = result
 
@@ -34,9 +43,7 @@ export default function () {
 
             stream.on('data', chunk => data += chunk.toString())
             stream.on('end', () => {
-                console.log(`json ${key}`)
                 res.setHeader('Content-Type', 'application/json')
-
                 res.json(JSON.parse(data))
             })
 
@@ -45,16 +52,19 @@ export default function () {
             const dot = ext && ext.includes('.') ? '' : '.'
             const disposition = download ? 'attachment;' : 'inline;'
             const fileName = download ? download : key + dot + ext
+
             const mimeType = mime.getType(fileName) || 'application/octet-stream'
 
             res.setHeader('Content-Disposition', `${disposition}; filename=${fileName}`)
             res.setHeader('Content-Type', mimeType)
             res.setHeader('Cache-Control', `public, max-age=${ONE_YEAR}`)
 
-            if (isFinite(start as number) && isFinite(end as number) && isFinite(size)) {
+            if (isFiniteNumber(start) && isFiniteNumber(end) && isFiniteNumber(size)) {
 
                 // eslint-disable-next-line no-extra-parens
-                const chunk = (end as number) - (start as number) + 1
+                const chunk = end - (start + 1)
+
+                console.log(`serving ${fileName} bytes ${start}-${end}`)
 
                 res.status(206)
 
@@ -62,15 +72,11 @@ export default function () {
                 res.setHeader('Accept-Ranges', 'bytes')
                 res.setHeader('Content-Length', chunk)
 
-                console.log(`serving ${fileName} bytes ${start}-${end}`)
-
             } else
 
                 console.log(`serving ${fileName}`)
 
-
             stream.pipe(res)
-
         }
     }
 }

@@ -1,4 +1,14 @@
 import 'normalize.css'
+import { PageData } from './root-components/page-data-provider'
+
+/***************************************************************/
+// Helper
+/***************************************************************/
+
+function getPageDataFromSSRRenderedJsonTag(): PageData[] {
+    // TODO: Finish SSR then get PageData from json tag
+    return []
+}
 
 /***************************************************************/
 // Execute
@@ -15,7 +25,10 @@ void async function () {
     render(
 
         <Router>
-            <Website theme={LightTheme} />
+            <Website
+                initialPageData={getPageDataFromSSRRenderedJsonTag()}
+                theme={LightTheme}
+            />
         </Router>,
 
         document.getElementById('global-mechanic-www')

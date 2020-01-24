@@ -8,6 +8,22 @@ import { ContentData } from '../../root-components/page-data-provider'
 
 const ContentStyled = styled.div`
 
+    background-color: ${p => p.theme.colors.accent};;
+    border-radius: 0.5em;
+
+    padding: 0.75em;
+    margin: 1em;
+    position: relative;
+
+    em {
+        position: absolute;
+        top: -0.85em;
+        left: 0.25em;
+        color: ${p => p.theme.colors.accent};;
+        font-weight: bold;
+        font-size: 150%;
+    }
+
 `
 
 /***************************************************************/
@@ -26,12 +42,11 @@ interface ContentProps {
 
 const Content = (props: ContentProps): ReactElement => {
 
-    const { content, children } = props
+    const { content, children, ...rest } = props
 
-    return <ContentStyled>
+    return <ContentStyled {...rest}>
 
-        <em>{content.type}</em>
-        <br />
+        <em>{content.type}-content</em>
 
         {children}
 

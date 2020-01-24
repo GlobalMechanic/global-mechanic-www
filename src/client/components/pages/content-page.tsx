@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import Page, { PageProps } from './page'
-import { ContentPageData } from '../../root-components/page-data-provider'
+import { ContentPageData, TextContentData, VimeoContentData, FileContentData } from '../../root-components/page-data-provider'
+import { TextContent, VimeoContent, FileContent } from '../contents'
 
 /***************************************************************/
 // Props
@@ -16,11 +17,16 @@ interface ContentPageProps extends PageProps {
 
 const ContentPage = (props: ContentPageProps): ReactElement => {
 
-    const { page } = props
+    const { page, ...rest } = props
 
-    return <Page page={page} >
+    return <Page page={page} {...rest}>
         {
-            /** render page.contents here */
+            page.contents.map((content, i) => content.type === 'text'
+                ? <TextContent key={i} content={content as TextContentData} />
+                : content.type === 'vimeo'
+                    ? <VimeoContent key={i} content={content as VimeoContentData} />
+                    : <FileContent key={i} content={content as FileContentData} />
+            )
         }
     </Page>
 }

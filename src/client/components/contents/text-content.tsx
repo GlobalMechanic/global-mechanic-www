@@ -1,4 +1,6 @@
 import React, { ReactElement } from 'react'
+import styled from 'styled-components'
+
 import Content, { ContentProps } from './content'
 import { TextContentData } from '../../root-components/page-data-provider'
 
@@ -14,14 +16,20 @@ interface TextContentProps extends ContentProps {
 // Main
 /***************************************************************/
 
-const TextContent = (props: TextContentProps): ReactElement => {
+const TextContent = styled((props: TextContentProps): ReactElement => {
 
-    const { content } = props
+    const { content, ...rest } = props
 
-    return <Content content={content}>
-        {content.text}
+    return <Content content={content} {...rest}>
+        <p>{content.text}</p>
     </Content>
-}
+})`
+    > p {
+        margin: 0;
+        font-size: 2em; 
+    }
+
+`
 
 /***************************************************************/
 // Exports

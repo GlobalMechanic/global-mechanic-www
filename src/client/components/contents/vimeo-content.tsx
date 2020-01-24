@@ -19,8 +19,15 @@ const VimeoContent = (props: VimeoContentProps): ReactElement => {
     const { content } = props
 
     return <Content content={content}>
-        {content.vimeoId.toString()}
-    </Content>
+        <iframe
+            src={`https://player.vimeo.com/video/${content.vimeoId}`}
+            width={640}
+            height={360}
+            frameBorder={0}
+            allow='autoplay; fullscreen'
+            allowFullScreen>
+        </iframe>
+    </Content >
 }
 
 /***************************************************************/

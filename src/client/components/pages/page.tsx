@@ -11,8 +11,14 @@ const PageStyled = styled.div`
     display: flex;
     flex-direction: column;
 
-    flex: 1 1 auto;
+    h1 {
+        background-color: ${p => p.theme.colors.accent};
+        margin: 0em 0em 0.5em 0em;
+        padding: 0.5em;
+        text-transform: uppercase;
+    }
 
+    flex: 1 1 auto;
 `
 
 /***************************************************************/
@@ -20,10 +26,14 @@ const PageStyled = styled.div`
 /***************************************************************/
 
 interface PageProps {
-    page: PageData
-    children?: ReactElement | null | (ReactElement | null)[]
-}
 
+    page: PageData
+
+    title?: string
+
+    children?: ReactElement | null | (ReactElement | null)[]
+
+}
 
 /***************************************************************/
 // Main
@@ -31,11 +41,11 @@ interface PageProps {
 
 const Page = (props: PageProps): ReactElement => {
 
-    const { page, children } = props
+    const { page, title = page.name, children } = props
 
     return <PageStyled>
 
-        <h1>{page.name}</h1>
+        {title ? <h1>{title}</h1> : null}
 
         {children}
 

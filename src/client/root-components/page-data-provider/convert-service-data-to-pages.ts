@@ -261,7 +261,7 @@ function createMainMenuPage(mainPages: PageData[]): MenuPageData {
     return {
         _id: newPageId(),
         name: 'Main Menu',
-        path: 'main',
+        path: 'menu',
         type: 'menu',
 
         pages: mainPages.map(page => page._id),

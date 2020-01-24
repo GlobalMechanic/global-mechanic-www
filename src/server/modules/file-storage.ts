@@ -42,7 +42,7 @@ function initialize(this: WebsiteApplication): void {
 // Helper
 /***************************************************************/
 
-function parseRange(str: string, size: number): { start: number, end: number } {
+function parseRange(str: string, size: number): { start?: number, end?: number } {
 
     const range = str.replace(/bytes=/, '')
         .split('-')
@@ -52,10 +52,7 @@ function parseRange(str: string, size: number): { start: number, end: number } {
     let end: number | undefined = range[1]
 
     if (!isFinite(start))
-        return {
-            start: NaN,
-            end: NaN
-        }
+        return {}
 
     if (!isFinite(end))
         end = size - 1
@@ -75,7 +72,6 @@ async function getLocalUrl(key: string): Promise<string | null> {
         ? path.join(LOCAL_FILES, file)
         : null
 }
-
 
 /***************************************************************/
 // Interface

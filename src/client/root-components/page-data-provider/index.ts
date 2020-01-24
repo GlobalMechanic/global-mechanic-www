@@ -6,9 +6,6 @@ import {
     VimeoContentData,
 
     FileContentData,
-    ImageContentData,
-    VideoContentData,
-    DownloadableContentData,
 
     PageData,
     ContentPageData,
@@ -31,9 +28,6 @@ export {
     VimeoContentData,
 
     FileContentData,
-    ImageContentData,
-    VideoContentData,
-    DownloadableContentData,
 
     PageData,
     ContentPageData,

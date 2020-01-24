@@ -72,7 +72,7 @@ Or a menu page:
 ```js
 {
     type: 'menu',
-    pages: [/* ...page _ids */],
+    pages: [/* ...page._ids */],
     // ...other page propeties
 }
 // see the MenuPageData interface in: 
@@ -84,11 +84,60 @@ where as a content page should display each content object in a full width conta
 
 ### Content Object 
 
-``` TODO: Describe me ```
+In `type: "content"` pages, the `page.contents` property will be an 
+array of objects with that that's intended to be displayed on the page.
 
-### File Preview and Metadata
+As of this writing, there are three:
 
-``` TODO: Describe me ```
+```js
+
+// TextContentData
+{
+    type: 'text',
+    text: 'Description or Essay'
+}
+
+// VimeoContentData
+{
+    type: 'vimeo',
+    name: 'Name of the Video on Vimeo', 
+    vimeoId: 0000000 // correponds with an id on vimeo
+}
+
+// FileContentData
+{
+    type: 'file', // or 'video' or 'image'
+    file: 'fileID' // corresponds with a file object on the server/s3
+}
+
+// see the ContentData interfaces in: 
+// src/client/root-components/page-data-provider/types.ts
+```
+
+As of this writing the interfaces are very simple to leave room for future enhancements to the `Gears API` to provide additional styling or meta information.
+
+### Files
+
+A number of properties in page `Page` and `Content` data objects reference a `FileID` associated with a file on the `Website Server`.
+
+The `FileContentData` object has a `file` property references a `FileID` on the `Website Server`.
+
+The file associated with a `FileID` can be fetched from the server with the following endpoints:
+
+```js
+
+const HOST = 'localhost:5000' // or, in production, globalmechanic.com
+
+const fileID = `[ ObjectID as a string]`  
+
+`${HOST}/file/${fileID}` // for using as a src tag
+`${HOST}/file/${fileID}-thumb` // for a smaller preview of a full image
+`${HOST}/file/${fileID}-meta` // for getting a metadata JSON object with information about the given file
+`${HOST}/file/${fileID}?download=FileName.ext` // for providing the file as an attachment download with a custom filename
+
+```
+
+The `FileContent` component in _src/client/components/contents/file-content.tsx_ employs a react hook to fetch the metadata of a file before providing a link to make it downloadable. 
 
 ### Server Side Rendering
 

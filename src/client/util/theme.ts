@@ -11,6 +11,7 @@ declare module 'styled-components' {
         colors: {
             bg: string
             fg: string
+            accent: string
         }
 
     }
@@ -25,7 +26,8 @@ const LightTheme: DefaultTheme = {
 
     colors: {
         bg: 'white',
-        fg: 'black'
+        fg: 'black',
+        accent: '#ddd'
     }
 
 }

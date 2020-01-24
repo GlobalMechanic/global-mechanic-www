@@ -1,23 +1,31 @@
 import React, { ReactElement } from 'react'
 import { ThemeProvider, DefaultTheme } from 'styled-components'
 
-import GlobalStyle from './global-style'
+
+import PageDataProvider, { PageData } from './page-data-provider'
 import PageRoutes from './page-routes'
-import PageDataProvider from './page-data-provider'
-import TopBar from './top-bar'
+
+import GlobalStyle from './global-style'
 import PageContainer from './page-container'
+
+import TopBar from './top-bar'
 
 /***************************************************************/
 // Container
 /***************************************************************/
 
 interface WebsiteProps {
+    initialPageData?: PageData[]
     theme: DefaultTheme
 }
 
-const Website = (props: WebsiteProps): ReactElement =>
-    <PageDataProvider>
-        <ThemeProvider theme={props.theme}>
+const Website = (props: WebsiteProps): ReactElement => {
+
+    const { theme, initialPageData } = props
+
+    return <PageDataProvider initialPageData={initialPageData}>
+
+        <ThemeProvider theme={theme}>
 
             <GlobalStyle />
 
@@ -27,7 +35,9 @@ const Website = (props: WebsiteProps): ReactElement =>
             </PageContainer>
 
         </ThemeProvider>
+
     </PageDataProvider>
+}
 
 /***************************************************************/
 // Exports

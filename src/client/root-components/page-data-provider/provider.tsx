@@ -9,6 +9,7 @@ import { PageData } from './types'
 /***************************************************************/
 
 interface PageDataProviderProps {
+    initialPageData?: PageData[]
     children: ReactElement
 }
 
@@ -24,16 +25,18 @@ const PageDataContext = createContext<PageData[]>([])
 
 const PageDataProvider = (props: PageDataProviderProps): ReactElement => {
 
-    const [pages, setPages] = useState([] as PageData[])
+    const { initialPageData = [], children } = props
+
+    const [pages, setPages] = useState(initialPageData)
 
     useEffect(() => {
-        Promise.resolve(fetchServiceData())
-            .then(serviceData => convertServiceDataToPages(serviceData))
-            .then(pages => setPages(pages))
+        fetchServiceData()
+            .then(convertServiceDataToPages)
+            .then(setPages)
     }, [])
 
     return <PageDataContext.Provider value={pages}>
-        {props.children}
+        {children}
     </PageDataContext.Provider >
 }
 

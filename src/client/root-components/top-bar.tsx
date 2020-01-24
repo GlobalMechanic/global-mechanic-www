@@ -12,7 +12,7 @@ const TopBar = styled(props => {
 
         <h2>Global Mechanic</h2>
 
-        <Link to='/about-us'>|||</Link>
+        <Link to='/menu'>|||</Link>
 
     </div >
 })`
@@ -26,9 +26,15 @@ const TopBar = styled(props => {
         margin: 0;
     }
 
+    a {
+        text-decoration: none;
+        &:visited {
+            color: inherit;
+        }
+    }
+
     > :last-child {
         margin-left: auto;
-        transform: rotate(90deg);
     }
 
 `
