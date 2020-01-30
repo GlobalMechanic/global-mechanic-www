@@ -3,7 +3,7 @@ import { ThemeProvider, DefaultTheme } from 'styled-components'
 
 
 import PageDataProvider, { PageData } from './page-data-provider'
-import PageRoutes from './page-routes'
+import PageRoutes, { StaticAssets } from './page-routes'
 
 import GlobalStyle from './global-style'
 import PageContainer from './page-container'
@@ -16,12 +16,13 @@ import TopBar from './top-bar'
 
 interface WebsiteProps {
     initialPageData?: PageData[]
+    staticAssets: StaticAssets
     theme: DefaultTheme
 }
 
 const Website = (props: WebsiteProps): ReactElement => {
 
-    const { theme, initialPageData } = props
+    const { theme, initialPageData, staticAssets } = props
 
     return <PageDataProvider initialPageData={initialPageData}>
 
@@ -30,8 +31,8 @@ const Website = (props: WebsiteProps): ReactElement => {
             <GlobalStyle />
 
             <PageContainer>
-                <TopBar />
-                <PageRoutes />
+                <TopBar staticAssets={staticAssets} />
+                <PageRoutes staticAssets={staticAssets} />
             </PageContainer>
 
         </ThemeProvider>

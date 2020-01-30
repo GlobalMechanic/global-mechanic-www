@@ -1,34 +1,103 @@
 import React, { ReactElement } from 'react'
+import styled, { css } from 'styled-components'
+
 import Page from './page'
 import { ContentPageProps } from './content-page'
-import { TextContentData, VimeoContentData } from '../../root-components/page-data-provider'
+import { TextContentData, FileContentData } from '../../root-components/page-data-provider'
 
-import { TextContent, VimeoContent } from '../contents'
+import { TextContent, FileContent } from '../contents'
+import { StaticAssets } from '../../root-components/page-routes'
 
-import pluck from '../../util/pluck'
+/***************************************************************/
+// Types
+/***************************************************************/
+
+interface SplashPageProps extends ContentPageProps {
+    staticAssets: StaticAssets
+}
+
+interface BackgroundOverlayProps {
+    staticImage: string
+}
+
+/***************************************************************/
+// Background
+/***************************************************************/
+
+const fixed = css`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -100;
+`
+
+const BackgroundOverlay = styled.div`
+    ${fixed}
+    background-image: url(${(p: BackgroundOverlayProps) => p.staticImage});
+`
+
+const BackgroundVideoContent = styled(FileContent)`
+    ${fixed}
+    video {
+        position: inherit;
+
+        top: 50%;
+        left: 50%;
+
+        min-width: 100%;
+        min-height: 100%;
+
+        width: auto;
+        height: auto;
+
+        transform: translate(-50%, -50%);
+    }
+`
+
+const BackgroundTextContent = styled(TextContent)`
+    color: transparent;
+    font-size: 30vw;
+    font-size: max(min(60vw, 60vh), 12em);
+    max-width: calc(100vw);
+    overflow: hidden;
+
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: ${p => p.theme.colors.bg};
+`
 
 /***************************************************************/
 // Main
 /***************************************************************/
 
-const SplashPage = (props: ContentPageProps): ReactElement => {
+const SplashPage = styled((props: SplashPageProps): ReactElement => {
 
-    const { page, ...rest } = props
+    const { page, staticAssets, ...rest } = props
 
-    const fgText = pluck(page.contents as TextContentData[], content => content.type === 'text')
-    const bgVimeo = pluck(page.contents as VimeoContentData[], content => content.type === 'vimeo')
+    const fgText = page.contents.find(content => content.type === 'text') as TextContentData | void
+    const bgVideo = page.contents.find(content => content.type === 'file') as FileContentData | void
 
     return <Page page={page} {...rest}>
+
+        {bgVideo
+            ? <BackgroundVideoContent content={bgVideo} description={null} />
+            : null
+        }
+
+        <BackgroundOverlay staticImage={staticAssets.dots} />
+
         {fgText
-            ? <TextContent content={fgText} />
+            ? <BackgroundTextContent content={fgText} />
             : null
         }
-        {bgVimeo
-            ? <VimeoContent content={bgVimeo} />
-            : null
-        }
+
     </Page>
-}
+})`
+    align-items: center;
+    justify-content: center;
+`
 
 /***************************************************************/
 // Exports

@@ -1,6 +1,14 @@
 import 'normalize.css'
 import { PageData } from './root-components/page-data-provider'
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore it's webpack, it's fine
+import dots from './assets/dots.png'
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore it's webpack, it's fine
+import nut from './assets/nut.png'
+
 /***************************************************************/
 // Helper
 /***************************************************************/
@@ -22,11 +30,17 @@ void async function () {
     const { default: Website } = await import('./root-components')
     const { LightTheme } = await import('./util/theme')
 
+    const staticAssets = {
+        dots,
+        nut
+    }
+
     render(
 
         <Router>
             <Website
                 initialPageData={getPageDataFromSSRRenderedJsonTag()}
+                staticAssets={staticAssets}
                 theme={LightTheme}
             />
         </Router>,

@@ -105,6 +105,8 @@ function hasFile(key: string): Promise<boolean> {
 
 function writeFile(key: string, ext: string, read: ReadStream): Promise<void> {
 
+    console.log('streaming file from gears', key, ext)
+
     if (!s3) {
         const write = fs.createWriteStream(
             path.join(LOCAL_FILES, `${key}${ext}`)

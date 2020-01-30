@@ -172,27 +172,27 @@ function pluckPragmaTagsFromRawEssay(rawEssay: string): {
 
 function createSplashPage(serviceData: ServiceData): ContentPageData {
 
-    const justClicks = serviceData.products.find(product => product.name.includes('Just'))
-    const backgroundVideo: VimeoContentData | null = justClicks &&
-        justClicks.video
-        ? {
-            type: 'vimeo',
-            name: justClicks.name,
-            vimeoId: justClicks.video.vimeoId
-        }
-        : null
+    const splashShowcase = pluck(
+        serviceData.showcases,
+        show => show.name.includes('Splash') && show.name.includes('New Website')
+    )
 
-    const helloText: TextContentData = {
-        type: 'text',
-        text: 'Hello'
-    }
+    const randomBackgroundVideo = splashShowcase && splashShowcase.files[
+        Math.floor(
+            Math.random() * splashShowcase.files.length
+        )
+    ]
 
-    const contents: ContentData[] = []
-
-    if (backgroundVideo)
-        contents.push(backgroundVideo)
-
-    contents.push(helloText)
+    const contents: ContentData[] = [
+        {
+            type: 'file',
+            file: randomBackgroundVideo
+        } as FileContentData,
+        {
+            type: 'text',
+            text: 'Hello'
+        } as TextContentData
+    ]
 
     return {
         _id: newPageId(),
@@ -328,7 +328,6 @@ function createGenericPages(serviceData: ServiceData): PageData[] {
                 file: fileId
             }
             page.contents.push(file)
-            // TODO get file writeup
         }
 
         pages.push(page)

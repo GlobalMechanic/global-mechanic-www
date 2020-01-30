@@ -14,9 +14,6 @@ const GlobalStyle = createGlobalStyle`
     html {
         background-color: ${p => p.theme.colors.bg};
         color: ${p => p.theme.colors.fg};
-
-        width: 100vw;
-        height: 100vh;
     }
 
     body, main {

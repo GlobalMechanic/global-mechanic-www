@@ -16,13 +16,11 @@ interface VimeoContentProps extends ContentProps {
 
 const VimeoContent = (props: VimeoContentProps): ReactElement => {
 
-    const { content } = props
+    const { content, ...rest } = props
 
-    return <Content content={content}>
+    return <Content content={content} {...rest}>
         <iframe
             src={`https://player.vimeo.com/video/${content.vimeoId}`}
-            width={640}
-            height={360}
             frameBorder={0}
             allow='autoplay; fullscreen'
             allowFullScreen>

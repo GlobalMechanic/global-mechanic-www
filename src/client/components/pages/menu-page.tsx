@@ -26,7 +26,7 @@ const MenuPage = (props: MenuPageProps): ReactElement => {
         {links.map(pageId => {
             const page = pages.find(page => page._id === pageId)
             return page
-                ? <Link to={'/' + page.path}>{page.name}</Link>
+                ? <Link key={page.path} to={'/' + page.path}>{page.name}</Link>
                 : null
         })}
     </Page>

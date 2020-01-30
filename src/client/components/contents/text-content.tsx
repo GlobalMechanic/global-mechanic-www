@@ -21,13 +21,9 @@ const TextContent = styled((props: TextContentProps): ReactElement => {
     const { content, ...rest } = props
 
     return <Content content={content} {...rest}>
-        <p>{content.text}</p>
+        {content.text}
     </Content>
 })`
-    > p {
-        margin: 0;
-        font-size: 2em; 
-    }
 
 `
 

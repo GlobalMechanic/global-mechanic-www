@@ -6,10 +6,24 @@ import { ContentPage, MenuPage, SplashPage, MissingPage } from '../components/pa
 import pluck from '../util/pluck'
 
 /***************************************************************/
+// Types
+/***************************************************************/
+
+interface StaticAssets {
+    [key: string]: string
+}
+
+interface PageRoutesProps {
+    staticAssets: StaticAssets
+}
+
+/***************************************************************/
 // Main
 /***************************************************************/
 
-const Router = (): ReactElement => {
+const PageRoutes = (props: PageRoutesProps): ReactElement => {
+
+    const { staticAssets } = props
 
     const pages = [
         ...useContext(PageDataContext)
@@ -25,7 +39,7 @@ const Router = (): ReactElement => {
 
         {splashPage
             ? <Route path='/' exact>
-                <SplashPage page={splashPage} title='' />
+                <SplashPage page={splashPage} title='' staticAssets={staticAssets} />
             </Route>
             : 'Loading'
         }
@@ -51,4 +65,8 @@ const Router = (): ReactElement => {
 // Exports
 /***************************************************************/
 
-export default Router
+export default PageRoutes
+
+export {
+    StaticAssets
+}

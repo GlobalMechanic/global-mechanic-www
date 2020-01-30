@@ -3,7 +3,7 @@ type FileID = string
 type PageID = number
 
 interface ContentData {
-    type: 'text' | 'vimeo' | 'file' | 'image' | 'video'
+    type: 'text' | 'vimeo' | 'file'
 }
 
 interface TextContentData extends ContentData {
@@ -19,7 +19,7 @@ interface VimeoContentData extends ContentData {
 
 interface FileContentData extends ContentData {
     file: FileID
-    type: 'file' | 'image' | 'video'
+    type: 'file'
 }
 
 interface PageData {

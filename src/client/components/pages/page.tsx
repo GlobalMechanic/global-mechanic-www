@@ -19,6 +19,7 @@ const PageStyled = styled.div`
     }
 
     flex: 1 1 auto;
+    box-sizing: border-box;
 `
 
 /***************************************************************/
@@ -41,9 +42,9 @@ interface PageProps {
 
 const Page = (props: PageProps): ReactElement => {
 
-    const { page, title = page.name, children } = props
+    const { page, title = page.name, children, ...rest } = props
 
-    return <PageStyled>
+    return <PageStyled {...rest}>
 
         {title ? <h1>{title}</h1> : null}
 

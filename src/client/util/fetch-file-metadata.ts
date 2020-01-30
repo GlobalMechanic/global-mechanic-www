@@ -9,6 +9,7 @@ interface FileMetaData {
     ext: string
     mime: string
     size: number
+    description?: string
 }
 
 /***************************************************************/
