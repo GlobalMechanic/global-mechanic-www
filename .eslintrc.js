@@ -30,7 +30,20 @@ module.exports = {
         'no-var': 'error',
         'semi': 'off',
         'eqeqeq': ['error', 'always', { null: 'ignore' }],
-        '@typescript-eslint/semi': ['error', 'never'],
+
+        '@typescript-eslint/await-thenable': 'error',
+        '@typescript-eslint/explicit-function-return-type': [
+            'error', {
+                allowExpressions: true
+            }
+        ],
+
+        '@typescript-eslint/no-this-alias': 'off',
+        '@typescript-eslint/semi': [
+            'error',
+            'never'
+        ],
+
         '@typescript-eslint/member-delimiter-style': ['error', {
             'multiline': {
                 'delimiter': 'none',
@@ -40,10 +53,8 @@ module.exports = {
                 'delimiter': 'comma',
                 'requireLast': false
             }
-        }],
-        '@typescript-eslint/await-thenable': 'error',
-        '@typescript-eslint/explicit-function-return-type': ['error', { allowExpressions: true }],
-        '@typescript-eslint/no-this-alias': 'off'
+        }]
+
     }
 
 }
