@@ -60,7 +60,7 @@ const BackgroundVideoContent = styled(FileContent)`
 const BackgroundTextContent = styled(TextContent)`
     color: transparent;
     font-size: 30vw;
-    font-size: max(min(60vw, 60vh), 12em);
+    font-size: max(min(40vw, 40vh), 12em);
     max-width: calc(100vw);
     overflow: hidden;
 
