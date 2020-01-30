@@ -50,6 +50,8 @@ const TopBar = styled((props: TopBarProps) => {
     align-items: baseline;
     margin: 1em;
 
+    font-size: 1.25em;
+
     h2 {
         margin: 0 auto 0 0;
     }
@@ -60,7 +62,6 @@ const TopBar = styled((props: TopBarProps) => {
             color: inherit;
         }
     }
-
 `
 
 /***************************************************************/

@@ -7,6 +7,7 @@ import { TextContentData, FileContentData } from '../../root-components/page-dat
 
 import { TextContent, FileContent } from '../contents'
 import { StaticAssets } from '../../root-components/page-routes'
+import { titleFont } from '../../util/css'
 
 /***************************************************************/
 // Types
@@ -35,12 +36,16 @@ const fixed = css`
 `
 
 const BackgroundOverlay = styled.div`
+    
     ${fixed}
+    
     background-image: url(${(p: BackgroundOverlayProps) => p.staticImage});
 `
 
 const BackgroundVideoContent = styled(FileContent)`
+    
     ${fixed}
+
     video {
         position: inherit;
 
@@ -59,8 +64,11 @@ const BackgroundVideoContent = styled(FileContent)`
 
 const BackgroundTextContent = styled(TextContent)`
     color: transparent;
-    font-size: 30vw;
-    font-size: max(min(40vw, 40vh), 12em);
+    
+    ${titleFont};
+    font-size: 40vw;
+    font-size: max(min(45vw, 45vh), 12em);
+    
     max-width: calc(100vw);
     overflow: hidden;
 

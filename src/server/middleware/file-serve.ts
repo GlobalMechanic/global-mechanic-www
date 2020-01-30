@@ -62,13 +62,12 @@ export default function () {
             if (isFiniteNumber(start) && isFiniteNumber(end) && isFiniteNumber(size)) {
 
                 // eslint-disable-next-line no-extra-parens
-                const chunk = end - (start + 1)
-
-                console.log(`serving ${fileName} bytes ${start}-${end}`)
+                const chunk = (end + 1) - start
+                console.log(`serving ${fileName} bytes ${start} - ${end} = ${chunk}`)
 
                 res.status(206)
 
-                res.setHeader('Content-Range', `bytes ${start}-${end}/${size}`)
+                res.setHeader('Content-Range', `bytes ${start} - ${end} / ${size}`)
                 res.setHeader('Accept-Ranges', 'bytes')
                 res.setHeader('Content-Length', chunk)
 
