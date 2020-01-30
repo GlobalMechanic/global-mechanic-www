@@ -20,6 +20,14 @@ const GlobalStyle = createGlobalStyle`
     html {
         background-color: ${p => p.theme.colors.bg};
         color: ${p => p.theme.colors.fg};
+
+        @media only screen and (max-width: 400px) {
+            font-size: 0.75rem;
+        }
+
+        @media only screen and (max-width: 300px) {
+            font-size: 0.5rem;
+        }
     }
 
     body, main {

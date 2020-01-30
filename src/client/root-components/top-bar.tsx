@@ -23,6 +23,8 @@ const Nut = styled.span`
     width: 1.25em;
     height: 1em;
 
+    flex: 0 0 auto;
+
     background-size: contain;
     background-repeat: no-repeat;
     background-image: url(${(p: NutProps) => p.staticImage});
@@ -48,7 +50,10 @@ const TopBar = styled((props: TopBarProps) => {
 
     display: flex;
     align-items: baseline;
-    margin: 1em;
+    margin: 0.5em 0.75em;
+
+    position: sticky;
+    top: 0.5em;
 
     font-size: 1.25em;
 

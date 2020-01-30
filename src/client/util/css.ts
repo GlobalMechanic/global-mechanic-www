@@ -24,10 +24,9 @@ export const bodyFont = css`
 
     font-family: "Ringside Condensed A", "Ringside Condensed B";
     font-style: normal;
-    font-weight: 400;
+    font-weight: 300;
 
 `
-
 
 export const bodyFontBold = css`
 

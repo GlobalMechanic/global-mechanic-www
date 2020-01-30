@@ -230,6 +230,7 @@ function createAboutUsPage(serviceData: ServiceData): ContentPageData {
         theme: 'dark',
         portrait: null
     }
+
 }
 
 function createMainContentPages(privatePages: PageData[]): MenuPageData[] {
@@ -343,7 +344,6 @@ function removeSymbolsFromPages(pages: PageData[]): PageData[] {
 function removePagesWithDuplicatePaths(pages: PageData[]): PageData[] {
 
     const pathTable: { [path: string]: true } = {}
-
     const output: PageData[] = []
 
     for (const page of pages) {

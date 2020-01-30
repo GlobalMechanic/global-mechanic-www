@@ -3,26 +3,6 @@ import styled from 'styled-components'
 import { PageData } from '../../root-components/page-data-provider'
 
 /***************************************************************/
-// Supporting
-/***************************************************************/
-
-const PageStyled = styled.div`
-
-    display: flex;
-    flex-direction: column;
-
-    h1 {
-        background-color: ${p => p.theme.colors.accent};
-        margin: 0em 0em 0.5em 0em;
-        padding: 0.5em;
-        text-transform: uppercase;
-    }
-
-    flex: 1 1 auto;
-    box-sizing: border-box;
-`
-
-/***************************************************************/
 // Props
 /***************************************************************/
 
@@ -40,18 +20,26 @@ interface PageProps {
 // Main
 /***************************************************************/
 
-const Page = (props: PageProps): ReactElement => {
+const Page = styled((props: PageProps): ReactElement => {
 
     const { page, title = page.name, children, ...rest } = props
 
-    return <PageStyled {...rest}>
+    return <div {...rest}>
 
         {title ? <h1>{title}</h1> : null}
 
         {children}
 
-    </PageStyled>
-}
+    </div>
+})`
+    display: flex;
+    flex-direction: column;
+
+    flex: 1 1 auto;
+    box-sizing: border-box;
+
+    margin: 0em 1em 0em 1em;
+`
 
 
 /***************************************************************/

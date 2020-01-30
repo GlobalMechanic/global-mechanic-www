@@ -9,7 +9,6 @@ const PageContainer = styled.div`
    flex-direction: column;
    flex: 1 1 auto;
    
-   min-height: 100vh;
 `
 
 /***************************************************************/
