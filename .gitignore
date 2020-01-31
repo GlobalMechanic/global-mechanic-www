@@ -1,7 +1,9 @@
 .DS_Store
 
 node_modules
+development.json
 npm-debug.log
 
-config/production-test.json
+./public/*
+
 db
