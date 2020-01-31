@@ -1,4 +1,6 @@
 import React, { ReactElement, useState, useEffect } from 'react'
+import styled from 'styled-components'
+
 import Content, { ContentProps } from './content'
 import { FileContentData } from '../../root-components/page-data-provider'
 import fetchFileMetaData, { FileMetaData } from '../../util/fetch-file-metadata'
@@ -69,13 +71,12 @@ const Video = (props: FileMetaContentProps): ReactElement => {
 
 const Image = (props: FileMetaContentProps): ReactElement => {
 
-    const { meta, content } = props
+    const { content, ...rest } = props
 
-    console.log(meta, content)
-
-    return <picture>
-
-    </picture>
+    return <img
+        src={`${HOST}/file/${content.file}`}
+        {...rest}
+    />
 }
 
 const Download = (props: FileMetaContentProps): ReactElement => {
@@ -110,7 +111,6 @@ const FileContent = (props: FileContentProps): ReactElement => {
 
     const meta = useFileMetadata(content.file)
     const description = meta && meta.description
-
     const Component = meta && File[getContentType(meta)]
 
     return <>

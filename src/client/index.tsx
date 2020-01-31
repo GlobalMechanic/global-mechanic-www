@@ -3,7 +3,7 @@ import { PageData } from './root-components/page-data-provider'
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import staticAssets from './assets'
+import { light, dark } from './assets'
 
 /***************************************************************/
 // Helper
@@ -30,7 +30,8 @@ void async function () {
         <Router>
             <Website
                 initialPageData={getPageDataFromSSRRenderedJsonTag()}
-                staticAssets={staticAssets}
+                lightStaticAssets={light}
+                darkStaticAssets={dark}
             />
         </Router>,
 

@@ -1,19 +1,46 @@
 import dots from './dots.png'
 import facebook from './facebook.png'
-import hamburger from './hamburger.png'
+import hamburgerLight from './hamburger-light.png'
+import hamburgerDark from './hamburger-dark.png'
 import insta from './insta.png'
-import nut from './nut.png'
+import nutLight from './nut-light.png'
+import nutDark from './nut-dark.png'
 import twitter from './twitter.png'
 import vimeo from './vimeo.png'
-import x from './x.png'
+import xDark from './x-dark.png'
+import xLight from './x-light.png'
 
-export default {
+/***************************************************************/
+// Compose
+/***************************************************************/
+
+const light = {
     dots,
     facebook,
-    hamburger,
+    hamburger: hamburgerLight,
     insta,
-    nut,
+    nut: nutLight,
     twitter,
     vimeo,
-    x
+    x: xLight
+}
+
+const dark = {
+    dots,
+    facebook,
+    hamburger: hamburgerDark,
+    insta,
+    nut: nutDark,
+    twitter,
+    vimeo,
+    x: xDark
+}
+
+/***************************************************************/
+// Export
+/***************************************************************/
+
+export {
+    light,
+    dark
 }

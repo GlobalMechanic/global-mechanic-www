@@ -16,16 +16,25 @@ import themes, { ThemeType } from '../util/theme'
 
 interface WebsiteProps {
     initialPageData?: PageData[]
-    staticAssets: StaticAssets
+    lightStaticAssets: StaticAssets
+    darkStaticAssets: StaticAssets
 }
 
 const Website = (props: WebsiteProps): ReactElement => {
 
-    const { initialPageData, staticAssets } = props
+    const {
+        initialPageData,
+        lightStaticAssets,
+        darkStaticAssets
+    } = props
 
     const [themeType, setThemeType] = useState<ThemeType>('light')
 
     const theme = themes[themeType]
+
+    const staticAssets = themeType === 'dark'
+        ? lightStaticAssets
+        : darkStaticAssets
 
     return <PageDataProvider initialPageData={initialPageData}>
 

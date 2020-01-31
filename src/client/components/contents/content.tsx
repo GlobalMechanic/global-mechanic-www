@@ -3,14 +3,6 @@ import styled from 'styled-components'
 import { ContentData } from '../../root-components/page-data-provider'
 
 /***************************************************************/
-// Supporting
-/***************************************************************/
-
-const ContentStyled = styled.div`
-
-`
-
-/***************************************************************/
 // Props
 /***************************************************************/
 
@@ -24,14 +16,16 @@ interface ContentProps {
 // Main
 /***************************************************************/
 
-const Content = (props: ContentProps): ReactElement => {
+const Content = styled((props: ContentProps): ReactElement => {
 
-    const { content, children, ...rest } = props
+    const { children, ...rest } = props
 
-    return <ContentStyled {...rest}>
+    return <div {...rest}>
         {children}
-    </ContentStyled>
-}
+    </div>
+})`
+    width: 100vw;
+`
 
 
 /***************************************************************/
