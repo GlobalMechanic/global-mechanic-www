@@ -11,7 +11,6 @@ interface ContentProps {
     children?: ReactElement | string | null | (ReactElement | string | null)[]
 }
 
-
 /***************************************************************/
 // Main
 /***************************************************************/
@@ -24,9 +23,8 @@ const Content = styled((props: ContentProps): ReactElement => {
         {children}
     </div>
 })`
-    width: 100vw;
+    
 `
-
 
 /***************************************************************/
 // Exports

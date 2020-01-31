@@ -50,7 +50,8 @@ const PageRoutes = (props: PageRoutesProps): ReactElement => {
             : 'Loading'
         }
 
-        {pages.map(page =>
+        {pages.map((page: ContentPageData | MenuPageData) =>
+
             <Route key={page.path} path={'/' + page.path}>
                 {page.type === 'content'
                     ? <ContentPage
@@ -64,6 +65,7 @@ const PageRoutes = (props: PageRoutesProps): ReactElement => {
                     />
                 }
             </Route>
+
         )}
 
         <Route>

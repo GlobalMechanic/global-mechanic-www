@@ -8,7 +8,9 @@ import { TextContentData, FileContentData } from '../../root-components/page-dat
 import { TextContent, FileContent } from '../contents'
 import { StaticAssets } from '../../root-components/page-routes'
 import { titleFont } from '../../util/css'
-import Icon, { IconProps } from '../generic/icon'
+import { IconProps } from '../generic/icon'
+
+import SocialMediaLinks from '../generic/social-media-links'
 
 /***************************************************************/
 // Types
@@ -20,10 +22,6 @@ interface SplashPageProps extends ContentPageProps {
 
 interface BackgroundOverlayProps {
     staticImage: string
-}
-
-interface SocialMediaLinkProps extends IconProps {
-    to: string
 }
 
 /***************************************************************/
@@ -82,32 +80,6 @@ const BackgroundTextContent = styled(TextContent)`
     -webkit-text-stroke-color: ${p => p.theme.colors.bg};
 `
 
-const SocialMediaLinks = styled.div`
-
-    display: flex;
-    position: fixed;
-    bottom: 1em;
-
-    height: 4em;
-
-    align-items: baseline;
-`
-
-const SocialMediaLink = styled((props: SocialMediaLinkProps) => {
-
-    const { to, ...rest } = props
-
-    return <Icon
-        as='a'
-        href={to}
-        target='_blank'
-        {...rest}
-    />
-})`
-    font-size: 2em;
-    margin-left: 0.25em;
-`
-
 /***************************************************************/
 // Main
 /***************************************************************/
@@ -128,29 +100,7 @@ const SplashPage = styled((props: SplashPageProps): ReactElement => {
 
         <BackgroundOverlay staticImage={staticAssets.dots} />
 
-        <SocialMediaLinks>
-
-            <SocialMediaLink
-                image={staticAssets.insta}
-                to='https://www.instagram.com/globalmechanic/?hl=en'
-            />
-
-            <SocialMediaLink
-                image={staticAssets.facebook}
-                to='https://www.facebook.com/GlobalMechanicMedia/'
-            />
-
-            <SocialMediaLink
-                image={staticAssets.vimeo}
-                to='https://vimeo.com/globalmechanicmedia'
-            />
-
-            <SocialMediaLink
-                image={staticAssets.twitter}
-                to='https://twitter.com/globalmechanic?lang=en'
-            />
-
-        </SocialMediaLinks>
+        <SocialMediaLinks staticAssets={staticAssets} />
 
         {fgText
             ? <BackgroundTextContent content={fgText} />

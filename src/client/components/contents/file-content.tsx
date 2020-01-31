@@ -1,5 +1,4 @@
 import React, { ReactElement, useState, useEffect } from 'react'
-import styled from 'styled-components'
 
 import Content, { ContentProps } from './content'
 import { FileContentData } from '../../root-components/page-data-provider'
@@ -62,10 +61,12 @@ const Video = (props: FileMetaContentProps): ReactElement => {
     const { content, meta, ...rest } = props
 
     return <video muted autoPlay loop {...rest}>
+
         <source
             src={`${HOST}/file/${content.file}`}
             type={meta.mime}
         />
+
     </video>
 }
 
@@ -91,7 +92,10 @@ const Download = (props: FileMetaContentProps): ReactElement => {
     </a>
 }
 
-const File = {
+const FileViewComponents: Record<
+    'video' | 'image' | 'download',
+    (props: FileMetaContentProps) => ReactElement
+> = {
     video: Video,
     image: Image,
     download: Download
@@ -111,13 +115,13 @@ const FileContent = (props: FileContentProps): ReactElement => {
 
     const meta = useFileMetadata(content.file)
     const description = meta && meta.description
-    const Component = meta && File[getContentType(meta)]
+    const FileViewComponent = meta && FileViewComponents[getContentType(meta)]
 
     return <>
 
         <Content content={content} {...rest}>
-            {meta && Component
-                ? <Component content={content} meta={meta} />
+            {meta && FileViewComponent
+                ? <FileViewComponent content={content} meta={meta} />
                 : null
             }
         </Content>
