@@ -198,6 +198,7 @@ function createSplashPage(serviceData: ServiceData): ContentPageData {
         _id: newPageId(),
         name: 'Splash',
         path: '', // cuz home page
+        title: '',
         type: 'content',
         contents,
         theme: 'light',
@@ -208,11 +209,13 @@ function createSplashPage(serviceData: ServiceData): ContentPageData {
 
 function createAboutUsPage(serviceData: ServiceData): ContentPageData {
 
-    const NAME = 'About Us'
 
     const { showcases } = serviceData
 
-    const aboutUsPage = pluck(showcases, showcase => showcase.name === NAME)
+    const aboutUsPage = pluck(
+        showcases,
+        showcase => showcase.name.toLowerCase().includes('about')
+    )
 
     const writeUp: TextContentData | undefined = aboutUsPage && {
         type: 'text',
@@ -221,8 +224,8 @@ function createAboutUsPage(serviceData: ServiceData): ContentPageData {
 
     return {
         _id: newPageId(),
-        name: NAME,
-        path: urlify(NAME),
+        name: 'About',
+        path: 'about',
         type: 'content',
 
         contents: writeUp ? [writeUp] : [],
@@ -230,7 +233,6 @@ function createAboutUsPage(serviceData: ServiceData): ContentPageData {
         theme: 'dark',
         portrait: null
     }
-
 }
 
 function createMainContentPages(privatePages: PageData[]): MenuPageData[] {
@@ -264,6 +266,7 @@ function createMainMenuPage(mainPages: PageData[]): MenuPageData {
         name: 'Main Menu',
         path: 'menu',
         type: 'menu',
+        title: '',
 
         pages: mainPages.map(page => page._id),
 
@@ -347,10 +350,10 @@ function removePagesWithDuplicatePaths(pages: PageData[]): PageData[] {
     const output: PageData[] = []
 
     for (const page of pages) {
-
         if (!pathTable[page.path]) {
             pathTable[page.path] = true
             output.push(page)
+
         } else
             console.warn(`multiple pages with path "/${page.path}" found`)
     }

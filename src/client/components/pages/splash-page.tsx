@@ -1,13 +1,14 @@
-import React, { ReactElement, useContext } from 'react'
+import React, { ReactElement } from 'react'
 import styled, { css } from 'styled-components'
 
 import Page from './page'
 import { ContentPageProps } from './content-page'
-import { TextContentData, FileContentData, PageDataContext, ContentPageData } from '../../root-components/page-data-provider'
+import { TextContentData, FileContentData } from '../../root-components/page-data-provider'
 
 import { TextContent, FileContent } from '../contents'
 import { StaticAssets } from '../../root-components/page-routes'
 import { titleFont } from '../../util/css'
+import Icon, { IconProps } from '../generic/icon'
 
 /***************************************************************/
 // Types
@@ -21,8 +22,8 @@ interface BackgroundOverlayProps {
     staticImage: string
 }
 
-interface SocialMediaLinkProps {
-    image: string
+interface SocialMediaLinkProps extends IconProps {
+    to: string
 }
 
 /***************************************************************/
@@ -46,6 +47,7 @@ const BackgroundOverlay = styled.div`
 
 const BackgroundVideoContent = styled(FileContent)`
     ${fixed}
+
     video {
         position: inherit;
 
@@ -62,6 +64,7 @@ const BackgroundVideoContent = styled(FileContent)`
 
         transform: translate(-50%, -50%);
     }
+
     background-color: ${p => p.theme.colors.fg};
 `
 
@@ -75,25 +78,8 @@ const BackgroundTextContent = styled(TextContent)`
     max-width: calc(100vw - 1px);
     overflow: hidden;
 
-    margin-top: -0.15em;
-
-    span {
-        display: block;
-        height: 1em;
-    }
-
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: ${p => p.theme.colors.bg};
-`
-
-const BackgroundTextWriteup = styled(TextContent)`
-    color: ${p => p.theme.colors.bg};
-    font-size: 1.75em;
-
-    position: relative;
-
-    max-width: 34em;
-    margin-bottom: 4em;
 `
 
 const SocialMediaLinks = styled.div`
@@ -107,18 +93,19 @@ const SocialMediaLinks = styled.div`
     align-items: baseline;
 `
 
-const SocialMediaLink = styled.a.attrs(() => ({
-    target: '_blank'
-}))`
-    display: block;
-    width: 2em;
-    height: 2em;
-    margin-left: 0.5em;
+const SocialMediaLink = styled((props: SocialMediaLinkProps) => {
 
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-image: url(${(p: SocialMediaLinkProps) => p.image});
+    const { to, ...rest } = props
+
+    return <Icon
+        as='a'
+        href={to}
+        target='_blank'
+        {...rest}
+    />
+})`
+    font-size: 2em;
+    margin-left: 0.25em;
 `
 
 /***************************************************************/
@@ -132,14 +119,6 @@ const SplashPage = styled((props: SplashPageProps): ReactElement => {
     const fgText = page.contents.find(content => content.type === 'text') as TextContentData | void
     const bgVideo = page.contents.find(content => content.type === 'file') as FileContentData | void
 
-    const aboutUsForSplashPageOnlyVersion = useContext(PageDataContext)
-        .find(page => page.name.includes('About')) as ContentPageData | void
-
-    const writeupForSplashPageOnlyVersion = aboutUsForSplashPageOnlyVersion &&
-        aboutUsForSplashPageOnlyVersion
-            .contents
-            .find(content => content.type === 'text') as TextContentData | void
-
     return <Page page={page} {...rest}>
 
         {bgVideo
@@ -150,19 +129,31 @@ const SplashPage = styled((props: SplashPageProps): ReactElement => {
         <BackgroundOverlay staticImage={staticAssets.dots} />
 
         <SocialMediaLinks>
-            <SocialMediaLink image={staticAssets.insta} href='https://www.instagram.com/globalmechanic/?hl=en' />
-            <SocialMediaLink image={staticAssets.facebook} href='https://www.facebook.com/GlobalMechanicMedia/' />
-            <SocialMediaLink image={staticAssets.vimeo} href='https://vimeo.com/globalmechanicmedia' />
-            <SocialMediaLink image={staticAssets.twitter} href='https://twitter.com/globalmechanic?lang=en' />
+
+            <SocialMediaLink
+                image={staticAssets.insta}
+                to='https://www.instagram.com/globalmechanic/?hl=en'
+            />
+
+            <SocialMediaLink
+                image={staticAssets.facebook}
+                to='https://www.facebook.com/GlobalMechanicMedia/'
+            />
+
+            <SocialMediaLink
+                image={staticAssets.vimeo}
+                to='https://vimeo.com/globalmechanicmedia'
+            />
+
+            <SocialMediaLink
+                image={staticAssets.twitter}
+                to='https://twitter.com/globalmechanic?lang=en'
+            />
+
         </SocialMediaLinks>
 
         {fgText
             ? <BackgroundTextContent content={fgText} />
-            : null
-        }
-
-        {writeupForSplashPageOnlyVersion
-            ? <BackgroundTextWriteup content={writeupForSplashPageOnlyVersion} />
             : null
         }
 
@@ -171,6 +162,7 @@ const SplashPage = styled((props: SplashPageProps): ReactElement => {
     align-items: center;
     justify-content: center;
     overflow-x: hidden;
+    margin: auto;
 `
 
 /***************************************************************/

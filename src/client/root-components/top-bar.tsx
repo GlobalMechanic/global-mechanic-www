@@ -1,9 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 import { StaticAssets } from './page-routes'
+import { Icon } from '../components/generic'
+
 
 /***************************************************************/
 // Props
@@ -11,25 +13,8 @@ import { StaticAssets } from './page-routes'
 
 interface TopBarProps {
     staticAssets: StaticAssets
+    navIconTo: string
 }
-
-interface NutProps {
-    staticImage: string
-}
-
-const Nut = styled.span`
-
-    display: inline-block;
-    width: 1.25em;
-    height: 1em;
-
-    flex: 0 0 auto;
-
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url(${(p: NutProps) => p.staticImage});
-
-`
 
 /***************************************************************/
 // Main
@@ -37,13 +22,21 @@ const Nut = styled.span`
 
 const TopBar = styled((props: TopBarProps) => {
 
-    const { staticAssets, ...rest } = props
+    const { staticAssets, navIconTo, ...rest } = props
+
+    const location = useLocation()
+
+    const atNav = location.pathname === navIconTo
 
     return < div {...rest}>
 
-        <Nut staticImage={staticAssets.nut} /><h2>Global Mechanic</h2>
+        <Icon image={staticAssets.nut} />
 
-        {/* <Link to='/menu'>|||</Link> */}
+        <h2>Global Mechanic</h2>
+
+        <Link to={atNav ? '/' : navIconTo}>
+            <Icon image={atNav ? staticAssets.x : staticAssets.hamburger} />
+        </Link>
 
     </div >
 })`

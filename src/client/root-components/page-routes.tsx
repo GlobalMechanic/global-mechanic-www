@@ -38,22 +38,16 @@ const PageRoutes = (props: PageRoutesProps): ReactElement => {
     return <Switch>
 
         {splashPage
-            ? <Route
-            // TODO disabled for just splash page
-            // path='/' exact
-            >
+            ? <Route path='/' exact>
                 <SplashPage
                     page={splashPage}
-                    title=''
                     staticAssets={staticAssets}
                 />
             </Route>
             : 'Loading'
         }
-        {
-            // TODO disabled for splash page
-        }
-        {/* {pages.map(page =>
+
+        {pages.map(page =>
             <Route key={page.path} path={'/' + page.path}>
                 {page.type === 'content'
                     ? <ContentPage page={page} />
@@ -64,7 +58,7 @@ const PageRoutes = (props: PageRoutesProps): ReactElement => {
 
         <Route>
             <MissingPage />
-        </Route> */}
+        </Route>
 
     </Switch>
 

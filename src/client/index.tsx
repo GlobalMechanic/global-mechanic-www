@@ -24,7 +24,6 @@ void async function () {
     const { render } = await import('react-dom')
     const { BrowserRouter: Router } = await import('react-router-dom')
     const { default: Website } = await import('./root-components')
-    const { LightTheme } = await import('./util/theme')
 
     render(
 
@@ -32,7 +31,6 @@ void async function () {
             <Website
                 initialPageData={getPageDataFromSSRRenderedJsonTag()}
                 staticAssets={staticAssets}
-                theme={LightTheme}
             />
         </Router>,
 

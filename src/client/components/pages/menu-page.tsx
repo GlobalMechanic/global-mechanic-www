@@ -3,6 +3,7 @@ import Page, { PageProps } from './page'
 import { MenuPageData, PageData } from '../../root-components/page-data-provider'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { FileContent } from '../contents'
 
 /***************************************************************/
 // Props
@@ -25,9 +26,25 @@ const MenuLink = styled((props: MenuLinkProps): ReactElement => {
 
     const { page, ...rest } = props
 
-    return <h1 key={page.path} {...rest}>
-        <Link to={'/' + page.path}>{page.name}</Link>
-    </h1>
+    const portrait = page.portrait
+        ? <FileContent
+            description={null}
+            content={{
+                file: page.portrait,
+                type: 'file'
+            }}
+        />
+        : null
+
+    return <>
+
+        {portrait}
+
+        <h2 key={page.path} {...rest}>
+            <Link to={'/' + page.path}>{page.title || page.name}</Link>
+        </h2>
+
+    </>
 })`
 
     margin: 0;
@@ -48,7 +65,8 @@ const MenuPage = styled((props: MenuPageProps): ReactElement => {
 
     const links = page.pages
 
-    return <Page page={page} title='' {...rest}>
+    return <Page page={page} {...rest}>
+
         {links.map(pageId => {
             const page = pages.find(page => page._id === pageId)
             return page
@@ -58,6 +76,7 @@ const MenuPage = styled((props: MenuPageProps): ReactElement => {
                 : null
 
         })}
+
     </Page>
 })`
     align-items: center;

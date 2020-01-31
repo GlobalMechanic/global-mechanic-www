@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react'
-import { ThemeProvider, DefaultTheme } from 'styled-components'
-
+import { ThemeProvider } from 'styled-components'
 
 import PageDataProvider, { PageData } from './page-data-provider'
 import PageRoutes, { StaticAssets } from './page-routes'
@@ -9,6 +8,7 @@ import GlobalStyle from './global-style'
 import PageContainer from './page-container'
 
 import TopBar from './top-bar'
+import { LightTheme } from '../util/theme'
 
 /***************************************************************/
 // Container
@@ -17,12 +17,13 @@ import TopBar from './top-bar'
 interface WebsiteProps {
     initialPageData?: PageData[]
     staticAssets: StaticAssets
-    theme: DefaultTheme
 }
 
 const Website = (props: WebsiteProps): ReactElement => {
 
-    const { theme, initialPageData, staticAssets } = props
+    const { initialPageData, staticAssets } = props
+
+    const theme = LightTheme
 
     return <PageDataProvider initialPageData={initialPageData}>
 
@@ -31,8 +32,16 @@ const Website = (props: WebsiteProps): ReactElement => {
             <GlobalStyle />
 
             <PageContainer>
-                <TopBar staticAssets={staticAssets} />
-                <PageRoutes staticAssets={staticAssets} />
+
+                <TopBar
+                    staticAssets={staticAssets}
+                    navIconTo='/menu'
+                />
+
+                <PageRoutes
+                    staticAssets={staticAssets}
+                />
+
             </PageContainer>
 
         </ThemeProvider>
