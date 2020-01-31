@@ -10,7 +10,7 @@
     "db:dev": "./db/mongod --dbpath ./db/data --port 4999",
     "serve:dev": "ts-node-dev src/server/serve.ts --watch src",
     "serve": "NODE_ENV=production node dist/server/serve.js",
-    "build": "tsc",
+    "tsc": "tsc",
     "start": "npm run serve"
   },
   "repository": {
