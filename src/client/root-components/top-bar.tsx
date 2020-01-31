@@ -30,9 +30,11 @@ const TopBar = styled((props: TopBarProps) => {
 
     return < div {...rest}>
 
-        <Icon image={staticAssets.nut} />
 
-        <h2>Global Mechanic</h2>
+        <Link to='/'>
+            <Icon image={staticAssets.nut} />
+            <h2>Global Mechanic</h2>
+        </Link>
 
         <Link to={atNav ? '/' : navIconTo}>
             <Icon image={atNav ? staticAssets.x : staticAssets.hamburger} />
@@ -50,8 +52,14 @@ const TopBar = styled((props: TopBarProps) => {
 
     font-size: 1.25em;
 
-    h2 {
-        margin: 0 auto 0 0;
+    a:first-child {
+        margin-right: auto;
+        display: inherit;
+        align-items: inherit;
+    }
+
+    a > h2 {
+        margin: 0;
     }
 
     a {

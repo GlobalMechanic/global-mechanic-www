@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 
 import PageDataProvider, { PageData } from './page-data-provider'
@@ -8,7 +8,7 @@ import GlobalStyle from './global-style'
 import PageContainer from './page-container'
 
 import TopBar from './top-bar'
-import { LightTheme } from '../util/theme'
+import themes, { ThemeType } from '../util/theme'
 
 /***************************************************************/
 // Container
@@ -23,7 +23,9 @@ const Website = (props: WebsiteProps): ReactElement => {
 
     const { initialPageData, staticAssets } = props
 
-    const theme = LightTheme
+    const [themeType, setThemeType] = useState<ThemeType>('light')
+
+    const theme = themes[themeType]
 
     return <PageDataProvider initialPageData={initialPageData}>
 
@@ -40,6 +42,7 @@ const Website = (props: WebsiteProps): ReactElement => {
 
                 <PageRoutes
                     staticAssets={staticAssets}
+                    setThemeType={setThemeType}
                 />
 
             </PageContainer>

@@ -28,10 +28,12 @@ const TextContent = styled((props: TextContentProps): ReactElement => {
                     ? null
                     : <br />
                 }
-            </Fragment >)
-        }
+            </Fragment >
+        )}
     </Content>
-})` `
+})` 
+    max-width: max(50vw, 40em);
+`
 
 /***************************************************************/
 // Exports

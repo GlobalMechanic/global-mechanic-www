@@ -1,4 +1,6 @@
 import React, { ReactElement } from 'react'
+import styled from 'styled-components'
+
 import Page, { PageProps } from './page'
 import { ContentPageData, TextContentData, VimeoContentData, FileContentData } from '../../root-components/page-data-provider'
 import { TextContent, VimeoContent, FileContent } from '../contents'
@@ -15,21 +17,24 @@ interface ContentPageProps extends PageProps {
 // Main
 /***************************************************************/
 
-const ContentPage = (props: ContentPageProps): ReactElement => {
+const ContentPage = styled((props: ContentPageProps): ReactElement => {
 
     const { page, ...rest } = props
 
     return <Page page={page} {...rest}>
-        {
-            page.contents.map((content, i) => content.type === 'text'
-                ? <TextContent key={i} content={content as TextContentData} />
-                : content.type === 'vimeo'
-                    ? <VimeoContent key={i} content={content as VimeoContentData} />
-                    : <FileContent key={i} content={content as FileContentData} />
-            )
-        }
+        {page.contents.map((content, i) => content.type === 'text'
+
+            ? <TextContent key={i} content={content as TextContentData} />
+
+            : content.type === 'vimeo'
+                ? <VimeoContent key={i} content={content as VimeoContentData} />
+                : <FileContent key={i} content={content as FileContentData} />
+        )}
     </Page>
-}
+})`
+    margin: 0em 1em 0em 1em;
+    align-items: flex-start;
+`
 
 /***************************************************************/
 // Exports

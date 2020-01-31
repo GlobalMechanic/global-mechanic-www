@@ -214,8 +214,10 @@ function createAboutUsPage(serviceData: ServiceData): ContentPageData {
 
     const aboutUsPage = pluck(
         showcases,
-        showcase => showcase.name.toLowerCase().includes('about')
+        showcase => showcase.name === 'About Us'
     )
+
+    console.log(aboutUsPage)
 
     const writeUp: TextContentData | undefined = aboutUsPage && {
         type: 'text',
@@ -252,7 +254,7 @@ function createMainContentPages(privatePages: PageData[]): MenuPageData[] {
                 .filter(page => page[$$temp] && page[$$temp].linkToMainMenu === mainContentPageName)
                 .map(page => page._id),
 
-            theme: 'dark',
+            theme: 'light',
             portrait: null
         })
     }
@@ -297,6 +299,9 @@ function createGenericPages(serviceData: ServiceData): PageData[] {
             // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
             // @ts-ignore $$mainMenuPage is a temp symbol
             page[$$temp] = tags
+
+        if (tags && 'linkToMainMenu' in tags)
+            page.theme = 'light'
 
         if (essay) {
             const essayContent: TextContentData = {

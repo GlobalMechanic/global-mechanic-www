@@ -1,6 +1,7 @@
-import React, { ReactElement } from 'react'
-import styled from 'styled-components'
+import React, { ReactElement, useEffect } from 'react'
+import styled, { DefaultTheme, withTheme } from 'styled-components'
 import { PageData } from '../../root-components/page-data-provider'
+import { ThemeType } from '../../util/theme'
 
 /***************************************************************/
 // Props
@@ -11,6 +12,10 @@ interface PageProps {
     page: PageData
 
     children?: ReactElement | null | (ReactElement | null)[]
+
+    setThemeType: (themeType: ThemeType) => void
+
+    theme: DefaultTheme
 
 }
 
@@ -23,9 +28,14 @@ const Title = styled.h1`
 // Main
 /***************************************************************/
 
-const Page = styled((props: PageProps): ReactElement => {
+const Page = styled(withTheme((props: PageProps): ReactElement => {
 
-    const { page, children, ...rest } = props
+    const { page, children, setThemeType, theme, ...rest } = props
+
+    useEffect(() => {
+        if (theme.name !== page.theme)
+            setThemeType(page.theme)
+    }, [theme.name])
 
     const title = typeof page.title === 'string'
         ? page.title
@@ -41,15 +51,15 @@ const Page = styled((props: PageProps): ReactElement => {
         {children}
 
     </div>
-})`
+}))`
     display: flex;
     flex-direction: column;
+    
+    align-items: center;
 
     flex: 1 1 auto;
     box-sizing: border-box;
     overflow-x: hidden;
-
-    margin: 0em 1em 0em 1em;
 `
 
 

@@ -1,6 +1,12 @@
 import { DefaultTheme } from 'styled-components'
 
 /***************************************************************/
+// Types
+/***************************************************************/
+
+type ThemeType = 'light' | 'dark'
+
+/***************************************************************/
 // Override
 /***************************************************************/
 
@@ -8,45 +14,54 @@ declare module 'styled-components' {
 
     export interface DefaultTheme {
 
+        name: ThemeType
+
         colors: {
             bg: string
             fg: string
-            accent: string
         }
-
     }
 
 }
+
 
 /***************************************************************/
 // Main
 /***************************************************************/
 
-const LightTheme: DefaultTheme = {
+const light: DefaultTheme = {
+
+    name: 'light',
 
     colors: {
         bg: 'white',
-        fg: 'black',
-        accent: '#ddd'
+        fg: 'black'
     }
 
 }
 
-const DarkTheme = {
+const dark: DefaultTheme = {
 
-    ...LightTheme,
+    ...light,
+    name: 'dark',
 
     colors: {
-        bg: LightTheme.colors.fg,
-        fg: LightTheme.colors.bg
+        bg: light.colors.fg,
+        fg: light.colors.bg
     }
+}
+
+const themes: Record<ThemeType, DefaultTheme> = {
+    light,
+    dark
 }
 
 /***************************************************************/
 // Exports
 /***************************************************************/
 
+export default themes
+
 export {
-    LightTheme,
-    DarkTheme
+    ThemeType
 }

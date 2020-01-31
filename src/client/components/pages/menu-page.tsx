@@ -3,7 +3,8 @@ import Page, { PageProps } from './page'
 import { MenuPageData, PageData } from '../../root-components/page-data-provider'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { FileContent } from '../contents'
+
+import HOST from '../../util/host'
 
 /***************************************************************/
 // Props
@@ -18,44 +19,62 @@ interface MenuLinkProps {
     page: PageData
 }
 
+interface MenuPortraitProps {
+    portraitId: string
+}
+
 /***************************************************************/
 // Main
 /***************************************************************/
+
+const MenuPortrait = styled.div`
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    overflow: hidden;
+
+    width: 100vw;
+    height: min(56.25vw, 25em);
+    background-position: center;
+    background-size: cover;
+    background-image: url(${HOST}/file/${(p: MenuPortraitProps) => p.portraitId}-thumb);
+
+    h2 {
+        margin: 0em 0.25em 0.25em 0em;
+
+        color: ${p => p.theme.colors.bg};
+        font-size: 3em;
+    }
+`
 
 const MenuLink = styled((props: MenuLinkProps): ReactElement => {
 
     const { page, ...rest } = props
 
-    const portrait = page.portrait
-        ? <FileContent
-            description={null}
-            content={{
-                file: page.portrait,
-                type: 'file'
-            }}
-        />
-        : null
+    const header = <h2 key={page.path}>
+        {page.title || page.name}
+    </h2>
 
-    return <>
+    return <Link to={'/' + page.path} {...rest}>{
+        page.portrait
+            ? <MenuPortrait portraitId={page.portrait}>
+                {header}
+            </MenuPortrait>
 
-        {portrait}
+            : header
+    }</Link>
 
-        <h2 key={page.path} {...rest}>
-            <Link to={'/' + page.path}>{page.title || page.name}</Link>
-        </h2>
-
-    </>
 })`
-
-    margin: 0;
-    font-size: 4em;
-
-    a {
-        text-decoration: none;
+    text-decoration: none;
+    color: inherit;
+    &:visited {
         color: inherit;
-        &:visited {
-            color: inherit;
-        }
+    }
+
+    > h2 {
+        margin: 0;
+        font-size: 4em;
     }
 `
 
@@ -79,7 +98,6 @@ const MenuPage = styled((props: MenuPageProps): ReactElement => {
 
     </Page>
 })`
-    align-items: center;
 `
 
 /***************************************************************/

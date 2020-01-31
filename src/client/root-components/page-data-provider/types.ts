@@ -1,3 +1,8 @@
+import { ThemeType } from '../../util/theme'
+
+/***************************************************************/
+// Types
+/***************************************************************/
 
 type FileID = string
 type PageID = number
@@ -32,7 +37,7 @@ interface PageData {
     type: string
 
     portrait: FileID | null
-    theme: 'dark' | 'light'
+    theme: ThemeType
 }
 
 interface MenuPageData extends PageData {

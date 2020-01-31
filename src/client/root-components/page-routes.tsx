@@ -4,6 +4,7 @@ import { PageDataContext, ContentPageData, MenuPageData } from './page-data-prov
 import { ContentPage, MenuPage, SplashPage, MissingPage } from '../components/pages'
 
 import pluck from '../util/pluck'
+import { ThemeType } from '../util/theme'
 
 /***************************************************************/
 // Types
@@ -15,6 +16,7 @@ interface StaticAssets {
 
 interface PageRoutesProps {
     staticAssets: StaticAssets
+    setThemeType: (themeType: ThemeType) => void
 }
 
 /***************************************************************/
@@ -23,7 +25,7 @@ interface PageRoutesProps {
 
 const PageRoutes = (props: PageRoutesProps): ReactElement => {
 
-    const { staticAssets } = props
+    const { staticAssets, setThemeType } = props
 
     const pages = [
         ...useContext(PageDataContext)
@@ -42,6 +44,7 @@ const PageRoutes = (props: PageRoutesProps): ReactElement => {
                 <SplashPage
                     page={splashPage}
                     staticAssets={staticAssets}
+                    setThemeType={setThemeType}
                 />
             </Route>
             : 'Loading'
@@ -50,8 +53,15 @@ const PageRoutes = (props: PageRoutesProps): ReactElement => {
         {pages.map(page =>
             <Route key={page.path} path={'/' + page.path}>
                 {page.type === 'content'
-                    ? <ContentPage page={page} />
-                    : <MenuPage page={page} pages={pages} />
+                    ? <ContentPage
+                        page={page}
+                        setThemeType={setThemeType}
+                    />
+                    : <MenuPage
+                        page={page}
+                        pages={pages}
+                        setThemeType={setThemeType}
+                    />
                 }
             </Route>
         )}
