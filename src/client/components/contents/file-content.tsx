@@ -113,8 +113,6 @@ const Download = styled((props: FileMetaContentProps): ReactElement => {
     box-sizing: border-box;
     width: 100%;
     text-align: right;
-
-    background-color: ${p => p.theme.colors.accent};
 `
 
 const FileViewComponents: Record<
@@ -164,6 +162,7 @@ const FileContent = styled((props: FileContentProps): ReactElement => {
 
     </>
 })`
+    background-color: ${p => p.theme.colors.accent};
     ${content}
 `
 

@@ -37,7 +37,7 @@ const VimeoContent = styled((props: VimeoContentProps): ReactElement => {
 })`
     ${content}
 
-    background-color: ${p => p.theme.colors.fg};
+    background-color: ${p => p.theme.colors.accent};
 
     iframe {
         width: 100%;

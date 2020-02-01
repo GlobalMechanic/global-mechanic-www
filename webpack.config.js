@@ -11,7 +11,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // Constants
 /***************************************************************/
 
-const PORT = 7500
+const PORT = 7400
 
 const mode = process.env.NODE_ENV || 'development'
 
