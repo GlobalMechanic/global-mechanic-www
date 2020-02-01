@@ -329,6 +329,24 @@ function convertServiceDataToPages(
 
     pages = removePagesWithDuplicatePaths(pages)
 
+    if (process.env.NODE_ENV === 'development') {
+
+        const devMenuPage: MenuPageData = {
+            _id: newPageId(),
+
+            name: 'dev-menu',
+            title: '',
+
+            pages: pages.map(p => p._id),
+            type: 'menu',
+            portrait: null,
+            path: 'dev-menu',
+            theme: 'dark'
+        }
+
+        pages.push(devMenuPage)
+    }
+
     return pages
 }
 
