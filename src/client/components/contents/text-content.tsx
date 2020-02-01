@@ -1,8 +1,11 @@
 import React, { ReactElement, Fragment } from 'react'
 import styled from 'styled-components'
 
-import Content, { ContentProps } from './content'
+import { ContentProps } from './content'
 import { TextContentData } from '../../root-components/page-data-provider'
+import Markdown from '../generic/markdown'
+
+import { content } from '../../util/css'
 
 /***************************************************************/
 // Props
@@ -20,19 +23,22 @@ const TextContent = styled((props: TextContentProps): ReactElement => {
 
     const { content, ...rest } = props
 
-    return <Content content={content} {...rest}>
+    return <div {...rest}>
         {content.text.split('\n').map((line, i, arr) =>
             <Fragment key={i}>
-                <span>{line}</span>
+                <Markdown>{line}</Markdown>
                 {i === arr.length - 1
                     ? null
                     : <br />
                 }
             </Fragment >
         )}
-    </Content>
-})` 
-    max-width: max(50vw, 40em);
+    </div>
+})`
+
+    ${content}
+
+    padding: 0em 1em 0em 1em;
 `
 
 /***************************************************************/

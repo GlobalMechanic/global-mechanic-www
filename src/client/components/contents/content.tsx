@@ -1,5 +1,4 @@
-import React, { ReactElement } from 'react'
-import styled from 'styled-components'
+import { ReactElement } from 'react'
 import { ContentData } from '../../root-components/page-data-provider'
 
 /***************************************************************/
@@ -8,29 +7,13 @@ import { ContentData } from '../../root-components/page-data-provider'
 
 interface ContentProps {
     content: ContentData
-    children?: ReactElement | string | null | (ReactElement | string | null)[]
+    children?: ReactElement | string | null |
+    (ReactElement | string | null)[]
 }
-
-/***************************************************************/
-// Main
-/***************************************************************/
-
-const Content = styled((props: ContentProps): ReactElement => {
-
-    const { children, ...rest } = props
-
-    return <div {...rest}>
-        {children}
-    </div>
-})`
-    
-`
 
 /***************************************************************/
 // Exports
 /***************************************************************/
-
-export default Content
 
 export {
     ContentProps

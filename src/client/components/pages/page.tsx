@@ -15,11 +15,6 @@ interface PageProps {
     theme: DefaultTheme
 }
 
-const Title = styled.h1`
-    font-size: min(10em, max(4em, 20vw));
-    margin: 0;
-`
-
 /***************************************************************/
 // Main
 /***************************************************************/
@@ -33,16 +28,7 @@ const Page = styled(withTheme((props: PageProps): ReactElement => {
             setThemeType(page.theme)
     }, [theme.name])
 
-    const title = typeof page.title === 'string'
-        ? page.title
-        : page.name
-
     return <div {...rest}>
-
-        {title
-            ? <Title>{title}</Title>
-            : null
-        }
 
         {children}
 
@@ -50,7 +36,6 @@ const Page = styled(withTheme((props: PageProps): ReactElement => {
             ? <SocialMediaLinks />
             : null
         }
-
     </div>
 }))`
     display: flex;
@@ -61,6 +46,14 @@ const Page = styled(withTheme((props: PageProps): ReactElement => {
     flex: 1 1 auto;
     box-sizing: border-box;
     overflow-x: hidden;
+
+    > div {
+        margin-bottom: 0.5em;
+
+        &:not(:first-child) {
+            margin-top: 0.5em;
+        }
+    }
 `
 
 

@@ -31,6 +31,8 @@ module.exports = {
         'semi': 'off',
         'eqeqeq': ['error', 'always', { null: 'ignore' }],
 
+        'react/no-unescaped-entities': 'off',
+
         '@typescript-eslint/await-thenable': 'error',
         '@typescript-eslint/explicit-function-return-type': [
             'error', {

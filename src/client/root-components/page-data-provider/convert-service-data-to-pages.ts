@@ -126,7 +126,6 @@ function createSplashPage(serviceData: ServiceData): ContentPageData {
         _id: newPageId(),
         name: 'Splash',
         path: '', // cuz home page
-        title: '',
         type: 'content',
         contents,
         theme: splashPage && splashPage.scope === 'light' ? 'light' : 'dark',
@@ -174,10 +173,9 @@ function createAboutUsPage(serviceData: ServiceData): ContentPageData {
 function createMainMenuPage(mainPages: PageData[]): MenuPageData {
     return {
         _id: newPageId(),
-        name: 'Main Menu',
+        name: '',
         path: 'menu',
         type: 'menu',
-        title: '',
 
         pages: mainPages.map(page => page._id),
 
@@ -244,6 +242,14 @@ function createCategoryAndGenericPages(serviceData: ServiceData): {
             page.contents.push(essayContent)
         }
 
+        for (const fileId of files) {
+            const file: FileContentData = {
+                type: 'file',
+                file: fileId
+            }
+            page.contents.push(file)
+        }
+
         for (const productId of products) {
             const product = serviceData.products.find(p => p._id === productId)
             if (product && product.video) {
@@ -262,14 +268,6 @@ function createCategoryAndGenericPages(serviceData: ServiceData): {
                 }
                 page.contents.push(textContent)
             }
-        }
-
-        for (const fileId of files) {
-            const file: FileContentData = {
-                type: 'file',
-                file: fileId
-            }
-            page.contents.push(file)
         }
 
         genericPages.push(page)
@@ -335,7 +333,6 @@ function convertServiceDataToPages(
             _id: newPageId(),
 
             name: 'dev-menu',
-            title: '',
 
             pages: pages.map(p => p._id),
             type: 'menu',

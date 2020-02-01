@@ -32,7 +32,6 @@ const ContentPage = styled((props: ContentPageProps): ReactElement => {
         )}
     </Page>
 })`
-    margin: 0em 1em 0em 1em;
     align-items: flex-start;
 `
 

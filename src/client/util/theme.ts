@@ -19,6 +19,7 @@ declare module 'styled-components' {
         colors: {
             bg: string
             fg: string
+            accent: string
         }
     }
 
@@ -35,19 +36,20 @@ const light: DefaultTheme = {
 
     colors: {
         bg: 'white',
-        fg: 'black'
+        fg: 'black',
+        accent: 'rgba(0,0,0, 0.125)'
     }
 
 }
 
 const dark: DefaultTheme = {
 
-    ...light,
     name: 'dark',
 
     colors: {
-        bg: light.colors.fg,
-        fg: light.colors.bg
+        bg: 'black',
+        fg: 'white',
+        accent: 'rgba(255,255,255, 0.125)'
     }
 }
 

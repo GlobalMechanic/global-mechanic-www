@@ -4,7 +4,6 @@ import styled, { css } from 'styled-components'
 import Page from './page'
 import { ContentPageProps } from './content-page'
 import { TextContentData, FileContentData } from '../../root-components/page-data-provider'
-
 import { TextContent, FileContent } from '../contents'
 import { titleFont } from '../../util/css'
 import { useStaticAssets } from '../../root-components/static-asset-context'
@@ -31,7 +30,7 @@ const fixed = css`
     z-index: -100;
 `
 
-const BackgroundOverlay = styled.div`
+const BackgroundOverlay = styled.span`
     ${fixed}
     background-image: url(${(p: BackgroundOverlayProps) => p.staticImage});
 `
@@ -59,15 +58,14 @@ const BackgroundVideoContent = styled(FileContent)`
     background-color: ${p => p.theme.colors.fg};
 `
 
-const BackgroundTextContent = styled(TextContent)`
+const BackgroundText = styled.h1`
     color: transparent;
+    margin: 0;
+
+    font-size: 45vmin;
     
-    ${titleFont};
-    font-size: 30vw;
-    font-size: max(min(40vw, 40vh), 5em);
-    
-    max-width: calc(100vw - 1px);
     overflow: hidden;
+    max-width: 100vw;
 
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: ${p => p.theme.colors.bg};
@@ -96,7 +94,9 @@ const SplashPage = styled((props: ContentPageProps): ReactElement => {
         <BackgroundOverlay staticImage={staticAssets.dots} />
 
         {fgText
-            ? <BackgroundTextContent content={fgText} />
+            ? <BackgroundText>
+                {fgText.text}
+            </BackgroundText>
             : null
         }
 

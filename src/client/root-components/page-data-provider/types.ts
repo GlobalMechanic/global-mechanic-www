@@ -31,7 +31,6 @@ interface PageData {
     _id: number
 
     name: string
-    title?: string
     path: string
 
     type: string

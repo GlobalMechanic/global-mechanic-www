@@ -1,11 +1,13 @@
-import React, { ReactElement, useState, useEffect } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
+import styled from 'styled-components'
 
-import Content, { ContentProps } from './content'
+import { ContentProps } from './content'
 import { FileContentData } from '../../root-components/page-data-provider'
 import fetchFileMetaData, { FileMetaData } from '../../util/fetch-file-metadata'
 
 import HOST from '../../util/host'
 import TextContent, { TextContentProps } from './text-content'
+import { content } from '../../util/css'
 
 /***************************************************************/
 // Helper
@@ -20,7 +22,6 @@ const getContentType = (meta: FileMetaData): 'video' | 'image' | 'download' => {
         : mime.includes('image')
             ? 'image'
             : 'download'
-
 }
 
 /***************************************************************/
@@ -56,7 +57,7 @@ interface FileMetaContentProps extends FileContentProps {
     meta: FileMetaData
 }
 
-const Video = (props: FileMetaContentProps): ReactElement => {
+const Video = styled((props: FileMetaContentProps): ReactElement => {
 
     const { content, meta, ...rest } = props
 
@@ -68,29 +69,53 @@ const Video = (props: FileMetaContentProps): ReactElement => {
         />
 
     </video>
-}
+})`
+    width: 100%; 
+`
 
-const Image = (props: FileMetaContentProps): ReactElement => {
+const Image = styled((props: FileMetaContentProps): ReactElement => {
 
     const { content, ...rest } = props
 
+    const src = `${HOST}/file/${content.file}`
+
     return <img
-        src={`${HOST}/file/${content.file}`}
+        src={src}
         {...rest}
     />
-}
+})`
+    max-width: 100%;
+    max-height: 100%;
+`
 
-const Download = (props: FileMetaContentProps): ReactElement => {
+const Download = styled((props: FileMetaContentProps): ReactElement => {
 
-    const { meta, content } = props
+    const { meta, content, ...rest } = props
 
     return <a
         target='_blank'
         rel='noopener noreferrer'
-        href={`${HOST}/file/${content.file}?download=${meta.name + meta.ext}`}>
-        {meta.name + meta.ext}
+        href={`${HOST}/file/${content.file}?download=${meta.name + meta.ext}`}
+        {...rest}
+    >
+        ↓ {meta.name + meta.ext}
     </a>
-}
+})`
+    font-size: 2em;
+    font-family: monospace;
+    
+    color: inherit;
+    
+    padding: 0.25em;
+    text-decoration: none;
+
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: right;
+
+    background-color: ${p => p.theme.colors.accent};
+`
 
 const FileViewComponents: Record<
     'video' | 'image' | 'download',
@@ -105,7 +130,7 @@ const FileViewComponents: Record<
 // FileContent Component
 /***************************************************************/
 
-const FileContent = (props: FileContentProps): ReactElement => {
+const FileContent = styled((props: FileContentProps): ReactElement => {
 
     const {
         description: Description = TextContent,
@@ -119,12 +144,15 @@ const FileContent = (props: FileContentProps): ReactElement => {
 
     return <>
 
-        <Content content={content} {...rest}>
+        <div {...rest}>
             {meta && FileViewComponent
-                ? <FileViewComponent content={content} meta={meta} />
+                ? <FileViewComponent
+                    content={content}
+                    meta={meta}
+                />
                 : null
             }
-        </Content>
+        </div>
 
         {Description && description
             ? <Description content={{
@@ -135,7 +163,9 @@ const FileContent = (props: FileContentProps): ReactElement => {
         }
 
     </>
-}
+})`
+    ${content}
+`
 
 /***************************************************************/
 // Exports

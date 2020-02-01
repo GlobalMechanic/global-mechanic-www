@@ -35,3 +35,9 @@ export const bodyFontBold = css`
     font-weight: 700;
 
 `
+
+export const content = css`
+    box-sizing: border-box;
+    width: min(100%, 70em);
+    align-self: center;
+`

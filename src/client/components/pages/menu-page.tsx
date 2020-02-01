@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 import HOST from '../../util/host'
+import Markdown from '../generic/markdown'
 
 /***************************************************************/
 // Props
@@ -53,7 +54,7 @@ const MenuLink = styled((props: MenuLinkProps): ReactElement => {
     const { page, ...rest } = props
 
     const header = <h2 key={page.path}>
-        {page.title || page.name}
+        {page.name}
     </h2>
 
     return <Link to={'/' + page.path} {...rest}>{
@@ -85,17 +86,24 @@ const MenuPage = styled((props: MenuPageProps): ReactElement => {
     const links = page.pages
 
     return <Page page={page} {...rest}>
+        <>
 
-        {links.map(pageId => {
-            const page = pages.find(page => page._id === pageId)
-            return page
-
-                ? <MenuLink key={page.path} page={page} />
-
+            {page.name
+                ? <Markdown>{`# ${page.name}`}</Markdown>
                 : null
+            }
 
-        })}
+            {links.map(pageId => {
+                const page = pages.find(page => page._id === pageId)
+                return page
 
+                    ? <MenuLink key={page.path} page={page} />
+
+                    : null
+
+            })}
+
+        </>
     </Page>
 })`
 `
