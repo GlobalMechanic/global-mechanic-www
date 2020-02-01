@@ -50,7 +50,8 @@ function websiteFilter(hook, next): void {
                 files: files || [],
                 portrait,
                 essay: website.essay || '',
-                scope: website.scope || 'unpublished'
+                scope: website.scope || 'light',
+                mainMenuCategory: website.mainMenuCategory
             }
         })
 

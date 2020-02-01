@@ -73,7 +73,9 @@ interface ShowcaseRecord extends Record {
     portrait: RecordID | null
     products: RecordID[]
 
-    scope: 'private' | 'public' | 'work-in-progress' | 'unpublished'
+    scope: 'dark' | 'light'
+
+    mainMenuCategory: string
 
     files: RecordID[]
 }
@@ -83,25 +85,6 @@ interface ServiceData {
     products: ProductRecord[]
     showcases: ShowcaseRecord[]
 }
-
-type HackyRebrandTags = null | { [key: string]: string | boolean | number }
-
-/***************************************************************/
-// Constants
-/***************************************************************/
-
-const HARD_CODED_MAIN_MENU_PAGE_NAMES = [
-    'Series',
-    'Interactive',
-    'Advertising',
-    'Installations',
-    'Documentry',
-    'Film'
-]
-
-const HACKY_REBRAND_TAG_SEARCH_STRING = '#2020RebrandTags'
-
-const $$temp = Symbol('temporary-flags-for-creating-showcases')
 
 /***************************************************************/
 // Module State
@@ -115,71 +98,16 @@ let lastPageID = 0
 
 const newPageId = (): number => ++lastPageID
 
-const castTagValue = (value: string): number | boolean | string => {
-
-    if (value === 'true')
-        return true
-
-    if (value === 'false')
-        return false
-
-    const number = parseFloat(value)
-    if (Number.isNaN(number))
-        return value
-
-    return number
-}
-
-/**
- * Looks for the string #2020RebrandTags in a given essay string,
- * removes it and text following it, parsing the data into tags. 
- * Returns the hacky pragma tags and the sanitized essay string.
- * @param rawEssay 
- */
-function pluckPragmaTagsFromRawEssay(rawEssay: string): {
-    essay: string
-    tags: HackyRebrandTags
-} {
-
-    const [essay, rawTags] = rawEssay.split(HACKY_REBRAND_TAG_SEARCH_STRING)
-
-    const tags = rawTags
-        ? rawTags
-            .split(/\n/g)
-            .filter(t => t.trim())
-            .reduce((hash: HackyRebrandTags, tag) => {
-
-                const [key, value] = tag
-                    .split('=')
-                    .map(keyOrValue => keyOrValue.trim())
-
-                if (hash)
-                    hash[key] = castTagValue(value)
-
-                return hash
-
-            }, {})
-        : {}
-
-    return {
-        essay,
-        tags: tags && Object.keys(tags).length > 0
-            ? tags
-            : null
-    }
-
-}
-
 function createSplashPage(serviceData: ServiceData): ContentPageData {
 
-    const splashShowcase = pluck(
+    const splashPage = pluck(
         serviceData.showcases,
-        show => show.name.includes('Splash') && show.name.includes('New Website')
+        show => show.name === '2020 Website Splash Page'
     )
 
-    const randomBackgroundVideo = splashShowcase && splashShowcase.files[
+    const randomBackgroundVideo = splashPage && splashPage.files[
         Math.floor(
-            Math.random() * splashShowcase.files.length
+            Math.random() * splashPage.files.length
         )
     ]
 
@@ -201,7 +129,7 @@ function createSplashPage(serviceData: ServiceData): ContentPageData {
         title: '',
         type: 'content',
         contents,
-        theme: 'light',
+        theme: splashPage && splashPage.scope === 'light' ? 'light' : 'dark',
         portrait: null
     }
 
@@ -217,8 +145,6 @@ function createAboutUsPage(serviceData: ServiceData): ContentPageData {
         showcase => showcase.name === 'About Us'
     )
 
-    console.log(aboutUsPage)
-
     const writeUp: TextContentData | undefined = aboutUsPage && {
         type: 'text',
         text: aboutUsPage.essay,
@@ -232,34 +158,9 @@ function createAboutUsPage(serviceData: ServiceData): ContentPageData {
 
         contents: writeUp ? [writeUp] : [],
 
-        theme: 'dark',
+        theme: aboutUsPage && aboutUsPage.scope === 'light' ? 'light' : 'dark',
         portrait: null
     }
-}
-
-function createMainContentPages(privatePages: PageData[]): MenuPageData[] {
-
-    const mainPages: MenuPageData[] = []
-
-    for (const mainContentPageName of HARD_CODED_MAIN_MENU_PAGE_NAMES) {
-        mainPages.push({
-            _id: newPageId(),
-            name: mainContentPageName,
-            path: urlify(mainContentPageName),
-            type: 'menu',
-
-            pages: privatePages
-                // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-                // @ts-ignore $$mainMenuPage is a temp symbol
-                .filter(page => page[$$temp] && page[$$temp].linkToMainMenu === mainContentPageName)
-                .map(page => page._id),
-
-            theme: 'light',
-            portrait: null
-        })
-    }
-
-    return mainPages
 }
 
 function createMainMenuPage(mainPages: PageData[]): MenuPageData {
@@ -277,11 +178,42 @@ function createMainMenuPage(mainPages: PageData[]): MenuPageData {
     }
 }
 
-function createGenericPages(serviceData: ServiceData): PageData[] {
+function ensureCategoryPage(category: string, categoryPages: PageData[]): MenuPageData {
 
-    const pages: PageData[] = []
+    let categoryPage = categoryPages
+        .find(page => page.name === category) as MenuPageData | void
 
-    for (const { name, portrait, scope, essay: rawEssay, files, products } of serviceData.showcases) {
+    if (!categoryPage) {
+        categoryPage = {
+            _id: newPageId(),
+            name: category,
+            path: urlify(category),
+            type: 'menu',
+            pages: [],
+            portrait: null,
+            theme: 'light'
+        }
+        categoryPages.push(
+            categoryPage
+        )
+    }
+
+    return categoryPage
+}
+
+function createCategoryAndGenericPages(serviceData: ServiceData): {
+    categoryPages: PageData[]
+    genericPages: PageData[]
+} {
+
+    const genericPages: PageData[] = []
+    const categoryPages: PageData[] = []
+
+    for (const { name, portrait, scope, essay, files, products, mainMenuCategory } of serviceData.showcases) {
+
+        const categoryPage = mainMenuCategory
+            ? ensureCategoryPage(mainMenuCategory, categoryPages)
+            : null
 
         const page: ContentPageData = {
             _id: newPageId(),
@@ -290,18 +222,11 @@ function createGenericPages(serviceData: ServiceData): PageData[] {
             type: 'content',
             contents: [],
             portrait,
-            theme: scope === 'public' ? 'light' : 'dark'
+            theme: scope === 'light' ? 'light' : 'dark'
         }
 
-        const { essay, tags } = pluckPragmaTagsFromRawEssay(rawEssay)
-
-        if (tags)
-            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-            // @ts-ignore $$mainMenuPage is a temp symbol
-            page[$$temp] = tags
-
-        if (tags && 'linkToMainMenu' in tags)
-            page.theme = 'light'
+        if (categoryPage)
+            categoryPage.pages.push(page._id)
 
         if (essay) {
             const essayContent: TextContentData = {
@@ -339,14 +264,13 @@ function createGenericPages(serviceData: ServiceData): PageData[] {
             page.contents.push(file)
         }
 
-        pages.push(page)
+        genericPages.push(page)
     }
 
-    return pages
-}
-
-function removeSymbolsFromPages(pages: PageData[]): PageData[] {
-    return pages.map(page => ({ ...page }))
+    return {
+        genericPages,
+        categoryPages
+    }
 }
 
 function removePagesWithDuplicatePaths(pages: PageData[]): PageData[] {
@@ -377,25 +301,25 @@ function convertServiceDataToPages(
 
     const splashPage = createSplashPage(serviceData)
     const aboutPage = createAboutUsPage(serviceData)
-    const privatePages = createGenericPages(serviceData)
-    const publicPages = createMainContentPages(privatePages)
+    const {
+        categoryPages,
+        genericPages,
+    } = createCategoryAndGenericPages(serviceData)
 
     const mainMenuPage = createMainMenuPage([
         aboutPage,
-        ...publicPages
+        ...categoryPages
     ])
 
     let pages = [
         splashPage,
         mainMenuPage,
         aboutPage,
-        ...publicPages,
-        ...privatePages
+        ...categoryPages,
+        ...genericPages
     ]
 
     pages = removePagesWithDuplicatePaths(pages)
-
-    pages = removeSymbolsFromPages(pages)
 
     return pages
 }
