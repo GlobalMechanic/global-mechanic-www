@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import styled from 'styled-components'
 
 import Icon, { IconProps } from './icon'
-import { StaticAssets } from '../../root-components/page-routes'
+import { useStaticAssets } from '../../root-components/static-asset-context'
 
 /***************************************************************/
 // Props
@@ -11,11 +11,6 @@ import { StaticAssets } from '../../root-components/page-routes'
 interface SocialMediaLinkProps extends IconProps {
     to: string
 }
-
-interface SocialMediaLinksProps {
-    staticAssets: StaticAssets
-}
-
 /***************************************************************/
 // Components
 /***************************************************************/
@@ -31,15 +26,15 @@ const SocialMediaLink = styled((props: SocialMediaLinkProps): ReactElement => {
         {...rest}
     />
 })`
-    font-size: 2em;
-    margin-left: 0.25em;
+    font-size: 1.5em;
+    margin-left: 0.125em;
 `
 
-const SocialMediaLinks = styled((props: SocialMediaLinksProps): ReactElement => {
+const SocialMediaLinks = styled((props): ReactElement => {
 
-    const { staticAssets, ...rest } = props
+    const staticAssets = useStaticAssets()
 
-    return <div {...rest} >
+    return <div {...props} >
 
         <SocialMediaLink
             image={staticAssets.insta}
@@ -67,9 +62,8 @@ const SocialMediaLinks = styled((props: SocialMediaLinksProps): ReactElement => 
     display: flex;
     position: fixed;
     bottom: 1em;
-
-    height: 4em;
-
+    left: 1em;
+    
     align-items: baseline;
 `
 

@@ -6,19 +6,12 @@ import { ContentPageProps } from './content-page'
 import { TextContentData, FileContentData } from '../../root-components/page-data-provider'
 
 import { TextContent, FileContent } from '../contents'
-import { StaticAssets } from '../../root-components/page-routes'
 import { titleFont } from '../../util/css'
-import { IconProps } from '../generic/icon'
-
-import SocialMediaLinks from '../generic/social-media-links'
+import { useStaticAssets } from '../../root-components/static-asset-context'
 
 /***************************************************************/
 // Types
 /***************************************************************/
-
-interface SplashPageProps extends ContentPageProps {
-    staticAssets: StaticAssets
-}
 
 interface BackgroundOverlayProps {
     staticImage: string
@@ -84,9 +77,11 @@ const BackgroundTextContent = styled(TextContent)`
 // Main
 /***************************************************************/
 
-const SplashPage = styled((props: SplashPageProps): ReactElement => {
+const SplashPage = styled((props: ContentPageProps): ReactElement => {
 
-    const { page, staticAssets, ...rest } = props
+    const { page, ...rest } = props
+
+    const staticAssets = useStaticAssets()
 
     const fgText = page.contents.find(content => content.type === 'text') as TextContentData | void
     const bgVideo = page.contents.find(content => content.type === 'file') as FileContentData | void
@@ -99,8 +94,6 @@ const SplashPage = styled((props: SplashPageProps): ReactElement => {
         }
 
         <BackgroundOverlay staticImage={staticAssets.dots} />
-
-        <SocialMediaLinks staticAssets={staticAssets} />
 
         {fgText
             ? <BackgroundTextContent content={fgText} />

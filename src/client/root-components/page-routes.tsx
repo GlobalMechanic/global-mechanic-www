@@ -9,13 +9,7 @@ import { ThemeType } from '../util/theme'
 /***************************************************************/
 // Types
 /***************************************************************/
-
-interface StaticAssets {
-    [key: string]: string
-}
-
 interface PageRoutesProps {
-    staticAssets: StaticAssets
     setThemeType: (themeType: ThemeType) => void
 }
 
@@ -25,7 +19,7 @@ interface PageRoutesProps {
 
 const PageRoutes = (props: PageRoutesProps): ReactElement => {
 
-    const { staticAssets, setThemeType } = props
+    const { setThemeType } = props
 
     const pages = [
         ...useContext(PageDataContext)
@@ -43,7 +37,6 @@ const PageRoutes = (props: PageRoutesProps): ReactElement => {
             ? <Route path='/' exact>
                 <SplashPage
                     page={splashPage}
-                    staticAssets={staticAssets}
                     setThemeType={setThemeType}
                 />
             </Route>
@@ -81,7 +74,3 @@ const PageRoutes = (props: PageRoutesProps): ReactElement => {
 /***************************************************************/
 
 export default PageRoutes
-
-export {
-    StaticAssets
-}

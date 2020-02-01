@@ -2,13 +2,14 @@ import React, { ReactElement, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 
 import PageDataProvider, { PageData } from './page-data-provider'
-import PageRoutes, { StaticAssets } from './page-routes'
+import PageRoutes from './page-routes'
 
 import GlobalStyle from './global-style'
 import PageContainer from './page-container'
 
 import TopBar from './top-bar'
 import themes, { ThemeType } from '../util/theme'
+import StaticAssetContext, { StaticAssets } from './static-asset-context'
 
 /***************************************************************/
 // Container
@@ -38,25 +39,22 @@ const Website = (props: WebsiteProps): ReactElement => {
 
     return <PageDataProvider initialPageData={initialPageData}>
 
-        <ThemeProvider theme={theme}>
+        <StaticAssetContext.Provider value={staticAssets}>
 
-            <GlobalStyle />
+            <ThemeProvider theme={theme}>
 
-            <PageContainer>
+                <GlobalStyle />
 
-                <TopBar
-                    staticAssets={staticAssets}
-                    navIconTo='/menu'
-                />
+                <PageContainer>
 
-                <PageRoutes
-                    staticAssets={staticAssets}
-                    setThemeType={setThemeType}
-                />
+                    <TopBar navIconTo='/menu' />
+                    <PageRoutes setThemeType={setThemeType} />
 
-            </PageContainer>
+                </PageContainer>
 
-        </ThemeProvider>
+            </ThemeProvider>
+
+        </StaticAssetContext.Provider>
 
     </PageDataProvider>
 }

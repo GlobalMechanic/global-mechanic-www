@@ -38,6 +38,10 @@ interface PageData {
 
     portrait: FileID | null
     theme: ThemeType
+
+    flags?: {
+        socialMediaLinks: boolean
+    }
 }
 
 interface MenuPageData extends PageData {

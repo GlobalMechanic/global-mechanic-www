@@ -2,21 +2,17 @@ import React, { ReactElement, useEffect } from 'react'
 import styled, { DefaultTheme, withTheme } from 'styled-components'
 import { PageData } from '../../root-components/page-data-provider'
 import { ThemeType } from '../../util/theme'
+import SocialMediaLinks from '../generic/social-media-links'
 
 /***************************************************************/
 // Props
 /***************************************************************/
 
 interface PageProps {
-
     page: PageData
-
     children?: ReactElement | null | (ReactElement | null)[]
-
     setThemeType: (themeType: ThemeType) => void
-
     theme: DefaultTheme
-
 }
 
 const Title = styled.h1`
@@ -49,6 +45,11 @@ const Page = styled(withTheme((props: PageProps): ReactElement => {
         }
 
         {children}
+
+        {page.flags && page.flags.socialMediaLinks
+            ? <SocialMediaLinks />
+            : null
+        }
 
     </div>
 }))`

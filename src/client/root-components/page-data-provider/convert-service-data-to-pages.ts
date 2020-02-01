@@ -130,7 +130,11 @@ function createSplashPage(serviceData: ServiceData): ContentPageData {
         type: 'content',
         contents,
         theme: splashPage && splashPage.scope === 'light' ? 'light' : 'dark',
-        portrait: null
+        portrait: null,
+
+        flags: {
+            socialMediaLinks: true
+        }
     }
 
 }
@@ -159,7 +163,11 @@ function createAboutUsPage(serviceData: ServiceData): ContentPageData {
         contents: writeUp ? [writeUp] : [],
 
         theme: aboutUsPage && aboutUsPage.scope === 'light' ? 'light' : 'dark',
-        portrait: null
+        portrait: null,
+
+        flags: {
+            socialMediaLinks: true
+        }
     }
 }
 

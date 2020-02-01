@@ -3,16 +3,14 @@ import styled from 'styled-components'
 
 import { Link, useLocation } from 'react-router-dom'
 
-import { StaticAssets } from './page-routes'
 import { Icon } from '../components/generic'
-
+import { useStaticAssets } from './static-asset-context'
 
 /***************************************************************/
 // Props
 /***************************************************************/
 
 interface TopBarProps {
-    staticAssets: StaticAssets
     navIconTo: string
 }
 
@@ -22,8 +20,9 @@ interface TopBarProps {
 
 const TopBar = styled((props: TopBarProps) => {
 
-    const { staticAssets, navIconTo, ...rest } = props
+    const { navIconTo, ...rest } = props
 
+    const staticAssets = useStaticAssets()
     const location = useLocation()
 
     const atNav = location.pathname === navIconTo

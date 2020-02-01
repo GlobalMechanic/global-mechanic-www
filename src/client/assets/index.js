@@ -1,12 +1,16 @@
 import dots from './dots.png'
-import facebook from './facebook.png'
+import facebookLight from './facebook-light.png'
+import facebookDark from './facebook-dark.png'
 import hamburgerLight from './hamburger-light.png'
 import hamburgerDark from './hamburger-dark.png'
-import insta from './insta.png'
+import instaLight from './insta-light.png'
+import instaDark from './insta-dark.png'
 import nutLight from './nut-light.png'
 import nutDark from './nut-dark.png'
-import twitter from './twitter.png'
-import vimeo from './vimeo.png'
+import twitterLight from './twitter-light.png'
+import twitterDark from './twitter-dark.png'
+import vimeoLight from './vimeo-light.png'
+import vimeoDark from './vimeo-dark.png'
 import xDark from './x-dark.png'
 import xLight from './x-light.png'
 
@@ -16,23 +20,23 @@ import xLight from './x-light.png'
 
 const light = {
     dots,
-    facebook,
+    facebook: facebookLight,
     hamburger: hamburgerLight,
-    insta,
+    insta: instaLight,
     nut: nutLight,
-    twitter,
-    vimeo,
+    twitter: twitterLight,
+    vimeo: vimeoLight,
     x: xLight
 }
 
 const dark = {
     dots,
-    facebook,
+    facebook: facebookDark,
     hamburger: hamburgerDark,
-    insta,
+    insta: instaDark,
     nut: nutDark,
-    twitter,
-    vimeo,
+    twitter: twitterDark,
+    vimeo: vimeoDark,
     x: xDark
 }
 
