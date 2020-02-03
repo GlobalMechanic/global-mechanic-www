@@ -73,6 +73,8 @@ const MenuLink = styled((props: MenuLinkProps): ReactElement => {
         color: inherit;
     }
 
+    text-align: center;
+
     > h2 {
         margin: 0;
         font-size: 4em;
@@ -106,6 +108,8 @@ const MenuPage = styled((props: MenuPageProps): ReactElement => {
         </>
     </Page>
 })`
+    font-size: 3vmin;
+    overflow: hidden;
 `
 
 /***************************************************************/

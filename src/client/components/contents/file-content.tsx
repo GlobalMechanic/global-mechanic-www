@@ -13,15 +13,17 @@ import { content } from '../../util/css'
 // Helper
 /***************************************************************/
 
-const getContentType = (meta: FileMetaData): 'video' | 'image' | 'download' => {
+const getContentType = (meta: FileMetaData): 'markdown' | 'video' | 'image' | 'download' => {
 
-    const { mime } = meta
+    const { mime, ext } = meta
 
-    return mime.includes('video')
-        ? 'video'
-        : mime.includes('image')
-            ? 'image'
-            : 'download'
+    return ext === 'md' || ext === '.md'
+        ? 'markdown'
+        : mime.includes('video')
+            ? 'video'
+            : mime.includes('image')
+                ? 'image'
+                : 'download'
 }
 
 /***************************************************************/
@@ -42,6 +44,26 @@ const useFileMetadata = (fileId: string): FileMetaData | null => {
     }, [fileId])
 
     return metaData
+}
+
+const useFileText = (fileId: string): string => {
+
+    const [text, setText] = useState('')
+
+    useEffect(() => {
+
+        if (fileId) {
+
+            const URL = `${HOST}/file/${fileId}`
+            fetch(URL)
+                .then(res => res.text())
+                .then(setText)
+
+        } else if (text)
+            setText('')
+    })
+
+    return text
 }
 
 /***************************************************************/
@@ -75,7 +97,7 @@ const Video = styled((props: FileMetaContentProps): ReactElement => {
 
 const Image = styled((props: FileMetaContentProps): ReactElement => {
 
-    const { content, ...rest } = props
+    const { content, meta, ...rest } = props
 
     const src = `${HOST}/file/${content.file}`
 
@@ -84,8 +106,13 @@ const Image = styled((props: FileMetaContentProps): ReactElement => {
         {...rest}
     />
 })`
+
+    margin: auto;
+
     max-width: 100%;
     max-height: 100%;
+    margin-bottom: -0.1em;
+
 `
 
 const Download = styled((props: FileMetaContentProps): ReactElement => {
@@ -101,6 +128,8 @@ const Download = styled((props: FileMetaContentProps): ReactElement => {
         ↓ {meta.name + meta.ext}
     </a>
 })`
+    background-color: ${p => p.theme.colors.accent};
+
     font-size: 2em;
     font-family: monospace;
     
@@ -115,13 +144,28 @@ const Download = styled((props: FileMetaContentProps): ReactElement => {
     text-align: right;
 `
 
+const Markdown = styled((props: FileMetaContentProps): ReactElement => {
+
+    const text = useFileText(props.content.file)
+
+    return <TextContent
+        content={{
+            type: 'text',
+            text
+        }}
+    />
+})`
+    background-color: transparent;
+`
+
 const FileViewComponents: Record<
-    'video' | 'image' | 'download',
+    'video' | 'image' | 'download' | 'markdown',
     (props: FileMetaContentProps) => ReactElement
 > = {
     video: Video,
     image: Image,
-    download: Download
+    download: Download,
+    markdown: Markdown
 }
 
 /***************************************************************/
@@ -162,8 +206,8 @@ const FileContent = styled((props: FileContentProps): ReactElement => {
 
     </>
 })`
-    background-color: ${p => p.theme.colors.accent};
     ${content}
+    display: flex;
 `
 
 /***************************************************************/

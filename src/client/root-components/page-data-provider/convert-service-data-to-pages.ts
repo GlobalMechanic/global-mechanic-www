@@ -102,7 +102,7 @@ function createSplashPage(serviceData: ServiceData): ContentPageData {
 
     const splashPage = pluck(
         serviceData.showcases,
-        show => show.name === '2020 Website Splash Page'
+        show => show.name === '2020 New Website Splash Page'
     )
 
     const randomBackgroundVideo = splashPage && splashPage.files[

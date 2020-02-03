@@ -1,4 +1,4 @@
-import React, { ReactElement, createRef, useEffect, RefObject, useState } from 'react'
+import React, { ReactElement, createRef } from 'react'
 import styled from 'styled-components'
 
 import { ContentProps } from './content'

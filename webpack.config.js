@@ -39,6 +39,12 @@ module.exports = {
         path: path.resolve(__dirname, 'public')
     },
 
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
+    },
+
     module: {
         rules: [
             {
@@ -65,6 +71,7 @@ module.exports = {
     },
 
     devServer: {
+        disableHostCheck: true,
         contentBase: path.resolve(__dirname, 'public'),
         historyApiFallback: true,
         port: PORT

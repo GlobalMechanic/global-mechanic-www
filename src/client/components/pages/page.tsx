@@ -48,11 +48,7 @@ const Page = styled(withTheme((props: PageProps): ReactElement => {
     overflow-x: hidden;
 
     > div {
-        margin-bottom: 0.5em;
 
-        &:not(:first-child) {
-            margin-top: 0.5em;
-        }
     }
 `
 

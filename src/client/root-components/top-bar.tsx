@@ -41,9 +41,7 @@ const TopBar = styled((props: TopBarProps) => {
     const atNav = location.pathname === navIconTo
     const atHome = location.pathname === '/'
 
-    return <Gradient
-        from={atHome ? 'transparent' : theme.colors.bg}
-        to='transparent'
+    return <div
         {...rest}>
 
         <Link to='/'>
@@ -55,7 +53,7 @@ const TopBar = styled((props: TopBarProps) => {
             <Icon image={atNav ? staticAssets.x : staticAssets.hamburger} />
         </Link>
 
-    </Gradient>
+    </div>
 })`
 
     display: flex;
@@ -78,6 +76,7 @@ const TopBar = styled((props: TopBarProps) => {
     }
 
     a {
+        cursor: pointer;
         text-decoration: none;
         &:visited {
             color: inherit;

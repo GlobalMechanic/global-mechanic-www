@@ -102,6 +102,8 @@ const SplashPage = styled((props: ContentPageProps): ReactElement => {
 
     </Page>
 })`
+    ${fixed};
+    
     align-items: center;
     justify-content: center;
     overflow-x: hidden;

@@ -1,5 +1,5 @@
 {
-  "port": 5000,
+  "port": 7200,
   "public": "../public/",
   "mongodb": "mongodb://localhost:4999/global-mechanic-www-develop",
   "buckateer": {},

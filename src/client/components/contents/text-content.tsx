@@ -38,7 +38,7 @@ const TextContent = styled((props: TextContentProps): ReactElement => {
 
     ${content}
 
-    padding: 0em 1em 0em 1em;
+    padding: 1em;
 `
 
 /***************************************************************/
