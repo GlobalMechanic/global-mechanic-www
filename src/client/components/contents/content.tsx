@@ -6,6 +6,7 @@ import { ContentData } from '../../root-components/page-data-provider'
 /***************************************************************/
 
 interface ContentProps {
+    id?: string
     content: ContentData
     children?: ReactElement | string | null |
     (ReactElement | string | null)[]

@@ -21,7 +21,7 @@ interface TopBarProps {
 const TopBar = styled((props: TopBarProps) => {
 
     const {
-        // navIconTo, 
+        navIconTo,
         ...rest } = props
 
     const staticAssets = useStaticAssets()
