@@ -112,17 +112,15 @@ function createSplashPage(serviceData: ServiceData): ContentPageData {
         show => show.name === '2020 New Website Splash Page'
     )
 
-    const randomBackgroundVideo = splashPage && splashPage.files && splashPage.files[
-        Math.floor(
-            Math.random() * splashPage.files.length
-        )
-    ]
+    const backgroundVideos: ContentData[] = splashPage &&
+        splashPage.files &&
+        splashPage.files.map(file => ({
+            type: 'file',
+            file
+        })) || []
 
     const contents: ContentData[] = [
-        {
-            type: 'file',
-            file: randomBackgroundVideo
-        } as FileContentData,
+        ...backgroundVideos,
         {
             type: 'text',
             text: 'Hello'
@@ -229,7 +227,6 @@ function createCategoryAndGenericPages(serviceData: ServiceData): {
 
         const { name, portrait, website, files, products } = showcase
 
-
         const { mainMenuCategory, scope, essay } = website
 
         const categoryPage = mainMenuCategory
@@ -267,13 +264,27 @@ function createCategoryAndGenericPages(serviceData: ServiceData): {
 
         if (products) for (const productId of products) {
             const product = serviceData.products.find(p => p._id.toString() === productId)
-            if (product && product.video) {
+
+            if (product &&
+                product.video &&
+                product.video.vimeoId &&
+                product.productType === 'vimeo'
+            ) {
                 const vimeoContent: VimeoContentData = {
                     type: 'vimeo',
                     name: product.name,
                     vimeoId: product.video.vimeoId
                 }
                 page.contents.push(vimeoContent)
+
+            } else if (product && product.images && product.productType === 'gallery') {
+                for (const image of product.images) {
+                    const gifContent: FileContentData = {
+                        type: 'file',
+                        file: image
+                    }
+                    page.contents.push(gifContent)
+                }
             }
 
             if (product && product.description) {
@@ -285,7 +296,8 @@ function createCategoryAndGenericPages(serviceData: ServiceData): {
             }
         }
 
-        genericPages.push(page)
+        if (page.contents.length > 0)
+            genericPages.push(page)
     }
 
     return {

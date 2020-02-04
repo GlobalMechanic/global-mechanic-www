@@ -90,7 +90,11 @@ const SplashPage = styled((props: ContentPageProps): ReactElement => {
     const staticAssets = useStaticAssets()
 
     const fgText = page.contents.find(content => content.type === 'text') as TextContentData | void
-    const bgVideo = page.contents.find(content => content.type === 'file') as FileContentData | void
+    const bgVideos = page
+        .contents
+        .filter(content => content.type === 'file') as FileContentData[]
+
+    const bgVideo = bgVideos[Math.floor(Math.random() * bgVideos.length)]
 
     return <Page page={page} {...rest}>
 
@@ -112,8 +116,6 @@ const SplashPage = styled((props: ContentPageProps): ReactElement => {
 
     </Page>
 })`
-    ${fixed};
-    
     align-items: center;
     justify-content: center;
     overflow-x: hidden;
