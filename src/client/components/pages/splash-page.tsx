@@ -119,17 +119,16 @@ const SplashPage = styled((props: ContentPageProps): ReactElement => {
         }
 
         {aboutText
-            ? <TextContent id='temp-about-us-text' content={aboutText} />
+            ? <TextContent style={{
+                color: 'white',
+                width: 'max(50vw, 42em)'
+            }} content={aboutText} />
+
             : null
         }
 
     </Page>
 })`
-
-    #temp-about-us-text {
-        color: ${p => p.theme.colors.bg};
-        width: max(50vw, 42em);
-    }
     
     align-items: center;
     justify-content: center;
