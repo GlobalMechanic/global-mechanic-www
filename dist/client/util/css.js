@@ -34,6 +34,6 @@ exports.bodyFontBold = styled_components_1.css `
 `;
 exports.content = styled_components_1.css `
     box-sizing: border-box;
-    width: min(100%, 70em);
+    width: 100%;
     align-self: center;
 `;

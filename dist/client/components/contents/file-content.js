@@ -20,12 +20,14 @@ const css_1 = require("../../util/css");
 // Helper
 /***************************************************************/
 const getContentType = (meta) => {
-    const { mime } = meta;
-    return mime.includes('video')
-        ? 'video'
-        : mime.includes('image')
-            ? 'image'
-            : 'download';
+    const { mime, ext } = meta;
+    return ext === 'md' || ext === '.md'
+        ? 'markdown'
+        : mime.includes('video')
+            ? 'video'
+            : mime.includes('image')
+                ? 'image'
+                : 'download';
 };
 /***************************************************************/
 // Hooks
@@ -40,20 +42,38 @@ const useFileMetadata = (fileId) => {
     }, [fileId]);
     return metaData;
 };
+const useFileText = (fileId) => {
+    const [text, setText] = react_1.useState('');
+    react_1.useEffect(() => {
+        if (fileId) {
+            const URL = `${host_1.default}/file/${fileId}`;
+            fetch(URL)
+                .then(res => res.text())
+                .then(setText);
+        }
+        else if (text)
+            setText('');
+    });
+    return text;
+};
 const Video = styled_components_1.default((props) => {
     const { content, meta, ...rest } = props;
-    return react_1.default.createElement("video", Object.assign({ muted: true, autoPlay: true, loop: true }, rest),
+    return react_1.default.createElement("video", Object.assign({ controls: true }, rest),
         react_1.default.createElement("source", { src: `${host_1.default}/file/${content.file}`, type: meta.mime }));
 }) `
     width: 100%; 
 `;
 const Image = styled_components_1.default((props) => {
-    const { content, ...rest } = props;
+    const { content, meta, ...rest } = props;
     const src = `${host_1.default}/file/${content.file}`;
     return react_1.default.createElement("img", Object.assign({ src: src }, rest));
 }) `
+
+    margin: auto;
+
     max-width: 100%;
     max-height: 100%;
+    margin-bottom: -0.1em;
 `;
 const Download = styled_components_1.default((props) => {
     const { meta, content, ...rest } = props;
@@ -61,6 +81,8 @@ const Download = styled_components_1.default((props) => {
         "\u2193 ",
         meta.name + meta.ext);
 }) `
+    background-color: ${p => p.theme.colors.accent};
+
     font-size: 2em;
     font-family: monospace;
     
@@ -74,10 +96,20 @@ const Download = styled_components_1.default((props) => {
     width: 100%;
     text-align: right;
 `;
+const Markdown = styled_components_1.default((props) => {
+    const text = useFileText(props.content.file);
+    return react_1.default.createElement(text_content_1.default, { content: {
+            type: 'text',
+            text
+        } });
+}) `
+    background-color: transparent;
+`;
 const FileViewComponents = {
     video: Video,
     image: Image,
-    download: Download
+    download: Download,
+    markdown: Markdown
 };
 /***************************************************************/
 // FileContent Component
@@ -98,8 +130,8 @@ const FileContent = styled_components_1.default((props) => {
                 } })
             : null);
 }) `
-    background-color: ${p => p.theme.colors.accent};
     ${css_1.content}
+    display: flex;
 `;
 /***************************************************************/
 // Exports

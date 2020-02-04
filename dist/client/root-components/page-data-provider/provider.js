@@ -11,8 +11,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
-const fetch_service_data_1 = __importDefault(require("./fetch-service-data"));
-const convert_service_data_to_pages_1 = __importDefault(require("./convert-service-data-to-pages"));
+const fetch_page_data_1 = __importDefault(require("./fetch-page-data"));
 /***************************************************************/
 // Data
 /***************************************************************/
@@ -25,9 +24,7 @@ const PageDataProvider = (props) => {
     const { initialPageData = [], children } = props;
     const [pages, setPages] = react_1.useState(initialPageData);
     react_1.useEffect(() => {
-        fetch_service_data_1.default()
-            .then(convert_service_data_to_pages_1.default)
-            .then(setPages);
+        fetch_page_data_1.default().then(setPages);
     }, []);
     return react_1.default.createElement(PageDataContext.Provider, { value: pages }, children);
 };

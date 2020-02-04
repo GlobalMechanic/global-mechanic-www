@@ -45,6 +45,8 @@ const MenuLink = styled_components_1.default((props) => {
         color: inherit;
     }
 
+    text-align: center;
+
     > h2 {
         margin: 0;
         font-size: 4em;
@@ -65,6 +67,8 @@ const MenuPage = styled_components_1.default((props) => {
                     : null;
             })));
 }) `
+    font-size: 2.5vmin;
+    overflow: hidden;
 `;
 /***************************************************************/
 // Exports

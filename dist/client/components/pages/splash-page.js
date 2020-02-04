@@ -1,7 +1,4 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
@@ -9,12 +6,17 @@ var __importStar = (this && this.__importStar) || function (mod) {
     result["default"] = mod;
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
+const react_1 = __importStar(require("react"));
 const styled_components_1 = __importStar(require("styled-components"));
 const page_1 = __importDefault(require("./page"));
-const contents_1 = require("../contents");
+const page_data_provider_1 = require("../../root-components/page-data-provider");
 const static_asset_context_1 = require("../../root-components/static-asset-context");
+const host_1 = __importDefault(require("../../util/host"));
+const contents_1 = require("../contents");
 /***************************************************************/
 // Background
 /***************************************************************/
@@ -31,7 +33,12 @@ const BackgroundOverlay = styled_components_1.default.span `
     ${fixed}
     background-image: url(${(p) => p.staticImage});
 `;
-const BackgroundVideoContent = styled_components_1.default(contents_1.FileContent) `
+const BackgroundVideo = styled_components_1.default(props => {
+    const { fileId, ...rest } = props;
+    return react_1.default.createElement("div", Object.assign({}, rest),
+        react_1.default.createElement("video", { muted: true, loop: true, autoPlay: true },
+            react_1.default.createElement("source", { src: `${host_1.default}/file/${fileId}` })));
+}) `
     ${fixed}
 
     video {
@@ -62,6 +69,8 @@ const BackgroundText = styled_components_1.default.h1 `
     overflow: hidden;
     max-width: 100vw;
 
+    flex: 0 0 auto;
+
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: ${p => p.theme.colors.bg};
 `;
@@ -73,15 +82,28 @@ const SplashPage = styled_components_1.default((props) => {
     const staticAssets = static_asset_context_1.useStaticAssets();
     const fgText = page.contents.find(content => content.type === 'text');
     const bgVideo = page.contents.find(content => content.type === 'file');
+    const pages = react_1.useContext(page_data_provider_1.PageDataContext);
+    const aboutPage = pages && pages.find(page => page.path === 'about');
+    const aboutText = aboutPage && aboutPage.contents[0];
     return react_1.default.createElement(page_1.default, Object.assign({ page: page }, rest),
         bgVideo
-            ? react_1.default.createElement(BackgroundVideoContent, { content: bgVideo, description: null })
+            ? react_1.default.createElement(BackgroundVideo, { fileId: bgVideo.file })
             : null,
         react_1.default.createElement(BackgroundOverlay, { staticImage: staticAssets.dots }),
         fgText
             ? react_1.default.createElement(BackgroundText, null, fgText.text)
+            : null,
+        aboutText
+            ? react_1.default.createElement(contents_1.TextContent, { content: aboutText })
             : null);
 }) `
+    ${fixed};
+
+    ${contents_1.TextContent} {
+        color: ${p => p.theme.colors.bg};
+        width: max(50vw, 42em);
+    }
+    
     align-items: center;
     justify-content: center;
     overflow-x: hidden;

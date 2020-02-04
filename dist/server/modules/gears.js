@@ -17,6 +17,7 @@ const promise_queue_1 = __importDefault(require("promise-queue"));
 const isomorphic_fetch_1 = __importDefault(require("isomorphic-fetch"));
 const stream_1 = require("stream");
 const jsesc_1 = __importDefault(require("jsesc"));
+const page_data_1 = require("../middleware/page-data");
 /***************************************************************/
 // Module State
 /***************************************************************/
@@ -53,20 +54,25 @@ function ensureFile(data) {
             : fileId;
     //check if the file exists
     queue.add(async () => {
-        if (!gearsOptions)
-            throw new Error('Gears Options not resolved.');
-        const has = await file_storage_1.hasFile(key);
-        if (has)
-            return;
-        const res = await isomorphic_fetch_1.default(`${gearsOptions.host}/files/${fileId}${query}`);
-        if (res.status !== 200)
-            throw new Error(res.statusText);
-        const contentType = res.headers.get('Content-Type');
-        const ext = '.' + contentType
-            .substr(contentType.indexOf('/') + 1)
-            .replace('; charset=utf-8', '')
-            .replace('+xml', ''); // ew
-        return file_storage_1.writeFile(key, ext, res.body); // ew
+        try {
+            if (!gearsOptions)
+                throw new Error('Gears Options not resolved.');
+            const has = await file_storage_1.hasFile(key);
+            if (has)
+                return;
+            const res = await isomorphic_fetch_1.default(`${gearsOptions.host}/files/${fileId}${query}`);
+            if (res.status !== 200)
+                throw new Error(res.statusText);
+            const contentType = res.headers.get('Content-Type');
+            const ext = '.' + contentType
+                .substr(contentType.indexOf('/') + 1)
+                .replace('; charset=utf-8', '')
+                .replace('+xml', ''); // ew
+            return file_storage_1.writeFile(key, ext, res.body); // ew
+        }
+        catch (err) {
+            console.error(`file ${fileId} could not be ensured: ${err.message}`);
+        }
     });
 }
 // So, it turns out, if you supply an id to feathers for mongodb, it wont auto-cast it
@@ -98,7 +104,7 @@ async function login() {
     });
 }
 exports.login = login;
-function sync(from, to, ...downloads) {
+function sync(app, from, to, ...downloads) {
     const ensureFiles = (doc) => {
         if (!doc)
             return;
@@ -118,35 +124,39 @@ function sync(from, to, ...downloads) {
             });
         });
     };
-    const populate = () => {
-        from
-            //find all the docs from gears
-            .find({})
-            .then(docs => to
+    const populate = async () => {
+        const docs = await from.find({});
+        try {
             //remove all the local docs
-            .remove(null)
-            .then(() => {
+            await to.remove(null);
             //fill all the local docs with data from gears
             const promises = docs
                 .map(doc => to.create(castId(doc))
                 .catch(err => console.error('Error creating item:', err)));
-            return Promise.all(promises);
-        })
-            //download any files associated with the docs created
-            .then(docs => {
+            await Promise.all(promises);
             for (const doc of docs)
                 if (doc)
                     ensureFiles(doc);
-        }))
-            .catch(err => console.error('Error populating service', err));
+        }
+        catch (err) {
+            console.error('Error populating service', err);
+        }
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore no client typedef
+        const name = from['path'];
+        await page_data_1.updatePageData(app);
+        console.log('populated', name, docs.length);
     };
     const change = (res) => to.update(res._id, res)
         .then(ensureFiles)
+        .then(() => page_data_1.updatePageData(app))
         .catch((err) => console.error(err));
     const create = (res) => to.create(castId(res))
         .then(ensureFiles)
+        .then(() => page_data_1.updatePageData(app))
         .catch((err) => console.error(err));
     const remove = (res) => to.remove(res._id)
+        .then(() => page_data_1.updatePageData(app))
         .catch((err) => console.error(err));
     if (gearsClient)
         gearsClient.io.on('authenticated', populate);
@@ -178,8 +188,7 @@ function initialize() {
     files.on('patched', (doc) => {
         const { _id, name, description, ext, mime, size } = doc;
         const metaKey = _id + '-meta';
-        file_storage_1.hasFile(metaKey)
-            .then(has => {
+        file_storage_1.hasFile(metaKey).then(has => {
             if (!has)
                 return;
             //Rather than ping gears again for metadata we already have, we'll rebi

@@ -37,13 +37,6 @@ const Page = styled_components_1.default(styled_components_1.withTheme((props) =
     box-sizing: border-box;
     overflow-x: hidden;
 
-    > div {
-        margin-bottom: 0.5em;
-
-        &:not(:first-child) {
-            margin-top: 0.5em;
-        }
-    }
 `;
 /***************************************************************/
 // Exports

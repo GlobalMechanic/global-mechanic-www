@@ -21,7 +21,12 @@ const theme_1 = __importDefault(require("../util/theme"));
 const static_asset_context_1 = __importDefault(require("./static-asset-context"));
 const Website = (props) => {
     const { initialPageData, lightStaticAssets, darkStaticAssets } = props;
-    const [themeType, setThemeType] = react_1.useState('light');
+    // Get the first theme type from whatever has been provided in the inital
+    // page data. If this was populated from SSR, 
+    const initialThemeType = initialPageData
+        .map(page => page.theme)
+        .find(theme => theme) || 'light';
+    const [themeType, setThemeType] = react_1.useState(initialThemeType);
     const theme = theme_1.default[themeType];
     const staticAssets = themeType === 'dark'
         ? lightStaticAssets

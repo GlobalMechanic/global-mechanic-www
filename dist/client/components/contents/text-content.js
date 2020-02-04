@@ -28,7 +28,7 @@ const TextContent = styled_components_1.default((props) => {
 
     ${css_1.content}
 
-    padding: 0em 1em 0em 1em;
+    padding: 1em;
 `;
 /***************************************************************/
 // Exports
