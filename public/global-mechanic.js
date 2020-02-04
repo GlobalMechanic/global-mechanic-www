@@ -248,7 +248,6 @@
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: ${e=>e.theme.colors.bg};
 `,g=l.default(e=>{const{page:t,...n}=e,a=c.useStaticAssets(),o=t.contents.find(e=>"text"===e.type),l=t.contents.find(e=>"file"===e.type),s=i.useContext(u.PageDataContext),f=s&&s.find(e=>"about"===e.path),g=f&&f.contents[0];return i.default.createElement(r.default,Object.assign({page:t},n),l?i.default.createElement(h,{fileId:l.file}):null,i.default.createElement(m,{staticImage:a.dots}),o?i.default.createElement(p,null,o.text):null,g?i.default.createElement(d.TextContent,{style:{color:"white",width:"max(50vw, 42em)"},content:g}):null)}).withConfig({displayName:"SplashPage",componentId:"sc-1louq4"})`
-    
     align-items: center;
     justify-content: center;
     overflow-x: hidden;
