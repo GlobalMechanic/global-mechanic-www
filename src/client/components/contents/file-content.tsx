@@ -83,7 +83,7 @@ const Video = styled((props: FileMetaContentProps): ReactElement => {
 
     const { content, meta, ...rest } = props
 
-    return <video muted autoPlay loop {...rest}>
+    return <video controls {...rest}>
 
         <source
             src={`${HOST}/file/${content.file}`}

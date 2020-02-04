@@ -108,7 +108,7 @@ const MenuPage = styled((props: MenuPageProps): ReactElement => {
         </>
     </Page>
 })`
-    font-size: 3vmin;
+    font-size: 2.5vmin;
     overflow: hidden;
 `
 

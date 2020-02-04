@@ -4,9 +4,8 @@ import styled, { css } from 'styled-components'
 import Page from './page'
 import { ContentPageProps } from './content-page'
 import { TextContentData, FileContentData } from '../../root-components/page-data-provider'
-import { TextContent, FileContent } from '../contents'
-import { titleFont } from '../../util/css'
 import { useStaticAssets } from '../../root-components/static-asset-context'
+import HOST from '../../util/host'
 
 /***************************************************************/
 // Types
@@ -35,7 +34,16 @@ const BackgroundOverlay = styled.span`
     background-image: url(${(p: BackgroundOverlayProps) => p.staticImage});
 `
 
-const BackgroundVideoContent = styled(FileContent)`
+const BackgroundVideo = styled(props => {
+
+    const { fileId, ...rest } = props
+
+    return <div {...rest}>
+        <video muted loop autoPlay>
+            <source src={`${HOST}/file/${fileId}`} />
+        </video>
+    </div>
+})`
     ${fixed}
 
     video {
@@ -87,7 +95,9 @@ const SplashPage = styled((props: ContentPageProps): ReactElement => {
     return <Page page={page} {...rest}>
 
         {bgVideo
-            ? <BackgroundVideoContent content={bgVideo} description={null} />
+            ? <BackgroundVideo
+                fileId={bgVideo.file}
+            />
             : null
         }
 
