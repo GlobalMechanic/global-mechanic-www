@@ -16,7 +16,7 @@ import StaticAssetContext, { StaticAssets } from './static-asset-context'
 /***************************************************************/
 
 interface WebsiteProps {
-    initialPageData?: PageData[]
+    initialPageData: PageData[]
     lightStaticAssets: StaticAssets
     darkStaticAssets: StaticAssets
 }
@@ -29,7 +29,13 @@ const Website = (props: WebsiteProps): ReactElement => {
         darkStaticAssets
     } = props
 
-    const [themeType, setThemeType] = useState<ThemeType>('light')
+    // Get the first theme type from whatever has been provided in the inital
+    // page data. If this was populated from SSR, 
+    const initialThemeType = initialPageData
+        .map(page => page.theme)
+        .find(theme => theme) || 'light'
+
+    const [themeType, setThemeType] = useState<ThemeType>(initialThemeType)
 
     const theme = themes[themeType]
 

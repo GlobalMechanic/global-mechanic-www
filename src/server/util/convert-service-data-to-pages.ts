@@ -8,10 +8,9 @@ import {
 
     FileContentData,
     MenuPageData
-} from './types'
+} from '../../client/root-components/page-data-provider/types'
 
-import urlify from '../../util/urlify'
-import pluck from '../../util/pluck'
+import urlify from '../../client/util/urlify'
 
 /***************************************************************/
 // Convert Service Data To Pages
@@ -41,17 +40,25 @@ interface PersonRecord extends Record {
     name: { first: string, last: string }
 
     role: string
-    portrait: RecordID | null
 
-    essay: string
-    showcase: RecordID | null
+    staffData: {
+        portrait: RecordID | null
+        essay: string
+    }
+
+    directorData: {
+        portrait: RecordID | null
+        essay: string
+        showcase: RecordID | null
+    }
+
 }
 
 interface ProductRecord extends Record {
     name: string
-    type: 'vimeo' | 'gallery'
+    productType: 'vimeo' | 'gallery'
 
-    essay: string
+    description: string
 
     video: null | {
         vimeoId: number
@@ -68,16 +75,17 @@ interface ProductRecord extends Record {
 
 interface ShowcaseRecord extends Record {
     name: string
-    essay: string
 
     portrait: RecordID | null
-    products: RecordID[]
+    products: RecordID[] | null
 
-    scope: 'dark' | 'light'
+    website: {
+        essay: string
+        scope: 'dark' | 'light'
+        mainMenuCategory: string | null
+    }
 
-    mainMenuCategory: string
-
-    files: RecordID[]
+    files: RecordID[] | null
 }
 
 interface ServiceData {
@@ -100,12 +108,11 @@ const newPageId = (): number => ++lastPageID
 
 function createSplashPage(serviceData: ServiceData): ContentPageData {
 
-    const splashPage = pluck(
-        serviceData.showcases,
+    const splashPage = serviceData.showcases.find(
         show => show.name === '2020 New Website Splash Page'
     )
 
-    const randomBackgroundVideo = splashPage && splashPage.files[
+    const randomBackgroundVideo = splashPage && splashPage.files && splashPage.files[
         Math.floor(
             Math.random() * splashPage.files.length
         )
@@ -128,7 +135,11 @@ function createSplashPage(serviceData: ServiceData): ContentPageData {
         path: '', // cuz home page
         type: 'content',
         contents,
-        theme: splashPage && splashPage.scope === 'light' ? 'light' : 'dark',
+        theme: splashPage &&
+            splashPage.website &&
+            splashPage.website.scope === 'light'
+            ? 'light'
+            : 'dark',
         portrait: null,
 
         flags: {
@@ -143,14 +154,13 @@ function createAboutUsPage(serviceData: ServiceData): ContentPageData {
 
     const { showcases } = serviceData
 
-    const aboutUsPage = pluck(
-        showcases,
+    const aboutUsPage = showcases.find(
         showcase => showcase.name === 'About Us'
     )
 
     const writeUp: TextContentData | undefined = aboutUsPage && {
         type: 'text',
-        text: aboutUsPage.essay,
+        text: aboutUsPage.website.essay,
     }
 
     return {
@@ -161,7 +171,7 @@ function createAboutUsPage(serviceData: ServiceData): ContentPageData {
 
         contents: writeUp ? [writeUp] : [],
 
-        theme: aboutUsPage && aboutUsPage.scope === 'light' ? 'light' : 'dark',
+        theme: aboutUsPage && aboutUsPage.website && aboutUsPage.website.scope === 'light' ? 'light' : 'dark',
         portrait: null,
 
         flags: {
@@ -215,7 +225,12 @@ function createCategoryAndGenericPages(serviceData: ServiceData): {
     const genericPages: PageData[] = []
     const categoryPages: PageData[] = []
 
-    for (const { name, portrait, scope, essay, files, products, mainMenuCategory } of serviceData.showcases) {
+    for (const showcase of serviceData.showcases) {
+
+        const { name, portrait, website, files, products } = showcase
+
+
+        const { mainMenuCategory, scope, essay } = website
 
         const categoryPage = mainMenuCategory
             ? ensureCategoryPage(mainMenuCategory, categoryPages)
@@ -242,7 +257,7 @@ function createCategoryAndGenericPages(serviceData: ServiceData): {
             page.contents.push(essayContent)
         }
 
-        for (const fileId of files) {
+        if (files) for (const fileId of files) {
             const file: FileContentData = {
                 type: 'file',
                 file: fileId
@@ -250,8 +265,8 @@ function createCategoryAndGenericPages(serviceData: ServiceData): {
             page.contents.push(file)
         }
 
-        for (const productId of products) {
-            const product = serviceData.products.find(p => p._id === productId)
+        if (products) for (const productId of products) {
+            const product = serviceData.products.find(p => p._id.toString() === productId)
             if (product && product.video) {
                 const vimeoContent: VimeoContentData = {
                     type: 'vimeo',
@@ -261,10 +276,10 @@ function createCategoryAndGenericPages(serviceData: ServiceData): {
                 page.contents.push(vimeoContent)
             }
 
-            if (product && product.essay) {
+            if (product && product.description) {
                 const textContent: TextContentData = {
                     type: 'text',
-                    text: product.essay
+                    text: product.description
                 }
                 page.contents.push(textContent)
             }
@@ -354,5 +369,8 @@ function convertServiceDataToPages(
 export default convertServiceDataToPages
 
 export {
+    PersonRecord,
+    ProductRecord,
+    ShowcaseRecord,
     ServiceData
 }

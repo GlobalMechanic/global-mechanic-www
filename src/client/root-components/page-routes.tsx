@@ -4,6 +4,7 @@ import { PageDataContext, ContentPageData, MenuPageData, PageData } from './page
 import { ContentPage, MenuPage, SplashPage, MissingPage } from '../components/pages'
 
 import { ThemeType } from '../util/theme'
+import legacyPagePathMatch from '../util/legacy-page-path-match'
 
 /***************************************************************/
 // Types
@@ -11,8 +12,6 @@ import { ThemeType } from '../util/theme'
 interface PageRoutesProps {
     setThemeType: (themeType: ThemeType) => void
 }
-
-type PathPredicate = (fromPage: PageData, index: number, arr: PageData[]) => boolean
 
 /***************************************************************/
 // Helper Methods
@@ -30,18 +29,6 @@ const getPagePathFromLocation = (): string => {
     return breadcrumbs[breadcrumbs.length - 1]
 }
 
-/**
- * Old showcases used underscores, new pages uses dashes.
- * This method should reduce the amount of missing pages when clients
- * are clicking old links.
- */
-const legacyPagePathMatch = (pagePath: string): PathPredicate => {
-
-    const pagePathLegacy = pagePath.replace(/_/g, '-')
-
-    return page =>
-        pagePath === page.path || pagePathLegacy === page.path
-}
 
 /***************************************************************/
 // Helper Components
@@ -91,8 +78,6 @@ const ContentRoute = (props: PageRoutesProps): ReactElement => {
         : <MissingPage />
 
 }
-
-
 
 /***************************************************************/
 // Main

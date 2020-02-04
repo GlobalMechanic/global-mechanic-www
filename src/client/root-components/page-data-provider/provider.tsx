@@ -1,6 +1,5 @@
 import React, { ReactElement, useEffect, useState, createContext } from 'react'
-import fetchServiceData from './fetch-service-data'
-import convertServiceDataToPages from './convert-service-data-to-pages'
+import fetchPageData from './fetch-page-data'
 
 import { PageData } from './types'
 
@@ -30,9 +29,7 @@ const PageDataProvider = (props: PageDataProviderProps): ReactElement => {
     const [pages, setPages] = useState(initialPageData)
 
     useEffect(() => {
-        fetchServiceData()
-            .then(convertServiceDataToPages)
-            .then(setPages)
+        fetchPageData().then(setPages)
     }, [])
 
     return <PageDataContext.Provider value={pages}>

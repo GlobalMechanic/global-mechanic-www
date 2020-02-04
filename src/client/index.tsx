@@ -4,14 +4,26 @@ import { PageData } from './root-components/page-data-provider'
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import { light, dark } from './assets'
+import { IS_DEV } from './util/host'
 
 /***************************************************************/
 // Helper
 /***************************************************************/
 
 function getPageDataFromSSRRenderedJsonTag(): PageData[] {
-    // TODO: Finish SSR then get PageData from json tag
-    return []
+
+    try {
+        const jsonTag = document.getElementById('global-mechanic-ssr')
+        const jsonStr = jsonTag && jsonTag.innerText
+        const json = jsonStr && JSON.parse(jsonStr)
+
+        return json || []
+
+    } catch (err) {
+        if (IS_DEV)
+            console.error('could not parse json tag', err)
+        return []
+    }
 }
 
 /***************************************************************/

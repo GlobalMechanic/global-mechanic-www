@@ -8,6 +8,7 @@ import { StaticRouter } from 'react-router-dom'
 
 import { WebsiteApplication } from '../types'
 import Website from '../../client/root-components/website'
+import { getPageData } from './page-data'
 
 /******************************************************************************/
 // Module State
@@ -58,10 +59,10 @@ function createStaticAssets(app: WebsiteApplication): void {
 
     for (const assetPath of assetsBundledByWebpack) {
 
-        const [assetName] = assetPath.split('@')
+        const [assetName, assetShade] = assetPath.split(/-|@/)
 
-        const isLightAsset = assetName.includes('-light')
-        const isDarkAsset = assetName.includes('-dark')
+        const isLightAsset = assetShade && assetShade.includes('light')
+        const isDarkAsset = assetShade && assetShade.includes('dark')
         const isEither = !isLightAsset && !isDarkAsset
 
         if (isLightAsset || isEither)
@@ -86,8 +87,13 @@ function renderTemplate(
 
     const styleTags = sheet.getStyleTags()
 
+    const jsonStr = '<script id="global-mechanic-ssr" type="application/json">' +
+        JSON.stringify(json) +
+        '</script>'
+
     return template
         .replace('<!-- #STYLE-INJECTION -->', styleTags)
+        .replace('<!-- #JSON-INJECTION -->', jsonStr)
         .replace('<!-- #REACT-INJECTION -->', reactMarkup)
 }
 
@@ -95,7 +101,7 @@ function renderTemplate(
 // Setup
 /***************************************************************/
 
-export default function (app: WebsiteApplication): void {
+export default function (app: WebsiteApplication): unknown {
 
     // Create Template
     createTemplate(app)
@@ -117,14 +123,18 @@ export default function (app: WebsiteApplication): void {
 
         try {
 
+            const pageData = getPageData(req.url)
+
             const html = renderTemplate(
                 <StaticRouter location={req.url} context={context}>
                     <Website
+                        initialPageData={pageData}
                         lightStaticAssets={lightStaticAssets}
                         darkStaticAssets={darkStaticAssets}
                     />
                 </StaticRouter>,
-                sheet
+                sheet,
+                pageData
             )
 
             if (context.url)

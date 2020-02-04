@@ -2,7 +2,9 @@ import { static as serveStatic } from 'feathers'
 
 import handler from 'feathers-errors/handler'
 import fileServe from './file-serve'
+import pageData from './page-data'
 import reactRouterTemplate from './react-router-template'
+
 import logging from './logging'
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore no types
@@ -21,6 +23,7 @@ export default function (this: WebsiteApplication): void {
     const PUBLIC_URL = app.get('public') as string
 
     app.get('/file/:key', fileServe())
+    app.get('/data', pageData)
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore feathers is waaaaay to dynamic for typescript, I think
     app.use(reactRouterTemplate(app))

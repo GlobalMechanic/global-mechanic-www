@@ -26,6 +26,7 @@ import {
 } from '../types'
 
 import { ReadStream } from 'fs-extra'
+import { updatePageData } from '../middleware/page-data'
 
 /***************************************************************/
 // Module State
@@ -79,25 +80,29 @@ function ensureFile(data: { fileId: string, thumb?: string, meta?: boolean }): v
     //check if the file exists
     queue.add(async () => {
 
-        if (!gearsOptions)
-            throw new Error('Gears Options not resolved.')
+        try {
+            if (!gearsOptions)
+                throw new Error('Gears Options not resolved.')
 
-        const has = await hasFile(key)
-        if (has)
-            return
+            const has = await hasFile(key)
+            if (has)
+                return
 
-        const res = await fetch(`${gearsOptions.host}/files/${fileId}${query}`)
-        if (res.status !== 200)
-            throw new Error(res.statusText)
+            const res = await fetch(`${gearsOptions.host}/files/${fileId}${query}`)
+            if (res.status !== 200)
+                throw new Error(res.statusText)
 
-        const contentType = res.headers.get('Content-Type') as string
+            const contentType = res.headers.get('Content-Type') as string
 
-        const ext = '.' + contentType
-            .substr(contentType.indexOf('/') + 1)
-            .replace('; charset=utf-8', '')
-            .replace('+xml', '') // ew
+            const ext = '.' + contentType
+                .substr(contentType.indexOf('/') + 1)
+                .replace('; charset=utf-8', '')
+                .replace('+xml', '') // ew
 
-        return writeFile(key, ext, res.body as unknown as ReadStream) // ew
+            return writeFile(key, ext, res.body as unknown as ReadStream) // ew
+        } catch (err) {
+            console.error(`file ${fileId} could not be ensured: ${err.message}`)
+        }
     })
 }
 
@@ -141,6 +146,7 @@ async function login(): Promise<void> {
 }
 
 function sync(
+    app: WebsiteApplication,
     from: GearsService,
     to: GearsService,
     ...downloads: DownloadInstruction[]
@@ -169,54 +175,55 @@ function sync(
                 if (fileId && full)
                     ensureFile({ fileId })
             })
-
         })
-
     }
 
-    const populate = (): void => {
-        from
+    const populate = async (): Promise<void> => {
 
-            //find all the docs from gears
-            .find({})
-            .then(docs => to
+        const docs = await from.find({})
 
-                //remove all the local docs
-                .remove(null)
-                .then(() => {
+        try {
+            //remove all the local docs
+            await to.remove(null)
 
-                    //fill all the local docs with data from gears
-                    const promises = docs
-                        .map(doc => to.create(castId(doc))
-                            .catch(err => console.error('Error creating item:', err))
-                        )
+            //fill all the local docs with data from gears
+            const promises = docs
+                .map(doc => to.create(castId(doc))
+                    .catch(err => console.error('Error creating item:', err))
+                )
 
-                    return Promise.all(promises)
-                })
+            await Promise.all(promises)
 
-                //download any files associated with the docs created
-                .then(docs => {
-                    for (const doc of docs)
-                        if (doc)
-                            ensureFiles(doc)
-                })
-            )
-            .catch(err => console.error('Error populating service', err))
+            for (const doc of docs) if (doc)
+                ensureFiles(doc)
 
+        } catch (err) {
+            console.error('Error populating service', err)
+        }
+
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore no client typedef
+        const name = from['path']
+
+        await updatePageData(app)
+        console.log('populated', name, docs.length)
     }
 
     const change = (res: GearsDocument): Promise<unknown> =>
         to.update(res._id, res)
             .then(ensureFiles)
+            .then(() => updatePageData(app))
             .catch((err: Error) => console.error(err))
 
     const create = (res: GearsDocument): Promise<unknown> =>
         to.create(castId(res))
             .then(ensureFiles)
+            .then(() => updatePageData(app))
             .catch((err: Error) => console.error(err))
 
     const remove = (res: GearsDocument): Promise<unknown> =>
         to.remove(res._id)
+            .then(() => updatePageData(app))
             .catch((err: Error) => console.error(err))
 
     if (gearsClient)
@@ -261,27 +268,25 @@ function initialize(this: WebsiteApplication): void {
 
         const metaKey = _id + '-meta'
 
-        hasFile(metaKey)
-            .then(has => {
-                if (!has)
-                    return
+        hasFile(metaKey).then(has => {
+            if (!has)
+                return
 
-                //Rather than ping gears again for metadata we already have, we'll rebi
-                const data = JSON.stringify({ name, description, ext, mime, size })
-                const escaped = esc(data, { quotes: 'double' })
-                const stream = new Readable
+            //Rather than ping gears again for metadata we already have, we'll rebi
+            const data = JSON.stringify({ name, description, ext, mime, size })
+            const escaped = esc(data, { quotes: 'double' })
+            const stream = new Readable
 
-                stream.push(`"${escaped}"`)
-                stream.push(null)
+            stream.push(`"${escaped}"`)
+            stream.push(null)
 
-                return writeFile(metaKey, '.json', stream as unknown as ReadStream)
-            })
+            return writeFile(metaKey, '.json', stream as unknown as ReadStream)
+        })
     })
 
     //begin the connection process
     login()
 }
-
 
 /***************************************************************/
 // Exports

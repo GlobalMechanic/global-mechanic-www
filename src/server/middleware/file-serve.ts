@@ -44,7 +44,7 @@ export default function () {
             stream.on('data', chunk => data += chunk.toString())
             stream.on('end', () => {
                 res.setHeader('Content-Type', 'application/json')
-                res.json(JSON.parse(data))
+                res.send(data)
             })
 
         } else {
