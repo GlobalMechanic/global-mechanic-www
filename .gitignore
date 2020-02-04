@@ -5,3 +5,5 @@ development.json
 npm-debug.log
 
 ./public/*
+
+db
