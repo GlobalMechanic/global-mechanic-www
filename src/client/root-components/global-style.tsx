@@ -12,11 +12,11 @@ const GlobalStyle = createGlobalStyle`
         color: ${p => p.theme.colors.fg};
 
         @media only screen and (min-width: 1500px) {
-            font-size: 2rem;
+            font-size: 1.6rem;
         }
 
         @media only screen and (max-width: 1500px) {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
 
         @media only screen and (max-width: 1200px) {

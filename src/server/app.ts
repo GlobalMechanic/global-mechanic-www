@@ -1,4 +1,4 @@
-import feathers, { static as serveStatic } from 'feathers'
+import feathers from 'feathers'
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore no types
 import configuration from 'feathers-configuration'
@@ -10,9 +10,6 @@ import cors from 'cors'
 import compress from 'compression'
 import bodyParser from 'body-parser'
 import favicon from 'serve-favicon'
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore no types
-import fallback from 'express-history-api-fallback'
 
 import fileStorage from './modules/file-storage'
 import gears from './modules/gears'
@@ -34,7 +31,6 @@ async function createApp(): Promise<WebsiteApplication> {
     const app = feathers() as WebsiteApplication
     app.configure(configuration(CONFIG_URL))
 
-    const PUBLIC_URL = app.get('public') as string
     const MONGODB_URL = app.get('mongodb')
     const FAV_URL = path.resolve(__dirname, '../../favicon.png')
 
@@ -53,9 +49,6 @@ async function createApp(): Promise<WebsiteApplication> {
         .configure(gears)
         .configure(services)
         .configure(middleware)
-
-        .use('/', serveStatic(PUBLIC_URL))
-        .use(fallback('index.html', { root: PUBLIC_URL }))
 
     return app
 }

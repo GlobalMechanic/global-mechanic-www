@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import styled, { ThemeContext } from 'styled-components'
+import React from 'react'
+import styled from 'styled-components'
 
 import { Link, useLocation } from 'react-router-dom'
 
@@ -14,18 +14,6 @@ interface TopBarProps {
     navIconTo: string
 }
 
-interface GradientProps {
-    from: string
-    to: string
-}
-
-const Gradient = styled.div`
-    background: linear-gradient(
-        ${(p: GradientProps) => p.from},
-        ${(p: GradientProps) => p.to}
-    );
-`
-
 /***************************************************************/
 // Main
 /***************************************************************/
@@ -36,10 +24,8 @@ const TopBar = styled((props: TopBarProps) => {
 
     const staticAssets = useStaticAssets()
     const location = useLocation()
-    const theme = useContext(ThemeContext)
 
     const atNav = location.pathname === navIconTo
-    const atHome = location.pathname === '/'
 
     return <div
         {...rest}>

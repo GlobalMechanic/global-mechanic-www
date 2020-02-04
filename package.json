@@ -8,7 +8,7 @@
     "webpack:dev": "webpack-dev-server",
     "webpack": "NODE_ENV=production webpack",
     "db:dev": "./db/mongod --dbpath ./db/data --port 4999",
-    "serve:dev": "ts-node-dev src/server/serve.ts --watch src",
+    "serve:dev": "ts-node-dev --respawn --transpileOnly src/server/serve.ts --watch src",
     "serve": "NODE_ENV=production node dist/server/serve.js",
     "tsc": "tsc",
     "start": "npm run serve"

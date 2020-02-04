@@ -112,7 +112,6 @@ const Image = styled((props: FileMetaContentProps): ReactElement => {
     max-width: 100%;
     max-height: 100%;
     margin-bottom: -0.1em;
-
 `
 
 const Download = styled((props: FileMetaContentProps): ReactElement => {

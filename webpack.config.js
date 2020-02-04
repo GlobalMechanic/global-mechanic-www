@@ -36,7 +36,8 @@ module.exports = {
 
     output: {
         filename: 'global-mechanic.js',
-        path: path.resolve(__dirname, 'public')
+        path: path.resolve(__dirname, 'public'),
+        publicPath: '/'
     },
 
     optimization: {
@@ -65,15 +66,18 @@ module.exports = {
 
             {
                 test: /\.(png|jpe?g|gif)$/,
-                loader: 'file-loader'
+                loader: 'file-loader',
+                options: {
+                    name: '[name]@[contenthash].[ext]'
+                }
             }
         ]
     },
 
     devServer: {
-        disableHostCheck: true,
         contentBase: path.resolve(__dirname, 'public'),
         historyApiFallback: true,
+        host: '0.0.0.0',
         port: PORT
     },
 
@@ -82,7 +86,8 @@ module.exports = {
         new MiniCssExtractPlugin(),
         new HtmlWebpackPlugin({
             title: 'Global Mechanic',
-            template: path.resolve(__dirname, 'src', 'client', 'index.html')
+            template: path.resolve(__dirname, 'src', 'client', 'index.html'),
+            inject: 'head'
         }),
         new EnvironmentPlugin(ENV)
     ],
