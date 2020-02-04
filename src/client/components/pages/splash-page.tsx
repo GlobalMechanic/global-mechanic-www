@@ -1,11 +1,12 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useContext } from 'react'
 import styled, { css } from 'styled-components'
 
 import Page from './page'
 import { ContentPageProps } from './content-page'
-import { TextContentData, FileContentData } from '../../root-components/page-data-provider'
+import { TextContentData, FileContentData, PageDataContext, ContentPageData } from '../../root-components/page-data-provider'
 import { useStaticAssets } from '../../root-components/static-asset-context'
 import HOST from '../../util/host'
+import { TextContent } from '../contents'
 
 /***************************************************************/
 // Types
@@ -75,6 +76,8 @@ const BackgroundText = styled.h1`
     overflow: hidden;
     max-width: 100vw;
 
+    flex: 0 0 auto;
+
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: ${p => p.theme.colors.bg};
 `
@@ -91,6 +94,11 @@ const SplashPage = styled((props: ContentPageProps): ReactElement => {
 
     const fgText = page.contents.find(content => content.type === 'text') as TextContentData | void
     const bgVideo = page.contents.find(content => content.type === 'file') as FileContentData | void
+
+    const pages = useContext(PageDataContext)
+    const aboutPage = pages && pages.find(page => page.path === 'about') as ContentPageData | null
+
+    const aboutText = aboutPage && aboutPage.contents[0] as TextContentData | null
 
     return <Page page={page} {...rest}>
 
@@ -110,9 +118,19 @@ const SplashPage = styled((props: ContentPageProps): ReactElement => {
             : null
         }
 
+        {aboutText
+            ? <TextContent content={aboutText} />
+            : null
+        }
+
     </Page>
 })`
     ${fixed};
+
+    ${TextContent} {
+        color: ${p => p.theme.colors.bg};
+        width: max(50vw, 42em);
+    }
     
     align-items: center;
     justify-content: center;

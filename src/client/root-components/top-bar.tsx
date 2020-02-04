@@ -20,12 +20,14 @@ interface TopBarProps {
 
 const TopBar = styled((props: TopBarProps) => {
 
-    const { navIconTo, ...rest } = props
+    const {
+        // navIconTo, 
+        ...rest } = props
 
     const staticAssets = useStaticAssets()
-    const location = useLocation()
+    // const location = useLocation()
 
-    const atNav = location.pathname === navIconTo
+    // const atNav = location.pathname === navIconTo
 
     return <div
         {...rest}>
@@ -35,9 +37,9 @@ const TopBar = styled((props: TopBarProps) => {
             <h2>Global Mechanic</h2>
         </Link>
 
-        <Link to={atNav ? '/' : navIconTo}>
+        {/* <Link to={atNav ? '/' : navIconTo}>
             <Icon image={atNav ? staticAssets.x : staticAssets.hamburger} />
-        </Link>
+        </Link> */}
 
     </div>
 })`
