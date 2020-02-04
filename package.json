@@ -11,6 +11,7 @@
     "serve:dev": "ts-node-dev --respawn --transpileOnly src/server/serve.ts --watch src",
     "serve": "NODE_ENV=production node dist/server/serve.js",
     "tsc": "tsc",
+    "build": "npm run webpack && npm run tsc",
     "start": "npm run serve"
   },
   "repository": {
