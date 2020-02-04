@@ -36,7 +36,6 @@ const Page = styled_components_1.default(styled_components_1.withTheme((props) =
     flex: 1 1 auto;
     box-sizing: border-box;
     overflow-x: hidden;
-
 `;
 /***************************************************************/
 // Exports

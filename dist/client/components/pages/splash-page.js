@@ -94,16 +94,12 @@ const SplashPage = styled_components_1.default((props) => {
             ? react_1.default.createElement(BackgroundText, null, fgText.text)
             : null,
         aboutText
-            ? react_1.default.createElement(contents_1.TextContent, { content: aboutText })
+            ? react_1.default.createElement(contents_1.TextContent, { style: {
+                    color: 'white',
+                    width: 'max(50vw, 42em)'
+                }, content: aboutText })
             : null);
 }) `
-    ${fixed};
-
-    ${contents_1.TextContent} {
-        color: ${p => p.theme.colors.bg};
-        width: max(50vw, 42em);
-    }
-    
     align-items: center;
     justify-content: center;
     overflow-x: hidden;

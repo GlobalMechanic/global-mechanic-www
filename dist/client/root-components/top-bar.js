@@ -12,9 +12,7 @@ const static_asset_context_1 = require("./static-asset-context");
 // Main
 /***************************************************************/
 const TopBar = styled_components_1.default((props) => {
-    const { 
-    // navIconTo, 
-    ...rest } = props;
+    const { navIconTo, ...rest } = props;
     const staticAssets = static_asset_context_1.useStaticAssets();
     // const location = useLocation()
     // const atNav = location.pathname === navIconTo

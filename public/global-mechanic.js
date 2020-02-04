@@ -169,7 +169,6 @@
     flex: 1 1 auto;
     box-sizing: border-box;
     overflow-x: hidden;
-
 `;t.default=u},26:function(e,t,n){"use strict";var a=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(t,"__esModule",{value:!0});const o=a(n(1)).default.span.withConfig({displayName:"Icon",componentId:"sc-7evtvm"})`
 
     display: inline-block;
