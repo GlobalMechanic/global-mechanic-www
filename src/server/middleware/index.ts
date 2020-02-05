@@ -22,6 +22,7 @@ export default function (this: WebsiteApplication): void {
 
     const PUBLIC_URL = app.get('public') as string
 
+    app.get('/assets/gm-2017-signature.png', legacySignatureRedirect(app))
     app.get('/file/:key', fileServe())
     app.get('/data', pageData)
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
