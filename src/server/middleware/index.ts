@@ -11,6 +11,7 @@ import logging from './logging'
 import fallback from 'express-history-api-fallback'
 
 import { WebsiteApplication } from '../types'
+import legacySignatureRedirect from './legacy-signature-redirect'
 
 /***************************************************************/
 // Export
