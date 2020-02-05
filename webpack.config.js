@@ -4,7 +4,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const { EnvironmentPlugin } = require('webpack')
-const styledComponentsTransformer = require('typescript-plugin-styled-components').default()
+const createStyledComponentsTransformer = require('typescript-plugin-styled-components').default
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 /***************************************************************/
@@ -23,6 +23,10 @@ const ENV = mode === 'development'
     : {
         NODE_ENV: 'production',
     }
+
+const styledComponentsTransformer = createStyledComponentsTransformer({
+    ssr: true
+})
 
 /***************************************************************/
 // Config
@@ -51,7 +55,6 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 loader: 'ts-loader',
-                exclude: /node_modules/,
                 options: {
                     getCustomTransformers: () => ({
                         before: [styledComponentsTransformer]

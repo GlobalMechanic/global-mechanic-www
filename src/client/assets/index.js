@@ -13,6 +13,7 @@ import vimeoLight from './vimeo-light.png'
 import vimeoDark from './vimeo-dark.png'
 import xDark from './x-dark.png'
 import xLight from './x-light.png'
+import gmSignature from './gm-signature.png'
 
 /***************************************************************/
 // Compose
@@ -26,7 +27,8 @@ const light = {
     nut: nutLight,
     twitter: twitterLight,
     vimeo: vimeoLight,
-    x: xLight
+    x: xLight,
+    gmSignature
 }
 
 const dark = {
@@ -37,7 +39,8 @@ const dark = {
     nut: nutDark,
     twitter: twitterDark,
     vimeo: vimeoDark,
-    x: xDark
+    x: xDark,
+    gmSignature
 }
 
 /***************************************************************/

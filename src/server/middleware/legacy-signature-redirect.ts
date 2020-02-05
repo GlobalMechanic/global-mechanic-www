@@ -1,7 +1,7 @@
 import fs from 'fs'
-import path from 'path'
 
 import { WebsiteApplication } from '../types'
+import { Request, Response } from 'express'
 
 /***************************************************************/
 // Modules State
@@ -16,25 +16,19 @@ function findLegacySiganturePath(app: WebsiteApplication): void {
     const publicNames = fs.readdirSync(PUBLIC_URL)
     for (const publicName of publicNames)
         if (publicName.includes('signature'))
-            legacySignaturePath = path.join(PUBLIC_URL, publicName)
-
+            legacySignaturePath = '/' + publicName
 }
 
 /***************************************************************/
 // Exports
 /***************************************************************/
 
-export default function (this: WebsiteApplication) {
+// eslint-disable-next-line
+export default function (app: WebsiteApplication) {
 
-    findLegacySiganturePath(this)
+    findLegacySiganturePath(app)
 
-    console.log({
-        legacySignaturePath
-    })
-
-    return function (req, res) => {
-
-
-
+    return function (_req: Request, res: Response): void {
+        res.redirect(302, legacySignaturePath)
     }
 }

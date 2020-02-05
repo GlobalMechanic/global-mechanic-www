@@ -46,7 +46,6 @@ const Page = styled(withTheme((props: PageProps): ReactElement => {
     flex: 1 1 auto;
     box-sizing: border-box;
     overflow-x: hidden;
-
 `
 
 

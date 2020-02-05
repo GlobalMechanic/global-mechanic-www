@@ -12,6 +12,7 @@ import logging from './logging'
 import fallback from 'express-history-api-fallback'
 
 import { WebsiteApplication } from '../types'
+import legacySignatureRedirect from './legacy-signature-redirect'
 
 /***************************************************************/
 // Export
@@ -23,6 +24,7 @@ export default function (this: WebsiteApplication): void {
 
     const PUBLIC_URL = app.get('public') as string
 
+    app.get('/assets/gm-2017-signature.png', legacySignatureRedirect(app))
     app.get('/file/:key', fileServe())
     app.get('/data', pageData)
 
