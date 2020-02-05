@@ -29,6 +29,6 @@ export default function (app: WebsiteApplication) {
     findLegacySiganturePath(app)
 
     return function (_req: Request, res: Response): void {
-        res.redirect(301, legacySignaturePath)
+        res.redirect(302, legacySignaturePath)
     }
 }
