@@ -12,12 +12,14 @@ const logging_1 = __importDefault(require("./logging"));
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore no types
 const express_history_api_fallback_1 = __importDefault(require("express-history-api-fallback"));
+const legacy_signature_redirect_1 = __importDefault(require("./legacy-signature-redirect"));
 /***************************************************************/
 // Export
 /***************************************************************/
 function default_1() {
     const app = this;
     const PUBLIC_URL = app.get('public');
+    app.get('/assets/gm-2017-signature.png', legacy_signature_redirect_1.default(app));
     app.get('/file/:key', file_serve_1.default());
     app.get('/data', page_data_1.default);
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
