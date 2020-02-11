@@ -26,13 +26,14 @@ import { WebsiteApplication } from './types'
 
 async function createApp(): Promise<WebsiteApplication> {
 
-    const CONFIG_URL = path.resolve(__dirname, '../../')
-
     const app = feathers() as WebsiteApplication
+
+    const CONFIG_URL = path.resolve(__dirname, '../../')
+    const FAV_URL = path.resolve(__dirname, '../../favicon.png')
+
     app.configure(configuration(CONFIG_URL))
 
     const MONGODB_URL = app.get('mongodb')
-    const FAV_URL = path.resolve(__dirname, '../../favicon.png')
 
     app.db = await MongoClient.connect(MONGODB_URL)
 

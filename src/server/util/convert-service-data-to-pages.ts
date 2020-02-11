@@ -160,13 +160,25 @@ function createAboutUsPage(serviceData: ServiceData): ContentPageData {
         text: aboutUsPage.website.essay,
     }
 
+    const contents: ContentData[] = []
+    if (writeUp)
+        contents.push(writeUp)
+
+    if (aboutUsPage && aboutUsPage.files) for (const fileId of aboutUsPage.files) {
+        const file: FileContentData = {
+            type: 'file',
+            file: fileId
+        }
+        contents.push(file)
+    }
+
     return {
         _id: newPageId(),
         name: 'About',
         path: 'about',
         type: 'content',
 
-        contents: writeUp ? [writeUp] : [],
+        contents,
 
         theme: aboutUsPage && aboutUsPage.website && aboutUsPage.website.scope === 'light' ? 'light' : 'dark',
         portrait: null,
@@ -275,7 +287,9 @@ function createCategoryAndGenericPages(serviceData: ServiceData): {
             type: 'content',
             contents: [],
             portrait,
-            theme: scope === 'light' ? 'light' : 'dark'
+            theme: scope === 'light'
+                ? 'light'
+                : 'dark'
         }
 
         if (categoryPage)
@@ -330,7 +344,6 @@ function createCategoryAndGenericPages(serviceData: ServiceData): {
         )
             genericPages.push(page)
     }
-
 
     return {
         genericPages,

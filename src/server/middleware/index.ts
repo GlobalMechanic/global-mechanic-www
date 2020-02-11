@@ -4,7 +4,7 @@ import handler from 'feathers-errors/handler'
 import fileServe from './file-serve'
 import pageData from './page-data'
 import reactRouterTemplate from './react-router-template'
-import legacySignatureRedirect from './legacy-signature-redirect'
+import signatureServe from './signature-serve'
 
 import logging from './logging'
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -23,7 +23,7 @@ export default function (this: WebsiteApplication): void {
 
     const PUBLIC_URL = app.get('public') as string
 
-    app.get('/assets/gm-2017-signature.png', legacySignatureRedirect(app))
+    app.get('/signature/:who?', signatureServe(app))
     app.get('/file/:key', fileServe())
     app.get('/data', pageData)
 
