@@ -90,6 +90,37 @@ function ensureCategoryPage(category, categoryPages) {
     }
     return categoryPage;
 }
+function contentDataFromProduct(product) {
+    const contents = [];
+    if (product &&
+        product.video &&
+        product.video.vimeoId &&
+        product.productType === 'vimeo') {
+        const vimeoContent = {
+            type: 'vimeo',
+            name: product.name,
+            vimeoId: product.video.vimeoId
+        };
+        contents.push(vimeoContent);
+    }
+    else if (product && product.images && product.productType === 'gallery') {
+        for (const image of product.images) {
+            const gifContent = {
+                type: 'file',
+                file: image
+            };
+            contents.push(gifContent);
+        }
+    }
+    if (product && product.description) {
+        const textContent = {
+            type: 'text',
+            text: product.description
+        };
+        contents.push(textContent);
+    }
+    return contents;
+}
 function createCategoryAndGenericPages(serviceData) {
     const genericPages = [];
     const categoryPages = [];
@@ -128,23 +159,29 @@ function createCategoryAndGenericPages(serviceData) {
         if (products)
             for (const productId of products) {
                 const product = serviceData.products.find(p => p._id.toString() === productId);
-                if (product && product.video) {
-                    const vimeoContent = {
-                        type: 'vimeo',
-                        name: product.name,
-                        vimeoId: product.video.vimeoId
-                    };
-                    page.contents.push(vimeoContent);
-                }
-                if (product && product.description) {
-                    const textContent = {
-                        type: 'text',
-                        text: product.description
-                    };
-                    page.contents.push(textContent);
-                }
+                if (product)
+                    page.contents = [
+                        ...page.contents,
+                        ...contentDataFromProduct(product)
+                    ];
             }
-        genericPages.push(page);
+        if (page.contents.length > 0)
+            genericPages.push(page);
+    }
+    for (const product of serviceData.products) {
+        const { name, portrait } = product;
+        const page = {
+            _id: newPageId(),
+            type: 'content',
+            name,
+            path: urlify_1.default(name),
+            contents: contentDataFromProduct(product),
+            portrait,
+            theme: 'light'
+        };
+        if (page.contents.length > 0 &&
+            !genericPages.some(gPage => gPage.path === page.path))
+            genericPages.push(page);
     }
     return {
         genericPages,
@@ -168,6 +205,7 @@ function removePagesWithDuplicatePaths(pages) {
 // Main
 /***************************************************************/
 function convertServiceDataToPages(serviceData) {
+    lastPageID = 0;
     const splashPage = createSplashPage(serviceData);
     const aboutPage = createAboutUsPage(serviceData);
     const { categoryPages, genericPages, } = createCategoryAndGenericPages(serviceData);
@@ -183,18 +221,6 @@ function convertServiceDataToPages(serviceData) {
         ...genericPages
     ];
     pages = removePagesWithDuplicatePaths(pages);
-    if (process.env.NODE_ENV === 'development') {
-        const devMenuPage = {
-            _id: newPageId(),
-            name: 'dev-menu',
-            pages: pages.map(p => p._id),
-            type: 'menu',
-            portrait: null,
-            path: 'dev-menu',
-            theme: 'dark'
-        };
-        pages.push(devMenuPage);
-    }
     return pages;
 }
 /***************************************************************/
