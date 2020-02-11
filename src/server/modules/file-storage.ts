@@ -105,12 +105,12 @@ function hasFile(key: string): Promise<boolean> {
 
 function writeFile(key: string, ext: string, read: ReadStream): Promise<void> {
 
-    console.log('streaming file from gears', key, ext)
-
     if (!s3) {
         const write = fs.createWriteStream(
             path.join(LOCAL_FILES, `${key}${ext}`)
         )
+
+        console.log('writing file to local:', key, ext)
 
         return new Promise((resolve, reject) => {
             read.pipe(write)
@@ -138,7 +138,7 @@ function writeFile(key: string, ext: string, read: ReadStream): Promise<void> {
                 resolve()
         })
 
-        console.log('writing file to s3:', key)
+        console.log('writing file to s3:', key, ext)
 
         read.pipe(upload)
     })
@@ -159,7 +159,8 @@ async function readFile(key: string, rangestr: string): Promise<null | FileData>
 
         return {
             stream: fs.createReadStream(url, options),
-            size, ...options,
+            size,
+            ...options,
             ext: path.extname(url)
         }
     }

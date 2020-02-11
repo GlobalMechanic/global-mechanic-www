@@ -12,7 +12,6 @@ import logging from './logging'
 import fallback from 'express-history-api-fallback'
 
 import { WebsiteApplication } from '../types'
-import legacySignatureRedirect from './legacy-signature-redirect'
 
 /***************************************************************/
 // Export
@@ -31,10 +30,7 @@ export default function (this: WebsiteApplication): void {
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore feathers is waaaaay to dynamic for typescript, I think
     app.use(reactRouterTemplate(app))
-
     app.use('/', serveStatic(PUBLIC_URL))
-    app.get('/assets/gm-2017-signature', legacySignatureRedirect())
-
     app.use(fallback('index.html', { root: PUBLIC_URL }))
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
