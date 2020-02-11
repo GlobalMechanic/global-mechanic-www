@@ -26,7 +26,17 @@ const Markdown = styled((props: MarkdownProps) => {
     }
 
     h1:first-child {
-        font-size: 4em;
+        font-size: 4.5em;
+        overflow: hidden;
+
+        @media only screen and (max-width: 700px) {
+            font-size: 3em;
+        }
+    }
+
+    p {
+        margin-bottom: -0.5em;
+        letter-spacing: 1px;
     }
 
     a {

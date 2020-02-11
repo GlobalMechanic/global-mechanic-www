@@ -10,25 +10,30 @@ const GlobalStyle = createGlobalStyle`
         background-color: ${p => p.theme.colors.bg};
         color: ${p => p.theme.colors.fg};
 
+        
         @media only screen and (max-width: 1200px) {
-            font-size: 1rem;
-        }
-
-        @media only screen and (max-width: 1000px) {
             font-size: 0.8rem;
+        } 
+
+         @media only screen and (max-width: 1000px) {
+            font-size: 0.75rem;
         }
 
         @media only screen and (max-width: 700px) {
             font-size: 0.7rem;
-        }
+        } 
 
         @media only screen and (max-width: 400px) {
-            font-size: 0.6rem;
+            font-size: 0.65rem;
         }
 
         @media only screen and (max-width: 300px) {
-            font-size: 0.5rem;
-        }
+            font-size: 0.6rem;
+        } 
+    }
+
+    svg {
+        fill: ${p => p.theme.colors.fg};
     }
 
     /* disbles 'detach video' popup in opera */
