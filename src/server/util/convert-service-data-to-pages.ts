@@ -151,7 +151,6 @@ function createSplashPage(serviceData: ServiceData): ContentPageData {
 
 function createAboutUsPage(serviceData: ServiceData): ContentPageData {
 
-
     const { showcases } = serviceData
 
     const aboutUsPage = showcases.find(
@@ -217,6 +216,43 @@ function ensureCategoryPage(category: string, categoryPages: PageData[]): MenuPa
     return categoryPage
 }
 
+function contentDataFromProduct(product: ProductRecord): ContentData[] {
+
+    const contents: ContentData[] = []
+
+    if (product &&
+        product.video &&
+        product.video.vimeoId &&
+        product.productType === 'vimeo'
+    ) {
+        const vimeoContent: VimeoContentData = {
+            type: 'vimeo',
+            name: product.name,
+            vimeoId: product.video.vimeoId
+        }
+        contents.push(vimeoContent)
+
+    } else if (product && product.images && product.productType === 'gallery') {
+        for (const image of product.images) {
+            const gifContent: FileContentData = {
+                type: 'file',
+                file: image
+            }
+            contents.push(gifContent)
+        }
+    }
+
+    if (product && product.description) {
+        const textContent: TextContentData = {
+            type: 'text',
+            text: product.description
+        }
+        contents.push(textContent)
+    }
+
+    return contents
+}
+
 function createCategoryAndGenericPages(serviceData: ServiceData): {
     categoryPages: PageData[]
     genericPages: PageData[]
@@ -228,8 +264,6 @@ function createCategoryAndGenericPages(serviceData: ServiceData): {
     for (const showcase of serviceData.showcases) {
 
         const { name, portrait, website, files, products } = showcase
-
-
         const { mainMenuCategory, scope, essay } = website
 
         const categoryPage = mainMenuCategory
@@ -267,26 +301,38 @@ function createCategoryAndGenericPages(serviceData: ServiceData): {
 
         if (products) for (const productId of products) {
             const product = serviceData.products.find(p => p._id.toString() === productId)
-            if (product && product.video) {
-                const vimeoContent: VimeoContentData = {
-                    type: 'vimeo',
-                    name: product.name,
-                    vimeoId: product.video.vimeoId
-                }
-                page.contents.push(vimeoContent)
-            }
-
-            if (product && product.description) {
-                const textContent: TextContentData = {
-                    type: 'text',
-                    text: product.description
-                }
-                page.contents.push(textContent)
-            }
+            if (product)
+                page.contents = [
+                    ...page.contents,
+                    ...contentDataFromProduct(product)
+                ]
         }
 
-        genericPages.push(page)
+        if (page.contents.length > 0)
+            genericPages.push(page)
     }
+
+    for (const product of serviceData.products) {
+
+        const { name, portrait } = product
+
+        const page: ContentPageData = {
+            _id: newPageId(),
+            type: 'content',
+            name,
+            path: urlify(name),
+            contents: contentDataFromProduct(product),
+            portrait,
+            theme: 'light'
+        }
+
+        if (
+            page.contents.length > 0 &&
+            !genericPages.some(gPage => gPage.path === page.path)
+        )
+            genericPages.push(page)
+    }
+
 
     return {
         genericPages,
@@ -320,6 +366,8 @@ function convertServiceDataToPages(
     serviceData: ServiceData
 ): PageData[] {
 
+    lastPageID = 0
+
     const splashPage = createSplashPage(serviceData)
     const aboutPage = createAboutUsPage(serviceData)
     const {
@@ -341,23 +389,6 @@ function convertServiceDataToPages(
     ]
 
     pages = removePagesWithDuplicatePaths(pages)
-
-    if (process.env.NODE_ENV === 'development') {
-
-        const devMenuPage: MenuPageData = {
-            _id: newPageId(),
-
-            name: 'dev-menu',
-
-            pages: pages.map(p => p._id),
-            type: 'menu',
-            portrait: null,
-            path: 'dev-menu',
-            theme: 'dark'
-        }
-
-        pages.push(devMenuPage)
-    }
 
     return pages
 }
