@@ -7,7 +7,8 @@ import styled from 'styled-components'
 const PageContainer = styled.div`
    display: flex;
    flex-direction: column;
-   flex: 1 1 auto;
+   width: 100vw;
+   height: 100vh;   
 `
 
 /***************************************************************/

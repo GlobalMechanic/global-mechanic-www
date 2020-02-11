@@ -1,23 +1,14 @@
 import { createGlobalStyle } from 'styled-components'
-import { bodyFont, titleFont } from '../util/css'
+import { bodyFont, titleFont, hidePlayButton } from '../util/css'
 
 /***************************************************************/
 // Main
 /***************************************************************/
 
 const GlobalStyle = createGlobalStyle`
-
     html {
         background-color: ${p => p.theme.colors.bg};
         color: ${p => p.theme.colors.fg};
-
-        @media only screen and (min-width: 1500px) {
-            font-size: 1.6rem;
-        }
-
-        @media only screen and (max-width: 1500px) {
-            font-size: 1.3rem;
-        }
 
         @media only screen and (max-width: 1200px) {
             font-size: 1rem;
@@ -40,6 +31,11 @@ const GlobalStyle = createGlobalStyle`
         }
     }
 
+    /* disbles 'detach video' popup in opera */
+    html > div[style] {
+        display: none !important;
+    }
+
     html, body, main {
         display: flex;
         flex-direction: column;
@@ -57,7 +53,6 @@ const GlobalStyle = createGlobalStyle`
     h1, h2, h3, h4, h5, h6 {
         ${titleFont};
     }
-
 `
 
 /***************************************************************/

@@ -19,7 +19,7 @@ const Markdown = styled((props: MarkdownProps) => {
     return <ReactMarkdown source={children} {...rest} />
 })`
 
-    font-size: 2em;
+    font-size: 1.5em;
 
     h1, h2, h3, h4, h5, h6, p, ul {
         margin: 0;

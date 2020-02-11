@@ -38,16 +38,13 @@ const Page = styled(withTheme((props: PageProps): ReactElement => {
         }
     </div>
 }))`
-    display: flex;
     flex-direction: column;
     
     align-items: center;
-
-    flex: 1 1 auto;
-    box-sizing: border-box;
     overflow-x: hidden;
-`
 
+    box-sizing: border-box;
+`
 
 /***************************************************************/
 // Exports

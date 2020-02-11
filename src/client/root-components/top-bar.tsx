@@ -25,9 +25,10 @@ const TopBar = styled((props: TopBarProps) => {
         ...rest } = props
 
     const staticAssets = useStaticAssets()
-    // const location = useLocation()
 
-    // const atNav = location.pathname === navIconTo
+    const location = useLocation()
+
+    const atNav = location.pathname === navIconTo
 
     return <div
         {...rest}>
@@ -37,19 +38,19 @@ const TopBar = styled((props: TopBarProps) => {
             <h2>Global Mechanic</h2>
         </Link>
 
-        {/* <Link to={atNav ? '/' : navIconTo}>
+        <Link to={atNav ? '/' : navIconTo}>
             <Icon image={atNav ? staticAssets.x : staticAssets.hamburger} />
-        </Link> */}
+        </Link>
 
     </div>
 })`
 
     display: flex;
     align-items: baseline;
-    padding: 0.5em 0.75em;
+    flex: 0 0 auto;
+    padding: 0.5em 1.25em 0.5em 0.75em;
 
-    position: sticky;
-    top: 0em;
+    position: relative; // sticky;
 
     font-size: 1.25em;
 
@@ -66,9 +67,12 @@ const TopBar = styled((props: TopBarProps) => {
     a {
         cursor: pointer;
         text-decoration: none;
-        &:visited {
-            color: inherit;
-        }
+        color: inherit;
+
+    }
+
+    a:visited {
+        color: inherit;
     }
 `
 
