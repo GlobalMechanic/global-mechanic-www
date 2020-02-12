@@ -14,6 +14,9 @@ import vimeoDark from './vimeo-dark.png'
 import xDark from './x-dark.png'
 import xLight from './x-light.png'
 
+import helloLight from './hello-light.svg'
+import helloDark from './hello-dark.svg'
+
 import logoDark from './signature-logo-dark.svg'
 import logoLight from './signature-logo-light.svg'
 
@@ -51,7 +54,8 @@ const light = {
     nut: nutLight,
     twitter: twitterLight,
     vimeo: vimeoLight,
-    x: xLight
+    x: xLight,
+    hello: helloDark
 }
 
 const dark = {
@@ -64,7 +68,8 @@ const dark = {
     nut: nutDark,
     twitter: twitterDark,
     vimeo: vimeoDark,
-    x: xDark
+    x: xDark,
+    hello: helloLight
 }
 
 /***************************************************************/

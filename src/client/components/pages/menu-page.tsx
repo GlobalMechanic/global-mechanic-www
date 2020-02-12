@@ -54,9 +54,7 @@ const MenuPortrait = styled.div`
 
         color: ${p => p.theme.colors.bg};
         font-size: 3em;
-        text-shadow: 1px 1px 0em rgba(0, 0, 0, 0.2);
         text-align: right;
-
     }
 `
 
@@ -99,7 +97,6 @@ const MenuLink = styled((props: MenuLinkProps): ReactElement => {
         margin: 0;
         font-size: 4em;
         letter-spacing: -1px;
-
     }
 `
 
@@ -131,11 +128,6 @@ const MenuPage = styled((props: MenuPageProps): ReactElement => {
     </Page>
 
 })`
-
-    h1:first-child {
-        margin-left: env(safe-area-inset-left);
-    };
-
     font-size: 3vmin;
     height: 100%;
 `

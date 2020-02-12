@@ -3,8 +3,9 @@ import styled, { css } from 'styled-components'
 
 import Page from './page'
 import { ContentPageProps } from './content-page'
-import { TextContentData, FileContentData } from '../../root-components/page-data-provider'
+import { FileContentData } from '../../root-components/page-data-provider'
 import { useStaticAssets } from '../../root-components/static-asset-context'
+
 import HOST from '../../util/host'
 import { hidePlayButton } from '../../util/css'
 
@@ -14,6 +15,18 @@ import { hidePlayButton } from '../../util/css'
 
 interface BackgroundOverlayProps {
     staticImage: string
+}
+
+/***************************************************************/
+// Helper
+/***************************************************************/
+
+function getRandom<T>(input: T[]): T {
+
+    const rand = Math.random() * input.length
+    const index = Math.floor(rand)
+
+    return input[index]
 }
 
 /***************************************************************/
@@ -47,10 +60,12 @@ const BackgroundVideo = styled(props => {
             playsInline
             controls={false}
         >
+
             <source
                 src={`${HOST}/file/${fileId}`}
                 type='video/mp4'
             />
+
         </video>
     </div>
 })`
@@ -59,40 +74,36 @@ const BackgroundVideo = styled(props => {
     video {
         position: inherit;
 
-        top: 50%;
-        left: 50%;
+    top: 50%;
+    left: 50%;
 
-        min-width: 100%;
-        min-height: 100%;
+    min-width: 100%;
+    min-height: 100%;
 
-        width: auto;
-        height: auto;
+    width: auto;
+    height: auto;
 
-        opacity: 0.75;
+    opacity: 0.75;
 
-        transform: translate(-50%, -50%);
-    }
+    transform: translate(-50%, -50%);
+}
 
     ${hidePlayButton('*')}
 
     background-color: ${p => p.theme.colors.fg};
 `
 
-const BackgroundText = styled.h1`
-    color: transparent;
-    margin: 0;
+const Hello = styled(props => {
 
-    font-size: 45vmin;
-    
-    overflow: hidden;
-    max-width: 100vw;
+    const staticAssets = useStaticAssets()
 
-    letter-spacing: -${1 / 16}em;
-
-    flex: 0 0 auto;
-
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: ${p => p.theme.colors.bg};
+    return <img
+        src={staticAssets.hello}
+        {...props}
+    />
+})`
+    width: calc(100vw - 1em);
+    max-height: calc(100vh - 5em);
 `
 
 /***************************************************************/
@@ -105,41 +116,31 @@ const SplashPage = styled((props: ContentPageProps): ReactElement => {
 
     const staticAssets = useStaticAssets()
 
-    const fgText = page.contents.find(content => content.type === 'text') as TextContentData | void
     const bgVideos = page
         .contents
         .filter(content => content.type === 'file') as FileContentData[]
 
-    const bgVideo = bgVideos[Math.floor(Math.random() * bgVideos.length)]
+    const bgVideo = getRandom(bgVideos)
 
     return <Page page={page} {...rest}>
 
         {bgVideo
-            ? <BackgroundVideo
-                fileId={bgVideo.file}
-            />
+            ? <BackgroundVideo fileId={bgVideo.file} />
             : null
         }
 
         <BackgroundOverlay staticImage={staticAssets.dots} />
 
-        {fgText
-
-            ? <BackgroundText>
-                {fgText.text}
-            </BackgroundText>
-
-            : null
-        }
+        <Hello />
 
     </Page>
 })`
-
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    margin: auto;
-`
+            
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                margin: auto;
+            `
 
 /***************************************************************/
 // Exports

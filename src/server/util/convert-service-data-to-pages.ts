@@ -120,20 +120,12 @@ function createSplashPage(serviceData: ServiceData): ContentPageData {
             file
         })) || []
 
-    const contents: ContentData[] = [
-        ...backgroundVideos,
-        {
-            type: 'text',
-            text: 'Hello'
-        } as TextContentData
-    ]
-
     return {
         _id: newPageId(),
         name: 'Splash',
         path: '', // cuz home page
         type: 'content',
-        contents,
+        contents: backgroundVideos,
         theme: splashPage &&
             splashPage.website &&
             splashPage.website.scope === 'light'
@@ -181,7 +173,12 @@ function createAboutUsPage(serviceData: ServiceData): ContentPageData {
 
         contents,
 
-        theme: aboutUsPage && aboutUsPage.website && aboutUsPage.website.scope === 'light' ? 'light' : 'dark',
+        theme: aboutUsPage &&
+            aboutUsPage.website &&
+            aboutUsPage.website.scope === 'light'
+            ? 'light'
+            : 'dark',
+
         portrait: null,
 
         flags: {
