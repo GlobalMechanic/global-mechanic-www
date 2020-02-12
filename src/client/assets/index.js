@@ -14,8 +14,8 @@ import vimeoDark from './vimeo-dark.png'
 import xDark from './x-dark.png'
 import xLight from './x-light.png'
 
-import logoDark from './signature-gm-logo-dark.svg'
-import logoLight from './signature-gm-logo-light.svg'
+import logoDark from './signature-logo-dark.svg'
+import logoLight from './signature-logo-light.svg'
 
 import ben from './signature-ben.svg'
 import brodie from './signature-brodie.svg'

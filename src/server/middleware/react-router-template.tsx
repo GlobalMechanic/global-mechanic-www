@@ -6,8 +6,9 @@ import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
 import { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 
-import { WebsiteApplication } from '../types'
 import Website from '../../client/root-components/website'
+
+import { WebsiteApplication } from '../types'
 import { getPageData } from './page-data'
 
 /******************************************************************************/
@@ -59,18 +60,24 @@ function createStaticAssets(app: WebsiteApplication): void {
 
     for (const assetPath of assetsBundledByWebpack) {
 
-        const [assetName, assetShade] = assetPath.split(/-|@/)
+        const assetStrings = assetPath.split(/-|@/)
+        const assetName = assetStrings.find(str =>
+            str !== 'signature' &&
+            str !== 'light' &&
+            str !== 'dark'
+        )
 
-        const isLightAsset = assetShade && assetShade.includes('light')
-        const isDarkAsset = assetShade && assetShade.includes('dark')
+        const isLightAsset = assetStrings.includes('light')
+        const isDarkAsset = assetStrings.includes('dark')
         const isEither = !isLightAsset && !isDarkAsset
 
-        if (isLightAsset || isEither)
+        if (assetName && (isLightAsset || isEither))
             lightStaticAssets[assetName] = '/' + assetPath
 
-        if (isDarkAsset || isEither)
+        if (assetName && (isDarkAsset || isEither))
             darkStaticAssets[assetName] = '/' + assetPath
     }
+
 }
 
 function renderTemplate(
