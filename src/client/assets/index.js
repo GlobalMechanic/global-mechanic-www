@@ -55,7 +55,7 @@ const light = {
     twitter: twitterLight,
     vimeo: vimeoLight,
     x: xLight,
-    hello: helloDark
+    hello: helloLight
 }
 
 const dark = {
@@ -69,7 +69,7 @@ const dark = {
     twitter: twitterDark,
     vimeo: vimeoDark,
     x: xDark,
-    hello: helloLight
+    hello: helloDark
 }
 
 /***************************************************************/
