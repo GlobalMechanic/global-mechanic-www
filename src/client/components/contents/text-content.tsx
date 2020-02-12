@@ -38,6 +38,9 @@ const TextContent = styled((props: TextContentProps): ReactElement => {
 
     ${content}
 
+    margin-left: env(safe-area-inset-left);
+    margin-right: env(safe-area-inset-right);
+
     padding: 2em 0.75em 2em 0.75em;
 `
 

@@ -42,14 +42,10 @@ const Page = styled(withTheme((props: PageProps): ReactElement => {
     flex-direction: column;
     
     align-items: center;
-    overflow: hidden;
 
-    scrollbar-width: thin;
+    overflow-x: hidden;
 
     box-sizing: border-box;
-
-    margin-bottom: 1em;
-    margin-top: 2em;
 `
 
 /***************************************************************/

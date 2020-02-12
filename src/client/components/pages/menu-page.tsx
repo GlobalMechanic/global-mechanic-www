@@ -41,19 +41,21 @@ const MenuPortrait = styled.div`
     justify-content: flex-end;
     overflow: hidden;
 
-    width: 100vw;
+    width: 100%;
     height: 56.25vw;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url(${HOST}/file/${(p: MenuPortraitProps) => p.portraitId});
-
+    
     h2 {
         margin: 0em 0.5em 0.25em 0em;
+        padding-right: env(safe-area-inset-right);
 
         color: ${p => p.theme.colors.bg};
         font-size: 3em;
         text-shadow: 1px 1px 0em rgba(0, 0, 0, 0.2);
+        text-align: right;
     }
 `
 
@@ -91,7 +93,7 @@ const MenuLink = styled((props: MenuLinkProps): ReactElement => {
     }
 
     text-align: center;
-
+    
     > h2 {
         margin: 0;
         font-size: 4em;
@@ -124,8 +126,15 @@ const MenuPage = styled((props: MenuPageProps): ReactElement => {
 
         </>
     </Page>
+
 })`
+
+    h1:first-child {
+        margin-left: env(safe-area-inset-left);
+    };
+
     font-size: 3vmin;
+    height: 100%;
 `
 
 /***************************************************************/

@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom'
 
 import { Icon } from '../components/generic'
 import { useStaticAssets } from './static-asset-context'
-import useScrollPosition from '../util/use-scroll-position'
+// import useScrollPosition from '../util/use-scroll-position'
 
 /***************************************************************/
 // Props
@@ -33,7 +33,7 @@ const TopBarContainer = styled.div`
 // Constants
 /***************************************************************/
 
-const UNSCROLLED_THRESHOLD = 10 // px
+// const UNSCROLLED_THRESHOLD = 10 // px
 
 /***************************************************************/
 // Main
@@ -51,10 +51,12 @@ const TopBar = styled((props: TopBarProps) => {
     const location = useLocation()
 
     const atNav = location.pathname === navIconTo
-    const isUnscrolled = useScrollPosition().y < UNSCROLLED_THRESHOLD
+    const atHome = location.pathname === '/'
+
+    // const isUnscrolled = useScrollPosition().y < UNSCROLLED_THRESHOLD
 
     return <TopBarContainer
-        transparent={isUnscrolled}
+        transparent={atHome}
         {...rest}>
 
         <Link to='/'>
@@ -71,17 +73,17 @@ const TopBar = styled((props: TopBarProps) => {
     display: flex;
     align-items: baseline;
     flex: 0 0 auto;
-    padding: 0.5em 1.25em 0.5em 0.75em;
+    padding: 0.5em 0.75em 0.5em 0.75em;
 
-    position: fixed;
-    top: 0em;
-    width: 100vw;
+    position: sticky;
+
     box-sizing: border-box;
 
     font-size: 1.5em;
 
     a:first-child {
         
+        margin-left: calc(0.75 * env(safe-area-inset-left));
         margin-right: auto;
         
         display: inherit;
@@ -90,6 +92,9 @@ const TopBar = styled((props: TopBarProps) => {
         span {
             width: 12.5em;
         }
+    }
+    a:last-child {
+        margin-right: calc(0.75 * env(safe-area-inset-right));
     }
 
     a > h2 {

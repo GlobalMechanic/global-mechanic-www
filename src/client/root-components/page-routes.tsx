@@ -48,7 +48,7 @@ const SplashRoute = (props: PageRoutesProps): ReactElement => {
             setThemeType={setThemeType}
         />
 
-        : <span>LOADING</span>
+        : <></>
 }
 
 const ContentRoute = (props: PageRoutesProps): ReactElement => {

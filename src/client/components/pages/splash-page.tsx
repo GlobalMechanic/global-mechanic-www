@@ -7,7 +7,6 @@ import { TextContentData, FileContentData } from '../../root-components/page-dat
 import { useStaticAssets } from '../../root-components/static-asset-context'
 import HOST from '../../util/host'
 import { hidePlayButton } from '../../util/css'
-import TopBar from '../../root-components/top-bar'
 
 /***************************************************************/
 // Types

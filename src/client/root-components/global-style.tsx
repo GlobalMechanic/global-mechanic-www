@@ -33,6 +33,23 @@ const GlobalStyle = createGlobalStyle`
         } 
     }
 
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: ${p => p.theme.colors.bg};
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: ${p => p.theme.colors.fg};
+        opacity: 0.5;
+    }
+
+    /* ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    } */
+
     svg {
         fill: ${p => p.theme.colors.fg};
     }
@@ -50,10 +67,6 @@ const GlobalStyle = createGlobalStyle`
 
     body, main {
         flex: 1 1 auto;
-    }
-
-    main {
-        min-height: 100%;
     }
 
     h1, h2, h3, h4, h5, h6 {

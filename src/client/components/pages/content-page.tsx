@@ -33,6 +33,7 @@ const ContentPage = styled((props: ContentPageProps): ReactElement => {
     </Page>
 })`
     align-items: flex-start;
+    padding-bottom: 2em;
 `
 
 /***************************************************************/

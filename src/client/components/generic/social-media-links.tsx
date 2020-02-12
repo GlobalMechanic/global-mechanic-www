@@ -63,6 +63,8 @@ const SocialMediaLinks = styled((props): ReactElement => {
     position: fixed;
     bottom: 1em;
     left: 1em;
+    margin-left: env(safe-area-inset-left);
+    margin-bottom: env(safe-area-inset-bottom);
     
     align-items: baseline;
 `
