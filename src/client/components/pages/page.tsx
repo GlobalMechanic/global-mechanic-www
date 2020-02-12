@@ -49,6 +49,7 @@ const Page = styled(withTheme((props: PageProps): ReactElement => {
     box-sizing: border-box;
 
     margin-bottom: 1em;
+    margin-top: 1.5em;
 `
 
 /***************************************************************/

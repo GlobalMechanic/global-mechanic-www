@@ -65,10 +65,12 @@ const TopBar = styled((props: TopBarProps) => {
     display: flex;
     align-items: baseline;
     flex: 0 0 auto;
-    padding: 0.5em 0.75em 0.5em 0.75em;
+    padding: 0.5em 1.25em 0.5em 0.75em;
 
-    position: sticky;
+    position: fixed;
     top: 0em;
+    width: 100vw;
+    box-sizing: border-box;
 
     font-size: 1.5em;
 
