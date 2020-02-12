@@ -83,6 +83,7 @@ interface ShowcaseRecord extends Record {
         essay: string
         scope: 'dark' | 'light'
         mainMenuCategory: string | null
+        priority: number
     }
 
     files: RecordID[] | null
@@ -190,6 +191,7 @@ function createAboutUsPage(serviceData: ServiceData): ContentPageData {
 }
 
 function createMainMenuPage(mainPages: PageData[]): MenuPageData {
+
     return {
         _id: newPageId(),
         name: '',
@@ -271,7 +273,10 @@ function createCategoryAndGenericPages(serviceData: ServiceData): {
     const genericPages: PageData[] = []
     const categoryPages: PageData[] = []
 
-    for (const showcase of serviceData.showcases) {
+    const sortedShowcases = [...serviceData.showcases]
+    sortedShowcases.sort((a, b) => a.website.priority - b.website.priority)
+
+    for (const showcase of sortedShowcases) {
 
         const { name, portrait, website, files, products } = showcase
         const { mainMenuCategory, scope, essay } = website
@@ -361,8 +366,9 @@ function removePagesWithDuplicatePaths(pages: PageData[]): PageData[] {
             pathTable[page.path] = true
             output.push(page)
 
-        } else
-            console.warn(`multiple pages with path "/${page.path}" found`)
+        } else console.warn(
+            `multiple pages with path "/${page.path}" found`
+        )
     }
 
     return output
