@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import { bodyFont, titleFont, hidePlayButton } from '../util/css'
+import { bodyFont, titleFont } from '../util/css'
 
 /***************************************************************/
 // Main

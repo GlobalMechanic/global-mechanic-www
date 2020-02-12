@@ -238,8 +238,7 @@ const FileContent = styled((props: FileContentProps): ReactElement => {
             {meta && FileViewComponent
                 ? <FileViewComponent
                     content={content}
-                    meta={meta}
-                />
+                    meta={meta} />
                 : null
             }
         </div>
