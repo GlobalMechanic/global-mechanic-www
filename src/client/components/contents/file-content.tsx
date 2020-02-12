@@ -255,6 +255,7 @@ const FileContent = styled((props: FileContentProps): ReactElement => {
 })`
     ${content}
     display: flex;
+    margin-bottom: 0.75em;
 `
 
 /***************************************************************/

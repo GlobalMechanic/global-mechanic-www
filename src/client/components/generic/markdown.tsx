@@ -23,6 +23,7 @@ const Markdown = styled((props: MarkdownProps) => {
 
     h1, h2, h3, h4, h5, h6, p, ul {
         margin: 0;
+        letter-spacing: -1px;
     }
 
     h1:first-child {
@@ -42,7 +43,6 @@ const Markdown = styled((props: MarkdownProps) => {
     a {
         color: inherit;
     }
-
 `
 
 /***************************************************************/

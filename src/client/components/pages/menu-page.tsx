@@ -56,6 +56,7 @@ const MenuPortrait = styled.div`
         font-size: 3em;
         text-shadow: 1px 1px 0em rgba(0, 0, 0, 0.2);
         text-align: right;
+
     }
 `
 
@@ -97,6 +98,8 @@ const MenuLink = styled((props: MenuLinkProps): ReactElement => {
     > h2 {
         margin: 0;
         font-size: 4em;
+        letter-spacing: -1px;
+
     }
 `
 

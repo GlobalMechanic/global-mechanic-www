@@ -44,6 +44,7 @@ const VimeoContent = styled((props: VimeoContentProps): ReactElement => {
         height: 100%;
     }
 
+    margin-bottom: 0.75em;
 `
 
 /***************************************************************/

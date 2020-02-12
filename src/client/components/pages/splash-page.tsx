@@ -87,6 +87,8 @@ const BackgroundText = styled.h1`
     overflow: hidden;
     max-width: 100vw;
 
+    letter-spacing: -${1 / 16}em;
+
     flex: 0 0 auto;
 
     -webkit-text-stroke-width: 2px;
