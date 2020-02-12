@@ -53,8 +53,8 @@ export default function (this: WebsiteApplication): void {
 
     const portrait = {
         path: 'portrait',
-        thumb: '640',
-        full: false
+        full: true,
+        meta: true
     }
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore

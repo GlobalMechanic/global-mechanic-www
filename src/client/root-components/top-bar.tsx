@@ -1,10 +1,11 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { DefaultTheme } from 'styled-components'
 
 import { Link, useLocation } from 'react-router-dom'
 
 import { Icon } from '../components/generic'
 import { useStaticAssets } from './static-asset-context'
+import useScrollPosition from '../util/use-scroll-position'
 
 /***************************************************************/
 // Props
@@ -14,6 +15,20 @@ interface TopBarProps {
     navIconTo: string
 }
 
+interface TopbarContainerProps {
+    transparent: boolean
+    theme: DefaultTheme
+}
+
+const TopBarContainer = styled.div`
+
+    background-color: ${(p: TopbarContainerProps) => p.transparent
+        ? 'transparent'
+        : p.theme.colors.bg
+    };
+
+`
+
 /***************************************************************/
 // Main
 /***************************************************************/
@@ -22,41 +37,53 @@ const TopBar = styled((props: TopBarProps) => {
 
     const {
         navIconTo,
-        ...rest } = props
+        ...rest
+    } = props
 
     const staticAssets = useStaticAssets()
-    // const location = useLocation()
 
-    // const atNav = location.pathname === navIconTo
+    const location = useLocation()
 
-    return <div
+    const atNav = location.pathname === navIconTo
+    const isUnscrolled = useScrollPosition().y === 0
+
+    return <TopBarContainer
+        transparent={isUnscrolled}
         {...rest}>
 
         <Link to='/'>
-            <Icon image={staticAssets.nut} />
-            <h2>Global Mechanic</h2>
+            <Icon image={staticAssets.logo} />
         </Link>
 
-        {/* <Link to={atNav ? '/' : navIconTo}>
+        <Link to={atNav ? '/' : navIconTo}>
             <Icon image={atNav ? staticAssets.x : staticAssets.hamburger} />
-        </Link> */}
+        </Link>
 
-    </div>
+    </TopBarContainer>
 })`
 
     display: flex;
     align-items: baseline;
-    padding: 0.5em 0.75em;
+    flex: 0 0 auto;
+    padding: 0.5em 1.25em 0.5em 0.75em;
 
-    position: sticky;
+    position: fixed;
     top: 0em;
+    width: 100vw;
+    box-sizing: border-box;
 
-    font-size: 1.25em;
+    font-size: 1.5em;
 
     a:first-child {
+        
         margin-right: auto;
+        
         display: inherit;
         align-items: inherit;
+
+        span {
+            width: 12.5em;
+        }
     }
 
     a > h2 {
@@ -66,9 +93,11 @@ const TopBar = styled((props: TopBarProps) => {
     a {
         cursor: pointer;
         text-decoration: none;
-        &:visited {
-            color: inherit;
-        }
+        color: inherit;
+    }
+
+    a:visited {
+        color: inherit;
     }
 `
 

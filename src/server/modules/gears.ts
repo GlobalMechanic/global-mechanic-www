@@ -11,7 +11,6 @@ import { ObjectId } from 'mongodb'
 
 import { hasFile, writeFile } from './file-storage'
 // import path from 'path'
-import Queue from 'promise-queue'
 import fetch from 'isomorphic-fetch'
 import { Readable } from 'stream'
 import esc from 'jsesc'
@@ -35,8 +34,6 @@ import { updatePageData } from '../middleware/page-data'
 let gearsOptions: GearsOptions | null = null
 let gearsClient: GearsClient | null = null
 
-const queue = new Queue(4, Infinity)
-
 /***************************************************************/
 // Helper
 /***************************************************************/
@@ -50,7 +47,6 @@ function getIn(obj: { [key: string]: object | number | boolean | string }, paths
     for (let i = 0; i < paths.length; i++) {
         const path = paths[i]
         const atFinal = i === final
-
         if (atFinal)
             return obj[path]
 
@@ -61,7 +57,7 @@ function getIn(obj: { [key: string]: object | number | boolean | string }, paths
     }
 }
 
-function ensureFile(data: { fileId: string, thumb?: string, meta?: boolean }): void {
+async function ensureFile(data: { fileId: string, thumb?: string, meta?: boolean }): Promise<void> {
 
     const { fileId, thumb, meta } = data
 
@@ -77,33 +73,33 @@ function ensureFile(data: { fileId: string, thumb?: string, meta?: boolean }): v
             ? fileId + '-meta'
             : fileId
 
-    //check if the file exists
-    queue.add(async () => {
+    try {
+        if (!gearsOptions)
+            throw new Error('Gears Options not resolved.')
 
-        try {
-            if (!gearsOptions)
-                throw new Error('Gears Options not resolved.')
+        const has = await hasFile(key)
+        if (has)
+            return
 
-            const has = await hasFile(key)
-            if (has)
-                return
+        const res = await fetch(`${gearsOptions.host}/files/${fileId}${query}`)
+        if (res.status !== 200)
+            throw new Error(res.statusText)
 
-            const res = await fetch(`${gearsOptions.host}/files/${fileId}${query}`)
-            if (res.status !== 200)
-                throw new Error(res.statusText)
+        const contentType = res.headers.get('Content-Type') as string
 
-            const contentType = res.headers.get('Content-Type') as string
+        const ext = '.' + contentType
+            .substr(contentType.indexOf('/') + 1)
+            .replace('; charset=utf-8', '')
+            .replace('+xml', '') // ew
 
-            const ext = '.' + contentType
-                .substr(contentType.indexOf('/') + 1)
-                .replace('; charset=utf-8', '')
-                .replace('+xml', '') // ew
+        await writeFile(key, ext, res.body as unknown as ReadStream) // ew
 
-            return writeFile(key, ext, res.body as unknown as ReadStream) // ew
-        } catch (err) {
-            console.error(`file ${fileId} could not be ensured: ${err.message}`)
-        }
-    })
+        // Some files seem to be hanging on download. Just in case it's a memory
+        // thing, i'm hacking in this delay between downloads to see if it resolves it
+        await new Promise(resolve => setTimeout(resolve, 25))
+    } catch (err) {
+        console.error(`file ${fileId} could not be ensured: ${err.message}`)
+    }
 }
 
 // So, it turns out, if you supply an id to feathers for mongodb, it wont auto-cast it
@@ -152,12 +148,12 @@ function sync(
     ...downloads: DownloadInstruction[]
 ): void {
 
-    const ensureFiles = (doc: GearsDocument | void): void => {
+    const ensureFiles = async (doc: GearsDocument | void): Promise<void> => {
 
         if (!doc)
             return
 
-        downloads.forEach(instruction => {
+        for (const instruction of downloads) {
 
             const { path, thumb, full, meta } = instruction
             const fileId = getIn(doc, path) as string | string[]
@@ -165,20 +161,26 @@ function sync(
                 ? fileId
                 : [fileId]
 
-            fileIds.forEach(fileId => {
+            for (const fileId of fileIds) {
                 if (fileId && thumb)
-                    ensureFile({ fileId, thumb })
+                    await ensureFile({ fileId, thumb })
 
                 if (fileId && meta)
-                    ensureFile({ fileId, meta })
+                    await ensureFile({ fileId, meta })
 
                 if (fileId && full)
-                    ensureFile({ fileId })
-            })
-        })
+                    await ensureFile({ fileId })
+            }
+        }
     }
 
     const populate = async (): Promise<void> => {
+
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore no client typedef
+        const name = from['path']
+
+        console.log('populating', name)
 
         const docs = await from.find({})
 
@@ -195,15 +197,11 @@ function sync(
             await Promise.all(promises)
 
             for (const doc of docs) if (doc)
-                ensureFiles(doc)
+                await ensureFiles(doc)
 
         } catch (err) {
             console.error('Error populating service', err)
         }
-
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore no client typedef
-        const name = from['path']
 
         await updatePageData(app)
         console.log('populated', name, docs.length)

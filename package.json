@@ -6,11 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack:dev": "webpack-dev-server",
-    "webpack": "NODE_ENV=production webpack",
+    "webpack": "rm -rf ./public; mkdir ./public; NODE_ENV=production webpack",
     "db:dev": "./db/mongod --dbpath ./db/data --port 4999",
     "serve:dev": "ts-node-dev --respawn --transpileOnly src/server/serve.ts --watch src",
     "serve": "NODE_ENV=production node dist/server/serve.js",
-    "tsc": "tsc",
+    "tsc": "rm -rf ./dist; mkdir ./dist; tsc",
+    "build": "npm run webpack && npm run tsc",
     "start": "npm run serve"
   },
   "repository": {

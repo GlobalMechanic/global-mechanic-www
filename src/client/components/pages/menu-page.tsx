@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import Page, { PageProps } from './page'
 import { MenuPageData, PageData } from '../../root-components/page-data-provider'
-import { Link } from 'react-router-dom'
+import { Link, useRouteMatch } from 'react-router-dom'
 import styled from 'styled-components'
 
 import HOST from '../../util/host'
@@ -25,6 +25,12 @@ interface MenuPortraitProps {
 }
 
 /***************************************************************/
+// Constants
+/***************************************************************/
+
+const MAIN_MENU_PATH = 'menu' // TODO this should not be hard coded.
+
+/***************************************************************/
 // Main
 /***************************************************************/
 
@@ -36,16 +42,18 @@ const MenuPortrait = styled.div`
     overflow: hidden;
 
     width: 100vw;
-    height: min(56.25vw, 25em);
+    height: 56.25vw;
     background-position: center;
     background-size: cover;
-    background-image: url(${HOST}/file/${(p: MenuPortraitProps) => p.portraitId}-thumb);
+    background-repeat: no-repeat;
+    background-image: url(${HOST}/file/${(p: MenuPortraitProps) => p.portraitId});
 
     h2 {
-        margin: 0em 0.25em 0.25em 0em;
+        margin: 0em 0.5em 0.25em 0em;
 
         color: ${p => p.theme.colors.bg};
         font-size: 3em;
+        text-shadow: 1px 1px 0em rgba(0, 0, 0, 0.2);
     }
 `
 
@@ -53,17 +61,26 @@ const MenuLink = styled((props: MenuLinkProps): ReactElement => {
 
     const { page, ...rest } = props
 
+    const route = useRouteMatch()
+
+    const base = route.url === '/' + MAIN_MENU_PATH
+        ? '/'
+        : route.url + '/'
+
     const header = <h2 key={page.path}>
         {page.name}
     </h2>
 
-    return <Link to={'/' + page.path} {...rest}>{
+    return <Link to={base + page.path} {...rest}>{
+
         page.portrait
+
             ? <MenuPortrait portraitId={page.portrait}>
                 {header}
             </MenuPortrait>
 
             : header
+
     }</Link>
 
 })`
@@ -108,8 +125,7 @@ const MenuPage = styled((props: MenuPageProps): ReactElement => {
         </>
     </Page>
 })`
-    font-size: 2.5vmin;
-    overflow: hidden;
+    font-size: 3vmin;
 `
 
 /***************************************************************/

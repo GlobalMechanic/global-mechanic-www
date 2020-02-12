@@ -37,7 +37,7 @@ const light: DefaultTheme = {
     colors: {
         bg: 'white',
         fg: 'black',
-        accent: 'rgba(0,0,0, 0.125)'
+        accent: 'rgba(0,0,0, 0.25)'
     }
 
 }
@@ -49,7 +49,7 @@ const dark: DefaultTheme = {
     colors: {
         bg: 'black',
         fg: 'white',
-        accent: 'rgba(255,255,255, 0.125)'
+        accent: 'rgba(255,255,255, 0.25)'
     }
 }
 

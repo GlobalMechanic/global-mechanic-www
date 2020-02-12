@@ -83,6 +83,7 @@ interface ShowcaseRecord extends Record {
         essay: string
         scope: 'dark' | 'light'
         mainMenuCategory: string | null
+        priority: number
     }
 
     files: RecordID[] | null
@@ -112,17 +113,15 @@ function createSplashPage(serviceData: ServiceData): ContentPageData {
         show => show.name === '2020 New Website Splash Page'
     )
 
-    const randomBackgroundVideo = splashPage && splashPage.files && splashPage.files[
-        Math.floor(
-            Math.random() * splashPage.files.length
-        )
-    ]
+    const backgroundVideos: ContentData[] = splashPage &&
+        splashPage.files &&
+        splashPage.files.map(file => ({
+            type: 'file',
+            file
+        })) || []
 
     const contents: ContentData[] = [
-        {
-            type: 'file',
-            file: randomBackgroundVideo
-        } as FileContentData,
+        ...backgroundVideos,
         {
             type: 'text',
             text: 'Hello'
@@ -162,13 +161,25 @@ function createAboutUsPage(serviceData: ServiceData): ContentPageData {
         text: aboutUsPage.website.essay,
     }
 
+    const contents: ContentData[] = []
+    if (writeUp)
+        contents.push(writeUp)
+
+    if (aboutUsPage && aboutUsPage.files) for (const fileId of aboutUsPage.files) {
+        const file: FileContentData = {
+            type: 'file',
+            file: fileId
+        }
+        contents.push(file)
+    }
+
     return {
         _id: newPageId(),
         name: 'About',
         path: 'about',
         type: 'content',
 
-        contents: writeUp ? [writeUp] : [],
+        contents,
 
         theme: aboutUsPage && aboutUsPage.website && aboutUsPage.website.scope === 'light' ? 'light' : 'dark',
         portrait: null,
@@ -180,6 +191,7 @@ function createAboutUsPage(serviceData: ServiceData): ContentPageData {
 }
 
 function createMainMenuPage(mainPages: PageData[]): MenuPageData {
+
     return {
         _id: newPageId(),
         name: '',
@@ -261,7 +273,10 @@ function createCategoryAndGenericPages(serviceData: ServiceData): {
     const genericPages: PageData[] = []
     const categoryPages: PageData[] = []
 
-    for (const showcase of serviceData.showcases) {
+    const sortedShowcases = [...serviceData.showcases]
+    sortedShowcases.sort((a, b) => a.website.priority - b.website.priority)
+
+    for (const showcase of sortedShowcases) {
 
         const { name, portrait, website, files, products } = showcase
         const { mainMenuCategory, scope, essay } = website
@@ -277,7 +292,9 @@ function createCategoryAndGenericPages(serviceData: ServiceData): {
             type: 'content',
             contents: [],
             portrait,
-            theme: scope === 'light' ? 'light' : 'dark'
+            theme: scope === 'light'
+                ? 'light'
+                : 'dark'
         }
 
         if (categoryPage)
@@ -333,7 +350,6 @@ function createCategoryAndGenericPages(serviceData: ServiceData): {
             genericPages.push(page)
     }
 
-
     return {
         genericPages,
         categoryPages
@@ -350,8 +366,9 @@ function removePagesWithDuplicatePaths(pages: PageData[]): PageData[] {
             pathTable[page.path] = true
             output.push(page)
 
-        } else
-            console.warn(`multiple pages with path "/${page.path}" found`)
+        } else console.warn(
+            `multiple pages with path "/${page.path}" found`
+        )
     }
 
     return output

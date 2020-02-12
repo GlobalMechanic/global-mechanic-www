@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement, MutableRefObject, useEffect, useState, createRef } from 'react'
 import styled from 'styled-components'
 
 import { ContentProps } from './content'
@@ -66,6 +66,38 @@ const useFileText = (fileId: string): string => {
     return text
 }
 
+const useHeightRatio = (ref: MutableRefObject<null | HTMLVideoElement | HTMLImageElement>): number | undefined => {
+
+    const [ratio, setRatio] = useState<number>(NaN)
+
+    useEffect(() => {
+
+        const tag = ref.current as HTMLVideoElement | HTMLImageElement
+        const loadFuncKey = tag instanceof HTMLVideoElement
+            ? 'onresize'
+            : 'onload'
+
+        tag[loadFuncKey] = () => {
+            const newRatio = tag instanceof HTMLVideoElement
+                ? tag.videoHeight / tag.videoWidth
+                : tag.height / tag.width
+
+            setRatio(newRatio)
+        }
+
+        return () => {
+            delete tag[loadFuncKey]
+        }
+
+    }, [ref.current])
+
+    return Number.isNaN(ratio) || ratio === 0
+        ? undefined
+        : ratio
+}
+
+const consume = (...args: unknown[]): unknown[] => args
+
 /***************************************************************/
 // FileContentType Components
 /***************************************************************/
@@ -83,7 +115,18 @@ const Video = styled((props: FileMetaContentProps): ReactElement => {
 
     const { content, meta, ...rest } = props
 
-    return <video controls {...rest}>
+    const ref = createRef<HTMLVideoElement>()
+    const ratio = useHeightRatio(ref)
+
+    return <video
+        controls
+        playsInline
+        ref={ref}
+        style={{
+            height: `${(ratio || 0) * 100}%`
+        }}
+        {...rest}
+    >
 
         <source
             src={`${HOST}/file/${content.file}`}
@@ -92,26 +135,32 @@ const Video = styled((props: FileMetaContentProps): ReactElement => {
 
     </video>
 })`
-    width: 100%; 
+    width: 100%;
+    transition: height 25ms;
+    outline: none;
 `
 
 const Image = styled((props: FileMetaContentProps): ReactElement => {
 
     const { content, meta, ...rest } = props
 
+    // Do something with unused props to shut the linter up
+    consume(meta)
+
     const src = `${HOST}/file/${content.file}`
+    const ref = createRef<HTMLImageElement>()
+    const ratio = useHeightRatio(ref)
 
     return <img
         src={src}
+        ref={ref}
+        style={{
+            height: `${(ratio || 0) * 100}%`
+        }}
         {...rest}
     />
 })`
-
-    margin: auto;
-
-    max-width: 100%;
-    max-height: 100%;
-    margin-bottom: -0.1em;
+    width: 100%;
 `
 
 const Download = styled((props: FileMetaContentProps): ReactElement => {

@@ -15,7 +15,9 @@ export const ONE_YEAR = 31557600
 /***************************************************************/
 
 function isFiniteNumber(input: unknown | number): input is number {
-    return typeof input === 'number' && !Number.isNaN(input) && isFinite(input)
+    return typeof input === 'number' &&
+        !Number.isNaN(input) &&
+        isFinite(input)
 }
 
 /***************************************************************/
@@ -26,8 +28,8 @@ export default function () {
 
     return async function (req: Request, res: Response, next: Function) {
 
-        const { key } = req.params
         const { download } = req.query
+        const { key } = req.params
 
         const range = req.headers.range
 
@@ -50,8 +52,13 @@ export default function () {
         } else {
 
             const dot = ext && ext.includes('.') ? '' : '.'
-            const disposition = download ? 'attachment;' : 'inline;'
-            const fileName = download ? download : key + dot + ext
+            const disposition = download
+                ? 'attachment;'
+                : 'inline;'
+
+            const fileName = download
+                ? download + ext
+                : key + dot + ext
 
             const mimeType = mime.getType(fileName) || 'application/octet-stream'
 
@@ -62,18 +69,19 @@ export default function () {
             if (isFiniteNumber(start) && isFiniteNumber(end) && isFiniteNumber(size)) {
 
                 // eslint-disable-next-line no-extra-parens
-                const chunk = (end + 1) - start
-                console.log(`serving ${fileName} bytes ${start} - ${end} = ${chunk}`)
+                const chunkLength = (end - start) + 1
+                console.log(`serving ${fileName} bytes ${start} - ${end} = ${chunkLength}`)
 
                 res.status(206)
 
-                res.setHeader('Content-Range', `bytes ${start} - ${end} / ${size}`)
+                res.setHeader('Content-Range', `bytes ${start}-${end}/${size}`)
+                res.setHeader('Content-Length', chunkLength)
                 res.setHeader('Accept-Ranges', 'bytes')
-                res.setHeader('Content-Length', chunk)
 
-            } else
-
+            } else {
+                res.status(200)
                 console.log(`serving ${fileName}`)
+            }
 
             stream.pipe(res)
         }

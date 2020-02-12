@@ -1,12 +1,13 @@
-import React, { ReactElement, useContext } from 'react'
+import React, { ReactElement } from 'react'
 import styled, { css } from 'styled-components'
 
 import Page from './page'
 import { ContentPageProps } from './content-page'
-import { TextContentData, FileContentData, PageDataContext, ContentPageData } from '../../root-components/page-data-provider'
+import { TextContentData, FileContentData } from '../../root-components/page-data-provider'
 import { useStaticAssets } from '../../root-components/static-asset-context'
 import HOST from '../../util/host'
-import { TextContent } from '../contents'
+import { hidePlayButton } from '../../util/css'
+import TopBar from '../../root-components/top-bar'
 
 /***************************************************************/
 // Types
@@ -40,8 +41,17 @@ const BackgroundVideo = styled(props => {
     const { fileId, ...rest } = props
 
     return <div {...rest}>
-        <video muted loop autoPlay>
-            <source src={`${HOST}/file/${fileId}`} />
+        <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            controls={false}
+        >
+            <source
+                src={`${HOST}/file/${fileId}`}
+                type='video/mp4'
+            />
         </video>
     </div>
 })`
@@ -63,6 +73,8 @@ const BackgroundVideo = styled(props => {
 
         transform: translate(-50%, -50%);
     }
+
+    ${hidePlayButton('*')}
 
     background-color: ${p => p.theme.colors.fg};
 `
@@ -93,12 +105,11 @@ const SplashPage = styled((props: ContentPageProps): ReactElement => {
     const staticAssets = useStaticAssets()
 
     const fgText = page.contents.find(content => content.type === 'text') as TextContentData | void
-    const bgVideo = page.contents.find(content => content.type === 'file') as FileContentData | void
+    const bgVideos = page
+        .contents
+        .filter(content => content.type === 'file') as FileContentData[]
 
-    const pages = useContext(PageDataContext)
-    const aboutPage = pages && pages.find(page => page.path === 'about') as ContentPageData | null
-
-    const aboutText = aboutPage && aboutPage.contents[0] as TextContentData | null
+    const bgVideo = bgVideos[Math.floor(Math.random() * bgVideos.length)]
 
     return <Page page={page} {...rest}>
 
@@ -112,26 +123,20 @@ const SplashPage = styled((props: ContentPageProps): ReactElement => {
         <BackgroundOverlay staticImage={staticAssets.dots} />
 
         {fgText
+
             ? <BackgroundText>
                 {fgText.text}
             </BackgroundText>
-            : null
-        }
-
-        {aboutText
-            ? <TextContent style={{
-                color: 'white',
-                width: 'max(50vw, 42em)'
-            }} content={aboutText} />
 
             : null
         }
 
     </Page>
 })`
+
     align-items: center;
     justify-content: center;
-    overflow-x: hidden;
+    overflow: hidden;
     margin: auto;
 `
 

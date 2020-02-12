@@ -36,18 +36,21 @@ const Page = styled(withTheme((props: PageProps): ReactElement => {
             ? <SocialMediaLinks />
             : null
         }
+
     </div>
 }))`
-    display: flex;
     flex-direction: column;
     
     align-items: center;
+    overflow: hidden;
 
-    flex: 1 1 auto;
+    scrollbar-width: thin;
+
     box-sizing: border-box;
-    overflow-x: hidden;
-`
 
+    margin-bottom: 1em;
+    margin-top: 1.5em;
+`
 
 /***************************************************************/
 // Exports

@@ -13,13 +13,37 @@ import vimeoLight from './vimeo-light.png'
 import vimeoDark from './vimeo-dark.png'
 import xDark from './x-dark.png'
 import xLight from './x-light.png'
-import gmSignature from './gm-signature.png'
+
+import logoDark from './signature-gm-logo-dark.svg'
+import logoLight from './signature-gm-logo-light.svg'
+
+import ben from './signature-ben.svg'
+import brodie from './signature-brodie.svg'
+import bruce from './signature-bruce.svg'
+import chez from './signature-chez.svg'
+import kevin from './signature-kevin.svg'
+import rachel from './signature-rachel.svg'
+import ryan from './signature-ryan.svg'
+import tina from './signature-tina.svg'
 
 /***************************************************************/
 // Compose
 /***************************************************************/
 
+const signatures = {
+    ben,
+    brodie,
+    bruce,
+    chez,
+    kevin,
+    rachel,
+    ryan,
+    tina
+}
+
 const light = {
+    ...signatures,
+    logo: logoLight,
     dots,
     facebook: facebookLight,
     hamburger: hamburgerLight,
@@ -27,11 +51,12 @@ const light = {
     nut: nutLight,
     twitter: twitterLight,
     vimeo: vimeoLight,
-    x: xLight,
-    gmSignature
+    x: xLight
 }
 
 const dark = {
+    ...signatures,
+    logo: logoDark,
     dots,
     facebook: facebookDark,
     hamburger: hamburgerDark,
@@ -39,8 +64,7 @@ const dark = {
     nut: nutDark,
     twitter: twitterDark,
     vimeo: vimeoDark,
-    x: xDark,
-    gmSignature
+    x: xDark
 }
 
 /***************************************************************/
