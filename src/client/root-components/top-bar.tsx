@@ -30,6 +30,12 @@ const TopBarContainer = styled.div`
 `
 
 /***************************************************************/
+// Constants
+/***************************************************************/
+
+const UNSCROLLED_THRESHOLD = 10 // px
+
+/***************************************************************/
 // Main
 /***************************************************************/
 
@@ -45,7 +51,7 @@ const TopBar = styled((props: TopBarProps) => {
     const location = useLocation()
 
     const atNav = location.pathname === navIconTo
-    const isUnscrolled = useScrollPosition().y === 0
+    const isUnscrolled = useScrollPosition().y < UNSCROLLED_THRESHOLD
 
     return <TopBarContainer
         transparent={isUnscrolled}

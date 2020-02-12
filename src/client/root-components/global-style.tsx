@@ -6,6 +6,7 @@ import { bodyFont, titleFont } from '../util/css'
 /***************************************************************/
 
 const GlobalStyle = createGlobalStyle`
+
     html {
         background-color: ${p => p.theme.colors.bg};
         color: ${p => p.theme.colors.fg};
@@ -52,7 +53,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     main {
-        min-height: 100vh;
+        min-height: 100%;
     }
 
     h1, h2, h3, h4, h5, h6 {
