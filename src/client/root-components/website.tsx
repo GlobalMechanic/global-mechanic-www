@@ -53,7 +53,7 @@ const Website = (props: WebsiteProps): ReactElement => {
 
                 <PageContainer>
 
-                    <TopBar navIconTo='/menu' />
+                    <TopBar />
                     <PageRoutes setThemeType={setThemeType} />
 
                 </PageContainer>

@@ -5,16 +5,12 @@ import { Link, useLocation } from 'react-router-dom'
 
 import { Icon } from '../components/generic'
 import { useStaticAssets } from './static-asset-context'
-// import useScrollPosition from '../util/use-scroll-position'
+import usePageMatchedToLocation from '../util/use-page-matched-to-location'
+import useEndLocationPath from '../util/use-end-location-path'
 
 /***************************************************************/
 // Props
 /***************************************************************/
-
-interface TopBarProps {
-    navIconTo: string
-}
-
 interface TopbarContainerProps {
     transparent: boolean
     theme: DefaultTheme
@@ -33,38 +29,49 @@ const TopBarContainer = styled.div`
 // Constants
 /***************************************************************/
 
-// const UNSCROLLED_THRESHOLD = 10 // px
+// TODO these should not be hardcoded
+const MENU_PATH = '/menu'
 
 /***************************************************************/
 // Main
 /***************************************************************/
 
-const TopBar = styled((props: TopBarProps) => {
-
-    const {
-        navIconTo,
-        ...rest
-    } = props
+const TopBar = styled(props => {
 
     const staticAssets = useStaticAssets()
-
     const location = useLocation()
 
-    const atNav = location.pathname === navIconTo
+    const upOnePagePath = useEndLocationPath(1)
+    const currentPagePath = useEndLocationPath()
+    const upOnePage = usePageMatchedToLocation(
+        upOnePagePath
+    )
+
+    const atMenuOrAbout = location.pathname === MENU_PATH
     const atHome = location.pathname === '/'
 
-    // const isUnscrolled = useScrollPosition().y < UNSCROLLED_THRESHOLD
+    const to = atMenuOrAbout
+        // If we're at the menu, the nav button should go home
+        ? '/'
+        // Otherwise, if we can shave one section of the path and
+        // end up at another page (that isn't the home page), we'll go there.
+        : upOnePage &&
+            upOnePage.path !== currentPagePath &&
+            upOnePage.path !== '' // home page
+            ? '/' + upOnePage.path
+            // If not, it sends us to the menu.
+            : MENU_PATH
 
     return <TopBarContainer
         transparent={atHome}
-        {...rest}>
+        {...props}>
 
         <Link to='/'>
             <Icon image={staticAssets.logo} />
         </Link>
 
-        <Link to={atNav ? '/' : navIconTo}>
-            <Icon image={atNav ? staticAssets.x : staticAssets.hamburger} />
+        <Link to={to}>
+            <Icon image={atMenuOrAbout ? staticAssets.x : staticAssets.hamburger} />
         </Link>
 
     </TopBarContainer>

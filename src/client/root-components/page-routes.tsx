@@ -1,10 +1,11 @@
 import React, { ReactElement, useContext } from 'react'
-import { Route, Switch, useLocation } from 'react-router-dom'
-import { PageDataContext, ContentPageData, MenuPageData, PageData } from './page-data-provider'
+import { Route, Switch } from 'react-router-dom'
+import { PageDataContext, ContentPageData } from './page-data-provider'
 import { ContentPage, MenuPage, SplashPage, MissingPage } from '../components/pages'
 
 import { ThemeType } from '../util/theme'
-import legacyPagePathMatch from '../util/legacy-page-path-match'
+import usePageMatchedToLocation from '../util/use-page-matched-to-location'
+import useEndLocationPath from '../util/use-end-location-path'
 
 /***************************************************************/
 // Types
@@ -12,23 +13,6 @@ import legacyPagePathMatch from '../util/legacy-page-path-match'
 interface PageRoutesProps {
     setThemeType: (themeType: ThemeType) => void
 }
-
-/***************************************************************/
-// Helper Methods
-/***************************************************************/
-
-const getPagePathFromLocation = (): string => {
-
-    const location = useLocation()
-
-    const breadcrumbs = location
-        .pathname
-        .split('/')
-        .filter(word => !!word) // not empty
-
-    return breadcrumbs[breadcrumbs.length - 1]
-}
-
 
 /***************************************************************/
 // Helper Components
@@ -39,6 +23,7 @@ const SplashRoute = (props: PageRoutesProps): ReactElement => {
     const { setThemeType } = props
 
     const pages = useContext(PageDataContext)
+
     const splashPage = pages.find(page => !page.path) as ContentPageData | undefined
 
     return splashPage
@@ -55,11 +40,13 @@ const ContentRoute = (props: PageRoutesProps): ReactElement => {
 
     const { setThemeType } = props
 
-    const pagePath = getPagePathFromLocation()
-    const pagePathMatcher = legacyPagePathMatch(pagePath)
-
+    const pagePath = useEndLocationPath()
     const pages = useContext(PageDataContext)
-    const page = pages.find(pagePathMatcher) as ContentPageData | MenuPageData | void
+
+    const page = usePageMatchedToLocation(
+        pagePath,
+        pages
+    )
 
     return page
         ? page.type === 'content'

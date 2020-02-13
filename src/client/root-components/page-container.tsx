@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import React, { ReactElement, useState, useLayoutEffect } from 'react'
+import isMobile from '../util/is-mobile'
 
 /***************************************************************/
 // Types
@@ -68,7 +69,9 @@ const useMobileViewWorkAroundStyle = (): Style => {
 
 const PageContainer = styled((props): ReactElement => {
 
-   const style = useMobileViewWorkAroundStyle()
+   const style = isMobile()
+      ? useMobileViewWorkAroundStyle()
+      : undefined
 
    return <div style={style} {...props} />
 })`
@@ -77,7 +80,6 @@ const PageContainer = styled((props): ReactElement => {
    width: 100vw;
    height: 100vh;
 `
-
 /***************************************************************/
 // Export Topbar
 /***************************************************************/
