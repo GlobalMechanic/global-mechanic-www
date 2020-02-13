@@ -16,5 +16,5 @@ const HOST = IS_SERVER
 export default HOST
 
 export {
-    HOST, IS_DEV
+    HOST, IS_DEV, IS_SERVER
 }
