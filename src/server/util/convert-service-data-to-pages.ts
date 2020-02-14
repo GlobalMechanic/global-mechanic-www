@@ -225,7 +225,7 @@ function ensureCategoryPage(category: string, categoryPages: PageData[]): MenuPa
     return categoryPage
 }
 
-function contentDataFromProduct(product: ProductRecord): ContentData[] {
+function contentDataFromProduct(product: ProductRecord, useDescription: boolean): ContentData[] {
 
     const contents: ContentData[] = []
 
@@ -251,7 +251,7 @@ function contentDataFromProduct(product: ProductRecord): ContentData[] {
         }
     }
 
-    if (product && product.description) {
+    if (product && product.description && useDescription) {
         const textContent: TextContentData = {
             type: 'text',
             text: product.description
@@ -273,6 +273,7 @@ function createCategoryAndGenericPages(serviceData: ServiceData): {
     const sortedShowcases = [...serviceData.showcases]
     sortedShowcases.sort((a, b) => a.website.priority - b.website.priority)
 
+    // Create showcase pages
     for (const showcase of sortedShowcases) {
 
         const { name, portrait, website, files, products } = showcase
@@ -318,7 +319,7 @@ function createCategoryAndGenericPages(serviceData: ServiceData): {
             if (product)
                 page.contents = [
                     ...page.contents,
-                    ...contentDataFromProduct(product)
+                    ...contentDataFromProduct(product, false)
                 ]
         }
 
@@ -326,6 +327,7 @@ function createCategoryAndGenericPages(serviceData: ServiceData): {
             genericPages.push(page)
     }
 
+    // Create individual product pages
     for (const product of serviceData.products) {
 
         const { name, portrait } = product
@@ -335,7 +337,7 @@ function createCategoryAndGenericPages(serviceData: ServiceData): {
             type: 'content',
             name,
             path: urlify(name),
-            contents: contentDataFromProduct(product),
+            contents: contentDataFromProduct(product, true),
             portrait,
             theme: 'light'
         }
