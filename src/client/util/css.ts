@@ -26,25 +26,23 @@ export const titleFontItalic = css`
 export const bodyFont = css`
     font-family: ${BODY_FONT_NAME};
     font-style: normal;
-    font-weight: 300;
 `
 
 export const bodyFontItalic = css`
     font-family: ${BODY_FONT_NAME};
     font-style: italic;
-    font-weight: 300;
 `
 
 export const bodyFontBold = css`
     font-family: ${BODY_FONT_NAME};
     font-style: normal;
-    font-weight: 600;
+    font-weight: bold;
 `
 
 export const bodyFontBoldItalic = css`
     font-family: ${BODY_FONT_NAME};
     font-style: italic;
-    font-weight: 600;
+    font-weight: bold;
 `
 
 export const hidePlayButton = (tag = '*'): FlattenSimpleInterpolation => css`
@@ -68,7 +66,6 @@ export const hidePlayButton = (tag = '*'): FlattenSimpleInterpolation => css`
         -webkit-appearance: none;
         display: none;
     }
-
 `
 
 export const content = css`

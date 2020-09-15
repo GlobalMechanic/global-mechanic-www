@@ -48,6 +48,10 @@ const Markdown = styled((props: MarkdownProps) => {
     a {
         color: inherit;
     }
+
+    b, strong {
+        font-weight: bold;
+    }
 `
 
 /***************************************************************/
